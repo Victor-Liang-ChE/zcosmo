@@ -1,0 +1,20 @@
+{
+ "name": "abl_disp",
+ "note": "fitted model, London dispersion",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 4013.78,
+  "c_OT_OT": 932.31,
+  "c_OH_OT": 3016.43,
+  "A_ES": 6525.69,
+  "B_ES": 148590000.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 1.0,
+  "disp_mode": "london",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

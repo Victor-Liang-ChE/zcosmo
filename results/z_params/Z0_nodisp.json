@@ -1,0 +1,20 @@
+{
+ "name": "Z0_nodisp",
+ "note": "Z0 without any dispersion term",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 5712.229463082564,
+  "c_OT_OT": 5611.4027535161395,
+  "c_OH_OT": 5987.642651646004,
+  "A_ES": 12226.235339788673,
+  "B_ES": 0.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 1.0,
+  "disp_mode": "none",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

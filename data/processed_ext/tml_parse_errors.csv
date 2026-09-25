@@ -1,0 +1,3 @@
+file,error
+j.fluid.2018.07.020.xml,"OSError(""Error reading file 'data/raw/thermoml_nist/x/10.1016/j.fluid.2018.07.020.xml': Invalid bytes in character encoding"")"
+j.fluid.2018.07.021.xml,"OSError(""Error reading file 'data/raw/thermoml_nist/x/10.1016/j.fluid.2018.07.021.xml': Invalid bytes in character encoding"")"

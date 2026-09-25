@@ -1,0 +1,20 @@
+.env.local
+# --- zcosmo public repo
+.env*
+_queue/
+_launch/
+cloud/kaggle_bench/out/
+cloud/kaggle_bench/kernel-metadata.json
+__pycache__/
+*.pyc
+.DS_Store
+data/processed/
+data/raw/*
+!data/raw/nist/
+data/raw/nist/*
+!data/raw/nist/to_sigma.py
+results/predictions*/
+results/qc/vib/
+results/logs/
+*.tgz
+*.zip

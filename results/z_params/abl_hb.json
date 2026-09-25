@@ -1,0 +1,20 @@
+{
+ "name": "abl_hb",
+ "note": "fitted model, H-bond constants from DFT dimers",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 5712.229463082564,
+  "c_OT_OT": 5611.4027535161395,
+  "c_OH_OT": 5987.642651646004,
+  "A_ES": 6525.69,
+  "B_ES": 148590000.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 0.27027,
+  "disp_mode": "dsp",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "name": "sens_hbdisp",
+ "note": "dimer dispersion kept in E_HB",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 7118.675924319939,
+  "c_OT_OT": 8812.156240418295,
+  "c_OH_OT": 7654.205576387159,
+  "A_ES": 12226.235339788673,
+  "B_ES": 0.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 1.0,
+  "disp_mode": "london",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

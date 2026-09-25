@@ -1,0 +1,20 @@
+{
+ "name": "sens_tail2",
+ "note": "sigma tails over 2 a_eff",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 6888.201945105919,
+  "c_OT_OT": 6225.800720484527,
+  "c_OH_OT": 7092.403056306393,
+  "A_ES": 12226.235339788673,
+  "B_ES": 0.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 1.0,
+  "disp_mode": "london",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

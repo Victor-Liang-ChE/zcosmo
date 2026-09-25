@@ -1,0 +1,115 @@
+{
+ "split": "test",
+ "models": [
+  "unifac_do",
+  "cosmosac_dsp"
+ ],
+ "tables": {
+  "idac": {
+   "n_points": 889,
+   "n_systems": 200,
+   "coverage": {
+    "unifac_do": 0.8790697674418605,
+    "cosmosac_dsp": 0.9451162790697675
+   },
+   "unifac_do": {
+    "MAE_ln_gamma_inf": 0.556436340601638,
+    "median_AE": 0.20951056150309258,
+    "frac_within_0.3": 0.6467941507311586,
+    "bias": 0.1479104777774362,
+    "MAE_CI95": [
+     0.4369338658870523,
+     0.6741541532938364
+    ],
+    "selectivity_spearman_median": 0.680952380952381,
+    "selectivity_pairs": 118,
+    "delta_MAE_vs_ref_CI95": [
+     -0.33481948752312174,
+     -0.14980662867928105
+    ]
+   },
+   "cosmosac_dsp": {
+    "MAE_ln_gamma_inf": 0.8022571944585828,
+    "median_AE": 0.46474335411537127,
+    "frac_within_0.3": 0.3059617547806524,
+    "bias": 0.10764032882102216,
+    "MAE_CI95": [
+     0.6854140437344138,
+     0.9206564845565218
+    ],
+    "selectivity_spearman_median": 0.3138616460160988,
+    "selectivity_pairs": 118
+   }
+  },
+  "vle": {
+   "n_points": 10633,
+   "coverage": {
+    "unifac_do": 0.8119705985299265,
+    "cosmosac_dsp": 0.8175708785439272
+   },
+   "unifac_do": {
+    "AAD_P_pct": 9.226972846778372,
+    "median_AD_P_pct": 2.7156906166148604,
+    "AAD_P_CI95": [
+     6.880640326121127,
+     12.262393600195042
+    ],
+    "AAD_y": 0.021062685728836773,
+    "n_y": 1504,
+    "delta_AAD_P_vs_ref_CI95": [
+     -1.3224168790740156,
+     0.9054869205310397
+    ]
+   },
+   "cosmosac_dsp": {
+    "AAD_P_pct": 9.512164397650857,
+    "median_AD_P_pct": 3.288520271092434,
+    "AAD_P_CI95": [
+     7.244152697588605,
+     12.305792782584527
+    ],
+    "AAD_y": 0.012343603065388955,
+    "n_y": 1504
+   }
+  },
+  "he": {
+   "n_points": 6408,
+   "coverage": {
+    "unifac_do": 0.8603539594367653,
+    "cosmosac_dsp": 0.9580157602376954
+   },
+   "unifac_do": {
+    "MAE_HE_J": 497.9459019453189,
+    "sign_correct": 0.9202978925685311,
+    "MAE_CI95": [
+     331.8349496792681,
+     706.343678803535
+    ]
+   },
+   "cosmosac_dsp": {
+    "MAE_HE_J": 427.49454523623075,
+    "sign_correct": 0.9212486135319283,
+    "MAE_CI95": [
+     367.7385891133093,
+     490.8938514499583
+    ]
+   }
+  },
+  "lle": {
+   "unifac_do": {
+    "n_points": 2895,
+    "n_systems": 207,
+    "gap_found_points": 0.6538860103626943,
+    "gap_found_systems": 0.41545893719806765,
+    "MAE_x_when_found": 0.12261454621349895
+   },
+   "cosmosac_dsp": {
+    "n_points": 2895,
+    "n_systems": 207,
+    "gap_found_points": 0.6815198618307426,
+    "gap_found_systems": 0.3961352657004831,
+    "MAE_x_when_found": 0.1467135211409732
+   }
+  }
+ }
+}

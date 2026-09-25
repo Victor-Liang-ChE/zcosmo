@@ -1,0 +1,20 @@
+{
+ "name": "sens_fpol",
+ "note": "f_pol=0.6400 (eps=3.667, literature) instead of 1; c_hb re-derived",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 5698.240389789876,
+  "c_OT_OT": 5417.09420407162,
+  "c_OH_OT": 5919.649564393582,
+  "A_ES": 7825.142704875542,
+  "B_ES": 0.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 1.0,
+  "disp_mode": "london",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

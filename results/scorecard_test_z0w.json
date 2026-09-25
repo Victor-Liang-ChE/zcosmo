@@ -1,0 +1,111 @@
+{
+ "split": "test",
+ "models": [
+  "unifac_do",
+  "cosmosac2010",
+  "Z0x",
+  "Z0w"
+ ],
+ "tables": {
+  "idac": {
+   "n_points": 762,
+   "n_systems": 177,
+   "coverage": {
+    "unifac_do": 0.9384057971014492,
+    "cosmosac2010": 1.0,
+    "Z0x": 1.0,
+    "Z0w": 0.9806763285024155
+   },
+   "unifac_do": {
+    "MAE_ln_gamma_inf": 0.42987583206546087,
+    "median_AE": 0.18884353335990234,
+    "frac_within_0.3": 0.6482939632545932,
+    "bias": -0.049602203865973894,
+    "MAE_CI95": [
+     0.33311608385694813,
+     0.5335566661332553
+    ],
+    "selectivity_spearman_median": 0.9343567186302357,
+    "selectivity_pairs": 8,
+    "delta_MAE_vs_ref_CI95": [
+     -0.494152244451204,
+     -0.24265377092008733
+    ]
+   },
+   "cosmosac2010": {
+    "MAE_ln_gamma_inf": 0.859340381855906,
+    "median_AE": 0.6097826125722167,
+    "frac_within_0.3": 0.14173228346456693,
+    "bias": -0.5551738684089956,
+    "MAE_CI95": [
+     0.7595852856882412,
+     0.9743832509689762
+    ],
+    "selectivity_spearman_median": 0.8354978354978355,
+    "selectivity_pairs": 8,
+    "delta_MAE_vs_ref_CI95": [
+     -0.050077563359762135,
+     0.15747619853952177
+    ]
+   },
+   "Z0x": {
+    "MAE_ln_gamma_inf": 0.8003608831923603,
+    "median_AE": 0.5142607254205467,
+    "frac_within_0.3": 0.2926509186351706,
+    "bias": -0.2117013586052944,
+    "MAE_CI95": [
+     0.6710818100367433,
+     0.9362257276074741
+    ],
+    "selectivity_spearman_median": 0.7071428571428571,
+    "selectivity_pairs": 8
+   },
+   "Z0w": {
+    "MAE_ln_gamma_inf": 0.9689886339209358,
+    "median_AE": 0.38125471420657286,
+    "frac_within_0.3": 0.3963254593175853,
+    "bias": 0.43952530689454156,
+    "MAE_CI95": [
+     0.6961784783752534,
+     1.2689484806101563
+    ],
+    "selectivity_spearman_median": 0.7071428571428571,
+    "selectivity_pairs": 8,
+    "delta_MAE_vs_ref_CI95": [
+     -0.03517937902646875,
+     0.3998232764638939
+    ]
+   }
+  },
+  "lle": {
+   "unifac_do": {
+    "n_points": 2475,
+    "n_systems": 101,
+    "gap_found_points": 0.5765656565656566,
+    "gap_found_systems": 0.6534653465346535,
+    "MAE_x_when_found": 0.11168074245827565
+   },
+   "cosmosac2010": {
+    "n_points": 2475,
+    "n_systems": 101,
+    "gap_found_points": 0.6884848484848485,
+    "gap_found_systems": 0.6732673267326733,
+    "MAE_x_when_found": 0.1397123283982621
+   },
+   "Z0x": {
+    "n_points": 2475,
+    "n_systems": 101,
+    "gap_found_points": 0.8896969696969697,
+    "gap_found_systems": 0.8415841584158416,
+    "MAE_x_when_found": 0.17514328435488258
+   },
+   "Z0w": {
+    "n_points": 2475,
+    "n_systems": 101,
+    "gap_found_points": 0.9195959595959596,
+    "gap_found_systems": 0.8910891089108911,
+    "MAE_x_when_found": 0.17378866766623596
+   }
+  }
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "name": "abl_es",
+ "note": "fitted model, electrostatics from theory",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 4013.78,
+  "c_OT_OT": 932.31,
+  "c_OH_OT": 3016.43,
+  "A_ES": 12226.235339788673,
+  "B_ES": 0.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 0.27027,
+  "disp_mode": "dsp",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ }
+}

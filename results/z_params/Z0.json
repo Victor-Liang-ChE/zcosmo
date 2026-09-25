@@ -1,0 +1,41 @@
+{
+ "name": "Z0",
+ "note": "all constants from theory / quantum chemistry",
+ "params": {
+  "aeff": 7.25,
+  "c_OH_OH": 5712.229463082564,
+  "c_OT_OT": 5611.4027535161395,
+  "c_OH_OT": 5987.642651646004,
+  "A_ES": 12226.235339788673,
+  "B_ES": 0.0,
+  "q0": 79.53,
+  "r0": 66.69,
+  "z": 10.0,
+  "use_dsp": true,
+  "w_dsp": 1.0,
+  "disp_mode": "london",
+  "london_table": "results/qc/dispersion.csv",
+  "disp_override": []
+ },
+ "c_ES_theory": 12226.235339788673,
+ "hb_by_class": [
+  {
+   "cls": "OH-OH",
+   "mean": 5712.229463082564,
+   "std": 538.3403028217566,
+   "count": 5
+  },
+  {
+   "cls": "OH-OT",
+   "mean": 5987.642651646004,
+   "std": 1032.4068437178942,
+   "count": 7
+  },
+  {
+   "cls": "OT-OT",
+   "mean": 5611.4027535161395,
+   "std": 1832.5238384527254,
+   "count": 5
+  }
+ ]
+}
