@@ -18,3 +18,5 @@ results/qc/vib/
 results/logs/
 *.tgz
 *.zip
+data/processed_ext/tml_points.pkl
+third_party/
