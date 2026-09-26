@@ -19,7 +19,10 @@ import pandas as pd
 from zcosmo.pyscf_cosmo import BOHR, RADII, cosmo_segments, to_profiles, write_sigma, xtb_geometry
 
 
-def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100):
+def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None):
+    """partial: optional JSON path; the current geometry is written there after every Berny cycle so a job
+    killed by a wall-clock cap can resume from its last geometry (same functional, basis, solvent and
+    convergence criteria; only the Berny Hessian guess restarts)."""
     from pyscf import gto, dft
     from pyscf.data import elements
     from pyscf.geomopt.berny_solver import optimize
@@ -37,7 +40,14 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100):
     for el, r in RADII.items():
         table[elements.charge(el)] = r / BOHR
     s.radii_table = table
-    m2 = optimize(mf, maxsteps=maxsteps)
+    def cb(env):
+        if partial is not None and env.get("mol") is not None:
+            tmp = str(partial) + ".tmp"
+            with open(tmp, "w") as f:
+                json.dump({"sym": list(sym), "x": np.round(env["mol"].atom_coords(unit="Angstrom"), 6).tolist(),
+                           "cycle": int(env.get("cycle", -1))}, f)
+            os.replace(tmp, partial)
+    m2 = optimize(mf, maxsteps=maxsteps, callback=cb)
     return np.asarray(m2.atom_coords(unit="Angstrom"))
 
 
@@ -49,14 +59,21 @@ def run_one(row, outdir):
     t = time.time()
     try:
         sym, x0 = xtb_geometry(row["smiles"])
-        x = dft_geometry(sym, np.asarray(x0))
+        partial = Path(outdir) / f"{key}.partial.json"
+        resumed = False
+        if partial.exists():
+            p = json.loads(partial.read_text())
+            if p["sym"] == list(sym):
+                x0, resumed = p["x"], True
+        x = dft_geometry(sym, np.asarray(x0), partial=partial)
         seg, e = cosmo_segments(sym, x)
         out, meta = to_profiles(sym, x, seg)
         meta["E_scf_Eh"] = e
-        meta["geometry"] = "BP86/def2-SVP C-PCM conductor (pyberny)"
+        meta["geometry"] = "BP86/def2-SVP C-PCM conductor (pyberny)" + (" [resumed from checkpoint]" if resumed else "")
         write_sigma(dest, out, meta, key)
         with open(Path(outdir) / f"{key}.xyz.json", "w") as f:
             json.dump({"sym": sym, "x": np.round(x, 5).tolist()}, f)
+        partial.unlink(missing_ok=True)
         return key, "ok", time.time() - t
     except Exception as ex:
         return key, f"fail: {ex!r}"[:300], time.time() - t
