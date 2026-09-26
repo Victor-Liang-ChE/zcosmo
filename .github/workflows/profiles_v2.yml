@@ -3,10 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       nchunks: {description: "number of parallel chunks", default: "20"}
+      keys: {description: "comma-separated InChIKeys to compute (empty = all)", default: ""}
 jobs:
   profiles:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 355
     strategy:
       fail-fast: false
       max-parallel: 20
@@ -22,7 +23,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
       - run: pip install pyscf==2.14.0 pyberny rdkit tblite ase pandas scipy matplotlib
-      - run: python -m zcosmo.pyscf_cosmo_v2 out data/benchmark/compounds.csv --chunk ${{ matrix.chunk }} --nchunks ${{ inputs.nchunks }} 2>&1 | grep -v -i warn | tee out_${{ matrix.chunk }}.log
+      - run: python -m zcosmo.pyscf_cosmo_v2 out data/benchmark/compounds.csv --chunk ${{ matrix.chunk }} --nchunks ${{ inputs.nchunks }} --keys "${{ inputs.keys }}" 2>&1 | grep -v -i warn | tee out_${{ matrix.chunk }}.log
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: "profiles_v2_${{ matrix.chunk }}", path: "out*", retention-days: 14}
+        with: {name: "profiles_v2_${{ github.run_id }}_${{ matrix.chunk }}", path: "out*", retention-days: 14}
