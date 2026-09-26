@@ -43,12 +43,12 @@ def xtb_geometry(smiles, seed=7):
     return sym, at.get_positions()
 
 
-def cosmo_segments(sym, xyz_A, basis="def2-tzvp", lebedev=29):
+def cosmo_segments(sym, xyz_A, basis="def2-tzvp", lebedev=29, spin=0):
     """Return segment table (x,y,z in bohr, charge, area A^2, atom index) and SCF energy."""
     from pyscf import gto, dft
     mol = gto.M(atom=[(s, tuple(p)) for s, p in zip(sym, xyz_A)], basis=basis, unit="Angstrom", verbose=0,
-                max_memory=int(os.environ.get("QC_MEM_MB", "4000")))
-    mf = dft.RKS(mol).density_fit().PCM()
+                spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "4000")))
+    mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
     mf.xc = "b88,p86"
     mf.grids.level = 3
     mf.conv_tol = 1e-9

@@ -19,7 +19,7 @@ import pandas as pd
 from zcosmo.pyscf_cosmo import BOHR, RADII, cosmo_segments, to_profiles, write_sigma, xtb_geometry
 
 
-def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None):
+def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=0):
     """partial: optional JSON path; the current geometry is written there after every Berny cycle so a job
     killed by a wall-clock cap can resume from its last geometry (same functional, basis, solvent and
     convergence criteria; only the Berny Hessian guess restarts)."""
@@ -27,8 +27,8 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None):
     from pyscf.data import elements
     from pyscf.geomopt.berny_solver import optimize
     mol = gto.M(atom=[(s, tuple(p)) for s, p in zip(sym, xyz_A)], basis=basis, unit="Angstrom", verbose=0,
-                max_memory=int(os.environ.get("QC_MEM_MB", "3000")))
-    mf = dft.RKS(mol).density_fit().PCM()
+                spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "3000")))
+    mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
     mf.xc = "b88,p86"
     mf.grids.level = 2
     mf.conv_tol = 1e-8
@@ -51,6 +51,10 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None):
     return np.asarray(m2.atom_coords(unit="Angstrom"))
 
 
+# Ground states that are not closed-shell singlets (2S): treated spin-unrestricted. O2 is a triplet.
+OPEN_SHELL = {"O=O": 2}
+
+
 def run_one(row, outdir):
     key = row["inchikey"]
     dest = Path(outdir) / f"{key}.sigma"
@@ -65,8 +69,9 @@ def run_one(row, outdir):
             p = json.loads(partial.read_text())
             if p["sym"] == list(sym):
                 x0, resumed = p["x"], True
-        x = dft_geometry(sym, np.asarray(x0), partial=partial)
-        seg, e = cosmo_segments(sym, x)
+        spin = OPEN_SHELL.get(row["smiles"], 0)
+        x = dft_geometry(sym, np.asarray(x0), partial=partial, spin=spin)
+        seg, e = cosmo_segments(sym, x, spin=spin)
         out, meta = to_profiles(sym, x, seg)
         meta["E_scf_Eh"] = e
         meta["geometry"] = "BP86/def2-SVP C-PCM conductor (pyberny)" + (" [resumed from checkpoint]" if resumed else "")
