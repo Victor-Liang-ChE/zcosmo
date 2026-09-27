@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/scripts/optimization_check.py
-@@ -0,0 +1,350 @@
+@@ -0,0 +1,355 @@
 +"""Fail-closed optimization benchmarks. Run from a zcosmo checkout with PYTHONPATH=src.
 +Uses no experimental response values. Exit 2 means statistically inconclusive, not accepted.
 +"""
@@ -134,7 +134,7 @@
 +    ref = {k: load_fluid(k, str(Path(a.reference).resolve())) for k in val.inchikey} if a.reference else ud
 +    max_dpa = max(float(abs(cand[k].psigA-ref[k].psigA).max()) for k in cand)
 +    max_dp = max(float(abs(cand[k].psigA/cand[k].A-ref[k].psigA/ref[k].A).max()) for k in cand)
-+    differences, versus_ud = [], []
++    differences, versus_ud, nonfinite = [], [], []
 +    t = time.perf_counter()
 +    for k, solute, solvent, T in rows:
 +        other = solvent if solute == k else solute
@@ -143,9 +143,14 @@
 +            pair = [f, fo] if solute == k else [fo, f]
 +            return Mixture(None, Params(), fluids=pair).lngamma_inf(T, 0)
 +        lr, lc, lu = value(ref[k]), value(cand[k]), value(ud[k])
-+        assert np.isfinite([lr, lc, lu]).all()
-+        differences.append(abs(lc-lr)); versus_ud.append(abs(lc-lu))
-+    result = dict(molecules=25, rows=len(rows), max_delta_p=max_dp, max_delta_psigmaA_A2=max_dpa,
++        # Some registered rows are not evaluable by COSMO-SAC (non-finite in main too): record, require the
++        # candidate to have exactly the same coverage, and compare only finite rows.
++        assert np.isfinite(lr) == np.isfinite(lc), ('coverage changed', k, solute, solvent, T)
++        if not np.isfinite([lr, lc]).all():
++            nonfinite.append((k, solute, solvent, T)); continue
++        differences.append(abs(lc-lr))
++        if np.isfinite(lu): versus_ud.append(abs(lc-lu))
++    result = dict(molecules=25, rows=len(rows), nonfinite_rows=len(nonfinite), max_delta_p=max_dp, max_delta_psigmaA_A2=max_dpa,
 +        max_delta_lngamma=float(max(differences)), median_delta_vs_UD=float(np.median(versus_ud)),
 +        check_wall_s=time.perf_counter()-t, mode=a.mode)
 +    write(a.out, result)
