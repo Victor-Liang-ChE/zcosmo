@@ -396,3 +396,17 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   -4.9 kcal/mol), the model's methanol self-solvation is ~1.3 kcal/mol too weak while the aqueous legs are
   within ~0.2-0.6, so the failure is the potential (MACE-OFF23 small; its methanol density 0.874 vs 0.787 g/cm3
   experimental is also off by 11%), not the sampling. No model constant is changed from this result.
+- GPU4PySCF equivalence test (2026-09-27 4:35 PM PDT, RTX 4070 Super, gpu4pyscf 1.8.1, pyscf 2.14.0 CPU reference on the
+  same machine, 16 threads): energies agree to <= 6.4e-10 Eh, but it is NOT numerically equivalent: gradients differ by
+  up to 1.0e-5 Eh/Bohr (1-octanol SVP) and the C-PCM surface has a different number of points (1535 vs 1533 at SVP,
+  3433 vs 3429 at TZVP), so surface charges cannot be compared point by point. Speed: 7.3x (SVP) and 10.9x (TZVP) on
+  1-octanol; small molecules gain little. GPU4PySCF is therefore not used to produce any profile.
+- GPU pre-stage for the remaining long-chain profiles (registered now, before any use): GPU4PySCF optimises the
+  BP86/def2-SVP C-PCM geometry (same functional, basis, radii, eps, Lebedev 17, grid 2) from the usual GFN2-xTB start;
+  its final geometry is only a STARTING POINT handed to the registered CPU code as a Berny checkpoint. The CPU path
+  (pyscf 2.14, unchanged) re-optimises until the registered Berny convergence test passes, then computes the TZVP
+  single point and the profile. Only the starting geometry changes (class A: a different start can reach a different
+  conformer). Check before use: the protocol is run on 4 molecules that already have registered CPU profiles
+  (decanoic acid, triethylene glycol, heptane, 1,8-diaminooctane); it is accepted if all 4 converge and every
+  infinite-dilution ln gamma on their benchmark rows (COSMO-SAC-dsp) changes by < 0.01 vs the existing CPU profiles.
+  If rejected, the long chains are completed by the CPU path alone (Mac / 4070 CPU cores).
