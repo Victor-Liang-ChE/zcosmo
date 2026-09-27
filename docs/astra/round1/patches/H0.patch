@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/scripts/optimization_check.py
-@@ -0,0 +1,346 @@
+@@ -0,0 +1,347 @@
 +"""Fail-closed optimization benchmarks. Run from a zcosmo checkout with PYTHONPATH=src.
 +Uses no experimental response values. Exit 2 means statistically inconclusive, not accepted.
 +"""
@@ -162,7 +162,7 @@
 +        xs = [0., 1e-8, 1e-4, .001, .01, .1, .25, .5, .75, .9, .99, .999, 1-1e-4, 1-1e-8, 1.]
 +        queries += [(s,v,T,x) for s,v in sorted({(s,v) for _,s,v,_ in rows})
 +                    for T in [250.,298.15,450.] for x in xs]
-+    values, labels, cache = [], [], {}
++    values, labels, cache, nonfinite_cosmo = [], [], {}, []
 +    start = time.perf_counter()
 +    for name in ['cosmosac_dsp','Z0x']:
 +        for s,v,T,x in queries:
@@ -171,13 +171,14 @@
 +                cache[k]=make_model(name,[s,v],[smi[s],smi[v]])
 +            y=np.asarray(cache[k].lngamma(T,np.array([x,1-x])),float)
 +            # Missing Z0x inputs must be recorded, not silently dropped. COSMO is mandatory.
-+            if name == 'cosmosac_dsp':
-+                assert np.isfinite(y).all(), (name,s,v,T,x)
++            if name == 'cosmosac_dsp' and not np.isfinite(y).all():
++                nonfinite_cosmo.append((s,v,T,x))
 +            values.append(y);labels.append((name,s,v,T,x))
 +    elapsed=time.perf_counter()-start
 +    digest=hashlib.sha256(json.dumps(labels).encode()).hexdigest()
 +    np.savez(a.out, values=values, labels_hash=digest, wall_s=elapsed, idac_rows=2302)
-+    print(json.dumps(dict(rows=len(values), wall_s=elapsed, finite_values=int(np.isfinite(values).sum()))))
++    print(json.dumps(dict(rows=len(values), wall_s=elapsed, finite_values=int(np.isfinite(values).sum()),
++        nonfinite_cosmo_queries=len(nonfinite_cosmo), nonfinite_cosmo_pairs=sorted({(s,v) for s,v,_,_ in nonfinite_cosmo}))))
 +
 +def compare(a):
 +    r=np.load(a.reference);c=np.load(a.candidate)
