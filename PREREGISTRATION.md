@@ -381,3 +381,18 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   profile computed on the Mac (commit 82c4f19). Round 3 (GitHub run 36250934743) added 16 more profiles
   (615/636 with O2); the 21 left are long flexible chains that hit the 6 h runner cap; round 4 (run
   36273318385) uses Berny checkpoints so a cancelled runner's progress is kept for resumption.
+- Direct-route ln gamma_inf PILOT RESULT (2026-09-27 5:20 AM PDT, recorded before any follow-up). Replica 1 ran on
+  Kaggle T4 GPUs (Modal credits ran out mid-run on 2026-09-26; nothing from the Modal attempt was used), bench15
+  settings as registered, 31 ps/window, 28 windows. Coupling free energies (TI +- 5-block SE / MBAR, kcal/mol):
+  methanol in water -5.287 +- 0.284 / -5.574; methanol in methanol -3.577 +- 0.271 / -3.630; water in water
+  -6.872 +- 0.214 / -6.889; water in methanol -5.684 +- 0.207 / -5.775. All four meet the per-run precision
+  gate (SE <= 0.3). With the registered formula and MACE densities (ln(rho_w/rho_m) = +0.819):
+  ln gamma_inf(methanol in water) = -2.07 +- 0.66 (MBAR -2.46) vs ThermoML 0.487 (293.15/303.15 K mean,
+  2005 set; train split) -> error -2.56. ln gamma_inf(water in methanol) = +1.19 +- 0.50 (MBAR 1.06); no ThermoML
+  point in 293-303 K, so not scored. Registered outcome: |error| > 0.7 in a scored direction -> the direct route
+  is SHELVED. Replica 2 is not run: it would have to move the result by ~2.5 ln units, 4 SE.
+  Diagnosis (post hoc, orientation only): against experimental solvation free energies derived from vapour
+  pressures and densities (water in water about -6.3, methanol in water about -5.1, methanol in methanol about
+  -4.9 kcal/mol), the model's methanol self-solvation is ~1.3 kcal/mol too weak while the aqueous legs are
+  within ~0.2-0.6, so the failure is the potential (MACE-OFF23 small; its methanol density 0.874 vs 0.787 g/cm3
+  experimental is also off by 11%), not the sampling. No model constant is changed from this result.
