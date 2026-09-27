@@ -27,7 +27,7 @@ PRE = int(os.environ.get("ZC_PRE_STEPS", "2000"))
 def log(s): print(s, flush=True); out.append(s)
 
 def teacher(cueq=None):
-    cueq = (DEV == "cuda") if cueq is None else cueq
+    cueq = (DEV == "cuda" and os.environ.get("ZC_CUEQ", "1") == "1") if cueq is None else cueq
     from mace.calculators import mace_off
     return mace_off(model="small", device=DEV, default_dtype="float32", enable_cueq=cueq)
 
