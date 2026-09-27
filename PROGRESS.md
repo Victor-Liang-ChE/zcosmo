@@ -103,6 +103,40 @@ Roadmap toward a complete fit-free fluid package (ordered by leverage)
    in VLE), then an equation-of-state layer for pressure.
 5. Packaging: pip-installable `zcosmo` with a thermo-compatible activity model and a DWSIM/CAPE-OPEN plugin.
 
+## 2026-09-25 (session 5: compute platform + association round 2)
+- Compute: native runner v2 restarted without typing (Finder-launched .command); LaunchAgent
+  com.zcosmo.runner (worker3.sh, single-instance) starts it at login. Kaggle (user viliang, 30 GPU-h/week)
+  and Modal ($0 spend cap, free credit) authenticated from .env.local inside Mac jobs (secrets never read
+  by the assistant). Public repo github.com/Victor-Liang-ChE/zcosmo; GitHub Actions workflow
+  open-profiles-v2 runs 20 x 4-core chunks in parallel.
+- MLIP throughput (MACE-OFF23 small, float32): M4 Pro CPU 0.54 ns/day @192 atoms, 0.12 @648; MPS fails
+  (float64 in ASE path); Kaggle GPU 0.73 ns/day @648. Alchemical FEP shelved (registered); MLIP kept as a
+  structural referee (see below).
+- Z0w2 (condensed-phase association, registered): FAILED its criteria. Test IDAC MAE 0.902
+  [0.759, 1.054] vs Z0x 0.800, paired dMAE CI [+0.041, +0.177] (worse); better than Z0w (0.969) and the
+  aqueous positive bias is gone (bias -0.24). LLE balanced accuracy 0.887 (recall 0.85, fp 0.078).
+  Temporal: IDAC 0.975 (full coverage) vs COSMO-SAC 0.925; VLE 15.4% vs 8.6%.
+  Diagnosis: continuum desolvation (+1.7 to +2.1 kcal/mol for O-H...O contacts) over-corrects; Wertheim
+  with Z0w2 strengths leaves only ~13% of water donor sites bonded (gas strengths: ~63%). The true liquid
+  value is the missing reference, hence the MLIP referee below. No further hand-built association variants
+  will be scored on the test set (two looks already).
+- Queued: Kaggle GPU MLIP referee (MACE-OFF23 NPT/NVT of 64 water, 27 methanol; H-bonded donor fraction,
+  Luzar-Chandler criterion) as a diagnostic; open profiles v2 on Actions (acceptance test pending).
+
+## 2026-09-25 evening (session 5, continued: Z0w3 and open profiles v2)
+- Open profiles v2 (DFT geometries): registered acceptance test passed by 0.0007 (median 0.1493 vs 0.15);
+  555/636 on the first GitHub Actions pass, 81 re-dispatched. Z0x-open is exploratory only.
+- MLIP teacher: fast exact engine (cuEq + lean Verlet), 21 NPT liquid runs on free Modal/Lightning GPUs,
+  Kaggle cross-check agrees (water 1.10 g/cc, 86% bonded; ours 1.115, 87%). MACE-OFF23 small water is ~10% dense.
+- Z0w3 (TPT1 strengths inverted from those runs): FAILED. Temporal IDAC MAE 2.19 vs Z0x 1.45; test 1.07 vs 0.80;
+  aqueous 4.79 vs 1.76. Median errors improved slightly, aqueous blew up: simulated bonding + Z0x residual
+  electrostatics double count. Conclusion: an additive TPT1 term on top of a COSMO residual is the wrong
+  architecture; association must replace, not add to, the electrostatic H-bond contribution, or the whole
+  activity coefficient must come from simulation (solvation free energies), which the fast engine now makes
+  affordable for a pilot.
+- Ops lessons: Lightning studios sleep and kill background jobs (checkpoints saved us); Modal preempts
+  (checkpoints on a Volume); stale staged-file cache means every re-commit needs a new staged filename.
+
 ## Environment notes
 - Cloud container: 2 cores; reaches PyPI and (via the Mac) GitHub only. NIST, Zenodo and PubChem are
   blocked from both shells, so data came from GitHub mirrors.

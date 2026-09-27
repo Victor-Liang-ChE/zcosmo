@@ -208,6 +208,38 @@ the lowest-energy conformer by the Boltzmann ensemble changed predictions very l
 in accuracy (IDAC MAE difference [0.00, +0.01]; VLE [-0.35, +0.32] points). The lowest conformer carries
 60% of the weight on average. Conformer treatment is not a meaningful error source at this level.
 
+### 3.8 Continuum desolvation of the association term (Z0w2)
+
+Z0w over-weighted aqueous association, so Z0w2 adds the electrostatic continuum desolvation of each
+hydrogen-bonded contact, computed with the same BP86/def2-TZVP C-PCM model as the profiles at the mixture's
+own fit-free permittivity. The correction is +0.9 to +2.1 kcal/mol for O-H...O contacts (0.9 at eps = 2,
+2.1 in the conductor limit), enough to cut water's association constant about 30-fold. It over-corrects.
+On the test split the IDAC MAE rises to 0.902 against 0.800 for Z0x (paired difference +0.04 to +0.18),
+while LLE balanced accuracy stays at 0.887. Only about 13% of water's donor sites remain bonded, far below
+the roughly 85% expected for the liquid. Because the test split has now informed two association variants,
+the next variant (3.9) is judged first on the temporal set.
+
+### 3.9 A first-principles liquid-simulation teacher
+
+The association constants that a continuum or gas-phase dimer calculation cannot supply can be measured
+directly in simulated liquids. We use MACE-OFF23 (small), a machine-learned interatomic potential trained
+only on DFT reference data, as a teacher. Speed was the obstacle: the stock ASE path managed 0.37 ns/day for
+648 water atoms on an NVIDIA L4. Three exact changes remove most of it. The first is NVIDIA's
+cuEquivariance fused tensor-product kernels (forces identical to 2-4e-6 eV/A). The second is batching many
+small boxes per GPU. The third is a lean integrator that feeds the model directly, with a Verlet neighbour
+list whose superset is filtered to the cutoff every step. This is exact because MACE's radial envelope is
+identically zero beyond r_max. Aggregate throughput reaches 8.9 ns/day (about 24x), with every change
+checked against reference forces. Two approximations were rejected by pre-registered gates: TF32 arithmetic
+(force error 3e-3 eV/A) and hydrogen mass repartitioning with 1-2.5 fs steps (energy drift 2.3-183 times the
+0.5 fs reference). Z0w3 inverts TPT1 on hydrogen-bond statistics from NPT simulations of seven liquids at
+three temperatures (PREREGISTRATION.md, session 5b). The teacher is physically reasonable (water 87% bonded,
+1.115 g/cm3; an independent engine gives 86% and 1.10), but Z0w3 fails badly: temporal IDAC MAE 2.19 against
+1.45 for Z0x, aqueous test systems 4.79 against 1.76. The simulated association is strong (water Delta about
+ten times the gas-phase dimer value), and adding it on top of a COSMO residual that already contains much of
+the hydrogen-bond electrostatics counts the same physics twice. Three association variants have now failed
+for complementary reasons (too strong from gas-phase dimers, too weak after continuum desolvation, too strong
+again when taken from the liquid), which points to the additive architecture rather than to the constants.
+
 ## 4. Discussion
 
 Three results stand out. First, the sigma-profile physics with constants from theory alone reaches the

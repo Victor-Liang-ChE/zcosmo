@@ -171,3 +171,213 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   as a secondary table; if not, v2 profiles are used only for gap compounds, as v1.
 - Z0w2 check on water (before scoring): electrostatic desolvation of the water dimer rises smoothly from
   +0.88 (eps 2) to +2.06 kcal/mol (conductor), i.e. ~30x weaker association in liquid water.
+- Z0w2 result (2026-09-25, recorded before any follow-up): FAILED. Test IDAC MAE 0.902 vs Z0x 0.800
+  (paired dMAE CI +0.041 to +0.177); LLE balanced accuracy 0.887. See PROGRESS.md session 5.
+- MLIP association referee (diagnostic only, registered before running): MACE-OFF23 small, float32,
+  NPT Berendsen 40 ps then Langevin NVT 30 ps at 298.15 K, 1 bar, 0.5 fs, 64 water / 27 methanol;
+  report density and the fraction of hydroxyl H donors hydrogen bonded (O..O < 3.5 A, H-Od..Oa < 30 deg).
+  Used only to compare against the bonded fractions implied by Z0w and Z0w2; any model built from it
+  (e.g. association strengths obtained by inverting TPT1 on simulated bonded fractions) must be registered
+  separately and judged first on the temporal set, since the test set has had two association looks.
+- MLIP engine speed-ups (2026-09-25, accuracy gates fixed before each run; results):
+  cuEquivariance fused kernels: max|dF| vs e3nn float32 2-4e-6 eV/A (gate 1e-3) -> ACCEPTED.
+  TF32 matmuls: max|dF| 2.5-3.1e-3 eV/A -> REJECTED (gate 1e-3).
+  Timestep/HMR NVE gate (|drift| < 0.01 kT/atom/ns): FAILED for every setting, including the 0.5 fs
+  no-HMR reference (0.044; float32 model). Relative to it: HMR 1.0 fs 2.3x, 1.5 fs 6.2x, 2.0 fs 7.7x,
+  2.5 fs blow-up (183x). Production stays at 0.5 fs, no HMR. A larger step may only be adopted through a
+  newly registered test (drift <= 2x reference AND density, O-O RDF and H-bond fraction equal to the 0.5 fs
+  run within 2 standard errors in thermostatted runs).
+  Verlet-skin lean engine (zc_md.VerletMACE): exact by construction (MACE cutoff envelope is 0 beyond r_max);
+  gate max|dF| vs the ASE path < 1e-4 eV/A along a Langevin trajectory.
+
+## Session 5b registration: Z0w3 (2026-09-25 3:40 PM PDT, before any Z0w3 simulation result is seen)
+- Idea: keep Z0w's Wertheim TPT1 form, but take each donor/acceptor class-pair strength Delta_da from
+  first-principles liquid simulations instead of gas-phase dimers. Teacher: MACE-OFF23 small (trained on
+  DFT only; no experimental data), float32 with cuEquivariance kernels (verified identical to e3nn to
+  4e-6 eV/A), exact Verlet-skin engine, BAOAB Langevin 0.5 fs (gamma 0.01/fs), molecular Monte-Carlo
+  barostat at 1.01325 bar (every 25 steps), 30 ps equilibration + 60 ps production, one run per liquid
+  and temperature, start box from RDKit vdW volumes at packing 0.45 (no experimental density used).
+- Liquids (fixed now): water (64), methanol (40), ethanol (30), n-propylamine (24), water/acetone
+  (48/16), water/pyridine (48/12), n-propylamine/water (16/32); temperatures 278.15, 298.15, 323.15 K.
+- H-bond criterion (fixed): donor H on O or N; acceptor O or N on another molecule; D..A < 3.5 A and
+  angle H-D..A < 30 deg; each donor H assigned to at most one acceptor (nearest qualifying). Acceptor sites:
+  O = 2, N = 1 (as Z0w).
+- Inversion (TPT1 mass action, per liquid and T): Delta_da = f(d->a) / (c_a * n_a * X_a * X_d), where
+  f(d->a) = mean bonds from class-d donors to class-a acceptors per d donor site, X_d = 1 - sum_a f(d->a),
+  X_a = 1 - acceptor-site occupancy of class a, c_a = number density of class-a molecules computed with the
+  model's own convention (mole fraction / COSMO-volume mixture volume), n_a = sites per molecule.
+- Aggregation: per class pair and T, geometric mean over liquids providing that pair (weighted by bond
+  counts); ln Delta vs 1/T fitted linearly over the three temperatures; class pairs never observed use the
+  mean ln Delta of observed pairs (as Z0w). Everything else identical to Z0w.
+- Go/no-go before inversion (fixed): the pure-water run at 298.15 K must give a bonded donor fraction in
+  [0.70, 0.95] and a density within 15% of 1.0 g/cm3 (a sanity check of the teacher, not a fit); otherwise
+  Z0w3 is abandoned. Kaggle ASE-engine run of water/methanol is an independent cross-check of the engine.
+- Evaluation: primary = temporal set (2017-2019 publications) IDAC MAE vs Z0x and COSMO-SAC 2010, paired
+  bootstrap; secondary = test split (already looked at twice for association, reported as such); LLE
+  balanced accuracy >= 0.88. Success: temporal IDAC MAE < Z0x with CI excluding 0 and aqueous subset not worse.
+- Z0w3 protocol deviation (2026-09-25 5:20 PM PDT, before any Z0w3 result was read): the propylamine/water start
+  box had overlapping molecules (random lattice placement), the run blew up to NaN within 30 steps on every
+  platform. Only that liquid is rerun with a clash-free builder (random insertion, >= 2.0 A between molecules,
+  start packing 0.20 instead of 0.45) plus a steepest-descent pre-relaxation and a NaN guard (md_liquid_v3.py).
+  Start conditions affect only equilibration, not the equilibrium averages used; the other six liquids keep
+  the original builder. All other registered settings unchanged.
+- Distillation (registered 2026-09-25 5:45 PM PDT, before any student is trained): a smaller MACE student
+  (fewer channels, same cutoff 4.5 A) is trained only on MACE-OFF23 teacher energies and forces for frames of the
+  target liquids (saved every 1 ps from teacher runs via md_liquid_v4 --frames; 90/10 frame split by run).
+  Acceptance gates, all required: (1) held-out force MAE vs teacher < 20 meV/A; (2) in a 60 ps NPT run of
+  water and methanol, density, O-O RDF first-peak height and bonded-donor fraction within 2 standard errors of
+  the teacher runs; (3) speed-up >= 3x at equal batch. Any number reported from student sampling is reweighted
+  to the teacher (Zwanzig / MBAR end-point reweighting on saved frames) and is used only if the effective
+  sample size is >= 10% of frames; otherwise the teacher is rerun. The student never replaces the teacher's
+  numbers directly.
+- Open profiles v2 acceptance result (2026-09-25 5:30 PM PDT): 555 of 636 profiles finished before the
+  GitHub Actions 350-min cap (81 largest re-dispatched). Registered test on the same 25 molecules / 2,302
+  IDAC rows: median |d ln gamma_inf| = 0.1493 vs the 0.15 bar -> ACCEPT, by a margin of 0.0007 (v1: 0.153,
+  reject). Mean 0.323; water still differs most (0.82 over 450 rows), triethylene glycol 0.93. Experimental
+  MAE on those rows: UD 0.744, v2 0.769. Per the registration, Z0x-open (all profiles v2) is scored as a
+  secondary table once all 636 exist; given the thin margin it is reported as exploratory, not a replacement.
+- MLIP teacher cross-check (Kaggle, independent ASE engine + Berendsen barostat, 64 water / 27 methanol,
+  298 K): water density 1.100 +- 0.017 g/cm3, bonded donor fraction 0.863; methanol 0.827 +- 0.057,
+  0.909. MACE-OFF23 small overestimates water density by ~10% (inside the registered +-15% window).
+- Z0w3 go/no-go (registered check, 2026-09-25 7:07 PM PDT): pure water 298.15 K bonded donor fraction 0.871,
+  density 1.115 g/cm3 -> PASS; proceed to scoring once all 21 runs exist. Observed limitation recorded
+  without changing the rule: pyridine N and propylamine N sometimes accept more than one H-bond in the
+  simulation (occupancy > 1 per the model's single N site), so the inversion drops those points (e.g.
+  water/pyridine 323 K OH->N); OH->N then rests on fewer points.
+- Operations: Lightning studio auto-stopped at ~7:10 PM before the 278 K runs wrote results; restarted and
+  resumed from checkpoints (no settings changed). Modal apps holding the NaN-stuck original
+  propylamine/water processes were stopped after their healthy runs finished.
+- Z0w3 RESULT (2026-09-25 11:05 PM PDT, recorded before any follow-up): FAILED the registered criterion.
+  Temporal set (primary): IDAC MAE 2.192 [1.292, 3.143] vs Z0x 1.451 and COSMO-SAC 2010 0.925; bias +2.12;
+  VLE AAD 37.6% (Z0x 11.3%); hE MAE 1021 J/mol (Z0x 349). Test split: IDAC MAE 1.072 vs 0.800 (paired CI
+  +0.06 to +0.54); aqueous subset 4.79 vs 1.76 for Z0x. Median error and fraction within 0.3 improved slightly
+  (test 0.48 / 0.40 vs 0.51 / 0.29), i.e. many non-aqueous systems got better while aqueous systems became far
+  too non-ideal. The simulation-derived strengths are large (water ln Delta 6.5 at 298 K, ~700 A^3, ten times
+  the gas-phase value) and, combined with the Z0x residual term that already carries part of the
+  hydrogen-bond electrostatics, over-associate. OH->N temperature fit is unphysical (a = 23.6, b = -4374 K)
+  because nitrogen accepts >1 H-bond in the simulations but one site in the model. Three association
+  variants have now failed; no further TPT1 variant is scored on these data sets.
+- Z0w3 LLE (test): recall 0.87, false-positive rate 0.164 (all 336 negatives: 0.223), balanced accuracy
+  0.854 < 0.88 bar -> also fails the LLE criterion.
+- Direct route (planned, NOT yet registered for scoring; 2026-09-26 12:30 AM PDT): ln gamma_inf(i in j) =
+  beta [mu_ex(i in j) - mu_ex(i in pure i)] + ln(rho_j / rho_i,pure) (molar densities from the same NPT runs),
+  mu_ex by alchemical decoupling with the MACE-OFF teacher. Open problems to settle in a feasibility phase
+  before any registration: (1) MLIPs have no soft-core, so decoupling uses end-state interpolation
+  U(l) = l U(full) + (1-l)[U(solvent) + U(solute)], which may diverge near l = 0; (2) cost: ~16 windows x
+  0.1-0.2 ns x 3 force calls per step for ~250 atoms is roughly 0.5-1 GPU-day per ln gamma_inf on an L4.
+  Feasibility gate (to be registered with numbers after one timing run): methanol hydration free energy with
+  window overlap >= 0.03 between neighbours and statistical error <= 0.3 kcal/mol, before any comparison to
+  experiment. Depends on the 4070 (WSL + cuEq) and on distillation for affordable throughput.
+- Speed-up suite (registered 2026-09-26 ~8:00 AM PDT, before the run; bench11 on a Modal L4):
+  A) GPU minimum-image neighbour list, half-edge symmetry (spherical harmonics x (-1)^l, radial MLP shared),
+     static padding with dummy edges beyond r_max, CUDA graphs via torch.compile: each accepted only if
+     max|dF| vs the ASE reference < 1e-4 eV/A (they are exact by construction; CPU pre-test gave 2-3e-6).
+  C) Surrogate-driven HMC (student MACE distilled on the fly from teacher frames; leapfrog with student forces,
+     Metropolis accept with teacher interaction energy + kinetic energy): samples the teacher distribution
+     exactly by construction; usefulness gate = acceptance >= 0.3 at >= 10 student steps per teacher call, and
+     O-O RDF peak position equal to plain teacher MD within one 0.025 A bin (sanity, short runs).
+  D) End-state-interpolation TI probe for decoupling one water from 63 waters (11 windows x 1 ps): feasibility
+     only (no blow-up near lambda = 0; <dU/dl> profile used to set thermodynamic-length-optimal windows).
+     No free energy from D is used for any model or comparison.
+- Speed-up suite RESULTS (bench11, Modal L4, finished 2026-09-26 9:31 AM PDT; recorded before any follow-up):
+  A) GPU minimum-image neighbour list: exact (max|dF| 2.3e-6 / 3.9e-6 eV/A at 648 / 5,184 atoms) -> ACCEPTED.
+     Per-step cost 73.9 -> 68.1 ms (648 atoms), 71.6 -> 72.7 ms (5,184); list rebuild 14 -> 0.9 ms and
+     108 -> 20 ms. Half-edge symmetry: exact (3.3e-6 / 4.0e-6) -> ACCEPTED as an option; slower at 648 atoms
+     (76.0 ms) and 12% faster at 5,184 (64.1 ms). Padding + CUDA graphs via torch.compile: FAILED to run
+     (empty exception text); not used. Key observation: 648 and 5,184 atoms cost the same per step, i.e. the
+     engine is launch/overhead bound at these sizes, so the lever is putting more independent work in one call.
+  C) Surrogate HMC with a distilled student: student (16 ch, L=0, 2 layers) force MAE 28.9 meV/A vs teacher,
+     but only 1.5x cheaper per call (24.1 vs 36.7 ms at 192 atoms; overhead bound). Acceptance 0.61 (n=10,
+     0.5 fs), 0.34 (n=20, 0.5 fs), 0.15 (n=20, 1 fs). O-O peak 2.862 / 2.888 / 2.787 A vs teacher MD 2.787 A.
+     Gate (acceptance >= 0.3 with >= 10 student steps AND peak within one 0.025 A bin) is met by no setting
+     -> FAILED. (HMC is exact by construction; the peak miss is from 150 correlated trajectories started from
+     one frame, but the gate is recorded as failed and distillation is shelved: at ~1.1x net speed-up it
+     would not pay even if it passed.)
+  D) End-state interpolation TI (water out of 63 waters, 11 x 1.5 ps): lambda = 0 gives <dU/dl> ~ 1.4e10 eV
+     (solvent atoms sit on the non-interacting solute, where the full-system MACE energy is meaningless);
+     lambda = 0.02 still 1.22 +- 0.78 eV -> the "no blow-up near lambda = 0" gate FAILED. Linear end-state
+     interpolation is not used. (Script then crashed on np.trapz, removed in NumPy 2.4; no estimate is used.)
+- Profiles v2 operational change (2026-09-26 8:45 AM PDT): pyberny progress is checkpointed every cycle and a
+  killed optimisation resumes from its last geometry (same functional, basis, solvent, radii, convergence
+  criteria; only Berny's Hessian guess restarts). Water test: resumed vs uninterrupted geometry agree to
+  5e-7 A. Profiles computed this way carry "[resumed from checkpoint]" in their metadata.
+- bench12 (registered 2026-09-26 ~10:15 AM PDT, before running; Modal L4):
+  A2) Exact multi-system batching (MultiMACE): G independent periodic systems as one disjoint graph.
+      Gate: max|dF| of a replica vs its single ASE evaluation < 1e-4 eV/A (CPU float64 pre-test: 5e-15).
+      Throughput reported for 1-32 replicas of 192 atoms and 1-8 of 648.
+  D2) Two-stage cavity path for decoupling (replaces linear end-state interpolation):
+      stage 1 (solute already decoupled): U1(mu) = U(solvent) + U(solute) + soft-core WCA(mu) between solute
+      and solvent atoms (Beutler alpha 0.5, eps 1 kcal/mol, sigma 2.4 A heavy-heavy, 1.4 A pairs with H);
+      stage 2: U2(l) = l U(full) + (1 - l) [U(solvent) + U(solute) + WCA]. Both ends are the exact physical
+      states, so the path constants cannot change dG, only its variance; they were chosen from atom sizes
+      and H-bond distances, not from any free-energy result. All 22 windows (12 stage-2, 10 stage-1) run in
+      one batched MACE call per step; 1 ps pre-equilibration, then 1 ps + 8 ps per window at 0.5 fs, BAOAB
+      Langevin (gamma 10/ps), samples every 10 fs. Estimators: TI (trapezoid, 5-block standard errors) and
+      MBAR. Feasibility gate for the path (on this water-in-water system): no non-finite forces; min
+      neighbour MBAR overlap >= 0.03 in both stages; TI standard error <= 0.3 kcal/mol; TI and MBAR agree
+      within 2 standard errors. The resulting number (MACE-OFF23-small water in its own liquid) is reported
+      for orientation only; it is not compared with experiment for any model decision. If the path passes,
+      the registered methanol-hydration feasibility run follows with the same settings.
+- bench12 RESULT (2026-09-26 10:25 AM PDT, recorded before any follow-up):
+  A2) Batching is exact (max|dF| 2.1-3.4e-6 eV/A for every replica count). Throughput on the L4 relative
+      to one 192-atom box at 36.7 ms/call (bench11): 16 boxes in one call 44.4 ms -> 2.8 ms per box (~13x);
+      648-atom boxes 36.3 -> 9.3 ms per box at 8 per call (3.9x). ACCEPTED; MultiMACE is the production engine
+      for independent replicas and lambda windows.
+  D2) Cavity path, water decoupled from 63 waters, 22 windows batched (96.3 ms/step for all, ~25x vs running
+      the windows serially with 3 calls each), 9 ps/window: no non-finite forces; min neighbour MBAR overlap
+      0.140 (stage 1) and 0.145 (stage 2), >= 0.03; TI -7.434 vs MBAR -7.489 kcal/mol (agree within 1 SE);
+      TI standard error 0.336 kcal/mol > 0.3 bar -> gate FAILED on precision only (stage 2 alone 0.281).
+      The divergence of bench11 D is gone (<dU/dl> at l = 0 is +0.085 +- 0.015 eV). Orientation only, not
+      used for any decision: MACE-OFF23-small gives -7.4 kcal/mol for water in its own liquid (experiment
+      about -6.3), in line with its ~10% density overestimate.
+- Methanol hydration feasibility (registered 2026-09-26 10:40 AM PDT, before running; bench13, Modal L4):
+  identical path, windows, WCA constants, integrator and estimators as bench12 D2; system: methanol replacing
+  one water (the nearest other water removed; 62 waters, same box, MACE FIRE relaxation to fmax 0.3 eV/A);
+  production raised from 8 to 20 ps per window because the only bench12 failure was statistical precision
+  (SE scales as 1/sqrt(time); no free-energy value informed this). Gate as registered earlier: min neighbour
+  overlap >= 0.03, TI standard error <= 0.3 kcal/mol, plus finite forces and TI-MBAR agreement within 2 SE.
+  The number is compared with experiment only after the gate is judged, and no model is changed from it.
+- Methanol hydration feasibility RESULT (bench13, finished 2026-09-26 11:49 AM PDT; recorded before follow-up):
+  finite forces throughout; min neighbour MBAR overlap 0.146 (stage 1) / 0.156 (stage 2) >= 0.03; TI -6.254 vs
+  MBAR -6.409 kcal/mol (within 1 SE); TI standard error 0.361 kcal/mol > 0.3 -> gate FAILED again on
+  precision. Diagnosis (post hoc, from the saved samples): 2.3x longer sampling did not shrink the 5-block SE
+  because the variance sits in two places: the steep soft-core region of stage 1 (mu 0.05-0.1, 36% of the
+  variance) and stage 2 at l = 0.7-0.8, where dU/dl decorrelates in 1.8-2.6 ps (38%). Autocorrelation-based
+  TI SE 0.327; MBAR block bootstrap -6.37 +- 0.27 (MBAR is not the registered estimator; reported only).
+  Orientation (not used for decisions): -6.3 to -6.4 vs experiment about -5.1 kcal/mol; water in water was
+  -7.4 vs -6.3, i.e. MACE-OFF23-small over-binds both by ~1.1-1.3 kcal/mol, which would largely cancel in
+  ln gamma_inf = beta[mu_ex(i in j) - mu_ex(i in i)] + ln(rho_j/rho_i) if it is solute-specific.
+- Methanol hydration, retry 3 (registered 2026-09-26 12:10 PM PDT, before running; bench14): same system, path
+  constants, integrator and gate (TI 5-block SE <= 0.3 kcal/mol, overlap >= 0.03, TI-MBAR within 2 SE). Only
+  window placement and length change, targeted at the measured variance: stage 1 mu = 0, .025, .05, .075, .1,
+  .15, .2, .35, .5, .65, .8, .9, 1; stage 2 l = 0, .05, .1, .2, .3, .4, .5, .6, .65, .7, .75, .8, .85, .9, 1;
+  30 ps production per window (28 windows batched). If this fails, the direct route is recorded as not
+  feasible at this precision on free compute and the pilot is not registered.
+- Methanol hydration retry 3 RESULT (bench14, finished 2026-09-26 2:12 PM PDT, recorded before follow-up):
+  finite forces; min neighbour overlap 0.114 / 0.117 >= 0.03; TI -7.033 +- 0.229 (5-block SE <= 0.3),
+  MBAR -7.157 kcal/mol (within 1 SE) -> feasibility gate PASSED. Autocorrelation SE 0.208, MBAR block
+  bootstrap -7.10 +- 0.22. Caveat recorded now: bench13 (same system and start protocol, coarser windows)
+  gave -6.25 +- 0.36; the two differ by 0.78 kcal/mol (1.8 combined SE, mostly stage 1: 3.95 vs 3.31),
+  so single-run SEs likely understate the real uncertainty (slow modes longer than the block length).
+  Hence the pilot below uses independent replicas. Orientation: experiment about -5.1 kcal/mol.
+- Direct-route ln gamma_inf PILOT (registered 2026-09-26 2:40 PM PDT, before any pilot run):
+  quantity: ln gamma_inf(i in j) = beta [mu_ex(i in j) - mu_ex(i in i)] + ln(rho_j / rho_i), rho = molar
+  densities of the pure liquids from the MACE-OFF23-small NPT runs at 298.15 K (water 1.115 g/cm3, methanol
+  0.874; cloud/liquids_results). Systems: methanol/water, both directions, 298.15 K. Four mu_ex runs
+  (methanol in water, methanol in methanol, water in water, water in methanol), each: 64 lattice sites at the
+  model's pure-solvent density (solute on one site, random orientations, MACE FIRE relaxation), bench14 path,
+  windows, WCA constants, integrator and 30 ps/window (skin 0.9 A so the 11.98 A water box fits the GPU list).
+  Replicas: seed 1 on Modal L4 now; seed 2 on another free GPU afterwards; mu_ex = replica mean, uncertainty =
+  max(propagated TI SE, replica half-range). Fixed-volume boxes at the pure-solvent density are an
+  approximation at infinite dilution (recorded, not corrected). Comparison: ThermoML IDAC for methanol in
+  water and water in methanol within 293-303 K (and COSMO-SAC 2010 / Z0x predictions on the same points).
+  This is a pilot of feasibility and accuracy only: no fitted constant enters, no Z0 model is changed from
+  it, and whatever the numbers, extending the route needs its own registration (systems, compute budget).
+  Informative outcomes, stated now: |error| <= 0.3 ln units in both directions with uncertainty <= 0.3 would
+  justify a larger registered set; |error| > 0.7 in either direction, or uncertainty > 0.5, would shelve it.
+- Profiles v2 operational change (2026-09-26 2:35 PM PDT): O2 failed in every round (closed-shell RKS SCF and
+  gradients do not converge for a triplet). Open-shell ground states are now treated spin-unrestricted
+  (UKS, 2S = 2 for O=O; list OPEN_SHELL in pyscf_cosmo_v2.py); all closed-shell molecules are unchanged. O2 v2
+  profile computed on the Mac (commit 82c4f19). Round 3 (GitHub run 36250934743) added 16 more profiles
+  (615/636 with O2); the 21 left are long flexible chains that hit the 6 h runner cap; round 4 (run
+  36273318385) uses Berny checkpoints so a cancelled runner's progress is kept for resumption.
