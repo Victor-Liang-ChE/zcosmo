@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/scripts/optimization_check.py
-@@ -0,0 +1,347 @@
+@@ -0,0 +1,350 @@
 +"""Fail-closed optimization benchmarks. Run from a zcosmo checkout with PYTHONPATH=src.
 +Uses no experimental response values. Exit 2 means statistically inconclusive, not accepted.
 +"""
@@ -80,7 +80,10 @@
 +    current = ['']; interrupted = [False]
 +    def wrap(original, label, require_convergence):
 +        def traced(*args, **kw):
-+            cb = kw.pop('callback', None)
++            # pyscf's optimize() passes callback as the 4th POSITIONAL argument of kernel(method,
++            # assert_convergence, include_ghost, callback, **kw); accept both forms.
++            args = list(args)
++            cb = args.pop(3) if len(args) > 3 else kw.pop('callback', None)
 +            def callback(env):
 +                if cb:
 +                    cb(env)
