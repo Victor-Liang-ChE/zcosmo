@@ -1,0 +1,48 @@
+--- a/src/zcosmo/z0x.py
++++ b/src/zcosmo/z0x.py
+@@ -6,7 +6,7 @@
+ import numpy as np
+ import pandas as pd
+ 
+-from zcosmo.cosmosac import Mixture, load_fluid
++from zcosmo.cosmosac import Mixture, load_fluid, solve_gamma, _pure_lnG, SIG, R_KCAL
+ from zcosmo.models import load_z_params, ROOT
+ from zcosmo.zmodel import c_es_theory
+ 
+@@ -46,9 +46,36 @@
+         lg = self._frozen(T, x1, self._c(x1))
+         return x1 * lg[0] + (1 - x1) * lg[1]
+ 
++    def _analytic(self, T, x1):
++        x = np.array([x1, 1 - x1])
++        mix = Mixture(self.keys, self.z0.with_(A_ES=self._c(x1)))
++        A, aeff = mix.A, mix.prm.aeff
++        psA = np.array([f.psigA.ravel() for f in mix.fl])
++        p = (x @ psA) / (x @ A)
++        E = mix._E(T)
++        ym = np.log(solve_gamma(E, p))
++        yi = np.array([_pure_lnG(f.key, round(float(T), 6), mix.prm, psA[i].tobytes())
++                       for i, f in enumerate(mix.fl)])
++        lg = (mix.lngamma_comb(x) + np.sum(psA * (ym - yi), axis=1) / aeff
++              + mix.lngamma_disp(x, T))
++        sig = np.tile(SIG, 3)
++        ED = E * (sig[:, None] + sig[None, :]) ** 2
++        z = p * np.exp(ym)
++        zpure = (psA / A[:, None]) * np.exp(yi)
++        moment = z @ ED @ z
++        pure_moments = np.einsum("ki,ij,kj->k", zpure, ED, zpure)
++        gc = ((x @ A) * moment - (x * A) @ pure_moments) / (2 * R_KCAL * round(float(T), 6) * aeff)
++        volume = x @ self.V
++        eps = (x * self.V) @ self.eps / volume
++        deps = self.V.prod() * (self.eps[0] - self.eps[1]) / volume ** 2
++        dc = c_es_theory(fpol=1.0) * 1.5 * deps / (eps + 0.5) ** 2
++        return lg + np.array([1 - x1, -x1]) * gc * dc
++
+     def lngamma(self, T, x):
+         x1 = float(x[0])
+         h = self.H
++        if h < x1 < 1 - h:
++            return self._analytic(T, x1)
+         a, b = max(x1 - h, 0.0), min(x1 + h, 1.0)
+         dg = (self._g(T, b) - self._g(T, a)) / (b - a)
+         g = self._g(T, x1)

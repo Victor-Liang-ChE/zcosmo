@@ -1,0 +1,51 @@
+--- a/cloud/s15/multi_mace.py
++++ b/cloud/s15/multi_mace.py
+@@ -7,6 +7,7 @@
+ Exactness: MACE message passing only runs along edges, and edges only join nodes of the same system, so each
+ system's energy (per-graph readout) and forces are identical to evaluating it alone. Neighbour lists are GPU
+ minimum-image lists per system with a Verlet skin and the per-step r < r_max filter (as in zc_md / fast_md)."""
++import os
+ import numpy as np, torch
+ 
+ NODE_KEYS = {"positions", "node_attrs", "forces", "density_coefficients"}
+@@ -14,8 +15,25 @@
+ 
+ 
+ class MultiMACE:
+-    def __init__(self, calc, systems, skin=1.0):
++    def __init__(self, calc, systems, skin=1.0, max_nodes=None):
+         """systems: list of ASE Atoms (periodic, cubic, L > 2 (r_max + skin))."""
++        limit = int(os.environ.get("ZC_MAX_GRAPH_NODES", "0")) if max_nodes is None else max_nodes
++        if limit < 0:
++            raise ValueError("max_nodes must be nonnegative")
++        self.parts = []
++        if limit and sum(map(len, systems)) > limit:
++            start, nodes = 0, 0
++            for j, at in enumerate(systems):
++                if len(at) > limit:
++                    raise ValueError("a single graph exceeds the node limit; do not split its atoms")
++                if nodes + len(at) > limit:
++                    self.parts.append(MultiMACE(calc, systems[start:j], skin, max_nodes=0))
++                    start, nodes = j, 0
++                nodes += len(at)
++            self.parts.append(MultiMACE(calc, systems[start:], skin, max_nodes=0))
++            self.G, self.M = len(systems), sum(map(len, systems))
++            self.n_rebuild = sum(p.n_rebuild for p in self.parts)
++            return
+         self.calc, self.model = calc, calc.models[0]
+         self.rc = float(self.model.r_max); self.skin = skin
+         p = next(self.model.parameters()); self.dev, self.dtype = p.device, p.dtype
+@@ -63,6 +81,13 @@
+ 
+     def forces(self, pos):
+         """pos: (M,3) unwrapped positions of all systems stacked. Returns (energies (G,), forces (M,3))."""
++        if self.parts:
++            energies, forces, start = [], [], 0
++            for part in self.parts:
++                e, f = part.forces(pos[start:start + part.M])
++                energies.append(e); forces.append(f); start += part.M
++            self.n_rebuild = sum(p.n_rebuild for p in self.parts)
++            return torch.cat(energies), torch.cat(forces)
+         if (pos - self.x_ref).norm(dim=1).max() > 0.5 * self.skin:
+             self._build(pos)
+         s, r = self.ei

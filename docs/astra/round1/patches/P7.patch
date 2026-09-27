@@ -1,0 +1,52 @@
+--- a/cloud/s15/multi_mace.py
++++ b/cloud/s15/multi_mace.py
+@@ -38,6 +38,15 @@
+                 bd[k] = vs[0]
+         self.bd = bd
+         self.L = torch.tensor([float(a.cell[0, 0]) for a in systems], dtype=self.dtype, device=self.dev)
++        self.groups = {}
++        for g, a in enumerate(systems):
++            L = float(a.cell[0, 0])
++            if not np.all(a.pbc) or not np.allclose(np.asarray(a.cell), np.eye(3) * L, rtol=0, atol=1e-10):
++                raise ValueError("MultiMACE requires fully periodic cubic cells")
++            if L <= 2 * (self.rc + self.skin):
++                raise ValueError("box too small for minimum-image list")
++            self.groups.setdefault((len(a), L), []).append(g)
++        self.pairs = {n: torch.triu_indices(n, n, 1, device=self.dev) for n, _ in self.groups}
+         self.cells = torch.stack([torch.tensor(np.asarray(a.cell), dtype=self.dtype, device=self.dev) for a in systems])
+         self.sys = torch.cat([torch.full((n,), g, device=self.dev, dtype=torch.long) for g, n in enumerate(self.n)])
+         self.n_rebuild = 0
+@@ -46,17 +55,22 @@
+     def _build(self, pos):
+         rc = self.rc + self.skin
+         E, US = [], []
+-        for g in range(self.G):
+-            a, b = int(self.off[g]), int(self.off[g + 1]); L = float(self.L[g])
+-            assert L > 2 * rc, "box too small for the minimum-image GPU list"
+-            x = pos[a:b]
+-            d = x[None, :, :] - x[:, None, :]
+-            S = -torch.round(d / L)
+-            r = (d + S * L).norm(dim=-1)
+-            m = torch.triu(r < rc, diagonal=1)
+-            i, j = m.nonzero(as_tuple=True); Sc = S[i, j]
+-            E.append(torch.stack([torch.cat([i, j]), torch.cat([j, i])]) + a)
+-            US.append(torch.cat([Sc, -Sc]))
++        for (n, L), graphs in self.groups.items():
++            i, j = self.pairs[n]
++            # Bound temporary storage; each group has equal n and an exactly equal cubic L.
++            for first in range(0, len(graphs), 8):
++                gs = graphs[first:first + 8]
++                offsets = torch.tensor(self.off[gs], device=self.dev)
++                ids = offsets[:, None] + torch.arange(n, device=self.dev)[None, :]
++                x = pos[ids]
++                d = x[:, j] - x[:, i]
++                S = -torch.round(d / L)
++                keep = (d + S * L).square().sum(-1) < rc * rc
++                gidx, pair = keep.nonzero(as_tuple=True)
++                a, b = offsets[gidx] + i[pair], offsets[gidx] + j[pair]
++                Sc = S[gidx, pair]
++                E.append(torch.stack([torch.cat([a, b]), torch.cat([b, a])]))
++                US.append(torch.cat([Sc, -Sc]))
+         self.ei = torch.cat(E, 1); self.us = torch.cat(US, 0).to(self.dtype)
+         self.sh = torch.bmm(self.us[:, None, :], self.cells[self.sys[self.ei[0]]])[:, 0]
+         self.x_ref = pos.detach().clone(); self.n_rebuild += 1

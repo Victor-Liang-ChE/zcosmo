@@ -1,0 +1,349 @@
+--- /dev/null
++++ b/scripts/optimization_check.py
+@@ -0,0 +1,346 @@
++"""Fail-closed optimization benchmarks. Run from a zcosmo checkout with PYTHONPATH=src.
++Uses no experimental response values. Exit 2 means statistically inconclusive, not accepted.
++"""
++from __future__ import annotations
++import argparse, hashlib, importlib.util, json, os, shutil, subprocess, sys, time
++from collections import Counter
++from pathlib import Path
++import numpy as np
++import pandas as pd
++
++ROOT = Path.cwd()
++
++def write(path, data):
++    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(json.dumps(data, indent=2, allow_nan=False))
++    print(json.dumps(data, indent=2, allow_nan=False))
++
++def fixture():
++    # Freeze the historical 25/2302 check, not the current 26-entry candidate list.
++    p = ROOT / 'results/pyscf_profile_validation.csv'
++    old = pd.read_csv(p, usecols=['key', 'T'])
++    assert len(old) == 2302 and old.key.nunique() == 25, 'historical fixture changed'
++    val = pd.read_csv('data/pyscf_sigma/validation_set.csv')
++    val = val[val.inchikey.isin(old.key.unique())]
++    assert val.inchikey.nunique() == 25 and len(val) == 25
++    table = pd.read_csv('data/benchmark/idac.csv', usecols=['solute', 'solvent', 'T', 'has_sigma'])
++    table = table[table.has_sigma]
++    rows = [(k, r.solute, r.solvent, float(r.T)) for k in val.inchikey
++            for r in table[(table.solute == k) | (table.solvent == k)].itertuples()]
++    assert len(rows) == 2302, 'row coverage differs from the recorded test; do not silently skip'
++    assert Counter((k, t) for k, _, _, t in rows) == Counter(zip(old.key, old['T']))
++    return val, rows
++
++def pcm_check(a):
++    from pyscf import gto, dft
++    from pyscf.data import elements
++    from zcosmo.pyscf_cosmo import RADII, BOHR
++    from zcosmo.pcm_lu import cache_pcm
++    checks=[]
++    for label,atoms,spin in [('water','O 0 0 0; H 0 .76 .59; H 0 -.76 .59',0),
++                             ('oxygen','O 0 0 0; O 0 0 1.21',2)]:
++        for basis,level,lebedev,tol in [('def2-svp',2,17,1e-8),('def2-tzvp',3,29,1e-9)]:
++            outputs=[];times=[]
++            for cached in [False,True]:
++                mol=gto.M(atom=atoms,unit='Angstrom',basis=basis,spin=spin,verbose=0,
++                          max_memory=int(os.environ.get('QC_MEM_MB','3000')))
++                mf=(dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
++                mf.xc='b88,p86';mf.grids.level=level;mf.conv_tol=tol
++                solvent=mf.with_solvent;solvent.method='C-PCM';solvent.eps=1e9;solvent.lebedev_order=lebedev
++                radii=np.zeros(120)
++                for element,value in RADII.items():radii[elements.charge(element)]=value/BOHR
++                solvent.radii_table=radii
++                if cached:mf=cache_pcm(mf)
++                start=time.perf_counter();energy=mf.kernel();assert mf.converged
++                gradient=mf.nuc_grad_method().kernel();times.append(time.perf_counter()-start)
++                outputs.append((float(energy),np.asarray(gradient),np.asarray(mf.with_solvent._intermediates['q'])))
++            x,y=outputs
++            de=abs(y[0]-x[0]);dg=float(abs(y[1]-x[1]).max());dq=float(abs(y[2]-x[2]).max())
++            checks.append(dict(molecule=label,basis=basis,delta_energy_Eh=de,
++                               max_delta_gradient_Eh_Bohr=dg,max_delta_q_e=dq,
++                               reference_s=times[0],candidate_s=times[1]))
++            assert de<1e-8 and dg<1e-6 and dq<1e-8
++    write(a.out,dict(checks=checks))
++
++
++def qc(a):
++    from zcosmo import pyscf_cosmo_v2 as q
++    from pyscf.geomopt import berny_solver
++    val, _ = fixture()
++    if a.key:
++        val = val[val.inchikey == a.key]
++        assert len(val) == 1
++    dest = Path(a.out).resolve(); dest.mkdir(parents=True, exist_ok=True)
++    if not a.resume:
++        assert not list(dest.glob('*.sigma')), 'benchmark output must be fresh (or use --resume)'
++    traces, statuses = [], []
++    current = ['']; interrupted = [False]
++    def wrap(original, label, require_convergence):
++        def traced(*args, **kw):
++            cb = kw.pop('callback', None)
++            def callback(env):
++                if cb:
++                    cb(env)
++                scanner = env.get('g_scanner')
++                gradient = np.asarray(env.get('gradients'), float)
++                traces.append(dict(key=current[0], optimizer=label,
++                    energy=float(env['energy']), gradient=gradient.tolist(),
++                    scf_cycles=int(getattr(getattr(scanner, 'base', None), 'cycles', -1))))
++                write_trace = dest / 'trace.json'
++                write_trace.write_text(json.dumps(traces))
++                if a.interrupt_cycle and sum(r['key'] == current[0] for r in traces) == a.interrupt_cycle:
++                    interrupted[0] = True
++                    raise InterruptedError('intentional checkpoint benchmark')
++            ans = original(*args, callback=callback, **kw)
++            if require_convergence and not ans[0]:
++                raise RuntimeError('unconverged baseline or candidate geometry; not a valid reference')
++            return ans
++        return traced
++    berny_solver.kernel = wrap(berny_solver.kernel, 'berny', True)
++    try:
++        from pyscf.geomopt import geometric_solver
++        geometric_solver.kernel = wrap(geometric_solver.kernel, 'tric', False)
++    except ImportError:
++        pass
++    t = time.perf_counter()
++    for row in val.to_dict('records'):
++        current[0] = row['inchikey']
++        key, status, dt = q.run_one(row, dest)
++        statuses.append(dict(key=key, status=status, wall_s=dt))
++        if interrupted[0]:
++            assert list(dest.glob('*.partial.json'))
++            break
++        assert status in ('ok', 'exists'), (key, status)
++    write(dest/'timing.json', dict(wall_s=time.perf_counter()-t, molecules=statuses,
++        geometry_evaluations=len(traces), interrupted=interrupted[0]))
++
++def profiles(a):
++    from zcosmo.cosmosac import load_fluid, Mixture, Params
++    val, rows = fixture()
++    for k in val.inchikey:
++        assert (Path(a.candidate)/f'{k}.sigma').is_file(), f'missing exact candidate file: {k}'
++        if a.reference:
++            assert (Path(a.reference)/f'{k}.sigma').is_file(), f'missing exact reference file: {k}'
++            assert np.array_equal(np.loadtxt(Path(a.candidate)/f'{k}.sigma')[:,0],
++                                  np.loadtxt(Path(a.reference)/f'{k}.sigma')[:,0]), 'sigma grid changed'
++    cand = {k: load_fluid(k, str(Path(a.candidate).resolve())) for k in val.inchikey}
++    ud = {k: load_fluid(k) for k in val.inchikey}
++    ref = {k: load_fluid(k, str(Path(a.reference).resolve())) for k in val.inchikey} if a.reference else ud
++    max_dpa = max(float(abs(cand[k].psigA-ref[k].psigA).max()) for k in cand)
++    max_dp = max(float(abs(cand[k].psigA/cand[k].A-ref[k].psigA/ref[k].A).max()) for k in cand)
++    differences, versus_ud = [], []
++    t = time.perf_counter()
++    for k, solute, solvent, T in rows:
++        other = solvent if solute == k else solute
++        fo = load_fluid(other)
++        def value(f):
++            pair = [f, fo] if solute == k else [fo, f]
++            return Mixture(None, Params(), fluids=pair).lngamma_inf(T, 0)
++        lr, lc, lu = value(ref[k]), value(cand[k]), value(ud[k])
++        assert np.isfinite([lr, lc, lu]).all()
++        differences.append(abs(lc-lr)); versus_ud.append(abs(lc-lu))
++    result = dict(molecules=25, rows=len(rows), max_delta_p=max_dp, max_delta_psigmaA_A2=max_dpa,
++        max_delta_lngamma=float(max(differences)), median_delta_vs_UD=float(np.median(versus_ud)),
++        check_wall_s=time.perf_counter()-t, mode=a.mode)
++    write(a.out, result)
++    if a.mode == 'E':
++        assert a.reference, 'E requires current-main profiles as reference, not UD'
++        assert max_dp < 1e-4 and max_dpa < 1e-4 and max(differences) < 1e-3
++    else:
++        assert np.median(versus_ud) < .15
++
++def snapshot(a):
++    from zcosmo.models import make_model
++    _, rows = fixture()
++    compounds = pd.read_csv('data/benchmark/compounds.csv', usecols=['inchikey','smiles'])
++    smi = dict(zip(compounds.inchikey, compounds.smiles))
++    queries = [(s,v,T,0.0) for _,s,v,T in rows]
++    if a.grid:
++        xs = [0., 1e-8, 1e-4, .001, .01, .1, .25, .5, .75, .9, .99, .999, 1-1e-4, 1-1e-8, 1.]
++        queries += [(s,v,T,x) for s,v in sorted({(s,v) for _,s,v,_ in rows})
++                    for T in [250.,298.15,450.] for x in xs]
++    values, labels, cache = [], [], {}
++    start = time.perf_counter()
++    for name in ['cosmosac_dsp','Z0x']:
++        for s,v,T,x in queries:
++            k=(name,s,v)
++            if k not in cache:
++                cache[k]=make_model(name,[s,v],[smi[s],smi[v]])
++            y=np.asarray(cache[k].lngamma(T,np.array([x,1-x])),float)
++            # Missing Z0x inputs must be recorded, not silently dropped. COSMO is mandatory.
++            if name == 'cosmosac_dsp':
++                assert np.isfinite(y).all(), (name,s,v,T,x)
++            values.append(y);labels.append((name,s,v,T,x))
++    elapsed=time.perf_counter()-start
++    digest=hashlib.sha256(json.dumps(labels).encode()).hexdigest()
++    np.savez(a.out, values=values, labels_hash=digest, wall_s=elapsed, idac_rows=2302)
++    print(json.dumps(dict(rows=len(values), wall_s=elapsed, finite_values=int(np.isfinite(values).sum()))))
++
++def compare(a):
++    r=np.load(a.reference);c=np.load(a.candidate)
++    assert str(r['labels_hash']) == str(c['labels_hash']), 'query mismatch'
++    yr,yc=r['values'],c['values']
++    assert yr.shape == yc.shape and np.array_equal(np.isfinite(yr),np.isfinite(yc)), 'coverage changed'
++    valid=np.isfinite(yr)
++    assert valid.any()
++    error=float(np.max(abs(yc[valid]-yr[valid])))
++    result=dict(max_delta_lngamma=error, reference_wall_s=float(r['wall_s']),
++                candidate_wall_s=float(c['wall_s']), speedup=float(r['wall_s']/c['wall_s']))
++    write(a.out,result)
++    assert error < 1e-3
++
++def load_module(name,path):
++    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec)
++    sys.modules[name]=m;spec.loader.exec_module(m);return m
++
++def mace(a):
++    import torch
++    sys.path.insert(0,str(ROOT/'cloud/s15'))
++    from bench15_core import teacher
++    from bench6_core import water_box
++    import multi_mace
++    refmod=load_module('reference_multi_mace',Path(a.reference)/'cloud/s15/multi_mace.py')
++    calc=teacher(); dev=next(calc.models[0].parameters()).device
++    dtype=next(calc.models[0].parameters()).dtype
++    base=water_box(4)
++    w2,w1=(15,13) if a.full else (2,2)
++    systems=([base,base[3:],base[:3]]*w2 + [base[3:],base[:3]]*w1)
++    original=refmod.MultiMACE(calc,systems,.9) if not a.serial_reference else None
++    serial=[refmod.MultiMACE(calc,[at],.9) for at in systems] if a.serial_reference else None
++    candidate=multi_mace.MultiMACE(calc,systems,.9)
++    x=torch.cat([torch.tensor(at.positions,device=dev,dtype=dtype) for at in systems])
++    off=np.cumsum([0]+list(map(len,systems)))
++    max_force,max_energy=0.,0.
++    rng=np.random.default_rng(7)
++    frames=[]
++    for shift in [0.,.005,.6,float(base.cell[0,0])+1.2]:
++        frames.append(x+shift+torch.tensor(rng.normal(0,.001,x.shape),device=dev,dtype=dtype))
++    for frame in frames:
++        ec,fc=candidate.forces(frame)
++        if original is not None:
++            er,fr=original.forces(frame)
++            max_force=max(max_force,float((fr-fc).abs().max()))
++            max_energy=max(max_energy,float((er-ec).abs().max()))
++        for i,at in enumerate(systems):
++            if serial is not None:
++                er,fr=serial[i].forces(frame[off[i]:off[i+1]])
++                max_energy=max(max_energy,float((er[0]-ec[i]).abs()))
++                max_force=max(max_force,float((fr-fc[off[i]:off[i+1]]).abs().max()))
++            q=at.copy();q.positions=frame[off[i]:off[i+1]].detach().cpu().double().numpy();q.calc=calc
++            f=q.get_forces();err=float(abs(f-fc[off[i]:off[i+1]].cpu().numpy()).max())
++            max_force=max(max_force,err)
++    assert max_force < 1e-4, max_force
++    assert max_energy < 1e-4, max_energy
++    def sync():
++        if dev.type=='cuda':torch.cuda.synchronize()
++    def timed(engine,rebuild):
++        if engine is None:return None
++        engine.forces(x);sync();t=time.perf_counter()
++        for i in range(30):engine.forces(x+(0.6*i if rebuild else .00001*i))
++        sync();return (time.perf_counter()-t)/30
++    if dev.type=='cuda':torch.cuda.reset_peak_memory_stats()
++    fast=timed(candidate,False); rebuild=timed(candidate,True)
++    peak=torch.cuda.max_memory_allocated() if dev.type=='cuda' else 0
++    normal=timed(original,False);old_rebuild=timed(original,True)
++    write(a.out,dict(graphs=len(systems),nodes=len(x), max_force_error_eV_A=max_force,
++        max_energy_difference_eV=max_energy, candidate_s=fast, candidate_rebuild_s=rebuild,
++        reference_s=normal, reference_rebuild_s=old_rebuild, peak_allocated_bytes=peak,
++        dtype=str(dtype),device=str(dev),torch=torch.__version__))
++
++L2='0,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1'
++M1='0,0.025,0.05,0.075,0.1,0.15,0.2,0.35,0.5,0.65,0.8,0.9,1'
++
++def fe_run(a):
++    out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True)
++    if a.dt != .5:
++        assert 'ZC_DT_FS' in Path('cloud/s15/bench15_core.py').read_text(), 'this revision has no dt switch'
++    env=dict(os.environ,ZC_DT_FS=str(a.dt),ZC_PRE_STEPS=str(round(1000/a.dt)),ZC_SOLUTE=a.solute,ZC_SOLVENT=a.solvent,ZC_SEED=str(a.seed),
++             ZC_EXCHANGE_EVERY=str(a.exchange),ZC_PROD_STEPS=str(a.prod),ZC_EQ_STEPS=str(a.eq),
++             ZC_LAM2=L2,ZC_MU1=M1)
++    env.pop('ZC_TEST',None)
++    path=Path(f'/tmp/d2_{a.solute}_in_{a.solvent}_s{a.seed}.npz')
++    before=path.stat().st_mtime_ns if path.exists() else -1
++    start=time.perf_counter()
++    with (out/'run.log').open('w') as f:
++        subprocess.run([sys.executable,'-u','cloud/s15/bench15_core.py'],env=env,stdout=f,stderr=subprocess.STDOUT,check=True)
++    elapsed=time.perf_counter()-start
++    log=(out/'run.log').read_text()
++    assert 'stage_D2 failed:' not in log and 'D2 non-finite forces' not in log, 'runner reported failure'
++    assert path.exists() and path.stat().st_mtime_ns != before, 'runner failed without writing new samples'
++    d=dict(np.load(path));assert all(np.isfinite(d[k]).all() for k in ['rec2','rec1','rec1d'])
++    # End-to-end wall includes packing, FIRE, pre-equilibration and initialization.
++    d['wall_total_s']=elapsed;d['seed']=a.seed;d['exchange_every']=a.exchange;d['dt_fs']=a.dt
++    np.savez(out/'samples.npz',**d)
++    write(out/'timing.json',dict(wall_s=elapsed,frames=int(len(d['rec2'])),seed=a.seed,exchange=a.exchange))
++
++def weights(grid):
++    grid=np.asarray(grid,float);assert grid[0]==0 and grid[-1]==1 and (np.diff(grid)>0).all()
++    w=np.zeros(len(grid));dx=np.diff(grid);w[:-1]+=dx/2;w[1:]+=dx/2;return w
++
++def fe_check(a):
++    from pymbar import timeseries
++    from scipy.stats import t as student
++    EV=23.0605
++    summaries=[];all_grids=[];diagnostics=[];seen_paths=set();seen_seeds=set()
++    for paths in [a.reference,a.candidate]:
++        means=[];run_se=[];walls=[];counts=[]
++        for path in paths:
++            resolved=str(Path(path).resolve())
++            assert resolved not in seen_paths, 'duplicate trajectory is not an independent replicate'
++            seen_paths.add(resolved)
++            d=np.load(path)
++            seed=int(d['seed']);assert seed not in seen_seeds, 'the registered comparisons require independent seeds'
++            seen_seeds.add(seed)
++            q=np.c_[d['rec2'],d['rec1d']]
++            assert np.isfinite(q).all()
++            w=np.r_[weights(d['lam2']),weights(d['mu1'])]
++            all_grids.append((d['lam2'],d['mu1']))
++            # Common time trimming preserves simultaneous cross-window covariance.
++            starts=[int(timeseries.detect_equilibration(q[:,i])[0]) if np.std(q[:,i])>1e-14 else 0 for i in range(q.shape[1])]
++            start=max(starts);q=q[start:]
++            if len(q)<100:
++                print('INCONCLUSIVE: too few stationary samples'); raise SystemExit(2)
++            y=q@w*EV
++            gs=[float(timeseries.statistical_inefficiency(q[:,i])) if np.std(q[:,i])>1e-14 else 1. for i in range(q.shape[1])]
++            gy=float(timeseries.statistical_inefficiency(y)) if np.std(y)>1e-14 else 1.
++            # g = 1 + 2 tau/dt; choose blocks at least 5 tau and at least g samples.
++            block=max(1,int(np.ceil(2.5*max(gs+[gy]))))
++            n=len(y)//block
++            diagnostics.append(dict(path=path,discarded=start,g_max=max(gs),g_joint=gy,block_frames=block,blocks=n))
++            if n<2:
++                print(json.dumps(diagnostics,indent=2));raise SystemExit(2)
++            bm=y[:n*block].reshape(n,block).mean(1)
++            means.append(float(bm.mean()));run_se.append(float(bm.std(ddof=1)/np.sqrt(n)))
++            walls.append(float(d['wall_total_s']));counts.append(n)
++        if len(means)<4 or sum(counts)<8:
++            print(json.dumps(diagnostics,indent=2));raise SystemExit(2)
++        # Replicates, not individual windows, are independent. Use the larger uncertainty estimate.
++        mean=float(np.mean(means));var=max(float(np.var(means,ddof=1)/len(means)),float(np.sum(np.square(run_se))/len(means)**2))
++        summaries.append(dict(mean=mean,var_mean=var,wall_s=sum(walls),runs=len(means),blocks=sum(counts)))
++    for g in all_grids:
++        assert np.array_equal(g[0],all_grids[0][0]) and np.array_equal(g[1],all_grids[0][1]), 'path grids changed'
++    r,c=summaries;delta=c['mean']-r['mean'];se=np.sqrt(r['var_mean']+c['var_mean'])
++    df=min(r['runs'],c['runs'])-1
++    half=float(student.ppf(.95,df)*se)
++    # Variance(mean)*total wall, not ESS alone, determines time to a fixed free-energy error.
++    gain=r['var_mean']*r['wall_s']/(c['var_mean']*c['wall_s']) if c['var_mean']>0 else None
++    equivalent=abs(delta)+half < .10
++    write(a.out,dict(reference=r,candidate=c,delta_kcal=delta,CI90=[delta-half,delta+half],
++        pilot_efficiency_gain=gain,equivalent_within_0_10_kcal=equivalent,diagnostics=diagnostics,
++        status='PILOT_EQUIVALENCE' if equivalent else 'INCONCLUSIVE'))
++    if not equivalent:raise SystemExit(2)
++    # A positive pilot is not a proof of speedup or absence of common time-step/quadrature bias.
++
++def main():
++    ap=argparse.ArgumentParser();sub=ap.add_subparsers(dest='cmd',required=True)
++    p=sub.add_parser('pcm-check');p.add_argument('--out',required=True)
++    p=sub.add_parser('qc');p.add_argument('--out',required=True);p.add_argument('--key');p.add_argument('--resume',action='store_true');p.add_argument('--interrupt-cycle',type=int,default=0)
++    p=sub.add_parser('profiles');p.add_argument('--reference');p.add_argument('--candidate',required=True);p.add_argument('--mode',choices=['E','A'],required=True);p.add_argument('--out',required=True)
++    p=sub.add_parser('snapshot');p.add_argument('--out',required=True);p.add_argument('--grid',action='store_true')
++    p=sub.add_parser('compare');p.add_argument('--reference',required=True);p.add_argument('--candidate',required=True);p.add_argument('--out',required=True)
++    p=sub.add_parser('mace');p.add_argument('--reference',required=True);p.add_argument('--out',required=True);p.add_argument('--full',action='store_true');p.add_argument('--serial-reference',action='store_true')
++    p=sub.add_parser('fe-run');p.add_argument('--out',required=True);p.add_argument('--dt',type=float,choices=[.25,.5],default=.5);p.add_argument('--seed',type=int,required=True);p.add_argument('--exchange',type=int,default=0);p.add_argument('--prod',type=int,default=60000);p.add_argument('--eq',type=int,default=20000);p.add_argument('--solute',default='water');p.add_argument('--solvent',default='water')
++    p=sub.add_parser('fe-check');p.add_argument('--reference',nargs='+',required=True);p.add_argument('--candidate',nargs='+',required=True);p.add_argument('--out',required=True)
++    a=ap.parse_args();globals()[a.cmd.replace('-','_')](a)
++
++if __name__=='__main__':main()

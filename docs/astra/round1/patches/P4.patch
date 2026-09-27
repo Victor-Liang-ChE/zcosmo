@@ -1,0 +1,172 @@
+--- a/cloud/s15/bench15_core.py
++++ b/cloud/s15/bench15_core.py
+@@ -1,7 +1,7 @@
+ """bench12 (L4): (A2) exact multi-system batching throughput; (D2) two-stage cavity TI for decoupling one water
+ from 63 waters with MACE-OFF23 small, all lambda windows batched into ONE MACE graph per step.
+ 
+-D2 path (registered before running, PREREGISTRATION.md 2026-09-26):
++D2 exploratory path (earlier registration not found; see prospective optimization audit P4):
+   stage 1 (decoupled solute): grow a purely repulsive soft-core WCA cavity between solute and solvent atoms,
+       U1(mu) = U_MACE(solvent) + U_MACE(solute) + U_scWCA(mu)
+   stage 2: U2(l) = l U_MACE(full) + (1 - l) [U_MACE(solvent) + U_MACE(solute) + U_WCA]
+@@ -20,6 +20,10 @@
+ 
+ CONV = 9.648533212e-3; KB = 8.617333e-5; T = 298.15; KT = KB * T; EV2KCAL = 23.0605
+ EPS = 1.0 / EV2KCAL; ALPHA = 0.5
++DT = float(os.environ.get("ZC_DT_FS", "0.5"))
++if DT not in (0.25, 0.5):
++    raise ValueError("validated comparison supports dt = 0.25 or 0.5 fs")
++STRIDE = int(round(10.0 / DT))
+ PROD = int(os.environ.get("ZC_PROD_STEPS", "16000")); EQ = int(os.environ.get("ZC_EQ_STEPS", "2000"))
+ out = []
+ DEV = "cuda" if torch.cuda.is_available() else "cpu"
+@@ -111,6 +115,39 @@
+     return box, len(molecule(MOLS[solute]))
+ 
+ 
++def exchange_pairs(lam, du, cavity, parity, generator):
++    """Return a permutation of physical window slots; no swap crosses the two stages."""
++    w2, w1 = len(lam), cavity.shape[0]
++    perm = torch.arange(w2 + w1, device=du.device)
++    accepted = torch.zeros(2, device=du.device, dtype=torch.long)
++    attempted = torch.zeros_like(accepted)
++    for stage, count, offset in ((0, w2, 0), (1, w1, w2)):
++        i = torch.arange(parity, count - 1, 2, device=du.device)
++        j = i + 1
++        if stage == 0:
++            loga = (lam[j].double() - lam[i].double()) * (du[j].double() - du[i].double()) / KT
++        else:
++            u = cavity.double()  # row=config, column=state
++            loga = -(u[j, i] + u[i, j] - u[i, i] - u[j, j]) / KT
++        uniform = torch.rand(i.shape, device=du.device, generator=generator, dtype=torch.float64)
++        ok = torch.isfinite(loga) & (torch.log(uniform) < torch.minimum(loga, torch.zeros_like(loga)))
++        # Fixed-shape assignments, even when no pair is accepted.
++        perm[i + offset] = torch.where(ok, j, i) + offset
++        perm[j + offset] = torch.where(ok, i, j) + offset
++        accepted[stage] = ok.sum()
++        attempted[stage] = i.numel()
++    return perm, accepted, attempted
++
++
++def ti_weights(grid):
++    grid = np.asarray(grid, float)
++    if len(grid) < 2 or grid[0] != 0 or grid[-1] != 1 or not (np.diff(grid) > 0).all():
++        raise ValueError("TI grid must strictly increase from zero to one")
++    w = np.zeros(len(grid)); dx = np.diff(grid)
++    w[:-1] += dx / 2; w[1:] += dx / 2
++    return w
++
++
+ def stage_D2():
+     c = teacher(); name = os.environ.get("ZC_SOLUTE", "water"); solvent = os.environ.get("ZC_SOLVENT", "water")
+     seed = int(os.environ.get("ZC_SEED", "1"))
+@@ -125,15 +162,23 @@
+     if os.environ.get("ZC_MU1"): mu1 = [float(v) for v in os.environ["ZC_MU1"].split(",")]
+     if os.environ.get("ZC_TEST"): lam2, mu1 = [0.0, 0.5, 1.0], [0.0, 1.0]
+     W2, W1 = len(lam2), len(mu1); W = W2 + W1
++    ti_weights(lam2); ti_weights(mu1)
++    exchange_every = int(os.environ.get("ZC_EXCHANGE_EVERY", "0"))
++    if exchange_every < 0:
++        raise ValueError("ZC_EXCHANGE_EVERY must be nonnegative")
++    accepted = torch.zeros(2, device=DEV, dtype=torch.long)
++    attempted = torch.zeros_like(accepted)
++    walkers = torch.arange(W, device=DEV)
++    walker_history = []
+     # equilibrate one coupled box, then start every window from it
+     one = MultiMACE(c, [at], skin=0.9); m1 = torch.tensor(at.get_masses(), dtype=torch.float32, device=DEV)[:, None]
+     g = torch.Generator(device=DEV).manual_seed(7 + 1000 * seed)
+     x = torch.tensor(at.positions, dtype=torch.float32, device=DEV); v = torch.randn(x.shape, device=DEV, generator=g) * torch.sqrt(KT / m1 * CONV)
+-    c1 = math.exp(-0.01 * 0.5); _, F = one.forces(x)
++    c1 = math.exp(-0.01 * DT); _, F = one.forces(x)
+     for s in range(PRE):
+-        v += 0.25 * F / m1 * CONV; x += 0.25 * v
++        v += (0.5 * DT) * F / m1 * CONV; x += (0.5 * DT) * v
+         v = c1 * v + math.sqrt(1 - c1 * c1) * torch.sqrt(KT / m1 * CONV) * torch.randn(x.shape, device=DEV, generator=g)
+-        x += 0.25 * v; _, F = one.forces(x); v += 0.25 * F / m1 * CONV
++        x += (0.5 * DT) * v; _, F = one.forces(x); v += (0.5 * DT) * F / m1 * CONV
+     # graphs: per stage-2 window [full, solvent, solute]; per stage-1 window [solvent, solute]
+     systems, idx, wnode = [], [], []
+     for w in range(W):
+@@ -169,13 +214,25 @@
+ 
+     t0 = time.time(); F, du2, xs, xv = force(); rec2, rec1, rec1d = [], [], []
+     for s in range(EQ + PROD):
+-        V += 0.25 * F / m * CONV; X += 0.25 * V
++        V += (0.5 * DT) * F / m * CONV; X += (0.5 * DT) * V
+         V = c1 * V + math.sqrt(1 - c1 * c1) * torch.sqrt(KT / m * CONV) * torch.randn(X.shape, device=DEV, generator=g)
+-        X += 0.25 * V; F, du2, xs, xv = force(); V += 0.25 * F / m * CONV
++        X += (0.5 * DT) * V; F, du2, xs, xv = force(); V += (0.5 * DT) * F / m * CONV
++        if exchange_every and (s + 1) % exchange_every == 0:
++            with torch.no_grad():
++                cavity = wca(xs[W2:], xv[W2:], L, sig, mu_all)
++                parity = ((s + 1) // exchange_every - 1) % 2
++                perm, ac, tr = exchange_pairs(lamt, du2, cavity, parity, g)
++                X.copy_(X.view(W, n, 3)[perm].reshape_as(X))
++                V.copy_(V.view(W, n, 3)[perm].reshape_as(V))
++                walkers = walkers[perm]
++                accepted += ac; attempted += tr
++            # Forces belong to Hamiltonian slots, not to walkers: old F cannot be permuted.
++            F, du2, xs, xv = force()
+         if not torch.isfinite(F).all():
+             log(f"D2 non-finite forces at step {s}"); return
+-        if s >= EQ and s % 20 == 0:
++        if s >= EQ and (s - EQ) % STRIDE == 0:
+             rec2.append(du2.cpu().numpy())
++            walker_history.append(walkers.cpu().numpy())
+             with torch.no_grad():
+                 u_all = wca(xs[W2:], xv[W2:], L, sig, mu_all)             # (W1, K1) U_wca of each stage-1 sample at every mu
+                 mu_g = mut.clone().requires_grad_(True)
+@@ -186,7 +243,10 @@
+             log(f"D2 speed: {(time.time()-t0)/(s+1)*1000:.1f} ms/step for all {W} windows (rebuilds {mm.n_rebuild})")
+     wall = time.time() - t0
+     rec2, rec1, rec1d = np.array(rec2), np.array(rec1), np.array(rec1d)      # (S,W2), (S,W1,K1), (S,W1)
+-    np.savez(f"/tmp/d2_{name}_in_{solvent}_s{seed}.npz", lam2=lam2, mu1=mu1, rec2=rec2, rec1=rec1, rec1d=rec1d)
++    np.savez(f"/tmp/d2_{name}_in_{solvent}_s{seed}.npz", lam2=lam2, mu1=mu1, rec2=rec2, rec1=rec1, rec1d=rec1d,
++             wall_s=wall, dt_fs=DT, sample_fs=10.0, exchange_every=exchange_every, walkers=np.asarray(walker_history),
++             accepted=accepted.cpu().numpy(), attempted=attempted.cpu().numpy())
++    log(f"D2 exchange accepted/attempted by stage: {accepted.tolist()} / {attempted.tolist()}")
+     json.dump({"lam2": lam2, "mu1": mu1}, open("/tmp/d2.json", "w"))
+     bet = 1 / KT; S = rec2.shape[0]
+     # TI
+@@ -196,6 +256,10 @@
+         w = np.zeros(len(xk)); dx = np.diff(xk); w[:-1] += dx / 2; w[1:] += dx / 2
+         return float(w @ yk), float(np.sqrt((w ** 2) @ sk ** 2))
+     g2, e2 = trap(lam2, m2, se2); g1, e1 = trap(mu1, m1d, se1)
++    y2, y1 = rec2 @ ti_weights(lam2), rec1d @ ti_weights(mu1)
++    e2, e1 = block_se(y2), block_se(y1)
++    joint_se = block_se(y2 + y1)  # Preserve cross-window and cross-lag covariance.
++    # These five-block errors remain feasibility diagnostics, not an acceptance certificate.
+     for k in range(W2): log(f"D2 stage2 l={lam2[k]:.2f}: <dU/dl> {m2[k]:+.4f} eV (se {se2[k]:.4f}, sd {rec2[:, k].std():.4f})")
+     for k in range(W1): log(f"D2 stage1 mu={mu1[k]:.2f}: <dU/dmu> {m1d[k]:+.4f} eV (se {se1[k]:.4f})")
+     # MBAR (reduced potentials differ only by the lambda- or mu-dependent parts)
+@@ -208,7 +272,7 @@
+     log(f"D2 stage1 (cavity growth, decoupled): TI {g1*EV2KCAL:+.3f} +- {e1*EV2KCAL:.3f}, MBAR {G1m:+.3f} kcal/mol; min neighbour overlap {ov1:.3f}")
+     log(f"D2 stage2 (cavity -> full MACE):      TI {g2*EV2KCAL:+.3f} +- {e2*EV2KCAL:.3f}, MBAR {G2m:+.3f} kcal/mol; min neighbour overlap {ov2:.3f}")
+     log(f"D2 coupling free energy of {name} in MACE-OFF23-small {solvent} (298 K, {S} samples/window x 10 fs, "
+-        f"{(EQ+PROD)*0.5/1000:.1f} ps/window, wall {wall/60:.0f} min): TI {(g1+g2)*EV2KCAL:+.3f} +- {math.hypot(e1,e2)*EV2KCAL:.3f}, "
++        f"{(EQ+PROD)*DT/1000:.1f} ps/window, wall {wall/60:.0f} min): TI {(g1+g2)*EV2KCAL:+.3f} +- {joint_se*EV2KCAL:.3f}, "
+         f"MBAR {G1m+G2m:+.3f} kcal/mol  [feasibility only]")
+ 
+ 
+--- a/PREREGISTRATION.md
++++ b/PREREGISTRATION.md
+@@ -169,4 +169,19 @@
+   the v1 test unchanged: >= 20 molecules with UD profiles, median |d ln gamma_inf| (COSMO-SAC-dsp) over
+   their benchmark IDAC rows < 0.15. If accepted, an all-open-profile version of Z0x (Z0x-open) is scored
+   as a secondary table; if not, v2 profiles are used only for gap compounds, as v1.
++- Optimization audit P4 (effective only when this prospective entry is committed): the previously
++  computed D2 pilot is exploratory, not retroactively preregistered. For a new sampler comparison use
++  the existing two-stage soft-core WCA/MACE Hamiltonians without changing endpoints, weights,
++  masses, temperature, density or WCA parameters. The main comparison uses the same 0.5 fs time step. Use the 15 lambda / 13 mu grids from
++  cloud/s15/modal_bench15.py. Compare exchange disabled against odd/even adjacent within-stage
++  Hamiltonian exchanges every 100 steps, swapping coordinates and velocities and refreshing forces.
++  Use independent seeds 11--14 for reference and 31--34 for exchange, 20000 equilibration steps and
++  60000 production steps initially. Evaluate covariance-preserving block uncertainties and total
++  wall cost, not acceptance rate alone. A 90% interval for the free-energy difference must lie within
++  +/-0.10 kcal/mol; insufficient precision is inconclusive. Extend both arms identically in length
++  before considering a new protocol. No experimental activities, energies, or densities enter selection.
++  This is an A sampler candidate: canonical exchange is exact, but finite-step BAOAB is not an exact
++  canonical kernel. Also compare exchange at 0.25 fs with seeds 51--54, doubling equilibration,
++  production and pre-equilibration steps and using exchanges every 200 steps to hold physical times
++  fixed. Require the same +/-0.10 kcal/mol equivalence gate; otherwise do not accept this sampler.
+ - Z0w2 check on water (before scoring): electrostatic desolvation of the water dimer rises smoothly from

@@ -1,0 +1,56 @@
+--- a/src/zcosmo/cosmosac.py
++++ b/src/zcosmo/cosmosac.py
+@@ -116,16 +116,47 @@
+     E = exp(-DeltaW/RT). Only segments with nonzero probability matter for the
+     sums; others still get a value from the same fixed-point expression.
+     """
+-    AA = E * ps[None, :]
+-    G = np.ones(153)
+-    for _ in range(max_iter):
++    from scipy.linalg import solve
++    ps = np.asarray(ps, dtype=float)
++    if (E.shape != (ps.size, ps.size) or not np.isfinite(ps).all()
++            or (ps < 0).any() or not np.isfinite(E).all() or (E < 0).any()):
++        raise ValueError("invalid segment kernel or profile")
++    active = np.flatnonzero(ps > 0)  # Never threshold small positive bins.
++    if not active.size:
++        raise ValueError("empty segment profile")
++    columns = E[:, active] * ps[active][None, :]
++    AA = np.ascontiguousarray(columns[active])
++    G = np.ones(active.size)
++    eye = np.eye(active.size)
++    for iteration in range(max_iter):
+         Gn = 1.0 / (AA @ G)
+         Gm = 0.5 * (G + Gn)
+         if np.max(np.abs((Gm - Gn) / Gm)) < tol:
+-            G = Gm
+-            break
++            full = 1.0 / (columns @ Gm)
++            residual = full * (columns @ full[active]) - 1.0
++            if np.isfinite(full).all() and np.max(np.abs(residual)) < 2 * tol:
++                return full
+         G = Gm
+-    return G
++        if iteration % 8 == 7:
++            # Newton in log(G), with residual backtracking. Failed trials retain the
++            # original damped iterate; no extrapolated or thresholded profile is used.
++            den = AA @ G
++            residual = np.log(G) + np.log(den)
++            norm = np.max(np.abs(residual))
++            try:
++                J = eye + (AA * G[None, :]) / den[:, None]
++                step = solve(J, -residual, check_finite=True)
++            except (ValueError, np.linalg.LinAlgError):
++                continue
++            step /= max(1.0, np.max(np.abs(step)) / 4.0)
++            for scale in (1.0, 0.5, 0.25, 0.125, 0.0625, 0.03125):
++                trial = G * np.exp(scale * step)
++                nr = np.log(trial) + np.log(AA @ trial)
++                if np.isfinite(nr).all() and np.max(np.abs(nr)) < norm * (1 - 1e-4 * scale):
++                    G = trial
++                    break
++    raise RuntimeError(f"segment equations not converged after {max_iter} iterations")
++
+ 
+ 
+ @lru_cache(maxsize=4096)

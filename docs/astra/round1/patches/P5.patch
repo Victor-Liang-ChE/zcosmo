@@ -1,0 +1,62 @@
+--- a/src/zcosmo/pyscf_cosmo_v2.py
++++ b/src/zcosmo/pyscf_cosmo_v2.py
+@@ -25,7 +25,7 @@
+     convergence criteria; only the Berny Hessian guess restarts)."""
+     from pyscf import gto, dft
+     from pyscf.data import elements
+-    from pyscf.geomopt.berny_solver import optimize
++    from pyscf.geomopt.berny_solver import kernel
+     mol = gto.M(atom=[(s, tuple(p)) for s, p in zip(sym, xyz_A)], basis=basis, unit="Angstrom", verbose=0,
+                 spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "3000")))
+     mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
+@@ -45,9 +45,22 @@
+             tmp = str(partial) + ".tmp"
+             with open(tmp, "w") as f:
+                 json.dump({"sym": list(sym), "x": np.round(env["mol"].atom_coords(unit="Angstrom"), 6).tolist(),
+-                           "cycle": int(env.get("cycle", -1))}, f)
++                           "cycle": int(env.get("cycle", getattr(env.get("self"), "cycle", -1)))}, f)
+             os.replace(tmp, partial)
+-    m2 = optimize(mf, maxsteps=maxsteps, callback=cb)
++    if os.environ.get("ZC_TRIC_PREOPT", "0") == "1":
++        from pyscf.geomopt.geometric_solver import kernel as tric_kernel
++        # A preconditioner only; the original Berny kernel supplies the final convergence test.
++        scanner = mf.nuc_grad_method().as_scanner()
++        _, pre = tric_kernel(scanner, maxsteps=60, coordsys="tric", callback=cb,
++                             convergence_energy=1e-6, convergence_grms=3e-4,
++                             convergence_gmax=4.5e-4, convergence_drms=1.2e-3,
++                             convergence_dmax=1.8e-3)
++        scanner.reset(pre)
++        converged, m2 = kernel(scanner, maxsteps=maxsteps, callback=cb)
++    else:
++        converged, m2 = kernel(mf, maxsteps=maxsteps, callback=cb)
++    if not converged:
++        raise RuntimeError("Final Berny geometry has not converged; do not produce a profile")
+     return np.asarray(m2.atom_coords(unit="Angstrom"))
+ 
+ 
+@@ -74,6 +87,7 @@
+         seg, e = cosmo_segments(sym, x, spin=spin)
+         out, meta = to_profiles(sym, x, seg)
+         meta["E_scf_Eh"] = e
++        meta["tric_preopt"] = os.environ.get("ZC_TRIC_PREOPT", "0") == "1"
+         meta["geometry"] = "BP86/def2-SVP C-PCM conductor (pyberny)" + (" [resumed from checkpoint]" if resumed else "")
+         write_sigma(dest, out, meta, key)
+         with open(Path(outdir) / f"{key}.xyz.json", "w") as f:
+--- a/PREREGISTRATION.md
++++ b/PREREGISTRATION.md
+@@ -169,4 +169,15 @@
+   the v1 test unchanged: >= 20 molecules with UD profiles, median |d ln gamma_inf| (COSMO-SAC-dsp) over
+   their benchmark IDAC rows < 0.15. If accepted, an all-open-profile version of Z0x (Z0x-open) is scored
+   as a secondary table; if not, v2 profiles are used only for gap compounds, as v1.
++- Optimization audit P5 (effective only when this prospective entry is committed): test a geomeTRIC
++  TRIC pre-optimization capped at 60 optimizer steps at the unchanged BP86/def2-SVP conductor
++  level, followed by the original pyberny kernel with its original convergence settings and 100-step
++  cap. Keep the xTB start, final BP86/def2-TZVP calculation, grids, radii, spin treatment and profile
++  conversion unchanged. This is an A candidate because a different optimizer can select a different
++  basin. Freeze the historical 25-molecule/2302-row manifest using only key and T from
++  results/pyscf_profile_validation.csv. Require all 25 profiles, final Berny convergence, and the
++  existing median |d ln gamma_inf| versus UD < 0.15. Publish failures and changed basins; do not
++  select starts, optimizer settings, or molecules using experimental responses. Passing this test
++  authorizes only the secondary open-profile role already specified above, not replacement of the
++  preregistered main scorecard. Record package versions and the commit of this entry before running.
+ - Z0w2 check on water (before scoring): electrostatic desolvation of the water dimer rises smoothly from

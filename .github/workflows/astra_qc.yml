@@ -1,0 +1,55 @@
+name: astra-round1-qc
+# Paired QC benchmark of Astra round-1 proposals P1 (PCM LU reuse, E), P2 (restart hygiene, E), P5 (TRIC pre-stage, A)
+# against the reference commit. One runner per molecule runs all arms back to back, so timings are paired.
+on:
+  workflow_dispatch:
+    inputs:
+      keys: {description: "comma-separated InChIKeys (empty = the 25-molecule fixture)", default: ""}
+      arms: {description: "space-separated arms", default: "base P1 P2 P5"}
+permissions: {contents: read}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {keys: "${{ steps.k.outputs.keys }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - id: k
+        run: |
+          if [ -n "${{ inputs.keys }}" ]; then K="${{ inputs.keys }}"; else
+          K=$(python3 -c "import csv; old={r['key'] for r in csv.DictReader(open('results/pyscf_profile_validation.csv'))}; print(','.join(r['inchikey'] for r in csv.DictReader(open('data/pyscf_sigma/validation_set.csv')) if r['inchikey'] in old))"); fi
+          echo "keys=$(python3 -c "import json,sys; print(json.dumps(sys.argv[1].split(',')))" "$K")" >> $GITHUB_OUTPUT
+  qc:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: {key: "${{ fromJson(needs.plan.outputs.keys) }}"}
+    env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "4", MKL_NUM_THREADS: "4", QC_MEM_MB: "10000", MPLBACKEND: Agg}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny geometric==1.1 rdkit tblite ase pandas scipy matplotlib && pip freeze > freeze.txt
+      - name: arms
+        run: |
+          BASE=62172c7e7bb59737d28b115b9ef37311a98bb6cc; mkdir -p out
+          for arm in ${{ inputs.arms }}; do
+            git worktree add -q --detach /tmp/$arm $BASE
+            for a in data results; do rm -rf /tmp/$arm/$a; ln -s $PWD/$a /tmp/$arm/$a; done
+            git -C /tmp/$arm apply $PWD/docs/astra/round1/patches/H0.patch
+            [ $arm != base ] && git -C /tmp/$arm apply $PWD/docs/astra/round1/patches/$arm.patch
+            EXTRA=""; [ $arm = P5 ] && EXTRA="ZC_TRIC_PREOPT=1"
+            ( cd /tmp/$arm && env PYTHONPATH=src $EXTRA python scripts/optimization_check.py qc --key ${{ matrix.key }} --out $GITHUB_WORKSPACE/out/$arm 2>&1 | grep -viE "warn" | tail -5 ) || echo "ARM $arm FAILED"
+          done
+          if [ ${{ matrix.key }} = XLYOFNOQVPJJNP-UHFFFAOYSA-N ] && [ -d /tmp/P2 ]; then
+            cd /tmp/P2; export PYTHONPATH=src
+            python scripts/optimization_check.py qc --key ${{ matrix.key }} --interrupt-cycle 1 --out $GITHUB_WORKSPACE/out/P2-resume-smoke || true
+            python scripts/optimization_check.py qc --key ${{ matrix.key }} --resume --out $GITHUB_WORKSPACE/out/P2-resume-smoke 2>&1 | tail -3
+            python scripts/optimization_check.py qc --key ${{ matrix.key }} --resume --out $GITHUB_WORKSPACE/out/P2-resume-smoke 2>&1 | tail -3
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "astra1_${{ matrix.key }}", path: "out", retention-days: 14}
