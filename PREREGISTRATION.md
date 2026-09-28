@@ -410,3 +410,10 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   (decanoic acid, triethylene glycol, heptane, 1,8-diaminooctane); it is accepted if all 4 converge and every
   infinite-dilution ln gamma on their benchmark rows (COSMO-SAC-dsp) changes by < 0.01 vs the existing CPU profiles.
   If rejected, the long chains are completed by the CPU path alone (Mac / 4070 CPU cores).
+- GPU pre-stage CHECK RESULT (2026-09-27 5:30 PM PDT, recorded before the protocol's output is used): all 4
+  validation molecules converged under the registered CPU Berny test after the GPU start (CPU polish + TZVP: heptane
+  90 s, 1,8-diaminooctane 263 s, triethylene glycol 315 s, decanoic acid 493 s on 8 threads, vs 1,668 s for the full
+  CPU run of decanoic acid on a 4-core runner). Against the existing CPU v2 profiles: max |d p(sigma)| 1.2e-5, identical
+  cavity areas, and over 412 benchmark rows (6 non-finite in both, skipped) the largest change in infinite-dilution
+  ln gamma (COSMO-SAC-dsp) is 1e-4, far below the 0.01 bar -> ACCEPTED. The protocol now completes the 15 missing v2
+  long chains (resuming from their GitHub Berny checkpoints) and the last 2 ext compounds on the RTX 4070 Super PC.
