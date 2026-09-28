@@ -417,3 +417,16 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   cavity areas, and over 412 benchmark rows (6 non-finite in both, skipped) the largest change in infinite-dilution
   ln gamma (COSMO-SAC-dsp) is 1e-4, far below the 0.01 bar -> ACCEPTED. The protocol now completes the 15 missing v2
   long chains (resuming from their GitHub Berny checkpoints) and the last 2 ext compounds on the RTX 4070 Super PC.
+- P6, analytic interior derivative for Z0x (registered 2026-09-28, before its output is used in any score). Z0x gets
+  ln gamma_i from g(x) and dg/dx because c_ES depends on composition. Until now dg/dx was a central finite difference
+  with h = 1e-4. Astra round 1 found (and our check confirmed) that this carries up to ~1.9e-3 truncation error in
+  ln gamma of the dilute component near x = 0.999, where ln gamma is about 8-11. P6 replaces it with the exact
+  derivative of the same g(x) (frozen-c segment solution plus the analytic dc_ES/dx term). Within h of either pure
+  end, including infinite dilution, the old one-sided difference is kept, so every ln gamma-infinity is unchanged.
+  This is a numerical correction of the same model, not a new model: no constant, no functional form and no data
+  enter it. CHECK (run after this entry is pushed; nothing experimental is used): on 250 fixed queries (the first
+  50 distinct test-split VLE pairs with profiles, T of their first row, x1 in {0.001, 0.01, 0.5, 0.99, 0.999}), P6
+  must agree with a Richardson-extrapolated central difference (h = 2e-4 and 1e-4) to max |d ln gamma| < 1e-4 with
+  identical finite coverage. If accepted, P6 becomes the Z0x implementation for all later scoring. The registered
+  Z0x scores stay as recorded; the test-split VLE, HE and LLE scores are recomputed with P6 once and reported beside
+  them, whichever direction they move. If rejected, main's finite difference stays and P6 is dropped.
