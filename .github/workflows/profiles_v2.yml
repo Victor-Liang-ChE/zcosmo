@@ -50,6 +50,11 @@ jobs:
           find seed -type f \( -name '*.partial.json' -o -name '*.sigma' -o -name '*.xyz.json' \) -exec cp {} out/ \;
           # Only files marked geometry_converged=true will be reused by the runner.
           ls out | wc -l
+      - name: seed committed checkpoints
+        run: |
+          mkdir -p out
+          if ls cloud/s19/seeds/*.partial.json >/dev/null 2>&1; then for f in cloud/s19/seeds/*.partial.json; do b=$(basename $f); [ -f out/$b ] || cp $f out/$b; done; fi
+          ls out | wc -l
       - name: compute with time reserved for artifact upload
         env: {PROFILE_KEYS: "${{ inputs.keys }}"}
         run: |
