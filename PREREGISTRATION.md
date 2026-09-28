@@ -430,3 +430,8 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   identical finite coverage. If accepted, P6 becomes the Z0x implementation for all later scoring. The registered
   Z0x scores stay as recorded; the test-split VLE, HE and LLE scores are recomputed with P6 once and reported beside
   them, whichever direction they move. If rejected, main's finite difference stays and P6 is dropped.
+- P6 CHECK RESULT (2026-09-28 8:55 AM PDT, recorded before any P6 score is computed): 250 of 250 queries finite
+  for both P6 and the reference (identical coverage). max |P6 - Richardson reference| = 2.0e-6, below the 1e-4 bar;
+  the old h = 1e-4 finite difference is off by up to 3.1e-4 on the same queries -> ACCEPTED. P6 is now the Z0x
+  implementation (analytic interior derivative; one-sided difference within 1e-4 of the pure ends, so ln
+  gamma-infinity is unchanged). Details: results/p6_check_out.txt.
