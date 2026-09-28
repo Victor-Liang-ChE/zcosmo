@@ -1,0 +1,24 @@
+name: qc-profile
+on: {workflow_dispatch: {}}
+permissions:
+  contents: read
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        mol: [{name: octanol, smi: "CCCCCCCCO"}, {name: decanoic, smi: "CCCCCCCCCC(=O)O"}]
+        threads: ["2", "4"]
+    env: {OMP_NUM_THREADS: "${{ matrix.threads }}", QC_MEM_MB: "12000", PYTHONPATH: src}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny rdkit tblite ase pandas scipy
+      - run: python -c "import numpy; numpy.show_config()" | head -40; nproc; lscpu | grep -i "model name"
+      - run: python -u cloud/s19/qc_cycle_profile.py "${{ matrix.mol.smi }}" prof_${{ matrix.mol.name }}_t${{ matrix.threads }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "prof_${{ matrix.mol.name }}_t${{ matrix.threads }}", path: "prof_*", retention-days: 30}
