@@ -19,16 +19,29 @@ import pandas as pd
 from zcosmo.pyscf_cosmo import BOHR, RADII, cosmo_segments, to_profiles, write_sigma, xtb_geometry
 
 
+def profile_revision():
+    import hashlib
+    from importlib.metadata import version
+    here = Path(__file__).resolve().parent
+    code = b"".join((here / name).read_bytes() for name in
+                    ("pyscf_cosmo.py", "pyscf_cosmo_v2.py", "pcm_lu.py") if (here / name).exists())
+    packages = [(name, version(name)) for name in ("pyscf", "pyberny", "rdkit", "tblite", "ase", "numpy", "scipy")]
+    return hashlib.sha256(code + json.dumps(packages).encode()
+                          + os.environ.get("ZC_TRIC_PREOPT", "0").encode()).hexdigest()
+
+
 def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=0):
     """partial: optional JSON path; the current geometry is written there after every Berny cycle so a job
     killed by a wall-clock cap can resume from its last geometry (same functional, basis, solvent and
     convergence criteria; only the Berny Hessian guess restarts)."""
     from pyscf import gto, dft
     from pyscf.data import elements
-    from pyscf.geomopt.berny_solver import optimize
+    from pyscf.geomopt.berny_solver import kernel
     mol = gto.M(atom=[(s, tuple(p)) for s, p in zip(sym, xyz_A)], basis=basis, unit="Angstrom", verbose=0,
                 spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "3000")))
     mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
+    from zcosmo.pcm_lu import cache_pcm
+    mf = cache_pcm(mf)
     mf.xc = "b88,p86"
     mf.grids.level = 2
     mf.conv_tol = 1e-8
@@ -44,10 +57,12 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=
         if partial is not None and env.get("mol") is not None:
             tmp = str(partial) + ".tmp"
             with open(tmp, "w") as f:
-                json.dump({"sym": list(sym), "x": np.round(env["mol"].atom_coords(unit="Angstrom"), 6).tolist(),
+                json.dump({"sym": list(sym), "x": env["mol"].atom_coords(unit="Angstrom").tolist(),
                            "cycle": int(env.get("cycle", -1))}, f)
             os.replace(tmp, partial)
-    m2 = optimize(mf, maxsteps=maxsteps, callback=cb)
+    converged, m2 = kernel(mf, maxsteps=maxsteps, callback=cb)
+    if not converged:
+        raise RuntimeError(f"Berny did not converge in {maxsteps} steps; checkpoint retained")
     return np.asarray(m2.atom_coords(unit="Angstrom"))
 
 
@@ -55,27 +70,50 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=
 OPEN_SHELL = {"O=O": 2}
 
 
+def complete_profile(path):
+    """Legacy files without a convergence declaration are not certified cache hits."""
+    try:
+        meta = json.loads(path.read_text().splitlines()[0][len("# meta: "):])
+        a = np.loadtxt(path)
+        return (meta.get("geometry_converged") is True
+                and meta.get("profile_revision") == profile_revision() and a.shape == (153, 2)
+                and np.isfinite(a).all() and (a[:, 1] >= 0).all() and a[:, 1].sum() > 0)
+    except (OSError, ValueError, IndexError):
+        return False
+
+
 def run_one(row, outdir):
     key = row["inchikey"]
     dest = Path(outdir) / f"{key}.sigma"
-    if dest.exists():
+    if complete_profile(dest):
         return key, "exists", 0.0
     t = time.time()
     try:
-        sym, x0 = xtb_geometry(row["smiles"])
         partial = Path(outdir) / f"{key}.partial.json"
+        # Atom order comes from the same RDKit construction, without an xTB optimization.
+        from rdkit import Chem
+        mol = Chem.AddHs(Chem.MolFromSmiles(row["smiles"]))
+        sym = [a.GetSymbol() for a in mol.GetAtoms()]
         resumed = False
         if partial.exists():
             p = json.loads(partial.read_text())
-            if p["sym"] == list(sym):
-                x0, resumed = p["x"], True
+            trial = np.asarray(p["x"], dtype=float)
+            if p["sym"] == sym and trial.shape == (len(sym), 3) and np.isfinite(trial).all():
+                x0, resumed = trial, True
+        if not resumed:
+            sym, x0 = xtb_geometry(row["smiles"])
         spin = OPEN_SHELL.get(row["smiles"], 0)
         x = dft_geometry(sym, np.asarray(x0), partial=partial, spin=spin)
         seg, e = cosmo_segments(sym, x, spin=spin)
         out, meta = to_profiles(sym, x, seg)
         meta["E_scf_Eh"] = e
+        meta["geometry_converged"] = True
+        meta["profile_revision"] = profile_revision()
+        meta["source"] = "pyscf_cosmo_v2 BP86/def2-SVP conductor geometry; BP86/def2-TZVP conductor profile"
         meta["geometry"] = "BP86/def2-SVP C-PCM conductor (pyberny)" + (" [resumed from checkpoint]" if resumed else "")
-        write_sigma(dest, out, meta, key)
+        tmp = dest.with_suffix(".sigma.tmp")
+        write_sigma(tmp, out, meta, key)
+        os.replace(tmp, dest)
         with open(Path(outdir) / f"{key}.xyz.json", "w") as f:
             json.dump({"sym": sym, "x": np.round(x, 5).tolist()}, f)
         partial.unlink(missing_ok=True)
@@ -92,15 +130,21 @@ def main():
     ap.add_argument("--nchunks", type=int, default=1)
     ap.add_argument("--keys", default="")
     a = ap.parse_args()
+    if not (1 <= a.nchunks <= 20 and 0 <= a.chunk < a.nchunks):
+        ap.error("require 1 <= nchunks <= 20 and 0 <= chunk < nchunks")
     Path(a.outdir).mkdir(parents=True, exist_ok=True)
     d = pd.read_csv(a.csv)
     if a.keys:
         d = d[d.inchikey.isin(a.keys.split(","))]
-    d = d.sort_values(["heavy_atoms", "inchikey"]).reset_index(drop=True)
+    d = d.sort_values(["heavy_atoms", "inchikey"], ascending=[False, True]).reset_index(drop=True)
     d = d.iloc[a.chunk::a.nchunks]  # round-robin so chunks are balanced by size
+    failed = False
     for r in d.to_dict("records"):
         k, st, dt = run_one(r, a.outdir)
         print(k, st, f"{dt:.0f}s", flush=True)
+        failed |= st.startswith("fail:")
+    if failed:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

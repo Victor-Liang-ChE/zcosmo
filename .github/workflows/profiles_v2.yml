@@ -9,14 +9,28 @@ permissions:
   contents: read
   actions: read
 jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - id: matrix
+        env: {NCHUNKS: "${{ inputs.nchunks }}"}
+        run: |
+          python - <<'PYCODE' >> "$GITHUB_OUTPUT"
+          import json, os
+          n = int(os.environ["NCHUNKS"])
+          assert 1 <= n <= 20, "nchunks must be between 1 and 20"
+          print("matrix=" + json.dumps({"chunk": list(range(n))}))
+          PYCODE
   profiles:
+    needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 355
     strategy:
       fail-fast: false
       max-parallel: 20
-      matrix:
-        chunk: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     env:
       OMP_NUM_THREADS: "4"
       QC_MEM_MB: "10000"
@@ -32,9 +46,18 @@ jobs:
         env: {GH_TOKEN: "${{ github.token }}"}
         run: |
           mkdir -p out seed
-          gh run download ${{ inputs.seed_run }} -R ${{ github.repository }} -D seed || true
-          find seed -name '*.partial.json' -exec cp {} out/ \; ; ls out | wc -l
-      - run: python -m zcosmo.pyscf_cosmo_v2 out data/benchmark/compounds.csv --chunk ${{ matrix.chunk }} --nchunks ${{ inputs.nchunks }} --keys "${{ inputs.keys }}" 2>&1 | grep -v -i warn | tee out_${{ matrix.chunk }}.log
+          gh run download "${{ inputs.seed_run }}" -R "${{ github.repository }}" -D seed
+          find seed -type f \( -name '*.partial.json' -o -name '*.sigma' -o -name '*.xyz.json' \) -exec cp {} out/ \;
+          # Only files marked geometry_converged=true will be reused by the runner.
+          ls out | wc -l
+      - name: compute with time reserved for artifact upload
+        env: {PROFILE_KEYS: "${{ inputs.keys }}"}
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 19200s python -u -m zcosmo.pyscf_cosmo_v2 out data/benchmark/compounds.csv --chunk ${{ matrix.chunk }} --nchunks ${{ inputs.nchunks }} --keys "$PROFILE_KEYS" 2>&1 | tee out_${{ matrix.chunk }}.log
+          rc=${PIPESTATUS[0]}
+          if [ "$rc" = 124 ]; then echo "Compute deadline: uploading checkpoints"; exit 0; fi
+          exit "$rc"
       - uses: actions/upload-artifact@v4
         if: always()
         with: {name: "profiles_v2_${{ github.run_id }}_${{ matrix.chunk }}", path: "out*", retention-days: 14}

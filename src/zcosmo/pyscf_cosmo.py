@@ -49,6 +49,8 @@ def cosmo_segments(sym, xyz_A, basis="def2-tzvp", lebedev=29, spin=0):
     mol = gto.M(atom=[(s, tuple(p)) for s, p in zip(sym, xyz_A)], basis=basis, unit="Angstrom", verbose=0,
                 spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "4000")))
     mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
+    from zcosmo.pcm_lu import cache_pcm
+    mf = cache_pcm(mf)
     mf.xc = "b88,p86"
     mf.grids.level = 3
     mf.conv_tol = 1e-9
@@ -125,7 +127,7 @@ def to_profiles(sym, xyz_A, seg):
 def write_sigma(path, out, meta, key):
     meta = dict(meta)
     meta["standard_INCHIKEY"] = key
-    meta["source"] = "pyscf_cosmo BP86/def2-TZVP C-PCM conductor, GFN2-xTB geometry"
+    meta.setdefault("source", "pyscf_cosmo BP86/def2-TZVP C-PCM conductor, GFN2-xTB geometry")
     with open(path, "w") as f:
         f.write("# meta: " + json.dumps(meta) + "\n")
         f.write("# Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]\n")
