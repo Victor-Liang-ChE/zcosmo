@@ -41,8 +41,8 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=
                 spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "3000")))
     mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
     from zcosmo.pcm_lu import cache_pcm, cache_pcm3c
-    # P9 (E, 2026-09-28): cached surface 3-centre integrals; on only with ZC_PCM3C=1 until its E gate passes
-    mf = cache_pcm3c(mf) if os.environ.get("ZC_PCM3C", "0") == "1" else cache_pcm(mf)
+    # P9 (E, 2026-09-28): cached surface 3-centre integrals; accepted as E; ZC_PCM3C=0 restores the P1 path
+    mf = cache_pcm3c(mf) if os.environ.get("ZC_PCM3C", "1") == "1" else cache_pcm(mf)
     mf.xc = "b88,p86"
     mf.grids.level = 2
     mf.conv_tol = 1e-8

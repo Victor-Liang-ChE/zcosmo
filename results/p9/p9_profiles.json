@@ -1,0 +1,11 @@
+{
+  "molecules": 25,
+  "rows": 2302,
+  "nonfinite_rows": 31,
+  "max_delta_p": 6.870806930348028e-09,
+  "max_delta_psigmaA_A2": 8.230061103731146e-07,
+  "max_delta_lngamma": 1.0075084144745006e-07,
+  "median_delta_vs_UD": 0.14932739888212443,
+  "check_wall_s": 9.046412291005254,
+  "mode": "E"
+}

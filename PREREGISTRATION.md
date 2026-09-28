@@ -435,3 +435,15 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   the old h = 1e-4 finite difference is off by up to 3.1e-4 on the same queries -> ACCEPTED. P6 is now the Z0x
   implementation (analytic interior derivative; one-sided difference within 1e-4 of the pure ends, so ln
   gamma-infinity is unchanged). Details: results/p6_check_out.txt.
+- P6 SCORES (2026-09-28, computed once as registered; the registered Z0x numbers stay as recorded). Test split,
+  pre-P6 vs P6 Z0x on identical rows: IDAC unchanged by construction (MAE 0.839 both); VLE AAD P 16.13% both
+  (largest single-point change 4.5e-5 relative); H^E MAE 619 J/mol both (largest change 3e-9 J/mol); LLE recall
+  0.842 both, false-positive rate on the 128 test negatives 0.040 -> 0.055 (5 -> 7), balanced accuracy 0.901 ->
+  0.894. The only visible effect of the corrected derivative is two marginal LLE negatives now splitting.
+- P9 (E, 2026-09-28): cache the C-PCM surface 3-centre integrals once per surface instead of recomputing them twice
+  per SCF iteration (pyscf 2.14 does this with aosym s1). Found by profiling one Berny cycle on GitHub runners
+  (~45% of wall time). Fixed-geometry check vs the P1 path (water, O2 UKS, 1-octanol; SVP and TZVP; also the
+  memory-limited partial cache): dE <= 1.4e-12 Eh, dG <= 2.5e-13 Eh/Bohr, dq <= 2e-13 e. Paired 25-molecule gate
+  (run 36463641537, same runner per molecule): identical Berny evaluations (168 = 168), wall 6,009 s -> 3,183 s
+  (1.89x); profile E check below. Setting: ZC_PCM3C (default on after acceptance; 0 restores the P1 path).
+  Profile E check (25 molecules): molecules 25, rows 2302, nonfinite_rows 31, max_delta_p 6.9e-09, max_delta_psigmaA_A2 8.2e-07, max_delta_lngamma 1e-07, median_delta_vs_UD 0.15, check_wall_s 9, mode E -> ACCEPTED as E; P9 is now the default.
