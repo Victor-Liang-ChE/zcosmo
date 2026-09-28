@@ -49,8 +49,9 @@ def cosmo_segments(sym, xyz_A, basis="def2-tzvp", lebedev=29, spin=0):
     mol = gto.M(atom=[(s, tuple(p)) for s, p in zip(sym, xyz_A)], basis=basis, unit="Angstrom", verbose=0,
                 spin=spin, max_memory=int(os.environ.get("QC_MEM_MB", "4000")))
     mf = (dft.UKS(mol) if spin else dft.RKS(mol)).density_fit().PCM()
-    from zcosmo.pcm_lu import cache_pcm
-    mf = cache_pcm(mf)
+    from zcosmo.pcm_lu import cache_pcm, cache_pcm3c
+    # P9 (E, 2026-09-28): cached surface 3-centre integrals; on only with ZC_PCM3C=1 until its E gate passes
+    mf = cache_pcm3c(mf) if os.environ.get("ZC_PCM3C", "0") == "1" else cache_pcm(mf)
     mf.xc = "b88,p86"
     mf.grids.level = 3
     mf.conv_tol = 1e-9

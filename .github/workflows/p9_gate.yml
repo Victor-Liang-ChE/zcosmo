@@ -1,0 +1,83 @@
+name: p9-gate
+# E gate for P9 (cached C-PCM surface 3-centre integrals). Per molecule, on one runner: the P1 path (ZC_PCM3C=0) then
+# P9 (ZC_PCM3C=1), back to back, so timings are paired. Then the registered E comparison of the 25 profiles.
+on: {workflow_dispatch: {}}
+permissions: {contents: read}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {keys: "${{ steps.k.outputs.keys }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - id: k
+        run: |
+          K=$(python3 -c "import csv; old={r['key'] for r in csv.DictReader(open('results/pyscf_profile_validation.csv'))}; print(','.join(r['inchikey'] for r in csv.DictReader(open('data/pyscf_sigma/validation_set.csv')) if r['inchikey'] in old))")
+          echo "keys=$(python3 -c "import json,sys; print(json.dumps(sys.argv[1].split(',')))" "$K")" >> $GITHUB_OUTPUT
+  fixed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env: {OMP_NUM_THREADS: "4", QC_MEM_MB: "12000", PYTHONPATH: src}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny rdkit tblite ase pandas scipy
+      - run: python -u cloud/s19/p9_fixed_check.py p9_fixed.json 2>&1 | grep -vi warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p9_fixed, path: p9_fixed.json}
+  qc:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: {key: "${{ fromJson(needs.plan.outputs.keys) }}"}
+    env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "4", QC_MEM_MB: "10000", MPLBACKEND: Agg, PYTHONPATH: src}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny rdkit tblite ase pandas scipy matplotlib
+      - run: git apply docs/astra/round1/patches/H0.patch
+      - name: arms
+        run: |
+          mkdir -p out
+          for arm in P1 P9; do
+            F=0; [ $arm = P9 ] && F=1
+            ZC_PCM3C=$F python scripts/optimization_check.py qc --key ${{ matrix.key }} --out out/$arm 2>&1 | grep -viE "warn" | tail -3 || echo "ARM $arm FAILED"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "p9_${{ matrix.key }}", path: "out", retention-days: 14}
+  compare:
+    needs: qc
+    if: always()
+    runs-on: ubuntu-latest
+    env: {PYTHONPATH: src, MPLBACKEND: Agg}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 rdkit pandas scipy matplotlib
+      - run: git apply docs/astra/round1/patches/H0.patch
+      - uses: actions/download-artifact@v4
+        with: {pattern: "p9_*", path: arts}
+      - run: |
+          mkdir -p P1 P9
+          find arts -path "*/P1/*" -name "*.sigma" -exec cp {} P1/ \; ; find arts -path "*/P9/*" -name "*.sigma" -exec cp {} P9/ \;
+          ls P1 | wc -l; ls P9 | wc -l
+          python - <<'PY'
+          import json, glob, os
+          a = b = 0; ea = eb = 0
+          for f in glob.glob("arts/*/P1/timing.json"):
+              g = f.replace("/P1/", "/P9/")
+              if os.path.exists(g):
+                  x, y = json.load(open(f)), json.load(open(g)); a += x["wall_s"]; b += y["wall_s"]; ea += x["geometry_evaluations"]; eb += y["geometry_evaluations"]
+          print(f"paired wall: P1 {a:.0f}s  P9 {b:.0f}s  speed-up {a/max(b,1):.2f}x; geometry evaluations {ea} vs {eb}")
+          PY
+          python scripts/optimization_check.py profiles --reference P1 --candidate P9 --mode E --out p9_profiles.json 2>&1 | tail -5; cat p9_profiles.json | head -40
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p9_compare, path: "p9_profiles.json"}
