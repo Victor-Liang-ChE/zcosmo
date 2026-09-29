@@ -52,3 +52,27 @@ Summary of what happened to your round-1 proposals:
 5. **The P6 registration text:** a short, exact paragraph for `PREREGISTRATION.md` accepting the analytic derivative as a numerical correction, with the check that would be run.
 
 Return one markdown report as before: a ranked table, then diffs against current `main` and exact commands. Mark clearly what you actually executed versus what you only reasoned about.
+
+
+## Addendum (2026-09-29): what we measured while you were unavailable
+
+Please use these numbers in place of the profile plan in question 1, and take questions 2 to 5 as already partly answered where noted.
+
+**Measured profile** (`cloud/s19/qc_cycle_profile.py`, GitHub 4-core runners, registered settings, 3 Berny cycles, cProfile cumulative seconds; raw output in `results/qc/qc_profile/`). For 1-octanol at 4 threads the total is 197.5 s. Of that, 149.7 s sits under the PCM `get_veff`, and 100.0 s of it is `df.incore.aux_e2` evaluating `int3c2e(AO pair, surface point)` again on every SCF iteration, in both `_get_v` and `_get_vmat`. The XC term (`nr_rks`) is 41.6 s, the Berny gradient step (`grad_elec`) 23.2 s, and the PCM gradient 19.6 s. The linear solve is negligible, as round 1 found. Decanoic acid at 4 threads shows the same shape: 402.0 s total, 201.5 s in `aux_e2`.
+
+**Thread scaling is poor.** Going from 2 to 4 threads changes 1-octanol from 211.6 s to 197.5 s and decanoic acid from 419.6 s to 402.0 s, so 4 threads is only 4 to 7% faster. `getints3c` is almost all self time, so it is effectively serial here.
+
+**P9, accepted as E.** It caches those surface integrals once per surface (packed `s2ij`, contracted with matrix products). The fixed-geometry check matches the P1 path to 1.4e-12 Eh, 2.5e-13 Eh/Bohr and 2e-13 e. On the 25-molecule gate (paired, same runner) the wall time falls from 6,009 s to 3,183 s (1.89x) with identical Berny evaluations (168 = 168), and the profile E check gives max |dp| 6.9e-9 and max |dln gamma| 1.0e-7. The patch is in `cloud/s19/p9.patch`. It is on by default now. Please profile the code with P9 on (the same command with `ZC_PCM3C=1`, the default) and tell us what dominates next.
+
+**P3 and P1 are merged** (P1 exact but small, P3 4.5x on the evaluator). P6 is registered and accepted; it moved one LLE balanced accuracy (0.901 to 0.894) and nothing else.
+
+**New problem you can help with: long chains hit the 100-step Berny cap and restarts do not continue the optimisation.** Seven chains (C16 to C20 acids, esters, alcohols and alkanes) reached cycle 99 on three different machines, and one needed three restarts and 10 hours in total. Our checkpoint stores geometry only, so every resume rebuilds pyberny's Hessian from its model guess and the trust radius starts over. The cures we know: (a) a GPU4PySCF pre-stage from the cycle-99 geometry (accepted earlier, and running now), and (b) nothing cheaper. Please propose an E-class way to persist and restore the pyberny optimiser state (Hessian, trust radius, history) across resumes, or an A-class start that reduces the cycles for flexible chains, each with an acceptance test as before. Check against `pyberny` as installed with `pyscf==2.14.0`.
+
+**Questions for round 2 now:**
+
+1. With P9 on, what is the next-largest per-cycle cost, and which of it is E-class removable (for example the XC grid evaluation, or a second int3c2e pass inside the PCM gradient)?
+2. Why is the `int3c2e` evaluation not scaling with threads, and can the surface blocks be evaluated in parallel without changing any number?
+3. The optimiser-state persistence question above.
+4. Anything in `evaluate.binodal` that could fail silently. We audited the LLE failure path: only UNIFAC-DO had unevaluable rows (23 of 101 pairs), and the other models evaluate everywhere.
+
+Please mark, as before, what you executed and what you only reasoned about.
