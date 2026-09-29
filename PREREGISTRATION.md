@@ -447,3 +447,14 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   (run 36463641537, same runner per molecule): identical Berny evaluations (168 = 168), wall 6,009 s -> 3,183 s
   (1.89x); profile E check below. Setting: ZC_PCM3C (default on after acceptance; 0 restores the P1 path).
   Profile E check (25 molecules): molecules 25, rows 2302, nonfinite_rows 31, max_delta_p 6.9e-09, max_delta_psigmaA_A2 8.2e-07, max_delta_lngamma 1e-07, median_delta_vs_UD 0.15, check_wall_s 9, mode E -> ACCEPTED as E; P9 is now the default.
+- Long-chain convergence fallback (registered 2026-09-29 3:00 PM PDT, before any fallback profile exists; class A, used only for
+  flagged profiles). Seven benchmark chains (C16-C20 acids/esters/alcohols/alkanes, perfluoroalkanes) did not pass the registered
+  Berny test in 200 CPU steps on GitHub runners (twice, 4.5 h each), while three sibling chains needed 2 to 4 restarts and up to 10 h.
+  The registered rule stays: a profile is produced only from a geometry that passes the Berny test. FALLBACK, allowed only for a
+  chain that has still not converged after the GPU pre-stage plus at least 300 further CPU Berny steps: take its last geometry, run
+  the registered TZVP single point and averaging, and flag the profile "fallback" everywhere it is used. VALIDATION (must pass
+  before any fallback profile enters a score): for the chains that DID converge after passing through a non-converged checkpoint
+  (MJELOWOAIA, QIQXTHQIDY, QUKHPBOCBW), recompute the profile at their last non-converged checkpoint and compare with their
+  converged profile: max |d p(sigma)| < 1e-3 and, over every benchmark row that involves them, max |d ln gamma-infinity| (COSMO-SAC-dsp)
+  < 0.05. If the validation fails, fallback profiles are not used and those chains stay out of the scored set. Any scorecard that
+  includes fallback profiles is reported beside one that excludes them.
