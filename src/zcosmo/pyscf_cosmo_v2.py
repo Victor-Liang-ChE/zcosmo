@@ -54,6 +54,23 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=
     for el, r in RADII.items():
         table[elements.charge(el)] = r / BOHR
     s.radii_table = table
+    # E-class restart (registered 2026-09-30, off unless ZC_BERNY_STATE=1): the pyberny optimiser state (Hessian, trust
+    # radius, history) is pickled next to the geometry checkpoint and restored on resume, so a resumed run continues
+    # exactly the optimisation an uninterrupted run would have done. ZC_MAXSTEPS only overrides the per-pass step cap.
+    keep_state = os.environ.get("ZC_BERNY_STATE", "0") == "1" and partial is not None
+    maxsteps = int(os.environ.get("ZC_MAXSTEPS", maxsteps))
+    state_path = str(partial) + ".bstate" if keep_state else None
+    kw = {}
+    if keep_state and os.path.exists(state_path):
+        try:
+            import pickle
+            with open(state_path, "rb") as f:
+                st = pickle.load(f)
+            g = np.asarray(st["geom"].coords, dtype=float)
+            if g.shape == (len(sym), 3) and np.abs(g - np.asarray(xyz_A, dtype=float)).max() < 1e-4:
+                kw["restart"] = st
+        except Exception:
+            kw = {}
     def cb(env):
         if partial is not None and env.get("mol") is not None:
             tmp = str(partial) + ".tmp"
@@ -61,7 +78,15 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=
                 json.dump({"sym": list(sym), "x": env["mol"].atom_coords(unit="Angstrom").tolist(),
                            "cycle": int(env.get("cycle", -1))}, f)
             os.replace(tmp, partial)
-    converged, m2 = kernel(mf, maxsteps=maxsteps, callback=cb)
+        if keep_state and env.get("optimizer") is not None:
+            import pickle
+            from dataclasses import fields
+            s_ = env["optimizer"]._state
+            tmp = state_path + ".tmp"
+            with open(tmp, "wb") as f:
+                pickle.dump({fl.name: getattr(s_, fl.name) for fl in fields(s_)}, f)
+            os.replace(tmp, state_path)
+    converged, m2 = kernel(mf, maxsteps=maxsteps, callback=cb, **kw)
     if not converged:
         raise RuntimeError(f"Berny did not converge in {maxsteps} steps; checkpoint retained")
     return np.asarray(m2.atom_coords(unit="Angstrom"))
@@ -118,6 +143,7 @@ def run_one(row, outdir):
         with open(Path(outdir) / f"{key}.xyz.json", "w") as f:
             json.dump({"sym": sym, "x": np.round(x, 5).tolist()}, f)
         partial.unlink(missing_ok=True)
+        Path(str(partial) + ".bstate").unlink(missing_ok=True)
         return key, "ok", time.time() - t
     except Exception as ex:
         return key, f"fail: {ex!r}"[:300], time.time() - t

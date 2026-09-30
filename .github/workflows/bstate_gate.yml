@@ -1,0 +1,40 @@
+name: bstate-gate
+on:
+  workflow_dispatch:
+    inputs:
+      keys: {description: "comma-separated InChIKeys (registered: 1-octanol and decanoic acid)", default: "KBPLFHHGFOOTCA-UHFFFAOYSA-N,WWZKQHOCKIZLMA-UHFFFAOYSA-N"}
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {matrix: "${{ steps.m.outputs.matrix }}"}
+    steps:
+      - id: m
+        run: |
+          python3 - <<'PY' >> $GITHUB_OUTPUT
+          import json, os
+          keys = "${{ inputs.keys }}".split(",")
+          print("matrix=" + json.dumps({"include": [{"mode": m, "key": k} for k in keys for m in ("full", "state", "geom")]}))
+          PY
+  gate:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    env:
+      OMP_NUM_THREADS: "4"
+      QC_MEM_MB: "10000"
+      PYTHONPATH: src
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny rdkit tblite ase pandas scipy matplotlib
+      - run: python cloud/s19/bstate_gate.py ${{ matrix.mode }} ${{ matrix.key }} out/${{ matrix.mode }}/${{ matrix.key }} 2>&1 | grep -v -i warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "gate_${{ matrix.mode }}_${{ matrix.key }}", path: "out", retention-days: 14}
