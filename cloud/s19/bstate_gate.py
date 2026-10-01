@@ -8,7 +8,7 @@ import json, os, sys, time
 from pathlib import Path
 import pandas as pd
 mode, key, out = sys.argv[1:4]
-CAP = 100 if mode == "full" else 5
+CAP = 100 if mode == "full" else int(os.environ.get("GATE_CAP", "5"))
 os.environ["ZC_MAXSTEPS"] = str(CAP)
 os.environ["ZC_BERNY_STATE"] = "1" if mode == "state" else "0"
 import zcosmo.pyscf_cosmo_v2 as _m

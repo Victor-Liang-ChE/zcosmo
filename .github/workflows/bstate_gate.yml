@@ -2,6 +2,7 @@ name: bstate-gate
 on:
   workflow_dispatch:
     inputs:
+      cap: {description: "per-pass Berny step cap for the state and geom arms", default: "5"}
       keys: {description: "comma-separated InChIKeys (registered: 1-octanol and decanoic acid)", default: "KBPLFHHGFOOTCA-UHFFFAOYSA-N,WWZKQHOCKIZLMA-UHFFFAOYSA-N"}
 permissions:
   contents: read
@@ -29,6 +30,7 @@ jobs:
       QC_MEM_MB: "10000"
       PYTHONPATH: src
       MPLBACKEND: Agg
+      GATE_CAP: "${{ inputs.cap }}"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
