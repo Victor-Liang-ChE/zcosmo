@@ -55,7 +55,7 @@ jobs:
       - name: seed committed checkpoints
         run: |
           mkdir -p out
-          if ls cloud/s19/seeds/*.partial.json >/dev/null 2>&1; then for f in cloud/s19/seeds/*.partial.json; do b=$(basename $f); [ -f out/$b ] || cp $f out/$b; done; fi
+          if ls cloud/s19/seeds/*.partial.json >/dev/null 2>&1; then for f in cloud/s19/seeds/*.partial.json cloud/s19/seeds/*.bstate; do [ -f "$f" ] || continue; b=$(basename $f); [ -f out/$b ] || cp $f out/$b; done; fi
           ls out | wc -l
       - name: compute with time reserved for artifact upload
         env: {PROFILE_KEYS: "${{ inputs.keys }}"}
