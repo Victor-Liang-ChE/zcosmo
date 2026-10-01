@@ -492,3 +492,23 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   in a second column: every scorecard that includes S1 profiles is reported beside one that excludes the rows involving them. Berny-converged profiles
   remain the primary set. The optimisation jobs on GitHub Actions, Kaggle, the 4070 and the 2060 PC continue unchanged in case a chain does converge
   by the registered test; a Berny-converged profile replaces the S1 profile for that chain.
+
+- Long-chain stall rule S1, RESULTS (recorded 2026-10-01 10:27 PDT; computed 2026-10-01 06:43 to 10:23 PDT with cloud/s19/stall_accept.py after the registration above; nothing was changed
+  after seeing them). Per chain: atoms; optimiser cycles since resume at the new checkpoint; max atomic displacement vs the checkpoint of the previous run (Angstrom); Cartesian gradient max / rms
+  (Eh/Bohr; limits 4.5e-4 / 1.5e-4); max |d p(sigma)| between the profiles at the two checkpoints (limit 1e-3); peak p(sigma)A.
+  FLIACVVOZY 53; 133; 0.0007; 1.7e-5 / 6.4e-6; 2.35e-3; 69.2 -> a ok, b ok, c FAILS (p(sigma)).
+  BTFJIXJJCS 63; 92; 0.0020; 3.3e-5 / 8.0e-6; 1.32e-2; 89.7 -> a ok, b ok, c FAILS.
+  OYHQOLUKZR 52; 127; 0.0016; 1.9e-5 / 5.3e-6; 7.06e-3; 61.9 -> a ok, b ok, c FAILS.
+  HPEUJPJOZX 59; 104; 0.0002; 4.1e-5 / 8.7e-6; 2.68e-3; 83.9 -> a ok, b ok, c FAILS.
+  PYGXAGIECV 56; 140; 0.0003; 9.7e-5 / 2.2e-5; 1.057e-3; 70.9 -> a ok, b ok, c FAILS (by 6 percent).
+  MVLVMROFTA 62; 96; 0.0000; 3.8e-5 / 1.1e-5; 2.9e-5; 88.5 -> a ok, b ok, c ok. It has no row at all in data/benchmark/idac.csv, so the ln gamma half of c is empty and c reduces to the p(sigma) limit, as registered.
+  Under rule S1 as registered: MVLVMROFTA is ACCEPTED (flagged geometry_converged="S1", file data/pyscf_sigma/s1_stalled/MVLVMROFTAUDAG-UHFFFAOYSA-N.sigma, NOT in profiles_v2, only in a second scorecard column). Its geometry did not move between the two
+  checkpoints at all (0.0000 A), so criterion b and the small p(sigma) difference are satisfied trivially; its acceptance rests on criterion a (gradient far below Berny's thresholds). The other five are NOT accepted and stay out of every scored set;
+  the p(sigma) limit is not changed. Berny-converged profiles remain the primary set (profiles_v2 stays at 630/636).
+  Informational, not an acceptance route (computed after the five rejections): (1) ln gamma-infinity sensitivity, COSMO-SAC-dsp, S1-new vs S1-old profile, each evaluated in its own process: OYHQOLUKZR 67 benchmark rows, max |d ln gamma| 6.7e-5;
+  BTFJIXJJCS 84 rows, max 2.8e-5 (limit 0.05); FLIACVVOZY, HPEUJPJOZX, MVLVMROFTA and PYGXAGIECV have no rows in idac.csv. A first run (job 290) printed exactly 0.0 because both profile sets were evaluated in one process and the profile is cached after the first load;
+  it was discarded and redone (job 292). (2) Profile noise floor (job 289, one chain, one rotation): the FLIACVVOZY profile recomputed at its new checkpoint geometry rigidly rotated by 0.001 rad, nothing else changed, differs from the unrotated profile by
+  max |d p(sigma)| = 1.6e-2, i.e. larger than the p(sigma) differences between the checkpoints of all five rejected chains (1.1e-3 to 1.3e-2). So the p(sigma) limit of 1e-3 (shared with the 2026-09-29 fallback validation, whose
+  deviations of 5.6e-3 and 5.8e-3 were also below this floor) lies well below the numerical noise of the profile calculation and can only be met by two evaluations in the same orientation with essentially identical geometry; it does not measure whether geometries differ.
+  Caveat: one rotation on one molecule. NOT applied: a noise-referenced profile limit (for example relative to the measured rotation floor, together with the unchanged 0.05 ln gamma limit) would be a new rule, to be registered separately before any use and to be put to
+  the Astra review on 2026-10-02; until then no profile of the five rejected chains is used anywhere.
