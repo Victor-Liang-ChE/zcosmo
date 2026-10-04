@@ -562,3 +562,18 @@ Pre-trial state, read from the frozen optimizer states before registration (not 
 in the six states are 5.7e-8 to 3.7e-7 Eh in magnitude, trust radii 3.6e-4 to 5.9e-3; five of six are below the default noise-branch
 threshold (2e-7) at this step, all six below the P15 threshold (2e-6). So the default branch is already active at some steps; the trial
 tests whether removing the ratio-branch shrinks for predicted changes between 2e-7 and 2e-6 Eh lets the steps leave the trust sphere.
+
+- P15 noise-aware Berny trust update (energy_noise 2e-7 Eh, class A), RESULTS (recorded 2026-10-04 08:58 PDT; registered 2026-10-04 01:49 PDT in 2e9e459, before any run).
+  Decision: REJECTED. The 25-molecule gates passed, but the second registered condition failed: no chain passed the original Berny test in the P15 arm
+  within its 100 evaluations. No P15 profile is used anywhere; the accepted GPU-prestage and A-class restart protocols are unchanged; no S1 decision changes.
+  (1) 25-molecule validation, Actions run 37190183654 (per molecule, reference then P15 on one runner): 25/25 P15 geometries passed the original Berny test;
+  2302 rows with the same 31 non-finite rows in both arms; max |d ln gamma-inf| (COSMO-SAC-dsp, P15 vs reference) 2.15e-4 (limit 0.01); median |d| vs UD 0.1493
+  (limit 0.15); paired wall 3217 s vs 3360 s = 0.957 (limit 1.10); geometry evaluations 163 vs 168; reported, not gated: max normalized-bin difference 6.5e-5,
+  max raw psigmaA-bin difference 0.0132. Deviation in execution, not in criteria: the workflow's compare job stopped before evaluating because the UD reference
+  profiles (data/raw/nist/UD) are gitignored and absent on the runner; the identical H0 'profiles --mode A' comparison and the registered gate arithmetic were
+  run on the Mac from that run's artifacts (queue job 311).
+  (2) Long chains, Actions run 37190177507, six frozen seeds, arms base and P15, two 50-step passes each with the accepted state restart: all 12 arm-chains
+  ended both passes with 'Berny did not converge in 50 steps' (cycle 49 of 49 each pass), i.e. all censored at 100 evaluations in both arms. BTFJIXJJCS,
+  FLIACVVOZY, HPEUJPJOZX, MVLVMROFTA, OYHQOLUKZR, PYGXAGIECV: base censored, P15 censored. Pass wall times 1h45m to 3h28m per job.
+  profiles_v2 stays 630/636. The six chains remain open under the existing protocol (4070 and PC2 continue); MVLVMROFTA remains the single flagged S1 profile
+  outside profiles_v2.
