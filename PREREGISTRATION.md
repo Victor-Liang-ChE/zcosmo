@@ -607,3 +607,26 @@ tests whether removing the ratio-branch shrinks for predicted changes between 2e
   those six flagged profiles, labelled "636 incl. 6 stall-accepted (S1/S2)", and reported beside the existing 630-profile coverage. It does not count as
   profiles_v2 reaching 636/636, and no primary result changes. A Berny-converged profile, if one ever arrives from the 4070 or PC2, replaces the S1/S2
   profile for that chain. Results are recorded here before any S2 profile is used.
+
+- Long-chain stall rule S2, RESULTS (recorded 2026-10-04 16:15 PDT; Actions run 37234965922, 78/78 items succeeded; evaluated with cloud/s19/s2_evaluate.py on the Mac, queue job 318;
+  nothing changed after seeing them). Per chain: Cartesian gradient max / rms at NEW (Eh/Bohr); max displacement NEW vs OLD (A, 100 evaluations apart); T_med / T_max
+  (median / max over the 8 fixed rotations of max |d p(sigma)|, same units as psigmaA); max |d p(sigma)| NEW vs OLD; ln gamma rows, max |d ln gamma| NEW vs OLD;
+  max |d p(sigma)| NEW vs xTB start (must exceed T_max); report-only: NEW vs NEW+0.02 A random displacement.
+  BTFJIXJJCS 3.3e-5 / 8.0e-6; 0.0009; 0.896 / 1.275; 5.8e-3; 84 rows, 1.4e-5; 12.38; 2.04 -> a b c1 c2 d all hold: ACCEPTED.
+  FLIACVVOZY 2.1e-5 / 6.7e-6; 0.0007; 1.953 / 3.118; 2.3e-3; 0 rows (c2 = coverage only); 9.30; 1.11 -> ACCEPTED.
+  HPEUJPJOZX 3.7e-5 / 8.3e-6; 0.0011; 0.930 / 1.255; 7.0e-3; 0 rows; 12.13; 1.47 -> ACCEPTED.
+  MVLVMROFTA 3.3e-5 / 1.1e-5; 0.0018; 0.772 / 1.587; 1.67e-2; 0 rows; 6.16; 0.98 -> ACCEPTED by S2; as registered it keeps its S1 profile.
+  OYHQOLUKZR 1.9e-5 / 5.5e-6; 0.0016; 1.144 / 1.669; 7.6e-3; 67 rows, 2.4e-5; 5.85; 1.30 -> ACCEPTED.
+  PYGXAGIECV 9.6e-5 / 2.2e-5; 0.0012; 0.940 / 1.242; 4.8e-3; 0 rows; 3.09; 0.82 -> ACCEPTED.
+  What these numbers mean, stated so they are not over-read: (1) A full random rigid rotation of one fixed geometry changes the TZVP profile by 0.48 to 3.1 in max
+  |d psigmaA| (peaks are about 60 to 90), i.e. one to a few percent, about 30 to 200 times the single 0.001 rad diagnostic of 2026-10-01 (1.6e-2). The profiles
+  of this protocol are therefore orientation-dependent at the percent level; this applies to every profile in profiles_v2, each computed in one orientation.
+  (2) The checkpoint-to-checkpoint changes (2.3e-3 to 1.7e-2) are 50 to 800 times below T_med, so c1 holds by a wide margin and would also have held against the
+  smallest rotation (min 0.48). (3) The report-only control shows that a random 0.02 A displacement (4 times the b limit) also changes the profile by less than
+  T_med for every chain, so at the scale of the orientation floor the p(sigma) metric does not resolve geometry differences of that size; the acceptance rests
+  on a and b (gradients 5 to 25 times below Berny's limits, displacement <= 0.0018 A over 100 evaluations) together with d, which shows the metric does separate
+  the DFT geometry from the xTB start. (4) ln gamma-infinity changes NEW vs OLD are 1.4e-5 and 2.4e-5 on the two chains with benchmark rows.
+  Use, as registered: BTFJIXJJCS, FLIACVVOZY, HPEUJPJOZX, OYHQOLUKZR and PYGXAGIECV get their NEW profile in data/pyscf_sigma/s2_stalled (meta
+  geometry_converged="S2"); MVLVMROFTA keeps data/pyscf_sigma/s1_stalled. profiles_v2 stays 630/636; nothing primary changes. All six chains now hold a flagged
+  profile, so the Z0x-open exploratory scoring on profiles_v2 plus these six is run once next, labelled "636 incl. 6 stall-accepted (S1/S2)", with a column
+  that excludes every row involving the six. Not tested and not claimed: how much the percent-level orientation dependence moves ln gamma across the whole set.
