@@ -577,3 +577,33 @@ tests whether removing the ratio-branch shrinks for predicted changes between 2e
   FLIACVVOZY, HPEUJPJOZX, MVLVMROFTA, OYHQOLUKZR, PYGXAGIECV: base censored, P15 censored. Pass wall times 1h45m to 3h28m per job.
   profiles_v2 stays 630/636. The six chains remain open under the existing protocol (4070 and PC2 continue); MVLVMROFTA remains the single flagged S1 profile
   outside profiles_v2.
+
+- Long-chain stall rule S2, orientation-referenced profile stability (registered 2026-10-04 14:09 PDT, before any S2 computation exists; class A; flagged; exploratory use
+  only). Motivation, stated plainly: this rule is post hoc. It was designed after S1 rejected five chains on its absolute p(sigma) limit (1e-3) and after one
+  diagnostic (FLIACVVOZY, one 0.001 rad rotation) showed that re-orienting an identical geometry changes the profile by 1.6e-2, more than the
+  checkpoint-to-checkpoint differences S1 rejected (1.1e-3 to 1.3e-2), and after P15 (energy_noise 2e-7 Eh) failed to make any chain pass Berny's test.
+  The Astra round-2 review (docs/astra/round2/ZCOSMO_ROUND2_REPORT.md) said the S1 limit must not be silently replaced, and that an orientation-aware metric
+  needs its own registration on a frozen set of molecules and rotations. This is that registration. S1, its results, and the P15 result stand unchanged.
+  Frozen inputs: the six chains BTFJIXJJCS, FLIACVVOZY, HPEUJPJOZX, MVLVMROFTA, OYHQOLUKZR, PYGXAGIECV. OLD checkpoint = cloud/s19/seeds as committed in
+  8c03cc8. NEW checkpoint = the base-arm checkpoint after pass 2 of Actions run 37190177507 (artifact p15long2_<KEY>_base), i.e. 100 gradient evaluations
+  later under the existing protocol (pyberny defaults, accepted state restart). Neither geometry nor any profile at the NEW checkpoint has been examined
+  before this registration. Rotations: scipy Rotation.random(8, random_state=20261004), applied about the centroid of the NEW geometry; fixed here, no
+  re-draw. All profiles: the registered TZVP conductor profile (cosmo_segments + to_profiles, unchanged); p(sigma) compared as in S1 (max |d psigmaA| over
+  the three profiles). Code: cloud/s19/s2_item.py (one item per job), .github/workflows/s2_profiles.yml (Actions, pyscf 2.14.0, pyberny 0.7.0),
+  cloud/s19/s2_evaluate.py (run on the Mac, where the UD reference profiles needed for ln gamma are present).
+  RULE S2 (all of a, b, c1, c2, d are required; thresholds fixed here). For each chain: (a) Cartesian gradient at NEW with the registered settings,
+  max < 4.5e-4 and rms < 1.5e-4 Eh/Bohr (as S1); (b) max atomic displacement NEW vs OLD <= 0.005 Angstrom with 100 gradient evaluations between them
+  (as S1); T_med and T_max = the median and the maximum, over the 8 rotations, of max |d p(sigma)| between the NEW profile and the NEW geometry rotated;
+  (c1) max |d p(sigma)| between the NEW and OLD profiles <= T_med, i.e. 100 further optimiser cycles change the profile by no more than a typical rigid
+  re-orientation of one fixed geometry does; (c2) over every benchmark row involving the chain (data/benchmark/idac.csv, COSMO-SAC-dsp, every other compound
+  from profiles_v2, NEW and OLD evaluated in separate processes) identical finite coverage and max |d ln gamma-infinity| < 0.05 (the S1 limit, not loosened;
+  if a chain has no such rows, c2 reduces to coverage and this is stated); (d) discrimination control: max |d p(sigma)| between the NEW profile and the
+  profile at the chain's own xTB start geometry (RDKit seed 7, GFN2-xTB, the construction the optimisation started from) > T_max. If d fails, the metric
+  cannot tell this chain's DFT geometry from its starting geometry and the chain is not accepted. Reported, not gated: the profile at NEW plus a random
+  displacement scaled to max 0.02 Angstrom (numpy default_rng(20261004)), its d p(sigma) against NEW, and every rotation angle.
+  Use: accepted profiles (the NEW profile) go to data/pyscf_sigma/s2_stalled with meta geometry_converged="S2", outside profiles_v2, and enter any score only
+  in a second column beside a score that excludes them, exactly as S1. MVLVMROFTA keeps its S1 profile; S2 is computed and reported for it but does not
+  replace it. If all six chains then hold an S1 or S2 profile, the Z0x-open exploratory scoring vs Z0x on the test split is run once on profiles_v2 plus
+  those six flagged profiles, labelled "636 incl. 6 stall-accepted (S1/S2)", and reported beside the existing 630-profile coverage. It does not count as
+  profiles_v2 reaching 636/636, and no primary result changes. A Berny-converged profile, if one ever arrives from the 4070 or PC2, replaces the S1/S2
+  profile for that chain. Results are recorded here before any S2 profile is used.

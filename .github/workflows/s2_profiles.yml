@@ -1,0 +1,31 @@
+name: s2-profiles
+# Rule S2 (registered in PREREGISTRATION.md before this workflow first ran): per stalled chain, 13 independent items.
+# NEW checkpoint = base-arm pass-2 checkpoint of run 37190177507 (artifact p15long2_<KEY>_base); OLD = cloud/s19/seeds (8c03cc8), 100 evaluations earlier.
+on: {workflow_dispatch: {}}
+permissions: {contents: read, actions: read}
+jobs:
+  item:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        key: [BTFJIXJJCSYFAL-UHFFFAOYSA-N, FLIACVVOZYBSBS-UHFFFAOYSA-N, HPEUJPJOZXNMSJ-UHFFFAOYSA-N, MVLVMROFTAUDAG-UHFFFAOYSA-N, OYHQOLUKZRVURQ-HZJYTTRNSA-N, PYGXAGIECVVIOZ-UHFFFAOYSA-N]
+        item: [grad, new, old, xtb, pert, r0, r1, r2, r3, r4, r5, r6, r7]
+    env: {OMP_NUM_THREADS: "4", QC_MEM_MB: "10000", PYTHONPATH: src, MPLBACKEND: Agg}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - uses: actions/download-artifact@v4
+        with: {name: "p15long2_${{ matrix.key }}_base", path: newckpt, run-id: "37190177507", github-token: "${{ github.token }}"}
+      - name: compute
+        run: |
+          mkdir -p out
+          sha256sum "newckpt/${{ matrix.key }}.partial.json" "cloud/s19/seeds/${{ matrix.key }}.partial.json" | tee out/inputs_sha256.txt
+          timeout 20400s python -u cloud/s19/s2_item.py ${{ matrix.key }} ${{ matrix.item }} "newckpt/${{ matrix.key }}.partial.json" "cloud/s19/seeds/${{ matrix.key }}.partial.json" out 2>&1 | grep -viE "warn" | tee out/${{ matrix.key }}.${{ matrix.item }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "s2_${{ matrix.key }}_${{ matrix.item }}", path: out, retention-days: 60}
