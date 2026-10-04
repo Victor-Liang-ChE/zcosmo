@@ -512,3 +512,53 @@ Z0e is judged on the same scorecard; the headline stays Z0 unless Z0e is better 
   deviations of 5.6e-3 and 5.8e-3 were also below this floor) lies well below the numerical noise of the profile calculation and can only be met by two evaluations in the same orientation with essentially identical geometry; it does not measure whether geometries differ.
   Caveat: one rotation on one molecule. NOT applied: a noise-referenced profile limit (for example relative to the measured rotation floor, together with the unchanged 0.05 ln gamma limit) would be a new rule, to be registered separately before any use and to be put to
   the Astra review on 2026-10-02; until then no profile of the five rejected chains is used anywhere.
+
+## Proposed R2 noise-aware Berny trial, class A
+
+Register this text with its actual commit timestamp before any trial profile or
+score is read. This trial is motivated by the previously observed stalls, so it
+is not a blind discovery. Pyberny is fixed at 0.7.0. Its energy_noise parameter is
+set to 2e-7 Eh, including in a restored BernyState; every energy, gradient, basis,
+auxiliary basis, XC grid and PCM setting is unchanged. The original Berny
+convergence criteria, including the on-sphere condition, remain mandatory.
+No experimental response selects this value. There is one candidate, no sweep.
+
+The comparison uses the historical 25-molecule/2302-row manifest, with identical
+finite coverage. All 25 candidates must pass the original Berny test; maximum
+absolute change in COSMO-SAC-dsp ln gamma-infinity against current-main profiles
+must be below 0.01; the median absolute difference against UD must remain below
+0.15. Report both normalized distributions and raw psigmaA bins, without
+reinterpreting either existing E or fallback limit. Paired total wall time on
+the 25 molecules must be no more than 1.10 times reference. Separately freeze and
+hash the six current long-chain geometries before the trial. Run at most 100 new
+CPU gradient evaluations per chain, from the same geometry and optimizer state
+in each arm, with the same already-accepted A-class restart protocol. At least
+one formerly stalled chain must newly pass the original Berny test within that
+budget, and all resulting profiles remain exploratory until the 25-molecule
+checks pass. An unfinished arm is censored, not assigned an invented time to
+convergence. No S1 failure is reclassified by this trial. Rejection leaves the
+accepted GPU-prestage and A-class restart protocols unchanged.
+
+Execution plan for the P15 trial above (registered in the same commit, 2026-10-04 01:49 PDT, before any P15 run exists; code at
+this commit = main eab6c25 plus Astra's P15 patch, applied unchanged; Astra report saved as docs/astra/round2/ZCOSMO_ROUND2_REPORT.md).
+Compute: GitHub Actions ubuntu-latest runners, 4 threads, pyscf 2.14.0, pyberny pinned 0.7.0 in both arms.
+(1) Long chains, workflow .github/workflows/p15_long.yml: the six seeds as committed in cloud/s19/seeds at this commit
+(last changed in 8c03cc8; geometry + optimizer state from Actions run 36826764833), copied, never modified, sha256 printed per job.
+Arms base (pyberny defaults) and P15 (ZC_BERNY_NOISE_EH=2e-7) run concurrently on separate runners. Each arm gets 100 new gradient
+evaluations as two consecutive 50-step passes (ZC_BERNY_STATE=1, the accepted A-class restart; each restart, including the first,
+re-evaluates the checkpoint geometry once, identically in both arms) because one 100-step pass does not reliably fit in a 6-hour job.
+A chain that has not passed the original Berny test after the second pass is censored. Chain wall time is not gated.
+(2) 25-molecule validation, workflow .github/workflows/p15_gate.yml: per molecule, reference arm (defaults) then P15, back to back
+on one runner (as the P9 gate), H0 harness (docs/astra/round1/patches/H0.patch); paired wall time = sum over the 25 molecules.
+Gates exactly as in the text above: all 25 P15 geometries pass the original Berny test, identical finite coverage,
+max |d ln gamma-inf| < 0.01 vs the reference arm, median |d| vs UD < 0.15, paired wall <= 1.10 x reference; max normalized and raw
+psigmaA bin differences reported, not gated.
+Decision rule: P15 is accepted (class A) only if the 25-molecule gates pass AND at least one of the six chains passes the original
+Berny test in the P15 arm within its 100 evaluations. If accepted, each chain profile produced by the P15 arm may enter profiles_v2,
+marked geometry_protocol "A-R2-noise-aware-trust-2e-7-Eh"; the result is recorded here before any such profile is scored. If not
+accepted, no P15 profile is used anywhere. A chain that converges in the base arm is an ordinary Berny-converged profile under the
+existing protocol. The 4070 and PC2 continue the existing protocol unchanged throughout.
+Pre-trial state, read from the frozen optimizer states before registration (not trial output): the predicted energy changes stored
+in the six states are 5.7e-8 to 3.7e-7 Eh in magnitude, trust radii 3.6e-4 to 5.9e-3; five of six are below the default noise-branch
+threshold (2e-7) at this step, all six below the P15 threshold (2e-6). So the default branch is already active at some steps; the trial
+tests whether removing the ratio-branch shrinks for predicted changes between 2e-7 and 2e-6 Eh lets the steps leave the trust sphere.

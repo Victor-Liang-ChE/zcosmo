@@ -1,0 +1,64 @@
+name: p15-long
+# P15 (A-class, registered in PREREGISTRATION.md before this workflow first ran): the six frozen long-chain checkpoints,
+# arms base (pyberny defaults) and P15 (energy_noise 2e-7 Eh), each 100 new gradient evaluations as two 50-step passes
+# with the accepted optimizer-state restart. Outputs stay in the artifacts; nothing is merged into profiles_v2 here.
+on: {workflow_dispatch: {}}
+permissions: {contents: read, actions: read}
+jobs:
+  pass1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix: {key: [BTFJIXJJCSYFAL-UHFFFAOYSA-N, FLIACVVOZYBSBS-UHFFFAOYSA-N, HPEUJPJOZXNMSJ-UHFFFAOYSA-N, MVLVMROFTAUDAG-UHFFFAOYSA-N, OYHQOLUKZRVURQ-HZJYTTRNSA-N, PYGXAGIECVVIOZ-UHFFFAOYSA-N], arm: [base, P15]}
+    env: {OMP_NUM_THREADS: "4", QC_MEM_MB: "10000", PYTHONPATH: src, MPLBACKEND: Agg, ZC_BERNY_STATE: "1", ZC_MAXSTEPS: "50", KEY: "${{ matrix.key }}", ARM: "${{ matrix.arm }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - name: copy the frozen seed (never modified in place) and record its hash
+        run: |
+          mkdir -p out
+          cp "cloud/s19/seeds/$KEY.partial.json" "cloud/s19/seeds/$KEY.partial.json.bstate" out/
+          (cd out && sha256sum "$KEY.partial.json" "$KEY.partial.json.bstate") | tee out/seed_sha256.txt
+      - name: pass 1 (50 gradient evaluations)
+        run: |
+          set +e
+          NOISE=""; [ "$ARM" = P15 ] && NOISE=2e-7
+          if [ -f "out/$KEY.sigma" ]; then echo "already Berny-converged in an earlier pass; nothing to run"; exit 0; fi
+          ZC_BERNY_NOISE_EH="$NOISE" timeout --signal=TERM --kill-after=20s 19800s python -u -m zcosmo.pyscf_cosmo_v2 out data/benchmark/compounds.csv --keys "$KEY" 2>&1 | grep -viE "warn" | tee -a out/run.log
+          echo "PASS 1 arm=$ARM key=$KEY rc=${PIPESTATUS[0]} cycle=$(python3 -c "import json;print(json.load(open('out/$KEY.partial.json')).get('cycle'))" 2>/dev/null) sigma=$(ls out/$KEY.sigma 2>/dev/null)" | tee -a out/run.log
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "p15long1_${{ matrix.key }}_${{ matrix.arm }}", path: out, retention-days: 30}
+  pass2:
+    needs: pass1
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix: {key: [BTFJIXJJCSYFAL-UHFFFAOYSA-N, FLIACVVOZYBSBS-UHFFFAOYSA-N, HPEUJPJOZXNMSJ-UHFFFAOYSA-N, MVLVMROFTAUDAG-UHFFFAOYSA-N, OYHQOLUKZRVURQ-HZJYTTRNSA-N, PYGXAGIECVVIOZ-UHFFFAOYSA-N], arm: [base, P15]}
+    env: {OMP_NUM_THREADS: "4", QC_MEM_MB: "10000", PYTHONPATH: src, MPLBACKEND: Agg, ZC_BERNY_STATE: "1", ZC_MAXSTEPS: "50", KEY: "${{ matrix.key }}", ARM: "${{ matrix.arm }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - uses: actions/download-artifact@v4
+        with: {name: "p15long1_${{ matrix.key }}_${{ matrix.arm }}", path: out}
+      - name: pass 2 (50 more gradient evaluations from the saved optimizer state)
+        run: |
+          set +e
+          NOISE=""; [ "$ARM" = P15 ] && NOISE=2e-7
+          if [ -f "out/$KEY.sigma" ]; then echo "already Berny-converged in an earlier pass; nothing to run"; exit 0; fi
+          ZC_BERNY_NOISE_EH="$NOISE" timeout --signal=TERM --kill-after=20s 19800s python -u -m zcosmo.pyscf_cosmo_v2 out data/benchmark/compounds.csv --keys "$KEY" 2>&1 | grep -viE "warn" | tee -a out/run.log
+          echo "PASS 2 arm=$ARM key=$KEY rc=${PIPESTATUS[0]} cycle=$(python3 -c "import json;print(json.load(open('out/$KEY.partial.json')).get('cycle'))" 2>/dev/null) sigma=$(ls out/$KEY.sigma 2>/dev/null)" | tee -a out/run.log
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "p15long2_${{ matrix.key }}_${{ matrix.arm }}", path: out, retention-days: 30}

@@ -1,0 +1,76 @@
+name: p15-gate
+# P15 (A-class) 25-molecule validation. Per molecule, on one runner: the reference arm (pyberny defaults) then P15
+# (ZC_BERNY_NOISE_EH=2e-7), back to back, so timings are paired. Then the registered A comparison.
+on: {workflow_dispatch: {}}
+permissions: {contents: read}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {keys: "${{ steps.k.outputs.keys }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - id: k
+        run: |
+          K=$(python3 -c "import csv; old={r['key'] for r in csv.DictReader(open('results/pyscf_profile_validation.csv'))}; print(','.join(r['inchikey'] for r in csv.DictReader(open('data/pyscf_sigma/validation_set.csv')) if r['inchikey'] in old))")
+          echo "keys=$(python3 -c "import json,sys; print(json.dumps(sys.argv[1].split(',')))" "$K")" >> $GITHUB_OUTPUT
+  qc:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: {key: "${{ fromJson(needs.plan.outputs.keys) }}"}
+    env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "4", QC_MEM_MB: "10000", MPLBACKEND: Agg, PYTHONPATH: src}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - run: git apply docs/astra/round1/patches/H0.patch
+      - name: arms
+        run: |
+          mkdir -p out
+          for arm in ref P15; do
+            N=""; [ $arm = P15 ] && N=2e-7
+            ZC_BERNY_NOISE_EH="$N" python scripts/optimization_check.py qc --key ${{ matrix.key }} --out out/$arm 2>&1 | grep -viE "warn" | tail -3 || echo "ARM $arm FAILED"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "p15g_${{ matrix.key }}", path: "out", retention-days: 30}
+  compare:
+    needs: qc
+    if: always()
+    runs-on: ubuntu-latest
+    env: {PYTHONPATH: src, MPLBACKEND: Agg}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit pandas scipy matplotlib
+      - run: git apply docs/astra/round1/patches/H0.patch
+      - uses: actions/download-artifact@v4
+        with: {pattern: "p15g_*", path: arts}
+      - run: |
+          set +e
+          mkdir -p ref P15
+          find arts -path "*/ref/*" -name "*.sigma" -exec cp {} ref/ \; ; find arts -path "*/P15/*" -name "*.sigma" -exec cp {} P15/ \;
+          echo "profiles: ref $(ls ref | wc -l), P15 $(ls P15 | wc -l)"
+          python scripts/optimization_check.py profiles --reference ref --candidate P15 --mode A --out p15_profiles.json 2>&1 | tail -5
+          echo "profiles exit: $?"
+          python - <<'PY'
+          import json, glob, os
+          a = b = 0; ea = eb = 0; n = 0
+          for f in glob.glob("arts/*/ref/timing.json"):
+              g = f.replace("/ref/", "/P15/")
+              if os.path.exists(g):
+                  x, y = json.load(open(f)), json.load(open(g)); a += x["wall_s"]; b += y["wall_s"]; ea += x["geometry_evaluations"]; eb += y["geometry_evaluations"]; n += 1
+          print(f"paired molecules {n}; wall ref {a:.0f}s  P15 {b:.0f}s  ratio {b/max(a,1):.3f} (limit 1.10); geometry evaluations {ea} vs {eb}")
+          p = json.load(open("p15_profiles.json")) if os.path.exists("p15_profiles.json") else {}
+          print(json.dumps(p, indent=1))
+          ok = n == 25 and p.get("max_delta_lngamma", 9) < .01 and p.get("median_delta_vs_UD", 9) < .15 and b <= 1.10 * a
+          print("P15 25-molecule gates:", "PASS" if ok else "FAIL")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p15_compare, path: "p15_profiles.json"}

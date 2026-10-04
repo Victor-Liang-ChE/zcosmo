@@ -27,7 +27,8 @@ def profile_revision():
                     ("pyscf_cosmo.py", "pyscf_cosmo_v2.py", "pcm_lu.py") if (here / name).exists())
     packages = [(name, version(name)) for name in ("pyscf", "pyberny", "rdkit", "tblite", "ase", "numpy", "scipy")]
     return hashlib.sha256(code + json.dumps(packages).encode()
-                          + os.environ.get("ZC_TRIC_PREOPT", "0").encode()).hexdigest()
+                          + os.environ.get("ZC_TRIC_PREOPT", "0").encode()
+                          + os.environ.get("ZC_BERNY_NOISE_EH", "").encode()).hexdigest()
 
 
 def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=0):
@@ -71,6 +72,16 @@ def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=
                 kw["restart"] = st
         except Exception:
             kw = {}
+    noise = os.environ.get("ZC_BERNY_NOISE_EH")
+    if noise:
+        from importlib.metadata import version
+        from dataclasses import replace
+        if version("pyberny") != "0.7.0" or float(noise) != 2e-7:
+            raise ValueError("R2 A-trial is fixed at pyberny 0.7.0, energy_noise=2e-7 Eh")
+        kw["energy_noise"] = 2e-7
+        if "restart" in kw:
+            # Berny ignores keyword parameters when restart is supplied.
+            kw["restart"]["params"] = replace(kw["restart"]["params"], energy_noise=2e-7)
     def cb(env):
         if partial is not None and env.get("mol") is not None:
             tmp = str(partial) + ".tmp"
@@ -134,6 +145,8 @@ def run_one(row, outdir):
         out, meta = to_profiles(sym, x, seg)
         meta["E_scf_Eh"] = e
         meta["geometry_converged"] = True
+        if os.environ.get("ZC_BERNY_NOISE_EH"):
+            meta["geometry_protocol"] = "A-R2-noise-aware-trust-2e-7-Eh"
         meta["profile_revision"] = profile_revision()
         meta["source"] = "pyscf_cosmo_v2 BP86/def2-SVP conductor geometry; BP86/def2-TZVP conductor profile"
         meta["geometry"] = "BP86/def2-SVP C-PCM conductor (pyberny)" + (" [resumed from checkpoint]" if resumed else "")
