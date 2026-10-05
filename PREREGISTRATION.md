@@ -630,3 +630,14 @@ tests whether removing the ratio-branch shrinks for predicted changes between 2e
   geometry_converged="S2"); MVLVMROFTA keeps data/pyscf_sigma/s1_stalled. profiles_v2 stays 630/636; nothing primary changes. All six chains now hold a flagged
   profile, so the Z0x-open exploratory scoring on profiles_v2 plus these six is run once next, labelled "636 incl. 6 stall-accepted (S1/S2)", with a column
   that excludes every row involving the six. Not tested and not claimed: how much the percent-level orientation dependence moves ln gamma across the whole set.
+
+- Z0x-open, EXPLORATORY, "636 incl. 6 stall-accepted (S1/S2)" (recorded 2026-10-04 18:20 PDT; computed 2026-10-04 16:15 to 17:59 PDT, queue job 319). Z0x evaluated with every
+  compound's profile taken from profiles_v2 (630, Berny-converged) plus the six flagged long-chain profiles (MVLVMROFTA S1, the other five S2); reference = the stored
+  Z0x predictions (results/predictions, UD profiles). Test split, metrics as in the scorecard. Only IDAC and LLE have a stored Z0x reference, so VLE and HE were predicted
+  but not compared. profiles_v2 is still 630/636; this is not the registered 636/636 run and changes no primary result.
+  All rows: IDAC (828 points, 204 systems) MAE Z0x 0.839 [0.705, 0.974], Z0x-open 0.977 [0.841, 1.110], dMAE CI [+0.052, +0.232] (open is worse); bias -0.212 vs -0.368;
+  within 0.3: 0.28 vs 0.26; solvent-rank rho 0.83 vs 0.77. LLE (2475 points, 101 systems): gap found 0.84 vs 0.82, MAE x when found 0.175 vs 0.175.
+  Excluding every row that involves one of the six chains (151 IDAC and 6 LLE rows dropped): IDAC (816 points, 201 systems) MAE 0.804 [0.687, 0.933] vs 0.942
+  [0.805, 1.084], dMAE CI [+0.051, +0.230]; LLE (2469 points, 100 systems) gap found 0.84 vs 0.82. The six flagged profiles barely move the comparison; the deficit
+  of open profiles against UD is the same with or without them, consistent with the 2026-09-25 v2 acceptance margin (median 0.1493 vs 0.15).
+  Note: the stored Z0x reference gives 0.839 on this 828-point common subset, not the 0.800 quoted earlier for the test split; the reference file was not regenerated here.
