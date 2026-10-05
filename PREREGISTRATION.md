@@ -664,3 +664,33 @@ P18 is an A numerical correction of profile metadata: preserve the NIST parser's
 P19 is a single A final-precision trial, not an optimizer/threshold sweep. Pin pyscf 2.14.0 and pyberny 0.7.0. Starting from the same frozen geometry in each arm with fresh Berny histories, give the candidate at most 80 gradient evaluations at BP86/def2-SVP with the same DF auxiliary basis, grid level 2/default pruning, C-PCM epsilon 1e9/Lebedev 17/project radii, but conv_tol=1e-11 and conv_tol_grad=1e-7. Give the control the same 80-evaluation stage with original SCF tolerances. Then both arms receive at most 20 evaluations with a fresh Berny optimizer and all original registered settings, including conv_tol=1e-8 and its default orbital-gradient tolerance. Only convergence of this original-settings confirmation stage counts. The original internal-coordinate gradient/step tests and on-sphere rejection remain unchanged. No P15 noise override, looser geometry threshold, finer grid, different optimizer, or existing optimizer pickle is used. Native SCF failures are failures; exhausted budgets are censored. Never extend an arm after inspecting the result.
 
 For P19, first run both arms from the frozen saved geometries of all 25 validation molecules. All 25 must pass the original confirmation test, have identical finite coverage, max COSMO-SAC-dsp ln gamma change below 0.01 against the control, and median difference from UD below 0.15. Paired total wall time must be at most 1.50 times control; raw and normalized bins are reported without changing the historical E gates. Freeze and hash six chain inputs before either arm runs. A maximum of 100 total new quantum gradient evaluations per arm/chain is permitted, with a fixed runner deadline reserved for saving artifacts. The long-chain usefulness condition is at least one original-confirmation success in the tight arm whose control remains censored. Both this condition and the 25-molecule gate must pass. After acceptance, only chains passing the actual original confirmation test may replace S1/S2 profiles, with explicit A protocol metadata and side-by-side reporting. No flagged geometry is reclassified on a small Cartesian gradient alone.
+
+- Round 3 RESULTS (recorded 2026-10-05 02:41 PDT; registered 2026-10-05 00:12 PDT in 9d32e9e, experiment frozen in 0e8a918; native items on GitHub Actions runs 37276471441,
+  37278651575, 37278662729, 37278674224 (P17) and 37276959037 (P19 calibration); every UD-backed score and gate on the Mac, queue jobs 323, 324, 326, 328, 329).
+  P16 IDAC audit (descriptive). A fresh Z0x evaluation reproduces the stored predictions to 2.9e-10, so there is no prediction drift. Z0x test IDAC MAE is 0.839
+  on all 828 test rows (204 systems); the 0.800 quoted since 2026-09-25 is the same predictions on the 762-row common subset of the scorecard that also contained
+  unifac_do, cosmosac2010 and Z0w (results/scorecard_test_z0w*.json). Both numbers stand with their denominators. The exploratory Z0x-open deficit (+0.137 on 828
+  rows) is a solvent-role effect: four-corner attribution gives solvent +0.236, solute -0.099. By solvent class, "multifunctional" solvents contribute +0.163
+  (136 rows, MAE 0.73 -> 1.72); by compound, diethylene glycol as solvent alone contributes +0.137 (108 rows, MAE 0.69 -> 1.74), triethylene glycol +0.024,
+  ethylene glycol +0.023; the solutes in those rows are mostly alkanes and alkenes (n-nonane +0.046, 1-heptene +0.018, n-octane +0.015). Water as solvent
+  improves (-0.016). Removing the six flagged chains changes nothing material.
+  P17 raw orientation panel (290 TZVP single points, all completed). Co-rotating existing segments reproduces the profile to 2.8e-14 (the parser is invariant;
+  the dependence comes from the surface/SCF). Identity and repeat are identical; the identity profile reproduces the historical acceptance statistic (median
+  0.1493). Eight random rotations change ln gamma-inf on the 2,302 occurrences by a mean of 0.008 (COSMO-SAC-dsp) and 0.011 (Z0x) per rotation; panel maxima
+  0.076 and 0.111; cube90 changes nothing (< 2e-4). Fixed-axis angle ladder (max |d psigmaA| vs identity, water / methanol / decanoic acid): 0.001 rad
+  0.021 / 0.008 / 0.012; 0.01 rad 0.21 / 0.089 / 0.11; 0.1 rad 0.60 / 0.39 / 1.16; 0.5 rad 0.54 / 0.48 / 0.56; 1.0 rad 0.58 / 0.56 / 0.89, i.e. the
+  change grows up to about 0.1 rad and then saturates. Surface-normal closure defects reach 0.43 A2, origin-shift volume changes 0.39 A3. Conclusion:
+  orientation is a real but small uncertainty in ln gamma (about 0.01 typical) and cannot explain the 0.137 deficit.
+  P17 A recipes, registered gates, all NOT accepted: canonical orientation is exactly rotation-invariant (panel max 2e-10, gate passes) but fails the
+  compatibility gate (max COSMO-SAC-dsp change 0.0567 > 0.05; median vs UD 0.1502 > 0.15); Lebedev 41 reduces the panel maximum only from 0.076/0.111 to
+  0.069/0.070 (needs half and < 0.01: fails) and fails compatibility (0.075 > 0.05); mean8 fails compatibility (0.054 > 0.05) and its finite-set
+  stability (mean8 vs mean8b 0.021 / 0.030 vs 0.01; mean8 vs mean16 0.010 / 0.015 vs 0.005). The single-orientation production profiles stay as they are.
+  P18 COOH flag: ACCEPTED as an A metadata correction. On the 25, one compound changes flag (decanoic acid HB-DONOR-ACCEPTOR -> COOH); raw sigma rows
+  unchanged; all registered invariants pass (Z0x predictions unchanged to 0; COSMO-SAC-dsp unchanged for every other compound); coverage identical; the
+  historical acceptance statistic with the corrected flag is 0.1362 (limit 0.15; uncorrected 0.1493). Not yet applied to profiles_v2 or to any score:
+  ZC_R3_COOH_FLAG stays 0 in production until a separate step regenerates or relabels the stored profiles and records it here.
+  P19 final-precision trial: NOT accepted. Calibration on the 25 (both arms, fresh histories): all 25 pass the original confirmation in both arms (61
+  evaluations each), profile changes tight vs control max 1.1e-4 (COSMO-SAC-dsp) and 2.1e-4 (Z0x), median vs UD 0.1494, but paired wall 2988 s vs 1311 s
+  = 2.28 x (limit 1.50), so the calibration gate fails and, as registered, the six long chains were not run. No P19 profile is used.
+  Observed and not yet explained (no test registered): every open profile examined carries a nonzero net first sigma moment (-0.013 to -0.029 for water,
+  methanol and n-hexane; UD about -0.003), consistent with the raw C-PCM charge sums of about -0.03 e seen in the item diagnostics.
