@@ -1,0 +1,619 @@
+{
+  "reference": "c515e38e1a7fd91a02e1ff1f1209a81b67a7d49d",
+  "geometries": {
+    "XLYOFNOQVPJJNP-UHFFFAOYSA-N": {
+      "file": "geometries/XLYOFNOQVPJJNP-UHFFFAOYSA-N.xyz.json",
+      "sha256": "ae3fffa5dd3a2d7a01da8974406119e43dfbcaa3cf495161cf5c21ebc6cd5267",
+      "smiles": "O",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "OKKJLVBELUTLKV-UHFFFAOYSA-N": {
+      "file": "geometries/OKKJLVBELUTLKV-UHFFFAOYSA-N.xyz.json",
+      "sha256": "7e4e76e8e4ae6c0908d0b55f2ffb034b65354706e992d635d204ff7d9e6b3fc4",
+      "smiles": "CO",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "YXFVVABEGXRONW-UHFFFAOYSA-N": {
+      "file": "geometries/YXFVVABEGXRONW-UHFFFAOYSA-N.xyz.json",
+      "sha256": "9389d49b79a2162785230454739e87f0961ac25509c3f71110c46c7494063adf",
+      "smiles": "c1cc(ccc1)C",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "IMNFDUFMRHMDMM-UHFFFAOYSA-N": {
+      "file": "geometries/IMNFDUFMRHMDMM-UHFFFAOYSA-N.xyz.json",
+      "sha256": "be29b45f72e1d6af316cb25fce951f12b6e944e7fdf1325d7584a2e27f28c458",
+      "smiles": "CCCCCCC",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "UHOVQNZJYSORNB-UHFFFAOYSA-N": {
+      "file": "geometries/UHOVQNZJYSORNB-UHFFFAOYSA-N.xyz.json",
+      "sha256": "eae53708d7c868d9f51fe08e17374fb00376dd333aa315a025536191869eafe2",
+      "smiles": "c1ccccc1",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "LRHPLDYGYMQRHN-UHFFFAOYSA-N": {
+      "file": "geometries/LRHPLDYGYMQRHN-UHFFFAOYSA-N.xyz.json",
+      "sha256": "51b238eefd245fe9a5b2297ca77f297edd4bcfa43d874478b986e5d4091da3b3",
+      "smiles": "CCCCO",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "KFZMGEQAYNKOFK-UHFFFAOYSA-N": {
+      "file": "geometries/KFZMGEQAYNKOFK-UHFFFAOYSA-N.xyz.json",
+      "sha256": "0b313a0c665a85c75b82aaafe2a37e0707c5ff9c114232ed268be496eb1f7ed5",
+      "smiles": "OC(C)C",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "VLKZOEOYAKHREP-UHFFFAOYSA-N": {
+      "file": "geometries/VLKZOEOYAKHREP-UHFFFAOYSA-N.xyz.json",
+      "sha256": "dab52a2e1b40afd8572ee2a045233813c45f2275aa00de1c6e980916ba3abf05",
+      "smiles": "CCCCCC",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "BDERNNFJNOPAEC-UHFFFAOYSA-N": {
+      "file": "geometries/BDERNNFJNOPAEC-UHFFFAOYSA-N.xyz.json",
+      "sha256": "5d608110fa74d7cd94ba6eae9dc5a8125847f680248cdf2bc4850433876016fa",
+      "smiles": "CCCO",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "GHVNFZFCNZKVNT-UHFFFAOYSA-N": {
+      "file": "geometries/GHVNFZFCNZKVNT-UHFFFAOYSA-N.xyz.json",
+      "sha256": "6811c17d2fd85cb25c770b4acd14aec8bd0167f619c2d212b2154fc651523c55",
+      "smiles": "C(CCCCCC)CCC(=O)O",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "ZIBGPFATKBEMQZ-UHFFFAOYSA-N": {
+      "file": "geometries/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.xyz.json",
+      "sha256": "c068f39f32793eff29bbd849995ea6a1ef7d23933d629f748b19a8509de9048d",
+      "smiles": "OCCOCCOCCO",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "NPNPZTNLOVBDOC-UHFFFAOYSA-N": {
+      "file": "geometries/NPNPZTNLOVBDOC-UHFFFAOYSA-N.xyz.json",
+      "sha256": "055da68b7ebe74651198a6ec780931405919ade10f40ba6a1ae40992fbfc8da9",
+      "smiles": "C(C)(F)F",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "LCGLNKUTAGEVQW-UHFFFAOYSA-N": {
+      "file": "geometries/LCGLNKUTAGEVQW-UHFFFAOYSA-N.xyz.json",
+      "sha256": "a11540321358b64bb1052d6cf590beaeea83b282eeb45d9efbded5f91c6523f3",
+      "smiles": "COC",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "VXNZUUAINFGPBY-UHFFFAOYSA-N": {
+      "file": "geometries/VXNZUUAINFGPBY-UHFFFAOYSA-N.xyz.json",
+      "sha256": "4815d5458b1d8f75286dde93f7c2b2bf12c95cd2509fe22d69c3fa3a35928a49",
+      "smiles": "C=CCC",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "PWGJDPKCLMLPJW-UHFFFAOYSA-N": {
+      "file": "geometries/PWGJDPKCLMLPJW-UHFFFAOYSA-N.xyz.json",
+      "sha256": "322b64088a4b2ef437f58bc01a1b92c9e9f7417139680d53fc477958ea13513c",
+      "smiles": "NCCCCCCCCN",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "HRYZWHHZPQKTII-UHFFFAOYSA-N": {
+      "file": "geometries/HRYZWHHZPQKTII-UHFFFAOYSA-N.xyz.json",
+      "sha256": "9304e7da5821172b90cebb9e83c345740141f1a9c4ac4239cd3d2d8571ef7934",
+      "smiles": "CCCl",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "XEKOWRVHYACXOJ-UHFFFAOYSA-N": {
+      "file": "geometries/XEKOWRVHYACXOJ-UHFFFAOYSA-N.xyz.json",
+      "sha256": "c5204a0cfbfac3a4c73856efd9bba75a025ee4ed6416385ed432dfe7d3953d62",
+      "smiles": "CC(=O)OCC",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "CSCPPACGZOOCGX-UHFFFAOYSA-N": {
+      "file": "geometries/CSCPPACGZOOCGX-UHFFFAOYSA-N.xyz.json",
+      "sha256": "a133de6db7535cc0428d62d8b16333ff0a3bc3554be39ecc8c72bb7a166f3d0e",
+      "smiles": "CC(=O)C",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "HEDRZPFGACZZDS-UHFFFAOYSA-N": {
+      "file": "geometries/HEDRZPFGACZZDS-UHFFFAOYSA-N.xyz.json",
+      "sha256": "f47b69879afaefcf54d8e22a9c059c186de9978db899321f3129a76ab686fd55",
+      "smiles": "C(Cl)(Cl)Cl",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "RTZKZFJDLAIYFH-UHFFFAOYSA-N": {
+      "file": "geometries/RTZKZFJDLAIYFH-UHFFFAOYSA-N.xyz.json",
+      "sha256": "1eb2cc878460193fe6db7d1d2faa24077511a7172605af6dac36a083dad7b52c",
+      "smiles": "CCOCC",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "JUJWROOIHBZHMG-UHFFFAOYSA-N": {
+      "file": "geometries/JUJWROOIHBZHMG-UHFFFAOYSA-N.xyz.json",
+      "sha256": "60c2c38bced8119d8b9cb05f1a837af75d1c233a48126e40eda2b7f83157f197",
+      "smiles": "c1cccnc1",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "WYURNTSHIVDZCO-UHFFFAOYSA-N": {
+      "file": "geometries/WYURNTSHIVDZCO-UHFFFAOYSA-N.xyz.json",
+      "sha256": "aafdc84ce086242fafecb10699d22e47b07c9b0cb9f99e7ffce7f24c93c88484",
+      "smiles": "C1CCCO1",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "WEVYAHXRMPXWCK-UHFFFAOYSA-N": {
+      "file": "geometries/WEVYAHXRMPXWCK-UHFFFAOYSA-N.xyz.json",
+      "sha256": "fa02386c457dfebf7aa74fe66b1b88fd52ca25533ceffb145b02d33b59020910",
+      "smiles": "CC#N",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "ZMXDDKWLCZADIW-UHFFFAOYSA-N": {
+      "file": "geometries/ZMXDDKWLCZADIW-UHFFFAOYSA-N.xyz.json",
+      "sha256": "3b1509ba8cf6cbdad43fc940da0718bb45c02eb93a20b5bda186aa386cea5342",
+      "smiles": "C(=O)N(C)C",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    },
+    "XNNQFQFUQLJSQT-UHFFFAOYSA-N": {
+      "file": "geometries/XNNQFQFUQLJSQT-UHFFFAOYSA-N.xyz.json",
+      "sha256": "1490e03ad9573270ba7824988c0a1b3f39b92a9291b44081bdc7d093e384be0f",
+      "smiles": "C(Cl)(Cl)(Br)Cl",
+      "note": "Frozen stored coordinates. run_one rounds xyz.json to 5 decimals; identity is recomputed."
+    }
+  },
+  "physics_sha256": {
+    "data/raw/nist/to_sigma.py": "73cd7b526568ee921e2fcd83b5d8653fccf37878fe4690abafdcd785334ace2a",
+    "results/qc/dielectric.csv": "60980579a25a635d5a4b9a30d661f9b8a9642608dc91f68e60e732864a0eeaca",
+    "results/qc/dispersion.csv": "8dc3abe79c1bf5dad02ba94aabe460518fb27abf433baaabc0d7eed36f44b51f",
+    "results/z_params/Z0.json": "4baeef377cf60b518364d56e1ed6035ee9e78ef6a26456bc0bdae68ab25764b5",
+    "scripts/r3_common.py": "2d6149284ad8692c50e18bcbb5b62ccd1ff6072828f5b6f3972d210336ec87bd",
+    "scripts/r3_gate.py": "472a8aaec51fc594e1e6c20cd648f704db9f367aefd09e62d9a4b056a6054065",
+    "scripts/r3_hybrid.py": "7c90c9d3f04e06ad567e4786ec9962d275a5ce79321bad3ab5b92a29a0161cfc",
+    "scripts/r3_idac.py": "76fa950554c78dc46dd2c83f1c25aa5c074884a5faea3e3577fbb91278f3b9a5",
+    "scripts/r3_metadata.py": "a4b500911a7bd48ef1b1a7675d0ee0dc2294157d69c93d1a72256e9625ed6603",
+    "scripts/r3_orientation.py": "46be825c471d2bfd54cf6185f5c486ad7ca2223068e9c066271e9cb97e23dac0",
+    "scripts/r3_precision.py": "09356f34b938ad0d43dbe94db91ad31ed4ae34607cece3eef2fe04fda2dd7abe",
+    "scripts/r3_selftest.py": "1c97eeb8b87ab7720737532c9e179648d058eb11912dcfaf89902edde20c2e33",
+    "src/zcosmo/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/zcosmo/baselines.py": "3172cc7116059c1924c30857c2960bef7819360d495bf3e2003f8cce850373ee",
+    "src/zcosmo/build_benchmark.py": "1ff42adbdafb5566414ae5d9fede3002fb82ffd653488c4f53dceb58970e3eb4",
+    "src/zcosmo/conformers.py": "c84fe449d8978b2d2dde9c0675767ed08632ece0040fcc838d33909da9af6e4b",
+    "src/zcosmo/cosmosac.py": "c8a27f39ae2531b0908714de6cee35c531d1e042daf2f577d834a009701881e2",
+    "src/zcosmo/error_map.py": "a02eaad73bba3189faa67e392442de98c2484bc24ca08e8eda7344cdc6d9542e",
+    "src/zcosmo/evaluate.py": "b99eb1823836ce9832bbc70b12381dabd145b0045eb2027398a1c8620d9e6bf2",
+    "src/zcosmo/ext_identity.py": "93d146316d42a09127973cf93f41b2a81762441df4a861497376cc5204e7b1e3",
+    "src/zcosmo/fit_z1.py": "b741e954d0a7bfc251be7c15e1f4c8f4a3a8308f7964c1913e9bd2ee30d58b07",
+    "src/zcosmo/hanna_model.py": "b6251655f1c248a63cf90a6542fd2b8fd47dffe5df3fb79eb1f55d785fe35557",
+    "src/zcosmo/identity.py": "b089f8f272109ec761a9060cd11026f8389b8eb185bfecb4963437cd688ad81b",
+    "src/zcosmo/lle_negatives.py": "1eb963d114b6cafbf58a0113d9821355a4244c92d1b0b66c197622030f8d5786",
+    "src/zcosmo/metrics.py": "7ce05441add85a8538b3959110ec766d080116987ad1ab968a947b91efbe77cb",
+    "src/zcosmo/models.py": "05aba17b655c5c82524acbb93737bea067717e45dd8c36270243fd6aa7a19d22",
+    "src/zcosmo/pcm_lu.py": "450b0bbf175f7b078415cab6e537790737363df0e938c30c36976cbfff15a575",
+    "src/zcosmo/pyscf_cosmo.py": "962bfda369949e9f21b56e5094af7b6d5ae09321f078651a11a0b492d2806865",
+    "src/zcosmo/pyscf_cosmo_v2.py": "b2419c312731d9bc12dd71ecf78a5211e444b9a3f99db7df8807ae765efd7d5e",
+    "src/zcosmo/qc_assoc_solv.py": "7ee2505caaa162f85fd173ef65f5745aa455afd1b5f1ba6007defbcbf208571d",
+    "src/zcosmo/qc_assoc_thermo.py": "48627ba47fdedeabf63c6046437832ac22481cf3007a7b3965720b55e7069db1",
+    "src/zcosmo/qc_ccsdt_check.py": "c66dc63073bc3f1b01591e188180680539e5459941fdf3e820d9e85798466cc6",
+    "src/zcosmo/qc_dielectric.py": "6629eb9c4f57cac96d6207bdcb423e8187cf7173b2a0dd6dcac7f53dbe1eedee",
+    "src/zcosmo/qc_disp.py": "f8456c126c24c793df1b11b0a09c12768308a64444b2447c23cc8e209b407e73",
+    "src/zcosmo/qc_hbond.py": "0c98e4cb0a7ded55270328aec5f8db0a0af2832effadc3d10f2be881f44c91b8",
+    "src/zcosmo/scope.py": "85bac1a8b652ed2ae6cde8378d7e42fe4709a534580b70cdd5778b0f97b08c70",
+    "src/zcosmo/thermoml_parse.py": "0ea79884626baead1956a4a1e72a2a1b186213a70821bc632816a4ec527386f0",
+    "src/zcosmo/z0s_select.py": "b81b4c8641c868dd651dd2079a365f5182b3193573c9f6186a2c562514a20369",
+    "src/zcosmo/z0w.py": "ef43d190456b74d9e650ac21ffac25ec6d754cb777ca8e682ec52dc731e93985",
+    "src/zcosmo/z0x.py": "6e2aa2e14d6e036e1c33f336cead2e0ddc2906f130e4287bb6989cbc5249b88a",
+    "src/zcosmo/zmodel.py": "ff56e96c7760e0cac1d02ceccd10d26d4c2a632789d6c81a121c9fc1832c14b9"
+  },
+  "queries_sha256": "d27dbca9940641d83240ea28bcb47c4c7553af0f6106c3f77ace6a29a5d6a065",
+  "rotations": {
+    "id": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "repeat": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "r0": [
+      [
+        -0.35752313597308566,
+        0.6501815735229844,
+        0.6704037057588113
+      ],
+      [
+        0.8601015884468571,
+        0.5089283130175253,
+        -0.034888819990495035
+      ],
+      [
+        -0.3638714948923094,
+        0.5641417318904107,
+        -0.7411758506215137
+      ]
+    ],
+    "r1": [
+      [
+        -0.29923061953303737,
+        -0.360575810251537,
+        0.8834286170344056
+      ],
+      [
+        -0.2996114967020222,
+        0.914529818117674,
+        0.27178698058889506
+      ],
+      [
+        -0.9059216231980828,
+        -0.18335838359644713,
+        -0.38168798224079475
+      ]
+    ],
+    "r2": [
+      [
+        0.5588789414509615,
+        -0.804921232659252,
+        -0.19938941300120078
+      ],
+      [
+        -0.4944827748543682,
+        -0.13046320911651732,
+        -0.8593405241458967
+      ],
+      [
+        0.6656884512855674,
+        0.5788619526979903,
+        -0.47093282487388005
+      ]
+    ],
+    "r3": [
+      [
+        -0.5720656870864943,
+        0.29447374116841196,
+        0.7655233931242966
+      ],
+      [
+        0.7722967856398144,
+        -0.12092990349633961,
+        0.6236454387957765
+      ],
+      [
+        0.2762218755795199,
+        0.9479774122850423,
+        -0.15824127542675823
+      ]
+    ],
+    "r4": [
+      [
+        -0.8188506492331064,
+        0.5674899785252846,
+        0.08624812185718489
+      ],
+      [
+        -0.20331719633195933,
+        -0.14623508880719913,
+        -0.9681308880917197
+      ],
+      [
+        -0.5367920751335952,
+        -0.8102903325814288,
+        0.2351251687906807
+      ]
+    ],
+    "r5": [
+      [
+        -0.9875364725343556,
+        -0.13245620401535554,
+        -0.08501217225929646
+      ],
+      [
+        0.01400601513359672,
+        -0.6119507989769264,
+        0.7907718072690622
+      ],
+      [
+        -0.1567658985700629,
+        0.7797253193589033,
+        0.6061789169842323
+      ]
+    ],
+    "r6": [
+      [
+        0.03592294778954419,
+        0.7079794158858914,
+        0.7053188559112693
+      ],
+      [
+        -0.9761509548117464,
+        -0.12634572364431257,
+        0.176539150153475
+      ],
+      [
+        0.21410010565673676,
+        -0.6948394813182878,
+        0.6865560719701687
+      ]
+    ],
+    "r7": [
+      [
+        0.562132887529478,
+        0.7727687019935973,
+        0.29467804461293373
+      ],
+      [
+        0.794837477001432,
+        -0.6032517575074989,
+        0.06573204863772239
+      ],
+      [
+        0.2285607182167782,
+        0.1972710072039087,
+        -0.953333177753185
+      ]
+    ],
+    "r8": [
+      [
+        0.47889698906265904,
+        -0.6448126320064452,
+        0.5957133064416472
+      ],
+      [
+        0.5000277269285899,
+        0.7581097191715486,
+        0.4186190702778161
+      ],
+      [
+        -0.7215469119671615,
+        0.09739775820087557,
+        0.6854806565674167
+      ]
+    ],
+    "r9": [
+      [
+        0.7697712620858876,
+        -0.6361866232971032,
+        0.052141963949675185
+      ],
+      [
+        0.252705874916772,
+        0.37874029579013585,
+        0.8903345040642584
+      ],
+      [
+        -0.5861671645949201,
+        -0.6721773342523757,
+        0.4523114927437967
+      ]
+    ],
+    "r10": [
+      [
+        -0.30056277221333766,
+        0.34109081553546816,
+        0.8906846105759226
+      ],
+      [
+        0.7492113105633993,
+        -0.4934578278632072,
+        0.441793825493747
+      ],
+      [
+        0.5902071094821778,
+        0.8000977613253739,
+        -0.10723404421552929
+      ]
+    ],
+    "r11": [
+      [
+        0.6748201859839271,
+        0.49640846033604386,
+        0.5460735821255376
+      ],
+      [
+        0.6659164627995269,
+        -0.09066826233360853,
+        -0.7404961382599982
+      ],
+      [
+        -0.3180770050808203,
+        0.8633411299782967,
+        -0.3917513396615428
+      ]
+    ],
+    "r12": [
+      [
+        -0.8285872857174693,
+        0.300620678186206,
+        0.4723032053609444
+      ],
+      [
+        0.10407243730153483,
+        0.9116114126970375,
+        -0.3976601061643343
+      ],
+      [
+        -0.5501018430631504,
+        -0.28034236227758563,
+        -0.786635952757785
+      ]
+    ],
+    "r13": [
+      [
+        0.7393606595742654,
+        -0.11312034557881528,
+        -0.663739107247747
+      ],
+      [
+        0.5002514403249749,
+        -0.5675163855988004,
+        0.6539676203984883
+      ],
+      [
+        -0.4506598623426485,
+        -0.8155543755587378,
+        -0.36301067336967097
+      ]
+    ],
+    "r14": [
+      [
+        -0.7044977353886291,
+        -0.636484522839561,
+        -0.313959221903083
+      ],
+      [
+        -0.022904032481207814,
+        -0.42175845832101205,
+        0.906418892196529
+      ],
+      [
+        -0.70933655349798,
+        0.6457609890821676,
+        0.2825498165832491
+      ]
+    ],
+    "r15": [
+      [
+        -0.42653241064217584,
+        -0.24416338981677893,
+        -0.8708928417118569
+      ],
+      [
+        0.7443461735607053,
+        -0.6417637429360766,
+        -0.18462955385910784
+      ],
+      [
+        -0.5138276720626382,
+        -0.7269962429929446,
+        0.45547512127100087
+      ]
+    ],
+    "a001": [
+      [
+        0.9999995357143245,
+        -0.0008017121635411828,
+        0.0005346295375859869
+      ],
+      [
+        0.0008018550206721352,
+        0.9999996428571727,
+        -0.00026704691167245775
+      ],
+      [
+        -0.0005344152518895583,
+        0.00026747548306531484,
+        0.9999998214285865
+      ]
+    ],
+    "a01": [
+      [
+        0.9999535718154748,
+        -0.008010560829800681,
+        0.005355849948042154
+      ],
+      [
+        0.008024846425039174,
+        0.9999642860119038,
+        -0.0026511394829489042
+      ],
+      [
+        -0.005334421555184416,
+        0.0026939962686643804,
+        0.9999821430059519
+      ]
+    ],
+    "a1": [
+      [
+        0.9953610106153097,
+        -0.07933111807760765,
+        0.05443374184663522
+      ],
+      [
+        0.08075849942674315,
+        0.9964315466271614,
+        -0.024540530893688555
+      ],
+      [
+        -0.05229266982293198,
+        0.028822674941095045,
+        0.9982157733135807
+      ]
+    ],
+    "a5": [
+      [
+        0.8863266646124889,
+        -0.3669073891114443,
+        0.2824960378701332
+      ],
+      [
+        0.40188379999990925,
+        0.9125589727788376,
+        -0.07566724851919485
+      ],
+      [
+        -0.23003142153743583,
+        0.18059648118458968,
+        0.9562794863894187
+      ]
+    ],
+    "a10": [
+      [
+        0.5731378554489869,
+        -0.6090066421373934,
+        0.5482918096086
+      ],
+      [
+        0.7403488404607821,
+        0.6716445041915284,
+        -0.027879282947946227
+      ],
+      [
+        -0.35127851212351696,
+        0.42190587791811224,
+        0.8358222520957642
+      ]
+    ],
+    "cube90": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        2.220446049250313e-16,
+        -1.0
+      ],
+      [
+        0.0,
+        1.0,
+        2.220446049250313e-16
+      ]
+    ]
+  },
+  "packages_on_manifest_host": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.6",
+    "pyscf": "2.14.0",
+    "pyberny": "0.7.0",
+    "rdkit": "2026.3.6"
+  },
+  "registration": "9d32e9e599a2b4e29e1b1e1c611a9eddf2a39b8f",
+  "cooh_flag": "0"
+}
