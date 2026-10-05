@@ -28,7 +28,8 @@ def profile_revision():
     packages = [(name, version(name)) for name in ("pyscf", "pyberny", "rdkit", "tblite", "ase", "numpy", "scipy")]
     return hashlib.sha256(code + json.dumps(packages).encode()
                           + os.environ.get("ZC_TRIC_PREOPT", "0").encode()
-                          + os.environ.get("ZC_BERNY_NOISE_EH", "").encode()).hexdigest()
+                          + os.environ.get("ZC_BERNY_NOISE_EH", "").encode()
+                          + os.environ.get("ZC_R3_COOH_FLAG", "0").encode()).hexdigest()
 
 
 def dft_geometry(sym, xyz_A, basis="def2-svp", maxsteps=100, partial=None, spin=0):

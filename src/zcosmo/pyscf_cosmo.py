@@ -120,6 +120,9 @@ def to_profiles(sym, xyz_A, seg):
     out = p.get_outputs()
     meta = p.get_meta()
     meta["disp. flag"] = "H2O" if p.is_water else p.disp.dispersion_flag
+    # R3 A correction: opt-in until the metadata-only gate is registered and accepted.
+    if os.environ.get("ZC_R3_COOH_FLAG", "0") == "1" and p.disp.has_COOH and not p.is_water:
+        meta["disp. flag"] = "COOH"
     meta["disp. e/kB [K]"] = None if p.disp.dispersive_molecule is None or np.isnan(p.disp.dispersive_molecule) \
         else float(p.disp.dispersive_molecule)
     return out, meta

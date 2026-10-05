@@ -1,0 +1,63 @@
+name: r3-orientation
+# Round 3 P17 native items (registered in PREREGISTRATION.md before this workflow first ran). Frozen experiment: cloud/r3/orientation.
+# One job per key runs the listed rotations sequentially; the angle-control job runs water, methanol, decanoic acid at 5 fixed angles.
+on:
+  workflow_dispatch:
+    inputs:
+      method: {description: "raw | canonical | lebedev41", default: "raw"}
+      rots: {description: "space-separated rotation names", default: "id repeat r0 r1 r2 r3 r4 r5 r6 r7 cube90"}
+      controls: {description: "run the fixed angle controls (raw only)", default: "true"}
+permissions: {contents: read}
+env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ZC_PCM3C: "1", ZC_R3_COOH_FLAG: "0", QC_MEM_MB: "6000", PYTHONPATH: "src:scripts", MPLBACKEND: Agg}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {keys: "${{ steps.k.outputs.keys }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - id: k
+        run: echo "keys=$(python3 -c "import json; print(json.dumps(open('cloud/r3/orientation/keys.txt').read().split()))")" >> $GITHUB_OUTPUT
+  item:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: {key: "${{ fromJson(needs.plan.outputs.keys) }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - name: items
+        run: |
+          mkdir -p logs
+          for rot in ${{ inputs.rots }}; do
+            timeout 3000s python -u scripts/r3_orientation.py item --work cloud/r3/orientation --key ${{ matrix.key }} --method ${{ inputs.method }} --rotation $rot > logs/${{ matrix.key }}.$rot.log 2>&1 && echo "OK $rot" || { echo "FAIL $rot"; tail -5 logs/${{ matrix.key }}.$rot.log; }
+          done
+          cp -r logs cloud/r3/orientation/${{ inputs.method }}/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r3_${{ inputs.method }}_${{ matrix.key }}", path: "cloud/r3/orientation/${{ inputs.method }}", retention-days: 60}
+  controls:
+    if: inputs.controls == 'true' && inputs.method == 'raw'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - name: angle controls
+        run: |
+          mkdir -p logs
+          for key in XLYOFNOQVPJJNP-UHFFFAOYSA-N OKKJLVBELUTLKV-UHFFFAOYSA-N GHVNFZFCNZKVNT-UHFFFAOYSA-N; do
+            for rot in a001 a01 a1 a5 a10; do
+              timeout 3000s python -u scripts/r3_orientation.py item --work cloud/r3/orientation --key $key --method raw --rotation $rot > logs/$key.$rot.log 2>&1 && echo "OK $key $rot" || { echo "FAIL $key $rot"; tail -5 logs/$key.$rot.log; }
+            done
+          done
+          cp -r logs cloud/r3/orientation/raw/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r3_raw_controls", path: "cloud/r3/orientation/raw", retention-days: 60}
