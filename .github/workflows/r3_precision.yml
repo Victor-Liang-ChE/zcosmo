@@ -1,0 +1,45 @@
+name: r3-precision
+# Round 3 P19 (registered 2026-10-05 00:12 PDT, commit 9d32e9e, before any run). calib: 25 frozen validation geometries x {control, tight};
+# chains: the six committed long-chain seeds x {control, tight}, run only after the calibration gate passes. Exit code 2 = censored budget.
+on:
+  workflow_dispatch:
+    inputs:
+      mode: {description: "calib | chains", default: "calib"}
+permissions: {contents: read}
+env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ZC_PCM3C: "1", ZC_R3_COOH_FLAG: "0", PYTHONPATH: "src:scripts", MPLBACKEND: Agg}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {keys: "${{ steps.k.outputs.keys }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - id: k
+        run: |
+          if [ "${{ inputs.mode }}" = chains ]; then K='["BTFJIXJJCSYFAL-UHFFFAOYSA-N","FLIACVVOZYBSBS-UHFFFAOYSA-N","HPEUJPJOZXNMSJ-UHFFFAOYSA-N","MVLVMROFTAUDAG-UHFFFAOYSA-N","OYHQOLUKZRVURQ-HZJYTTRNSA-N","PYGXAGIECVVIOZ-UHFFFAOYSA-N"]'
+          else K=$(python3 -c "import json; print(json.dumps(open('cloud/r3/orientation/keys.txt').read().split()))"); fi
+          echo "keys=$K" >> $GITHUB_OUTPUT
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: {key: "${{ fromJson(needs.plan.outputs.keys) }}", arm: [control, tight]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit tblite ase pandas scipy matplotlib
+      - name: trial
+        run: |
+          if [ "${{ inputs.mode }}" = chains ]; then IN="cloud/s19/seeds/${{ matrix.key }}.partial.json"; else IN="cloud/r3/orientation/geometries/${{ matrix.key }}.xyz.json"; fi
+          sha256sum "$IN" | tee input_sha256.txt
+          set +e
+          timeout --signal=TERM --kill-after=30s 19800s python -u scripts/r3_precision.py --input "$IN" --key ${{ matrix.key }} --arm ${{ matrix.arm }} --registration 9d32e9e599a2b4e29e1b1e1c611a9eddf2a39b8f --out out 2>&1 | grep -viE "warn" | tail -30
+          rc=${PIPESTATUS[0]}; echo "rc=$rc (0 converged, 2 censored budget, 124 censored deadline, other failed)" | tee rc.txt
+          mkdir -p out; cp input_sha256.txt rc.txt out/
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r3p_${{ inputs.mode }}_${{ matrix.key }}_${{ matrix.arm }}", path: out, retention-days: 60}
