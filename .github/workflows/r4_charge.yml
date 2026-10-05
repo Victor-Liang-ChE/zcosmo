@@ -1,0 +1,48 @@
+name: r4-charge
+# Round 4 P22 native diagnostics (registered 2026-10-05 12:02 PDT, b61301d). Frozen open geometries in cloud/r4/native; UD glycol geometries are not
+# available (no UD .cosmo files on disk), so the UD-geometry arm is not run (recorded deviation).
+on: {workflow_dispatch: {}}
+permissions: {contents: read}
+env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ZC_PCM3C: "1", PYTHONPATH: "src:scripts", MPLBACKEND: Agg}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: {cases: "${{ steps.c.outputs.cases }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - id: c
+        run: echo "cases=$(python3 -c "import json; print(json.dumps([c['tag'] for c in json.load(open('cloud/r4/native/cases.json'))]))")" >> $GITHUB_OUTPUT
+  sphere:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit pandas scipy
+      - run: mkdir -p out && python scripts/r4_charge.py sphere-native --out out/native-sphere.json 2>&1 | grep -vi warn | tail -5; cat out/native-sphere.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: r4c_sphere, path: out, retention-days: 60}
+  molecule:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix: {tag: "${{ fromJson(needs.plan.outputs.cases) }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit pandas scipy matplotlib
+      - name: case
+        run: |
+          set +e
+          ARGS=$(python3 -c "import json; c=[c for c in json.load(open('cloud/r4/native/cases.json')) if c['tag']=='${{ matrix.tag }}'][0]; print(' '.join(['--geometry',c['geometry'],'--key',c['key']]+(['--sweep','--quadrature'] if c['sweep'] else [])))")
+          timeout 19800s python -u scripts/r4_charge.py molecule $ARGS --out out/${{ matrix.tag }} --registration b61301dd21ff8ed58df1f10427120a3002a92d60 --memory 6000 --projections > case.log 2>&1
+          rc=$?; echo "rc=$rc (0 complete, 2 quadrature inconclusive, 124 deadline, other failed)"; tail -40 case.log | grep -vi warn
+          mkdir -p out; cp case.log out/; echo $rc > out/rc.txt; exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r4c_${{ matrix.tag }}", path: out, retention-days: 60}

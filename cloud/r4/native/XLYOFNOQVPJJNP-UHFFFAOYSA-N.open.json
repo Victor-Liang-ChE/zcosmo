@@ -1,0 +1,26 @@
+{
+  "sym": [
+    "O",
+    "H",
+    "H"
+  ],
+  "x": [
+    [
+      0.0071,
+      0.41234,
+      -0.0
+    ],
+    [
+      -0.76059,
+      -0.19315,
+      0.0
+    ],
+    [
+      0.75349,
+      -0.2192,
+      0.0
+    ]
+  ],
+  "source": "/private/tmp/r4work/gate-geometries/XLYOFNOQVPJJNP-UHFFFAOYSA-N.xyz.json",
+  "source_sha256": "b80e65529d74b008aa276c89e498318e4693a77073bc7aaee354db11cc81dece"
+}

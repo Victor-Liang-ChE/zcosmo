@@ -1,0 +1,50 @@
+[
+ {
+  "tag": "LYCAIKOWRPUZTN_open",
+  "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+  "smiles": "OCCO",
+  "source": "open",
+  "geometry": "cloud/r4/native/LYCAIKOWRPUZTN-UHFFFAOYSA-N.open.json",
+  "sweep": false
+ },
+ {
+  "tag": "MTHSVFCYNBDYFN_open",
+  "key": "MTHSVFCYNBDYFN-UHFFFAOYSA-N",
+  "smiles": "OCCOCCO",
+  "source": "open",
+  "geometry": "cloud/r4/native/MTHSVFCYNBDYFN-UHFFFAOYSA-N.open.json",
+  "sweep": true
+ },
+ {
+  "tag": "ZIBGPFATKBEMQZ_open",
+  "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+  "smiles": "OCCOCCOCCO",
+  "source": "open",
+  "geometry": "cloud/r4/native/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.open.json",
+  "sweep": false
+ },
+ {
+  "tag": "XLYOFNOQVPJJNP_open",
+  "key": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+  "smiles": "O",
+  "source": "open",
+  "geometry": "cloud/r4/native/XLYOFNOQVPJJNP-UHFFFAOYSA-N.open.json",
+  "sweep": true
+ },
+ {
+  "tag": "OKKJLVBELUTLKV_open",
+  "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+  "smiles": "CO",
+  "source": "open",
+  "geometry": "cloud/r4/native/OKKJLVBELUTLKV-UHFFFAOYSA-N.open.json",
+  "sweep": false
+ },
+ {
+  "tag": "BKIMMITUMNQMOS_open",
+  "key": "BKIMMITUMNQMOS-UHFFFAOYSA-N",
+  "smiles": "CCCCCCCCC",
+  "source": "open",
+  "geometry": "cloud/r4/native/BKIMMITUMNQMOS-UHFFFAOYSA-N.open.json",
+  "sweep": true
+ }
+]
