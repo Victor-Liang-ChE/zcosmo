@@ -805,3 +805,29 @@ in this round. P19 remains rejected under its actual cost gate. S1/S2 status is
 preserved as an exploratory endpoint of the present campaign, not a proof of
 Berny convergence. A new optimization experiment requires a separate prospective
 budget and evidence that addresses a specific remaining failure mechanism.
+
+- Round 4 RESULTS (recorded 2026-10-05 16:10 PDT; registered 2026-10-05 12:02 PDT in b61301d; frozen P22 open panel and workflow in 3216fbe; Mac queue jobs
+  337 to 347; P22 single points on GitHub Actions run 37367539367 (retry attempt) except n-nonane). Details in docs/astra/round4/RESULTS.md.
+  P20 APPLIED (job 337). Bundle manifest sha256 e203da8ee623ce78ca89dfde4e46f3b0b72613fc2d01978303fd565be10bc4c5 over all 636 selected profiles (630 profiles_v2,
+  five S2, one S1). 30 profiles change HB-DONOR-ACCEPTOR -> COOH (one flagged S2, OYHQOLUKZRVURQ); no other transition; raw bodies byte-identical. 25/2302
+  gate: coverage identical, Z0x max change 0, COSMO-SAC-dsp max change 0.319 on changed targets, median vs UD 0.1362. Full IDAC (3252 rows): Z0x and COSMO-SAC
+  2010 max |change| 0 with identical prediction hashes. Open-profile COSMO-SAC-dsp test IDAC without flagged chains (750 rows): 0.8009 -> 0.8001. Rollback copy
+  kept; corrected COSMO-SAC-dsp predictions written to results/predictions_p18_dsp (new name; no historical output overwritten).
+  P23 accounting (Z0x): all 6581 rows / 303 systems / 2255 calls, 554 unresolved rows, row gap-found bounds [0.761, 0.845], system [0.683, 0.795]; test
+  2475 / 101 / 716, 103 unresolved, rows [0.848, 0.890], systems [0.752, 0.842]. Control gate (first 20 sorted good calls) PASSED. Measured batch of 20 test
+  calls: 13 s. Full repair of the frozen list of 280 unresolved calls: 127 s, 136 refined roots, 144 gap witnesses only, 0 unresolved. With repairs, gap-found
+  is exact and equals the old upper bound: all rows 0.8453, systems 0.7954; test rows 0.8897, systems 0.8416. Composition MAE on checked detections: all
+  0.1647 (5278 rows), test 0.1799 (2142). The repaired accounting is a separately labelled sidecar; all earlier LLE scores remain.
+  P21: inventory of 96 keys; no UD .cosmo geometries exist (validation_data.zip holds only a CSV). Factorial on 332 rows / 14 solvents, all corners finite;
+  corner 000 reproduces the stored open prediction to 8e-11, corner 111 equals the full UD solvent exactly, Shapley identity 1e-10. MAE 000 1.311, UD area only
+  1.317, UD volume only 1.305, UD shape only 0.845, UD solvent 0.836. Area and volume Shapley terms < 0.05 for every solvent; shape terms DEG +1.372 (MAE
+  1.740 -> 0.371), TEG +1.497, EG +2.550, tetraethylene glycol +0.465, water +1.057 (MAE 1.546 -> 2.073, worse), glycerol +0.037, propylene glycol -0.861.
+  P22: sphere-native reproduces the analytic Gaussian-sphere values (t = 1.5: continuum -0.033895 e; Lebedev 29/41/59 -0.034250/-0.034077/-0.033984). Open
+  panel raw charge sums (e): EG -0.02258, methanol -0.01864, TEG -0.03543, DEG -0.03041 (41: -0.03030, 59: -0.03026, radius x1.10: -0.01608), water -0.01241
+  (-0.01243, -0.01245, -0.00587), n-nonane -0.04481 (-0.04433, -0.04414, -0.02525). Quadrature gates for DEG, water and nonane all fail as registered, so the
+  inside/outside partition is inconclusive and not interpreted. No registered O-H...O contact in EG/DEG/TEG. Zero-charge projections: sums < 1e-16, tail and
+  OH/OT/NHB area changes <= 0.3 A2; on 859 IDAC rows with identical finite masks, Z0x mean/max |change| 0.35/1.26 (MAE 1.783 -> 1.668), COSMO-SAC-dsp
+  0.17/0.57 (1.184 -> 1.216); DEG as solvent Z0x 1.740 -> 1.640. Fresh native profiles reproduce stored open ones to 3e-5 in ln gamma. Nothing adopted.
+  Deviations: P22 UD-geometry arm not run (geometries unavailable); first dispatch never acquired a hosted runner; the nonane case was killed on the runner
+  (exit 143, peak memory 20 GB measured on the Mac) and the identical command ran on the Mac (job 346); job 347 overlapped job 346's quadrature step, after
+  the nonane .sigma and projection files were written. Chain campaign stays closed; profiles_v2 630/636.
