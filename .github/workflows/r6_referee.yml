@@ -1,0 +1,35 @@
+name: r6-referee
+# Round 6 P30 stage 1 (registered 5926ba1): five fixed gradient-consistency cases, one per runner; the frozen manifest is planned
+# identically on each runner from the archived P26 artifacts and split by job id (allowed by REG6). No optimization runs.
+on: {workflow_dispatch: {}}
+permissions: {contents: read, actions: read}
+env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ZC_PCM3C: "1", ZC_PCM3C_MB: "2000", PYTHONPATH: "src:scripts", MPLBACKEND: Agg, REG: 5926ba1a73fba30537e137ada6c7f8a31e74e725, GH_TOKEN: "${{ github.token }}"}
+jobs:
+  case:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: {id: [methanol, ethylene_glycol, BKIMMITUMNQMOS, ZIBGPFATKBEMQZ, XTHFKEDIFFGKHM]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit==2026.03.6 pandas scipy matplotlib
+      - run: gh run download 37426006692 -R ${{ github.repository }} -D $RUNNER_TEMP/p26
+      - name: plan and run
+        run: |
+          set +e
+          python scripts/r6_jobs.py plan_referee --artifacts $RUNNER_TEMP/p26 --registration $REG --out $RUNNER_TEMP/referee
+          python - <<'PYCODE'
+          import json,os
+          p=os.environ['RUNNER_TEMP']+'/referee/jobs.json';m=json.load(open(p))
+          m['jobs']=[j for j in m['jobs'] if j['id']=='${{ matrix.id }}'];assert len(m['jobs'])==1
+          json.dump(m,open(os.environ['RUNNER_TEMP']+'/referee/jobs_one.json','w'),indent=1)
+          PYCODE
+          python scripts/r6_jobs.py run --manifest $RUNNER_TEMP/referee/jobs_one.json --out $RUNNER_TEMP/referee-run; rc=$?
+          echo "rc=$rc"; mkdir -p out; cp -R $RUNNER_TEMP/referee/consistency out/ 2>/dev/null; cp -R $RUNNER_TEMP/referee-run out/; cp $RUNNER_TEMP/referee/jobs.json out/manifest.json
+          cat out/referee-run/jobs.json; find out -name status.json -exec cat {} \; | head -c 3000; exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r6r_${{ matrix.id }}", path: out, retention-days: 60}
