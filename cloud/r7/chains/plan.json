@@ -1,0 +1,101 @@
+{
+  "sources": {
+    "scripts/r7_common.py": "be9a6eb91e94cdb9072121aa08779eef9cafa838c70c0948b4fb726db28d397d",
+    "scripts/r7_gate.py": "79c2a9a966877704d85ab1a0ecfd0ab4f798e666511bbde8ea00a1caaa42c547",
+    "scripts/r3_precision.py": "09356f34b938ad0d43dbe94db91ad31ed4ae34607cece3eef2fe04fda2dd7abe",
+    "scripts/r4_common.py": "a21fe77554bb6e56ddd9814c641f55df8d49b623147520206b5ee7cbefd997bf",
+    "data/raw/nist/to_sigma.py": "73cd7b526568ee921e2fcd83b5d8653fccf37878fe4690abafdcd785334ace2a",
+    "src/zcosmo/pyscf_cosmo.py": "962bfda369949e9f21b56e5094af7b6d5ae09321f078651a11a0b492d2806865",
+    "src/zcosmo/pyscf_cosmo_v2.py": "b2419c312731d9bc12dd71ecf78a5211e444b9a3f99db7df8807ae765efd7d5e",
+    "src/zcosmo/pcm_lu.py": "450b0bbf175f7b078415cab6e537790737363df0e938c30c36976cbfff15a575",
+    "src/zcosmo/cosmosac.py": "c8a27f39ae2531b0908714de6cee35c531d1e042daf2f577d834a009701881e2",
+    "src/zcosmo/z0x.py": "002f591254d3d20d7b4c9a8e7267a1d761cda81f71b19347f6d148326449046e",
+    "src/zcosmo/models.py": "05aba17b655c5c82524acbb93737bea067717e45dd8c36270243fd6aa7a19d22",
+    "scripts/r7_plan.py": "a40741f963f547fd8aafa90cc5086659816ccf6b1894f038341058e9110be786",
+    "scripts/r7_optimize.py": "e8a62a3a61e019c8cd27e7603632d623ff70b0a0fe5b0661d364a9338d031c14"
+  },
+  "base": "ddf22b19f9e1750308bd11572786b44d407a80f9",
+  "registration": "6a51e755f744a036d18da294307a678edb779626",
+  "family": "chains",
+  "cases": [
+    {
+      "key": "BTFJIXJJCSYFAL-UHFFFAOYSA-N",
+      "smiles": "C(CCCCCCCCCCCCCCCCCO)CC",
+      "spin": 0,
+      "geometry": "geometries/BTFJIXJJCSYFAL-UHFFFAOYSA-N.json",
+      "geometry_sha256": "818ec103aebdc992e55c3a388806203fde2c4b78f2d1889e9c34139a23e4c36f",
+      "source": {
+        "path": "/private/tmp/r7work/checkpoints/BTFJIXJJCSYFAL-UHFFFAOYSA-N.partial.json",
+        "sha256": "818ec103aebdc992e55c3a388806203fde2c4b78f2d1889e9c34139a23e4c36f"
+      }
+    },
+    {
+      "key": "FLIACVVOZYBSBS-UHFFFAOYSA-N",
+      "smiles": "C(CCCCCCCCCCCCC)CC(=O)OC",
+      "spin": 0,
+      "geometry": "geometries/FLIACVVOZYBSBS-UHFFFAOYSA-N.json",
+      "geometry_sha256": "026f414b1dadf798c581fc6b60743a255ae6675e280fb439be936221b21ad8b5",
+      "source": {
+        "path": "/private/tmp/r7work/checkpoints/FLIACVVOZYBSBS-UHFFFAOYSA-N.partial.json",
+        "sha256": "026f414b1dadf798c581fc6b60743a255ae6675e280fb439be936221b21ad8b5"
+      }
+    },
+    {
+      "key": "HPEUJPJOZXNMSJ-UHFFFAOYSA-N",
+      "smiles": "C(CCCCCCCCCCCCCC)CCC(=O)OC",
+      "spin": 0,
+      "geometry": "geometries/HPEUJPJOZXNMSJ-UHFFFAOYSA-N.json",
+      "geometry_sha256": "f4d7dc43925f1a4a5948652713624c9e787538c72af64f9ef32040231c2ae2c5",
+      "source": {
+        "path": "/private/tmp/r7work/checkpoints/HPEUJPJOZXNMSJ-UHFFFAOYSA-N.partial.json",
+        "sha256": "f4d7dc43925f1a4a5948652713624c9e787538c72af64f9ef32040231c2ae2c5"
+      }
+    },
+    {
+      "key": "MVLVMROFTAUDAG-UHFFFAOYSA-N",
+      "smiles": "C(OC(=O)CCCCCCCCCCCCCCCCC)C",
+      "spin": 0,
+      "geometry": "geometries/MVLVMROFTAUDAG-UHFFFAOYSA-N.json",
+      "geometry_sha256": "4c87f986bddc78df6c7b1eb043fb84d066e8fb7533c27ba410d1c5b8cb219195",
+      "source": {
+        "path": "/private/tmp/r7work/checkpoints/MVLVMROFTAUDAG-UHFFFAOYSA-N.partial.json",
+        "sha256": "4c87f986bddc78df6c7b1eb043fb84d066e8fb7533c27ba410d1c5b8cb219195"
+      }
+    },
+    {
+      "key": "OYHQOLUKZRVURQ-HZJYTTRNSA-N",
+      "smiles": "C(C/C=C\\C/C=C\\CCCCC)CCCCCC(=O)O",
+      "spin": 0,
+      "geometry": "geometries/OYHQOLUKZRVURQ-HZJYTTRNSA-N.json",
+      "geometry_sha256": "3b7b474f8a3c3b7e07f411cc9412301d6e5be3d7d43d2a402cec607291d0b4b6",
+      "source": {
+        "path": "/private/tmp/r7work/checkpoints/OYHQOLUKZRVURQ-HZJYTTRNSA-N.partial.json",
+        "sha256": "3b7b474f8a3c3b7e07f411cc9412301d6e5be3d7d43d2a402cec607291d0b4b6"
+      }
+    },
+    {
+      "key": "PYGXAGIECVVIOZ-UHFFFAOYSA-N",
+      "smiles": "CCCCOC(=O)CCCCCCCCC(=O)OCCCC",
+      "spin": 0,
+      "geometry": "geometries/PYGXAGIECVVIOZ-UHFFFAOYSA-N.json",
+      "geometry_sha256": "ac1f485e2e02dfb22a0fbade4356c2ab10c9ed6f3774c701cab21644840ef5ab",
+      "source": {
+        "path": "/private/tmp/r7work/checkpoints/PYGXAGIECVVIOZ-UHFFFAOYSA-N.partial.json",
+        "sha256": "ac1f485e2e02dfb22a0fbade4356c2ab10c9ed6f3774c701cab21644840ef5ab"
+      }
+    }
+  ],
+  "budget": 100,
+  "seconds_per_arm": 19800,
+  "packages": {
+    "pyscf": "2.14.0",
+    "pyberny": "0.7.0",
+    "rdkit": "2026.3.6",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.6",
+    "tblite": "0.7.0",
+    "ase": "3.29.0"
+  },
+  "execution_requires": "A matching positive calibration-plus-pilot decision and a separate authorization commit"
+}

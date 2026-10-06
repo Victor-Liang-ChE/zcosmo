@@ -1,0 +1,240 @@
+{
+  "sources": {
+    "scripts/r7_common.py": "be9a6eb91e94cdb9072121aa08779eef9cafa838c70c0948b4fb726db28d397d",
+    "scripts/r7_gate.py": "79c2a9a966877704d85ab1a0ecfd0ab4f798e666511bbde8ea00a1caaa42c547",
+    "scripts/r3_precision.py": "09356f34b938ad0d43dbe94db91ad31ed4ae34607cece3eef2fe04fda2dd7abe",
+    "scripts/r4_common.py": "a21fe77554bb6e56ddd9814c641f55df8d49b623147520206b5ee7cbefd997bf",
+    "data/raw/nist/to_sigma.py": "73cd7b526568ee921e2fcd83b5d8653fccf37878fe4690abafdcd785334ace2a",
+    "src/zcosmo/pyscf_cosmo.py": "962bfda369949e9f21b56e5094af7b6d5ae09321f078651a11a0b492d2806865",
+    "src/zcosmo/pyscf_cosmo_v2.py": "b2419c312731d9bc12dd71ecf78a5211e444b9a3f99db7df8807ae765efd7d5e",
+    "src/zcosmo/pcm_lu.py": "450b0bbf175f7b078415cab6e537790737363df0e938c30c36976cbfff15a575",
+    "src/zcosmo/cosmosac.py": "c8a27f39ae2531b0908714de6cee35c531d1e042daf2f577d834a009701881e2",
+    "src/zcosmo/z0x.py": "002f591254d3d20d7b4c9a8e7267a1d761cda81f71b19347f6d148326449046e",
+    "src/zcosmo/models.py": "05aba17b655c5c82524acbb93737bea067717e45dd8c36270243fd6aa7a19d22",
+    "scripts/r7_plan.py": "a40741f963f547fd8aafa90cc5086659816ccf6b1894f038341058e9110be786",
+    "scripts/r7_optimize.py": "e8a62a3a61e019c8cd27e7603632d623ff70b0a0fe5b0661d364a9338d031c14"
+  },
+  "base": "ddf22b19f9e1750308bd11572786b44d407a80f9",
+  "registration": "6a51e755f744a036d18da294307a678edb779626",
+  "family": "calibration",
+  "cases": [
+    {
+      "key": "BDERNNFJNOPAEC-UHFFFAOYSA-N",
+      "smiles": "CCCO",
+      "spin": 0,
+      "geometry": "geometries/BDERNNFJNOPAEC-UHFFFAOYSA-N.json",
+      "geometry_sha256": "89ea6d00750f9c066b21b6d20273e32f630d29053e077b5c83c213898324a056",
+      "shared_xtb_seconds": 0.8536611249437556
+    },
+    {
+      "key": "CSCPPACGZOOCGX-UHFFFAOYSA-N",
+      "smiles": "CC(=O)C",
+      "spin": 0,
+      "geometry": "geometries/CSCPPACGZOOCGX-UHFFFAOYSA-N.json",
+      "geometry_sha256": "2b2049fcd1e9d5fd6560a18a1277ad9f69877f8ea051376869872b7b46f94d83",
+      "shared_xtb_seconds": 0.031171999988146126
+    },
+    {
+      "key": "GHVNFZFCNZKVNT-UHFFFAOYSA-N",
+      "smiles": "C(CCCCCC)CCC(=O)O",
+      "spin": 0,
+      "geometry": "geometries/GHVNFZFCNZKVNT-UHFFFAOYSA-N.json",
+      "geometry_sha256": "629057d2aa9d0e40c200fe4ea2f7cb43d2d8cacfb939d9c5d0b3c006125ba1c6",
+      "shared_xtb_seconds": 0.1919164169812575
+    },
+    {
+      "key": "HEDRZPFGACZZDS-UHFFFAOYSA-N",
+      "smiles": "C(Cl)(Cl)Cl",
+      "spin": 0,
+      "geometry": "geometries/HEDRZPFGACZZDS-UHFFFAOYSA-N.json",
+      "geometry_sha256": "5ea8455a80728c84f181d57ce466905f3298e2d0c1277f6f29ad301b92574fd9",
+      "shared_xtb_seconds": 0.017236707964912057
+    },
+    {
+      "key": "HRYZWHHZPQKTII-UHFFFAOYSA-N",
+      "smiles": "CCCl",
+      "spin": 0,
+      "geometry": "geometries/HRYZWHHZPQKTII-UHFFFAOYSA-N.json",
+      "geometry_sha256": "d232f31d76f9aca3c00fdcb0e92909ae0db87544357a272f574d61303b549be2",
+      "shared_xtb_seconds": 0.01828299998305738
+    },
+    {
+      "key": "IMNFDUFMRHMDMM-UHFFFAOYSA-N",
+      "smiles": "CCCCCCC",
+      "spin": 0,
+      "geometry": "geometries/IMNFDUFMRHMDMM-UHFFFAOYSA-N.json",
+      "geometry_sha256": "c440d562ac8cfdf88a52e0bdaae0c128e4f1a3f8930a12b313eda119f7d0a634",
+      "shared_xtb_seconds": 0.0307758750859648
+    },
+    {
+      "key": "JUJWROOIHBZHMG-UHFFFAOYSA-N",
+      "smiles": "c1cccnc1",
+      "spin": 0,
+      "geometry": "geometries/JUJWROOIHBZHMG-UHFFFAOYSA-N.json",
+      "geometry_sha256": "007b9c7b4297c670646b548f7135982540e8b512e18c2696e07aedd327df1734",
+      "shared_xtb_seconds": 0.02701158297713846
+    },
+    {
+      "key": "KFZMGEQAYNKOFK-UHFFFAOYSA-N",
+      "smiles": "OC(C)C",
+      "spin": 0,
+      "geometry": "geometries/KFZMGEQAYNKOFK-UHFFFAOYSA-N.json",
+      "geometry_sha256": "4a61068f3b5dbe1b1294e8775c41d232061067bfae9fa7e3145a42d423940202",
+      "shared_xtb_seconds": 0.0456558340229094
+    },
+    {
+      "key": "LCGLNKUTAGEVQW-UHFFFAOYSA-N",
+      "smiles": "COC",
+      "spin": 0,
+      "geometry": "geometries/LCGLNKUTAGEVQW-UHFFFAOYSA-N.json",
+      "geometry_sha256": "7d3ea6a97649bd54c3d3de92f50f28bf1750303c5890fde9fb6df5248dfdab77",
+      "shared_xtb_seconds": 0.02532045799307525
+    },
+    {
+      "key": "LRHPLDYGYMQRHN-UHFFFAOYSA-N",
+      "smiles": "CCCCO",
+      "spin": 0,
+      "geometry": "geometries/LRHPLDYGYMQRHN-UHFFFAOYSA-N.json",
+      "geometry_sha256": "5858d2caca57e4658d56c5c8ae088fe285bc3841e6e0ab134929222aa7205f27",
+      "shared_xtb_seconds": 0.03104241704568267
+    },
+    {
+      "key": "NPNPZTNLOVBDOC-UHFFFAOYSA-N",
+      "smiles": "C(C)(F)F",
+      "spin": 0,
+      "geometry": "geometries/NPNPZTNLOVBDOC-UHFFFAOYSA-N.json",
+      "geometry_sha256": "13bac90cf0e4288dbd204810a32c0b6aa10e07fe99daffc6d75bc1f755366a04",
+      "shared_xtb_seconds": 0.015354958013631403
+    },
+    {
+      "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+      "smiles": "CO",
+      "spin": 0,
+      "geometry": "geometries/OKKJLVBELUTLKV-UHFFFAOYSA-N.json",
+      "geometry_sha256": "2035ec6b65989d5bb2133e4ac8e84c67e62a0a791e91008e4c1f4863be0565ec",
+      "shared_xtb_seconds": 0.020663124974817038
+    },
+    {
+      "key": "PWGJDPKCLMLPJW-UHFFFAOYSA-N",
+      "smiles": "NCCCCCCCCN",
+      "spin": 0,
+      "geometry": "geometries/PWGJDPKCLMLPJW-UHFFFAOYSA-N.json",
+      "geometry_sha256": "4cbb41cb867cae77a12a3379cf029babf5b75820cca489012f4ec2b5b03051ba",
+      "shared_xtb_seconds": 0.3071550000458956
+    },
+    {
+      "key": "RTZKZFJDLAIYFH-UHFFFAOYSA-N",
+      "smiles": "CCOCC",
+      "spin": 0,
+      "geometry": "geometries/RTZKZFJDLAIYFH-UHFFFAOYSA-N.json",
+      "geometry_sha256": "566e98f538213bfe20750a28a6bad9c59dd5415936835c81c4066aa943e0ce3f",
+      "shared_xtb_seconds": 0.1276492909528315
+    },
+    {
+      "key": "UHOVQNZJYSORNB-UHFFFAOYSA-N",
+      "smiles": "c1ccccc1",
+      "spin": 0,
+      "geometry": "geometries/UHOVQNZJYSORNB-UHFFFAOYSA-N.json",
+      "geometry_sha256": "64c6d48d9bed0cddb0d6d52f466f4fabf3672ebc31e039ef44a96cfd686c63b4",
+      "shared_xtb_seconds": 0.012299542082473636
+    },
+    {
+      "key": "VLKZOEOYAKHREP-UHFFFAOYSA-N",
+      "smiles": "CCCCCC",
+      "spin": 0,
+      "geometry": "geometries/VLKZOEOYAKHREP-UHFFFAOYSA-N.json",
+      "geometry_sha256": "6462663df6d191fdae1e3b823bde3327839acf8b828c7839b5c4728b4e5ae947",
+      "shared_xtb_seconds": 0.04830800008494407
+    },
+    {
+      "key": "VXNZUUAINFGPBY-UHFFFAOYSA-N",
+      "smiles": "C=CCC",
+      "spin": 0,
+      "geometry": "geometries/VXNZUUAINFGPBY-UHFFFAOYSA-N.json",
+      "geometry_sha256": "ecae0cd8f687fd03204b6ce37f029bdf2edf46e28258224e9ed7949d245fee45",
+      "shared_xtb_seconds": 0.04366450000088662
+    },
+    {
+      "key": "WEVYAHXRMPXWCK-UHFFFAOYSA-N",
+      "smiles": "CC#N",
+      "spin": 0,
+      "geometry": "geometries/WEVYAHXRMPXWCK-UHFFFAOYSA-N.json",
+      "geometry_sha256": "33a6ca6f9b0cc923f2493173a1f7d2e9afaa88be67553758ceaa09db2dbb011e",
+      "shared_xtb_seconds": 0.01399187499191612
+    },
+    {
+      "key": "WYURNTSHIVDZCO-UHFFFAOYSA-N",
+      "smiles": "C1CCCO1",
+      "spin": 0,
+      "geometry": "geometries/WYURNTSHIVDZCO-UHFFFAOYSA-N.json",
+      "geometry_sha256": "bc78752ffd5005a79f78cb0b92484cf54cfc45ee6b3f0e9804b623bd68737fff",
+      "shared_xtb_seconds": 0.048079333966597915
+    },
+    {
+      "key": "XEKOWRVHYACXOJ-UHFFFAOYSA-N",
+      "smiles": "CC(=O)OCC",
+      "spin": 0,
+      "geometry": "geometries/XEKOWRVHYACXOJ-UHFFFAOYSA-N.json",
+      "geometry_sha256": "a1665d73d9f566ffc70cecb23ea1c604d9898b36b0160d32e08605d485df2425",
+      "shared_xtb_seconds": 0.061941875028423965
+    },
+    {
+      "key": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+      "smiles": "O",
+      "spin": 0,
+      "geometry": "geometries/XLYOFNOQVPJJNP-UHFFFAOYSA-N.json",
+      "geometry_sha256": "4d8c071ba25e26dfdc3c67d528670a64f14c6e270d8eb9c5c5533d775fa3ad9b",
+      "shared_xtb_seconds": 0.005729791941121221
+    },
+    {
+      "key": "XNNQFQFUQLJSQT-UHFFFAOYSA-N",
+      "smiles": "C(Cl)(Cl)(Br)Cl",
+      "spin": 0,
+      "geometry": "geometries/XNNQFQFUQLJSQT-UHFFFAOYSA-N.json",
+      "geometry_sha256": "1bbf1ae11e240ec88abe8c8e4999a00cb22c02f6b3161dcc23ba38d13ee7e869",
+      "shared_xtb_seconds": 0.019164249999448657
+    },
+    {
+      "key": "YXFVVABEGXRONW-UHFFFAOYSA-N",
+      "smiles": "c1cc(ccc1)C",
+      "spin": 0,
+      "geometry": "geometries/YXFVVABEGXRONW-UHFFFAOYSA-N.json",
+      "geometry_sha256": "a8329d02947fc98d6de2b4cd63fd18ad095ebbb59aefdbaaa5cd089aafe0a4f1",
+      "shared_xtb_seconds": 0.03263875003904104
+    },
+    {
+      "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+      "smiles": "OCCOCCOCCO",
+      "spin": 0,
+      "geometry": "geometries/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.json",
+      "geometry_sha256": "29080c27b3c09b4b1d6051f4a92fa59e308730c5859d2bd6c77089019a5bb244",
+      "shared_xtb_seconds": 0.28443995804991573
+    },
+    {
+      "key": "ZMXDDKWLCZADIW-UHFFFAOYSA-N",
+      "smiles": "C(=O)N(C)C",
+      "spin": 0,
+      "geometry": "geometries/ZMXDDKWLCZADIW-UHFFFAOYSA-N.json",
+      "geometry_sha256": "8415fee80af4215920135cb23741c3261d6fb292e1d6d887c6123163bc442a3f",
+      "shared_xtb_seconds": 0.09564908302854747
+    }
+  ],
+  "queries": "queries.csv",
+  "queries_sha256": "2fc5e7d8961e44dcc6ace8d855fed07dcd90ff6dcadf38bd8d8a6f32ae0e62af",
+  "historical_source": "/private/tmp/zc_r7/cloud/r3/orientation/queries.csv",
+  "historical_sha256": "d27dbca9940641d83240ea28bcb47c4c7553af0f6106c3f77ace6a29a5d6a065",
+  "target_column": "key",
+  "packages": {
+    "pyscf": "2.14.0",
+    "pyberny": "0.7.0",
+    "rdkit": "2026.3.6",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.6",
+    "tblite": "0.7.0",
+    "ase": "3.29.0"
+  },
+  "budget": 100,
+  "seconds_per_arm": 1800,
+  "start_protocol": "One frozen seed-7 GFN2-xTB start shared by both arms; no saved DFT geometry is substituted"
+}

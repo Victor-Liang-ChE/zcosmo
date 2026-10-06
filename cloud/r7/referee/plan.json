@@ -1,0 +1,86 @@
+{
+  "sources": {
+    "scripts/r7_common.py": "be9a6eb91e94cdb9072121aa08779eef9cafa838c70c0948b4fb726db28d397d",
+    "scripts/r7_gate.py": "79c2a9a966877704d85ab1a0ecfd0ab4f798e666511bbde8ea00a1caaa42c547",
+    "scripts/r3_precision.py": "09356f34b938ad0d43dbe94db91ad31ed4ae34607cece3eef2fe04fda2dd7abe",
+    "scripts/r4_common.py": "a21fe77554bb6e56ddd9814c641f55df8d49b623147520206b5ee7cbefd997bf",
+    "data/raw/nist/to_sigma.py": "73cd7b526568ee921e2fcd83b5d8653fccf37878fe4690abafdcd785334ace2a",
+    "src/zcosmo/pyscf_cosmo.py": "962bfda369949e9f21b56e5094af7b6d5ae09321f078651a11a0b492d2806865",
+    "src/zcosmo/pyscf_cosmo_v2.py": "b2419c312731d9bc12dd71ecf78a5211e444b9a3f99db7df8807ae765efd7d5e",
+    "src/zcosmo/pcm_lu.py": "450b0bbf175f7b078415cab6e537790737363df0e938c30c36976cbfff15a575",
+    "src/zcosmo/cosmosac.py": "c8a27f39ae2531b0908714de6cee35c531d1e042daf2f577d834a009701881e2",
+    "src/zcosmo/z0x.py": "002f591254d3d20d7b4c9a8e7267a1d761cda81f71b19347f6d148326449046e",
+    "src/zcosmo/models.py": "05aba17b655c5c82524acbb93737bea067717e45dd8c36270243fd6aa7a19d22",
+    "scripts/r7_referee.py": "529d7451ef71a9562959756d6882e20a70a6ff91ed0818cd49f757925260e61a",
+    "scripts/r6_referee.py": "02423b639021123d797a95a11ef4ab755dd4dbffc2d3c1ac035cb9ec6c92ceaf"
+  },
+  "base": "ddf22b19f9e1750308bd11572786b44d407a80f9",
+  "registration": "6a51e755f744a036d18da294307a678edb779626",
+  "family": "referee",
+  "cases": [
+    {
+      "key": "BKIMMITUMNQMOS-UHFFFAOYSA-N",
+      "smiles": "CCCCCCCCC",
+      "spin": 0,
+      "geometry": "BKIMMITUMNQMOS-UHFFFAOYSA-N.json",
+      "geometry_sha256": "7b9f8443a8f40cfb329a35b828777a03cedd91226863a15446995f5603b1659d",
+      "source": {
+        "path": "/private/tmp/r7work/p26-artifacts/r5c_3/BKIMMITUMNQMOS-UHFFFAOYSA-N/s20261006-c1/latest.json",
+        "sha256": "7b9f8443a8f40cfb329a35b828777a03cedd91226863a15446995f5603b1659d"
+      },
+      "proposal_sha256": "d71a62a01f12784aca7aec8b563fc24cf94d309376ee6c123b1e3969ff685dfa",
+      "source_result_sha256": "2ca427c6cc0d1979c259700ae043b691a68a99e36caca6db733e5be16461d041"
+    },
+    {
+      "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+      "smiles": "OCCOCCOCCO",
+      "spin": 0,
+      "geometry": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N.json",
+      "geometry_sha256": "538bb17a59324e1f1597934a044cdaa6843ea174f655e33669539fb538b39d5d",
+      "source": {
+        "path": "/private/tmp/r7work/p26-artifacts/r5c_19/ZIBGPFATKBEMQZ-UHFFFAOYSA-N/s20261006-c1/latest.json",
+        "sha256": "538bb17a59324e1f1597934a044cdaa6843ea174f655e33669539fb538b39d5d"
+      },
+      "proposal_sha256": "95d0941d74754b1e7ee25f654db6cc6f2ee916fa632ec33f81d464c8d3381353",
+      "source_result_sha256": "d715109cbe9484c92f4447d65f4898460188f05c26e71f9145a9808ff42b7e74"
+    },
+    {
+      "key": "XTHFKEDIFFGKHM-UHFFFAOYSA-N",
+      "smiles": "COCCOC",
+      "spin": 0,
+      "geometry": "XTHFKEDIFFGKHM-UHFFFAOYSA-N.json",
+      "geometry_sha256": "eb305508f6c6dcf68f610d0927af1977339dedc9da04238443c9acc20008df34",
+      "source": {
+        "path": "/private/tmp/r7work/p26-artifacts/r5c_13/XTHFKEDIFFGKHM-UHFFFAOYSA-N/s20261005-c1/latest.json",
+        "sha256": "eb305508f6c6dcf68f610d0927af1977339dedc9da04238443c9acc20008df34"
+      },
+      "proposal_sha256": "ea7d8e1d30e372c4d9429b305371a594e8168d878be1da4b7ebf7ccb88650b33",
+      "source_result_sha256": "6be7348a9ef1118b01ddd27605d27aa5c059cbab3901eaf43e0dc3b8ba52c361"
+    },
+    {
+      "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+      "smiles": "CO",
+      "spin": 0,
+      "geometry": "OKKJLVBELUTLKV-UHFFFAOYSA-N.json",
+      "geometry_sha256": "bcdbcaf8394a297031c2e8a8fecc6f06653b22678ead54886096549f8f814e8f"
+    },
+    {
+      "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+      "smiles": "OCCO",
+      "spin": 0,
+      "geometry": "LYCAIKOWRPUZTN-UHFFFAOYSA-N.json",
+      "geometry_sha256": "9e591eaf93c1880b890965ec3223928680b4ea2b34e1270da83538ae0e125685"
+    }
+  ],
+  "seconds_per_case": 7200,
+  "maximum_SCF_per_case": 82,
+  "maximum_gradients_per_case": 3,
+  "tolerance": 1e-05,
+  "steps_Bohr": [
+    0.016,
+    0.008,
+    0.004,
+    0.002,
+    0.001
+  ]
+}
