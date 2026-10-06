@@ -85,14 +85,20 @@ def predict_he(model_name, df, smi, dT=0.5):
     return out
 
 
-def binodal(m, T, n=81):
+def binodal(m, T, n=81, audit=None):
     """Return (x1_I, x1_II) of the liquid-liquid split at T, or None if miscible."""
+    def note(**values):
+        if audit is not None:
+            audit.update(values)
+    note(status="started", T=float(T), grid_n=int(n))
     xs = np.concatenate([np.logspace(-6, -2, 10), np.linspace(0.02, 0.98, n), 1 - np.logspace(-2, -6, 10)])
     try:
         lg = np.array([m.lngamma(T, np.array([x, 1 - x])) for x in xs])
-    except Exception:
+    except Exception as exc:
+        note(status="grid_evaluation_failed", error=repr(exc))
         return None
     if not np.all(np.isfinite(lg)):
+        note(status="nonfinite_grid", nonfinite_values=int((~np.isfinite(lg)).sum()))
         return None
     g = xs * np.log(xs) + (1 - xs) * np.log(1 - xs) + xs * lg[:, 0] + (1 - xs) * lg[:, 1]
     # lower convex hull
@@ -112,8 +118,12 @@ def binodal(m, T, n=81):
     for a, b in zip(hx[:-1], hx[1:]):
         if idx[b] - idx[a] > 1 and (best is None or b - a > best[1] - best[0]):
             best = (a, b)
+    gaps = [(a, b) for a, b in zip(hx[:-1], hx[1:]) if idx[b] - idx[a] > 1]
+    note(grid_gap_count=len(gaps), grid_gaps=gaps)
     if best is None:
+        note(status="no_gap_on_grid")  # This is not a proof of global miscibility.
         return None
+    sampled = {}  # Audit only: reuse evaluations already made by fsolve.
 
     def eqs(v):
         xa, xb = v
@@ -121,14 +131,28 @@ def binodal(m, T, n=81):
         xb = min(max(xb, 1e-9), 1 - 1e-9)
         la = m.lngamma(T, np.array([xa, 1 - xa]))
         lb = m.lngamma(T, np.array([xb, 1 - xb]))
+        if audit is not None:
+            sampled[tuple(v)] = (xa, xb, np.array(la, copy=True), np.array(lb, copy=True))
+            if len(sampled) > 16:
+                del sampled[next(iter(sampled))]
         return [np.log(xa) + la[0] - np.log(xb) - lb[0], np.log(1 - xa) + la[1] - np.log(1 - xb) - lb[1]]
 
     try:
-        sol, info, ier, _ = fsolve(eqs, best, full_output=True)
+        sol, info, ier, message = fsolve(eqs, best, full_output=True)
+        residual = float(np.max(np.abs(info.get("fvec", [np.nan]))))
+        note(ier=int(ier), solver_message=str(message), nfev=int(info.get("nfev", -1)),
+             residual_max=residual if np.isfinite(residual) else None)
+        if audit is not None and tuple(sol) in sampled:
+            xa, xb, la, lb = sampled[tuple(sol)]
+            mu = np.log([xa, 1-xa]) + la
+            margin = float(np.min(g - (xs * mu[0] + (1-xs) * mu[1])))
+            note(sampled_tangent_margin=margin if np.isfinite(margin) else None)
         if ier == 1 and 0 < sol[0] < sol[1] < 1 and sol[1] - sol[0] > 1e-4:
+            note(status="refined_root", residual_pass=bool(np.isfinite(residual) and residual < 1e-7))
             return float(sol[0]), float(sol[1])
-    except Exception:
-        pass
+    except Exception as exc:
+        note(refinement_error=repr(exc))
+    note(status="coarse_hull_fallback")
     return best
 
 
@@ -144,7 +168,18 @@ def predict_lle(model_name, df, smi):
         Tk = round(r.T / 2) * 2
         bk = (k, Tk)
         if bk not in bcache:
-            bcache[bk] = binodal(cache[k], float(Tk))
+            directory = os.environ.get("ZC_LLE_AUDIT_DIR")
+            audit = {} if directory else None
+            bcache[bk] = binodal(cache[k], float(Tk), audit=audit)
+            if audit is not None:
+                import json
+                audit.update(model=model_name, c1=k[0], c2=k[1],
+                             first_requested_T=float(r.T), binodal_T=float(Tk),
+                             returned=bcache[bk])
+                path = Path(directory)
+                path.mkdir(parents=True, exist_ok=True)
+                with (path / f"lle-{os.getpid()}.jsonl").open("a") as handle:
+                    handle.write(json.dumps(audit, allow_nan=False) + "\n")
         b = bcache[bk]
         if b is not None:
             split[i] = True
