@@ -30,7 +30,10 @@ def plan(a):
     chosen=sample|set(SENTINELS);cases=[];population={k:sha(p) for k,p in primary.items()}
     for key in sorted(chosen):
         source=primary[key];meta=json.loads(source.read_text().splitlines()[0][8:])
-        if meta.get('geometry_converged') is not True:raise ValueError('Primary convergence metadata absent')
+        # R7 amendment P34a (registered before any screen plan or output): 626 of the 630 primary files predate the explicit
+        # geometry_converged flag. pyscf_cosmo_v2 writes a profile only after Berny convergence, recorded in meta['geometry'].
+        legacy=str(meta.get('geometry','')).startswith('BP86/def2-SVP C-PCM conductor (pyberny)') and 'geometry_converged' not in meta
+        if meta.get('geometry_converged') is not True and not legacy:raise ValueError('Primary convergence metadata absent')
         original=source.with_suffix('.xyz.json');sym,x=geometry(original)
         dest=out/'geometries'/(key+'.json');dest.parent.mkdir(exist_ok=True);dest.write_bytes(original.read_bytes())
         ref=out/'references'/(key+'.sigma');ref.parent.mkdir(exist_ok=True);ref.write_bytes(source.read_bytes())

@@ -1286,3 +1286,10 @@ Use fixed both-role water/methanol/nonane/DME probes at 250, 298.15 and 400 K, c
 P35 records the glycol mechanism as unresolved under the available inputs. Positive weighting of the supplied sample cannot exceed its relevant tail envelope. That fact does not identify the historical UD geometry, exclude unsampled basins or rule out every electronic/cavity method. No new QC budget is assigned to matching the UD histogram. Reopening requires auditable generating inputs or an independently validated electrostatic/basin calculation on fixed controls. Water and branched polyols remain required counterexamples to any universal OH-only explanation.
 
 All jobs use immutable inputs, isolated output directories, exclusive claims and process-group deadlines. No automatic retry or stale-lock removal is allowed. Independent jobs continue after another member fails; every requested identity retains an outcome. UD-backed gates run on the Mac. Raw data and historical registrations remain unchanged. The total possible native ceiling, if every explicitly conditional stage is authorized, is 147 four-core worker-hours, not an expected duration or a claim of available account quota.
+
+- R7 amendment P34a (2026-10-06, before any P34 plan or output; the first screen plan attempt in Mac job 372 stopped at the metadata check and
+  produced nothing). r7_screen.py plan required meta geometry_converged=True, but 626 of the 630 primary profiles predate that field (4 carry it).
+  Every primary profile records meta "geometry" = "BP86/def2-SVP C-PCM conductor (pyberny)" (621) or the same with "[resumed from checkpoint]"
+  (9), and pyscf_cosmo_v2 writes a profile only after Berny reports convergence. The amendment accepts that legacy provenance string when the
+  geometry_converged field is absent; an explicit non-True value still fails. Selection, sentinels, budgets and gates are unchanged. A workflow
+  dispatch for cloud/r7/screen/plan.json made before the plan existed (run 37546536602) is void.
