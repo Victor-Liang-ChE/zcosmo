@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from functools import lru_cache
+import os
 
 import numpy as np
 import pandas as pd
@@ -71,8 +72,22 @@ class Z0xBinary:
         dc = c_es_theory(fpol=1.0) * 1.5 * deps / (eps + 0.5) ** 2
         return lg + np.array([1 - x1, -x1]) * gc * dc
 
+    def _endpoint(self, T, x1):
+        """Exact pure endpoint of the same excess-Gibbs model, not a stencil.
+
+        g_c is zero at a pure endpoint because g(pure,c)=0 for every c.
+        Use a new Mixture to avoid the rounded-c, first-insertion cache.
+        """
+        if x1 not in (0.0, 1.0):
+            raise ValueError("_endpoint requires an exactly pure composition")
+        mix = Mixture(self.keys, self.z0.with_(A_ES=self._c(x1)))
+        return mix.lngamma(T, np.array([x1, 1.0 - x1]))
+
     def lngamma(self, T, x):
         x1 = float(x[0])
+        # Prospective A numerical correction. Defaults remain historical.
+        if x1 in (0.0, 1.0) and os.environ.get("ZC_R6_ENDPOINT", "0") == "1":
+            return self._endpoint(T, x1)
         h = self.H
         if h < x1 < 1 - h:
             return self._analytic(T, x1)
