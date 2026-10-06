@@ -11,7 +11,7 @@
     "src/zcosmo/cosmosac.py": "c8a27f39ae2531b0908714de6cee35c531d1e042daf2f577d834a009701881e2",
     "src/zcosmo/z0x.py": "002f591254d3d20d7b4c9a8e7267a1d761cda81f71b19347f6d148326449046e",
     "src/zcosmo/models.py": "05aba17b655c5c82524acbb93737bea067717e45dd8c36270243fd6aa7a19d22",
-    "scripts/r7_referee.py": "529d7451ef71a9562959756d6882e20a70a6ff91ed0818cd49f757925260e61a",
+    "scripts/r7_referee.py": "e621fee841fe5896f0151fbc5253322471c76cdc8e0e8f99e6b7fa908e628ff7",
     "scripts/r6_referee.py": "02423b639021123d797a95a11ef4ab755dd4dbffc2d3c1ac035cb9ec6c92ceaf"
   },
   "base": "ddf22b19f9e1750308bd11572786b44d407a80f9",
