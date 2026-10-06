@@ -1228,3 +1228,20 @@ roots, gap witnesses, sampled no-gap and unresolved statuses distinct. Detection
 rates on the positive LLE table are not balanced accuracy. All headline numbers
 are explicitly before P28. Rewording a headline does not alter the historical
 score, and open636 remains separately flagged exploratory coverage.
+
+- Round 6 RESULTS (recorded 2026-10-06 ~07:00 PDT; registered 2026-10-06 04:49 PDT in 5926ba1; P28 acceptance 64c4a3b; Mac jobs 364-370; P30 stage 1
+  on Actions run 37463154483). Details and data in docs/astra/round6/RESULTS.md and data/.
+  P31: headline reproduces the P27 matched comparisons exactly (IDAC 816 rows 0.8040 vs 0.9423, CI [0.0506, 0.2379]; VLE CI [-0.75, 2.10]; HE CI
+  [50.9, 108.8] J/mol).
+  P28 ACCEPTED (numerical gate, all four arms): max reference error 2.73e-9; identical finite coverage; prevalence |exact-legacy| > 0.1 on 21 (UD) / 27
+  (open630) all-split rows and 0 test rows; max change 0.84 (UD) / 1.14 (open630), concentrated in YNQLUTRBYVCPMQ, IMNFDUFMRHMDMM, TVMXDCGIABBOFY;
+  3.06-3.25x faster. Acceptance recorded (gate sha256 2f3df2e2e1c333f4936e9effc7c8ef160f3b01808dd48ea0072eb83aff0d4dbc) before scoring. Corrected test
+  IDAC MAE UD 0.8394 -> 0.8397, open630 0.9423 -> 0.9427; all split +0.0019 / +0.0023. Historical scorecards unchanged.
+  P29 inventory: 6 complete, 4 incomplete members; no populations computed. Sampled tail envelopes lie below UD for EG (max 31.4 vs 33.0), DEG (34.8 vs
+  38.0), TEG (32.7 vs 42.3), tetraEG (34.3 vs 46.8), 2-methoxyethanol (20.5 vs 23.9), DME (10.3 vs 14.4); no positive weighting of these samples can
+  reproduce UD.
+  P30 stage 1: all five cases diagnostic_complete; full_response_consistent false in all five (registered gate 2e-7 Eh/Bohr with FD uncertainty
+  < 1e-7; measured FD uncertainty 6e-7 to 8e-6), so stage 2 was not run. Observed: in the P26-censored nonane/TEG/DME the original gradient errs vs
+  Richardson FD by up to 7.4e-5 / 1.1e-4 / 8.8e-5 Eh/Bohr (often opposite sign on torsions), the full-response gradient by 9.0e-6 / 1.5e-5 / 3.9e-5;
+  methanol and EG show no such difference; tight SCF changes gradients <= 7.5e-6. Interpretation (not accepted): the omitted grid response dominates
+  the optimizer's gradient at these flat geometries.

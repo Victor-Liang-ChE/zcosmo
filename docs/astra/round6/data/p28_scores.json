@@ -1,0 +1,109 @@
+{
+  "acceptance_sha256": "58dbe8831d48aa0985ad16f735d0b45725399df7291bcc97fd281249e3920c9c",
+  "tables": [
+    {
+      "arm": "UD",
+      "split": "all",
+      "requested_rows": 3252,
+      "finite_paired_rows": 3252,
+      "legacy_MAE": 0.9317570169454515,
+      "candidate_MAE": 0.9336439955049254,
+      "delta_MAE_CI95": [
+        0.0009526504889744044,
+        0.002947513168394808
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "UD",
+      "split": "test",
+      "requested_rows": 828,
+      "finite_paired_rows": 828,
+      "legacy_MAE": 0.8393651437108371,
+      "candidate_MAE": 0.8397292001590518,
+      "delta_MAE_CI95": [
+        7.003766440631159e-05,
+        0.0007749949303879499
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "open630",
+      "split": "all",
+      "requested_rows": 3252,
+      "finite_paired_rows": 3101,
+      "legacy_MAE": 0.9892981523232177,
+      "candidate_MAE": 0.9916038214225125,
+      "delta_MAE_CI95": [
+        0.0010461337738931216,
+        0.003816272356482628
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "open630",
+      "split": "test",
+      "requested_rows": 828,
+      "finite_paired_rows": 816,
+      "legacy_MAE": 0.942326840717586,
+      "candidate_MAE": 0.9426589643607153,
+      "delta_MAE_CI95": [
+        6.768852482103355e-05,
+        0.0006740420369130295
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "open636",
+      "split": "all",
+      "requested_rows": 3252,
+      "finite_paired_rows": 3252,
+      "legacy_MAE": 1.0345118401408728,
+      "candidate_MAE": 1.036713353170263,
+      "delta_MAE_CI95": [
+        0.0009949903182670506,
+        0.0037149993157204104
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "open636",
+      "split": "test",
+      "requested_rows": 828,
+      "finite_paired_rows": 828,
+      "legacy_MAE": 0.9765838238486986,
+      "candidate_MAE": 0.9769123241014024,
+      "delta_MAE_CI95": [
+        6.849321390836702e-05,
+        0.0006828646506156627
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "water_stress",
+      "split": "all",
+      "requested_rows": 3252,
+      "finite_paired_rows": 3252,
+      "legacy_MAE": 1.0738917126399188,
+      "candidate_MAE": 1.0760934975743877,
+      "delta_MAE_CI95": [
+        0.0010588018731979274,
+        0.003622974879259284
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    },
+    {
+      "arm": "water_stress",
+      "split": "test",
+      "requested_rows": 828,
+      "finite_paired_rows": 828,
+      "legacy_MAE": 1.0160061121463246,
+      "candidate_MAE": 1.0163814100134603,
+      "delta_MAE_CI95": [
+        8.594385285831407e-05,
+        0.0007581490814007061
+      ],
+      "source": "R6 numerical endpoint correction; historical P27 files not overwritten"
+    }
+  ]
+}

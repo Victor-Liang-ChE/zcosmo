@@ -1,0 +1,80 @@
+{
+  "base": "43213a5e61f591a19b4d3352a95315a62ee2aeb8",
+  "registration": "5926ba1a73fba30537e137ada6c7f8a31e74e725",
+  "key": "BKIMMITUMNQMOS-UHFFFAOYSA-N",
+  "status": "diagnostic_complete",
+  "input_sha256": "7b9f8443a8f40cfb329a35b828777a03cedd91226863a15446995f5603b1659d",
+  "records": [
+    {
+      "direction": "bond-0-1",
+      "fd": [
+        2.8332692636467982e-05,
+        2.552837467343731e-05
+      ],
+      "Richardson": 2.926746529081154e-05,
+      "fd_uncertainty_indicator": 9.347726543435578e-07,
+      "grad_original": -1.3683918649264607e-05,
+      "grad_tight_no_response": -1.3681072119108726e-05,
+      "grad_tight_full_response": 2.7451826628086797e-05,
+      "original_error": 4.2951383940076146e-05,
+      "tight_error": 4.2948537409920265e-05,
+      "full_error": 1.8156386627247416e-06
+    },
+    {
+      "direction": "bond-1-2",
+      "fd": [
+        1.702496395713145e-05,
+        1.0066931584636526e-05
+      ],
+      "Richardson": 1.9344308081296426e-05,
+      "fd_uncertainty_indicator": 2.319344124164975e-06,
+      "grad_original": -1.9353036699233844e-05,
+      "grad_tight_no_response": -1.933449084559478e-05,
+      "grad_tight_full_response": 2.2165627585271117e-05,
+      "original_error": 3.869734478053027e-05,
+      "tight_error": 3.867879892689121e-05,
+      "full_error": 2.8213195039746915e-06
+    },
+    {
+      "direction": "bond-2-3",
+      "fd": [
+        -1.3873858506485703e-05,
+        -2.6845090890977492e-05
+      ],
+      "Richardson": -9.550114378321774e-06,
+      "fd_uncertainty_indicator": 4.3237441281639294e-06,
+      "grad_original": -9.63391590882162e-06,
+      "grad_tight_no_response": -9.601945335507679e-06,
+      "grad_tight_full_response": -1.855390254063892e-05,
+      "original_error": 8.380153049984535e-08,
+      "tight_error": 5.183095718590471e-08,
+      "full_error": 9.003788162317145e-06
+    },
+    {
+      "direction": "bond-3-4",
+      "fd": [
+        5.3354038224521595e-05,
+        4.481642198091625e-05
+      ],
+      "Richardson": 5.6199910305723374e-05,
+      "fd_uncertainty_indicator": 2.8458720812017806e-06,
+      "grad_original": -1.7594452337616123e-05,
+      "grad_tight_no_response": -1.757172984795418e-05,
+      "grad_tight_full_response": 5.3290675773323245e-05,
+      "original_error": 7.37943626433395e-05,
+      "tight_error": 7.377164015367755e-05,
+      "full_error": 2.9092345324001286e-06
+    }
+  ],
+  "SCF_evaluations": 18,
+  "gradient_evaluations": 3,
+  "response_gradient_change_max": 8.803032870385863e-05,
+  "original_vs_tight_change_max": 8.173757840896799e-07,
+  "full_response_consistent": false,
+  "missing_response_material": false,
+  "original_gmax": 1.0723359156979763e-05,
+  "full_gmax": 9.078357904460435e-05,
+  "wall_s": 710.2721822010001,
+  "adopted": false,
+  "scope": "Four sampled directional tests; not a proof of gradient consistency everywhere or Berny convergence."
+}

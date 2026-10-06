@@ -1,0 +1,80 @@
+{
+  "base": "43213a5e61f591a19b4d3352a95315a62ee2aeb8",
+  "registration": "5926ba1a73fba30537e137ada6c7f8a31e74e725",
+  "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+  "status": "diagnostic_complete",
+  "input_sha256": "9e591eaf93c1880b890965ec3223928680b4ea2b34e1270da83538ae0e125685",
+  "records": [
+    {
+      "direction": "bond-0-1",
+      "fd": [
+        1.1232259566895664e-05,
+        1.0526799580172034e-05
+      ],
+      "Richardson": 1.1467412895803542e-05,
+      "fd_uncertainty_indicator": 2.3515332890787671e-07,
+      "grad_original": 3.139845752102954e-07,
+      "grad_tight_no_response": 4.1854606963402505e-07,
+      "grad_tight_full_response": 4.985498607431891e-06,
+      "original_error": 1.1153428320593247e-05,
+      "tight_error": 1.1048866826169517e-05,
+      "full_error": 6.481914288371651e-06
+    },
+    {
+      "direction": "bond-1-2",
+      "fd": [
+        -2.074453201809471e-07,
+        2.367284679394288e-05
+      ],
+      "Richardson": -8.167542691555556e-06,
+      "fd_uncertainty_indicator": 7.96009737137461e-06,
+      "grad_original": 1.7475288406577857e-05,
+      "grad_tight_no_response": 1.7463333540863323e-05,
+      "grad_tight_full_response": 1.1653573095252091e-05,
+      "original_error": 2.564283109813341e-05,
+      "tight_error": 2.563087623241888e-05,
+      "full_error": 1.9821115786807648e-05
+    },
+    {
+      "direction": "bond-2-3",
+      "fd": [
+        2.6091119783207734e-05,
+        3.128017785532696e-05
+      ],
+      "Richardson": 2.4361433759167994e-05,
+      "fd_uncertainty_indicator": 1.7296860240397424e-06,
+      "grad_original": 1.863277771764335e-05,
+      "grad_tight_no_response": 1.8709943771269868e-05,
+      "grad_tight_full_response": 2.1195271232485737e-05,
+      "original_error": 5.728656041524643e-06,
+      "tight_error": 5.651489987898126e-06,
+      "full_error": 3.166162526682257e-06
+    },
+    {
+      "direction": "internal-0",
+      "fd": [
+        -4.00577088536617e-05,
+        -2.5937751502169704e-05
+      ],
+      "Richardson": -4.4764361304159036e-05,
+      "fd_uncertainty_indicator": 4.706652450497332e-06,
+      "grad_original": -2.6606980372121123e-05,
+      "grad_tight_no_response": -2.4673233305277576e-05,
+      "grad_tight_full_response": -2.2374767668373513e-05,
+      "original_error": 1.8157380932037913e-05,
+      "tight_error": 2.009112799888146e-05,
+      "full_error": 2.2389593635785523e-05
+    }
+  ],
+  "SCF_evaluations": 18,
+  "gradient_evaluations": 3,
+  "response_gradient_change_max": 4.587184240101294e-05,
+  "original_vs_tight_change_max": 1.5951887660094026e-06,
+  "full_response_consistent": false,
+  "missing_response_material": false,
+  "original_gmax": 7.879197316608953e-05,
+  "full_gmax": 7.467772847734311e-05,
+  "wall_s": 58.36612403099997,
+  "adopted": false,
+  "scope": "Four sampled directional tests; not a proof of gradient consistency everywhere or Berny convergence."
+}

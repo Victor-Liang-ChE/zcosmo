@@ -1,0 +1,617 @@
+{
+  "base": "43213a5e61f591a19b4d3352a95315a62ee2aeb8",
+  "registration": "5926ba1a73fba30537e137ada6c7f8a31e74e725",
+  "molecules": [
+    {
+      "key": "BKIMMITUMNQMOS-UHFFFAOYSA-N",
+      "manifest_sha256": "91b0641304dba820162f880e670e7e558044f974260be93295976e5acf308858",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "764948569d190ad976c4df5bcab45bf1b6317b03f1bd72e21ef0ab81fab01d7f"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "9575186e0d3bae79ff83a6eb38094c4ce6dce1c150870ed9a85d8b3eaf1ac1c4"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "c7ee180ae56ee9e857aa81de0815da64584ae020ff9a731cbe157f190ee5e665"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "censored",
+          "result_sha256": "2ca427c6cc0d1979c259700ae043b691a68a99e36caca6db733e5be16461d041"
+        }
+      ],
+      "complete": false,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_0/BKIMMITUMNQMOS-UHFFFAOYSA-N/s20261005-c0/BKIMMITUMNQMOS-UHFFFAOYSA-N.sigma",
+          "sha256": "471a8ddd8eb7a5e18757f6644837053608035c93be76fc3e5473c91ca503a574",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_1/BKIMMITUMNQMOS-UHFFFAOYSA-N/s20261005-c1/BKIMMITUMNQMOS-UHFFFAOYSA-N.sigma",
+          "sha256": "14c1122e6f7932868f131ca0d181644aa64668b4b89acac441a0be138123d691",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_2/BKIMMITUMNQMOS-UHFFFAOYSA-N/s20261006-c0/BKIMMITUMNQMOS-UHFFFAOYSA-N.sigma",
+          "sha256": "bbca4cd98d98d6372ef2682c05a925d1fe8b652d8c5dcb219d29eca5a1b0c242",
+          "proposal": "s20261006-c0.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 0.0,
+        "raw_tail_max_A2": 0.0,
+        "normalized_tail_min": 0.0,
+        "normalized_tail_max": 0.0,
+        "normalized_L1_diameter": 0.06454569528292323,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -222845.7302813642,
+        -222842.48182241092
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "DNIAPMSPPWPWGF-UHFFFAOYSA-N",
+      "manifest_sha256": "db072213a14564f905b9e02a00807b0cbb5b7c6d8c9faca74caa0f406ae70aa1",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "226c3e7da91ff7df4f447258f29dcf260120259c1dc913edbccd3731f8d57c68"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "56b2e0d4217978bd6926a3901b5b382c74958db386a501b8a46fb15ad3b3403f"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "b97411f51d7703fb79123aa1de0f34c352a50b18a4616026e093de4a5908889e"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "01f38477b6f7a6c8dec91cfc49a8a5d7721be72e56172610e56c6681b303f20a"
+        }
+      ],
+      "complete": true,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_4/DNIAPMSPPWPWGF-UHFFFAOYSA-N/s20261005-c0/DNIAPMSPPWPWGF-UHFFFAOYSA-N.sigma",
+          "sha256": "7de5ca1430acb3fc360a95025041a77a6ee402ebf0b6f698b70d6ecdfc900400",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_5/DNIAPMSPPWPWGF-UHFFFAOYSA-N/s20261005-c1/DNIAPMSPPWPWGF-UHFFFAOYSA-N.sigma",
+          "sha256": "426d253342191f6d1157fc7240d9bc597a697b06d8848932932fc63cde92dd91",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_6/DNIAPMSPPWPWGF-UHFFFAOYSA-N/s20261006-c0/DNIAPMSPPWPWGF-UHFFFAOYSA-N.sigma",
+          "sha256": "90d14c990adae53d2e1ab77543321ef1039de2461c5d4bf08d126de7eac484fc",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_7/DNIAPMSPPWPWGF-UHFFFAOYSA-N/s20261006-c1/DNIAPMSPPWPWGF-UHFFFAOYSA-N.sigma",
+          "sha256": "35023bbefb0adeb470533fc52d48add54b8f7d7f786ba0fe1586b3d7eae00924",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 21.806510019379374,
+        "raw_tail_max_A2": 29.309170900224437,
+        "normalized_tail_min": 0.1822517881492596,
+        "normalized_tail_max": 0.24257975342099689,
+        "normalized_L1_diameter": 0.24955530774965604,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -169236.63518998734,
+        -169235.22352307505
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+      "manifest_sha256": "eab3871b2d2d73219afbd6627613002adf13b422653fe1cd988f2528a97d286d",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "25bbdc5e325720831e4d6a910bd913e5acf9d5a836c5da84974e02885c2dc13f"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "05ca066ff56e245bf487af449777b39ab4d82c60672c3878df2182268ab0b6c8"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "4b3331478b801c94f7cb38785282bb62841377cf1335a3a60f1a8196457cecaf"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "e4d62767f37f16a51128a21831a09eae75a0e0acf067c53f3e7e3436af232c09"
+        }
+      ],
+      "complete": true,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_8/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+          "sha256": "77a1e0dfdcf15a40b40f8786b5de224bcbd1c96194e29f619680f45acc8dc420",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_9/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+          "sha256": "ef6fee9ef9bb7a90685f62facea37c35a26e07aa39514fb004835e1b312e07ce",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_10/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+          "sha256": "3a49663e9910f2b9f7711e858a36e36d9774b8168d29e0df71875eb16549e019",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_11/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+          "sha256": "6df2cf26d9cac410767f15912a07619cce55912b85944e524ab22f7566963ef6",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 22.826682051681733,
+        "raw_tail_max_A2": 31.38681517355192,
+        "normalized_tail_min": 0.22970703994037822,
+        "normalized_tail_max": 0.3094811063859157,
+        "normalized_L1_diameter": 0.33891238953701175,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -144556.36456891743,
+        -144554.90901621728
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "MTHSVFCYNBDYFN-UHFFFAOYSA-N",
+      "manifest_sha256": "1d23f1603b3e92374a385009e356bf9176923c4b235ff74c43e6fc31225f280d",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "b834449054fcb100fb85a9c0d9c22ebb2a1fe374b836d9c72f9d5f5ddea93f37"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "00268217f857d3cbcb666ab79bdb5de8a8329f7bbd4f943c5a88e234194d478c"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "06925e360b8dd385b9f5ba0a579ae01bd48b6e812dd3e33ce8ca0d27123c338c"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "b44bf0b7eaf28ebba57eb699e1eea846a62615c6a894f46d5d91878ba54a11a4"
+        }
+      ],
+      "complete": true,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_12/MTHSVFCYNBDYFN-UHFFFAOYSA-N/s20261005-c0/MTHSVFCYNBDYFN-UHFFFAOYSA-N.sigma",
+          "sha256": "202947e4fff5adc86d7485efc5e49ecb43ded11b82ccfa0d85e829244d439d6c",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_13/MTHSVFCYNBDYFN-UHFFFAOYSA-N/s20261005-c1/MTHSVFCYNBDYFN-UHFFFAOYSA-N.sigma",
+          "sha256": "24be2ee69b9265934a549ae8578a13aed00d138f670cada4fa01166b19a9329e",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_14/MTHSVFCYNBDYFN-UHFFFAOYSA-N/s20261006-c0/MTHSVFCYNBDYFN-UHFFFAOYSA-N.sigma",
+          "sha256": "ddc6b1141e097602f052b9e2516904e84f7754e65ddce5cfe1939be20f821b4d",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_15/MTHSVFCYNBDYFN-UHFFFAOYSA-N/s20261006-c1/MTHSVFCYNBDYFN-UHFFFAOYSA-N.sigma",
+          "sha256": "8e2c2a65f1541820f3931407b71acfda851c5f2f7e3abd8b59431d8de3fdfba6",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 23.702536089883694,
+        "raw_tail_max_A2": 34.841350822616185,
+        "normalized_tail_min": 0.1539686855106845,
+        "normalized_tail_max": 0.2215584403832254,
+        "normalized_L1_diameter": 0.37812628943383325,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -241127.1868540849,
+        -241123.68205669688
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "PEDCQBHIVMGVHV-UHFFFAOYSA-N",
+      "manifest_sha256": "5f018070a69b5552b58701b39e906dcfc895f5578a90fcf55f1bb692504b2480",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "431c6b05b1c9519198d07f323a8fa4804ce341a8dc9c52f4ac21c58104df56d7"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "6dc4461d36c05c0e9a07b6d690d2a380e005fead0c32b0345f1d5f50206e74bf"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "9504f8f7671dce549b6d4dd379c1131490c6eadd25f87239c490ea93f3488883"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "f4c87b09c61519f07a5c663048337a142f8e4b373f915ab4c097840d9505a7a8"
+        }
+      ],
+      "complete": true,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_16/PEDCQBHIVMGVHV-UHFFFAOYSA-N/s20261005-c0/PEDCQBHIVMGVHV-UHFFFAOYSA-N.sigma",
+          "sha256": "85f801243d8c763fa9893c38129be1b63c46375e86f4cb18d0deaa022dc433a9",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_17/PEDCQBHIVMGVHV-UHFFFAOYSA-N/s20261005-c1/PEDCQBHIVMGVHV-UHFFFAOYSA-N.sigma",
+          "sha256": "7eb4d1f669f4694b7d22626dcff93fa79fc17fd7ae40fcae0480b8c974bc2915",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_18/PEDCQBHIVMGVHV-UHFFFAOYSA-N/s20261006-c0/PEDCQBHIVMGVHV-UHFFFAOYSA-N.sigma",
+          "sha256": "e66e0f49c49bfb946c94ef06a0eacc468a2e6090c26aec972587b9098a9e850e",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_19/PEDCQBHIVMGVHV-UHFFFAOYSA-N/s20261006-c1/PEDCQBHIVMGVHV-UHFFFAOYSA-N.sigma",
+          "sha256": "20e8f4e26ed6836a02a7a474be9a9156d0e3859b6580bafe8eb4753b13a6bfff",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 27.07243490007761,
+        "raw_tail_max_A2": 35.06998792938126,
+        "normalized_tail_min": 0.21221490085657546,
+        "normalized_tail_max": 0.2743223470865632,
+        "normalized_L1_diameter": 0.2772220927015026,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -216460.05894826373,
+        -216457.7962174528
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "UWHCKJMYHZGTIT-UHFFFAOYSA-N",
+      "manifest_sha256": "04fdd3647794c2da8b3f4a2213e0687a27ae287c377e8e2c0cf79d49d7ead023",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "99c8c62d0089f0915582dbc7db953ddc275a2b8778612daf3c9fa491904325fe"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "93af224b6500d91ac3991f1d2b0067ef374b3b7574d63920e8fd8131d9ed7524"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "fab2e9bb8b23a636d9fdee3d97a1efcd630dbbd2fb21b44843f04efb3b1cac59"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "never_run"
+        }
+      ],
+      "complete": false,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_0/UWHCKJMYHZGTIT-UHFFFAOYSA-N/s20261005-c0/UWHCKJMYHZGTIT-UHFFFAOYSA-N.sigma",
+          "sha256": "4a258050706352ad604cc4b8848bf46ad379857a84b846eb146faec010501e26",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_1/UWHCKJMYHZGTIT-UHFFFAOYSA-N/s20261005-c1/UWHCKJMYHZGTIT-UHFFFAOYSA-N.sigma",
+          "sha256": "2ef1ac0bfb9da35c0da049d16352d6e6e79c296f5c5574cf2dd3da182dd96a93",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_2/UWHCKJMYHZGTIT-UHFFFAOYSA-N/s20261006-c0/UWHCKJMYHZGTIT-UHFFFAOYSA-N.sigma",
+          "sha256": "66e336715d06dae577833629cfdfb8e8b38e24175c1c92d0ef2fa8a34aea85c7",
+          "proposal": "s20261006-c0.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 24.354597551037003,
+        "raw_tail_max_A2": 34.34016533162002,
+        "normalized_tail_min": 0.10124777968119376,
+        "normalized_tail_max": 0.12928891263512868,
+        "normalized_L1_diameter": 0.2388110891711752,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -434268.0431892744,
+        -434262.78193052986
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "WYURNTSHIVDZCO-UHFFFAOYSA-N",
+      "manifest_sha256": "991d9465aa34ba3705c06e273e3fe6a90a51c66d2ca3b751e8f23fb7cad5e219",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "35d505895bc2c3ed7d6c8f68fe312a6e52a83325e25c8378f29152b1dd85f4a6"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "9c46de7b8e9e568a02cc520c50aba68dec7cbe7bb3d666d92025c572dafa908b"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "8f6d7f3572a96aca0d1f9da23698e19db630e90217b6246b3a640db11374cdcf"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "ffe4829088c9148b9d1b42a85a1b96d01439f31b75deb490682c645a33c17065"
+        }
+      ],
+      "complete": true,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_4/WYURNTSHIVDZCO-UHFFFAOYSA-N/s20261005-c0/WYURNTSHIVDZCO-UHFFFAOYSA-N.sigma",
+          "sha256": "b71abbb7c0a2bb1b994fd95f4aa516d143d6de0719f0a884896a877eac92e23d",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_5/WYURNTSHIVDZCO-UHFFFAOYSA-N/s20261005-c1/WYURNTSHIVDZCO-UHFFFAOYSA-N.sigma",
+          "sha256": "460db1b89e954e008dd03653e90eed356de7f66f0c833beae7625ebff074be14",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_6/WYURNTSHIVDZCO-UHFFFAOYSA-N/s20261006-c0/WYURNTSHIVDZCO-UHFFFAOYSA-N.sigma",
+          "sha256": "66e667e74d42f885f2187b068f470f39d0990b4d36b0437e1b432343c44e9dbb",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_7/WYURNTSHIVDZCO-UHFFFAOYSA-N/s20261006-c1/WYURNTSHIVDZCO-UHFFFAOYSA-N.sigma",
+          "sha256": "88a628faca64135e25aea70655e6ef54b869b025cf42d3ee5f81dc33fced6414",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 8.25894517223626,
+        "raw_tail_max_A2": 8.365208906265241,
+        "normalized_tail_min": 0.07192609931517054,
+        "normalized_tail_max": 0.07287562670723927,
+        "normalized_L1_diameter": 0.03204989697686015,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -145921.00622187162,
+        -145921.00009454676
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "XNWFRZJHXBZDAG-UHFFFAOYSA-N",
+      "manifest_sha256": "c47fea82a0f6156d088c3d538689d16034a9e3ce486f912d9477677bd3c652d5",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "fb01178f8ce1a07621148d601654ea35184cf32f9ed68a0a95339f0310e85067"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "001b6af181deb667eaa160b6f31955568b050f1ee3f5280e7a2fc0bb81463cea"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "20d3a2550626ac1f0870d0fb4917d2e6ac5766004c622957e809bf1707e2ad32"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "86dbe0c16b8717a03046a66c805db23d2ec23391b7e49a26c2a3341c186c57f6"
+        }
+      ],
+      "complete": true,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_8/XNWFRZJHXBZDAG-UHFFFAOYSA-N/s20261005-c0/XNWFRZJHXBZDAG-UHFFFAOYSA-N.sigma",
+          "sha256": "916e82d4cb6e454199def0e80329ea9d1627d93b7152fb6e3074609e8b983c76",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_9/XNWFRZJHXBZDAG-UHFFFAOYSA-N/s20261005-c1/XNWFRZJHXBZDAG-UHFFFAOYSA-N.sigma",
+          "sha256": "bc37005dc038b35dfc7db18424a641434a52af85b935525bddb5f5dc97da99a9",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_10/XNWFRZJHXBZDAG-UHFFFAOYSA-N/s20261006-c0/XNWFRZJHXBZDAG-UHFFFAOYSA-N.sigma",
+          "sha256": "ee10299121e87f2f23dc23a106a9ff7b1b61d399e53368c27f68f1803e0304b0",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_11/XNWFRZJHXBZDAG-UHFFFAOYSA-N/s20261006-c1/XNWFRZJHXBZDAG-UHFFFAOYSA-N.sigma",
+          "sha256": "e12965715cf9a875c9b2bf63fd80a833cac802ea606250daeefa46d23c7d776f",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 13.743240293494875,
+        "raw_tail_max_A2": 20.500085170348818,
+        "normalized_tail_min": 0.11213569508957434,
+        "normalized_tail_max": 0.16662178516269305,
+        "normalized_L1_diameter": 0.2082015151559477,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -169223.88194082366,
+        -169220.80261828823
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "XTHFKEDIFFGKHM-UHFFFAOYSA-N",
+      "manifest_sha256": "7f2424843d541f9fef5f09899a89b19dca7575b00d0a4ee9782af8ad2512cd6d",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "62bb029eca8d3ffc1236306228c01ff812fcad047acc184f51dcf71fdd320e62"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "censored",
+          "result_sha256": "6be7348a9ef1118b01ddd27605d27aa5c059cbab3901eaf43e0dc3b8ba52c361"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "3851ad5a0f72bdfa366815561c8f2850bd0532d90117174e89a534d62d572cb2"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "7f09db357015ff35d7cfa3752711fa1a9ac2c5f3a6e3948ee1f987c367de18c3"
+        }
+      ],
+      "complete": false,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_12/XTHFKEDIFFGKHM-UHFFFAOYSA-N/s20261005-c0/XTHFKEDIFFGKHM-UHFFFAOYSA-N.sigma",
+          "sha256": "325e347838cf78a40756ead07d28d92cdb1ed08f01da721d7da002b8f289aab7",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_14/XTHFKEDIFFGKHM-UHFFFAOYSA-N/s20261006-c0/XTHFKEDIFFGKHM-UHFFFAOYSA-N.sigma",
+          "sha256": "f9f1ab5f5caadf9ce664998e5de4456f8e6f5114b1b6088d009d627bc3833b09",
+          "proposal": "s20261006-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_15/XTHFKEDIFFGKHM-UHFFFAOYSA-N/s20261006-c1/XTHFKEDIFFGKHM-UHFFFAOYSA-N.sigma",
+          "sha256": "6f4054cebbd0d223dba9c8ded6f58453bdcf480ef047d5ca2ab0232327548c6a",
+          "proposal": "s20261006-c1.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 9.268769421180647,
+        "raw_tail_max_A2": 10.348855587730748,
+        "normalized_tail_min": 0.0640249486860428,
+        "normalized_tail_max": 0.07037357719081659,
+        "normalized_L1_diameter": 0.151587666200272,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -193889.34963388008,
+        -193889.0535410306
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    },
+    {
+      "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+      "manifest_sha256": "7bb8ad45768b6ecab4a56e42598ca2836d3aab9a3f2d499a4dad67e461e20ed6",
+      "expected": 4,
+      "states": [
+        {
+          "proposal": "s20261005-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "0945aa0f5c0560e9487c515d8fefe32e8ce4025fe548ff60103243c44fe4b2fe"
+        },
+        {
+          "proposal": "s20261005-c1.json",
+          "status": "stationary_sample",
+          "result_sha256": "8b7cdb65ef817ea4d34875bb7b0d1849a81dd120ebec7b7db45a06394cdcb393"
+        },
+        {
+          "proposal": "s20261006-c0.json",
+          "status": "stationary_sample",
+          "result_sha256": "0652ecdf3ed8faca18cae0e92e68991a781fd9ca5c6de8d5610f71790ed80f9c"
+        },
+        {
+          "proposal": "s20261006-c1.json",
+          "status": "censored",
+          "result_sha256": "d715109cbe9484c92f4447d65f4898460188f05c26e71f9145a9808ff42b7e74"
+        }
+      ],
+      "complete": false,
+      "available_profiles": [
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_16/ZIBGPFATKBEMQZ-UHFFFAOYSA-N/s20261005-c0/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.sigma",
+          "sha256": "c9485db558915a52b6d51495f39574a0cb7929c9f9c3f29d72dc4c2010f0386f",
+          "proposal": "s20261005-c0.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_17/ZIBGPFATKBEMQZ-UHFFFAOYSA-N/s20261005-c1/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.sigma",
+          "sha256": "2f016731d750336acaf07f05b2c196e2853e2894a7efe1194d54038d55d701be",
+          "proposal": "s20261005-c1.json"
+        },
+        {
+          "profile": "/private/tmp/r6work/p26-artifacts/r5c_18/ZIBGPFATKBEMQZ-UHFFFAOYSA-N/s20261006-c0/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.sigma",
+          "sha256": "07b38fd08ab9ce82516a06d35f35fc2f1da496846ee13ba4030b305d86d4015b",
+          "proposal": "s20261006-c0.json"
+        }
+      ],
+      "sampled_envelope": {
+        "raw_tail_min_A2": 26.456492376233758,
+        "raw_tail_max_A2": 32.70260962988442,
+        "normalized_tail_min": 0.12647822819611163,
+        "normalized_tail_max": 0.15527325812785986,
+        "normalized_L1_diameter": 0.1688263772601044,
+        "meaning": "Bounds cover convex averages of these samples only; no unsampled-basin bound."
+      },
+      "electronic_energy_range_kcal": [
+        -337695.15406962903,
+        -337692.65625918447
+      ],
+      "population_status": "not computed: duplicate basins, degeneracy, nuclear entropy and environment transfer require an audit"
+    }
+  ],
+  "adoption": false,
+  "reference": "Conductor electronic energies of the available P26 samples only"
+}
