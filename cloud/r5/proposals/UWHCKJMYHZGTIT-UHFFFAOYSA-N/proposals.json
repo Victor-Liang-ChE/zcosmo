@@ -1,0 +1,67 @@
+{
+  "key": "UWHCKJMYHZGTIT-UHFFFAOYSA-N",
+  "smiles": "OCCOCCOCCOCCO",
+  "cases": [
+    {
+      "path": "s20261005-c0.json",
+      "sha256": "03eaffda8f83bd0b1806b626a6842375d50cadac667c78bf3a454f6a1776129b",
+      "seed": 20261005,
+      "rank": 0,
+      "probe": true
+    },
+    {
+      "path": "s20261005-c1.json",
+      "sha256": "36c8d336b1d222423f917343e7f6f00f04a4aedf10ae8bab10ee7b4d307f803e",
+      "seed": 20261005,
+      "rank": 1,
+      "probe": true
+    },
+    {
+      "path": "s20261005-c2.json",
+      "sha256": "ac8fbade151503ebf36ff0e97e1736652dea74ed9f4436a46560560f5b5a8f90",
+      "seed": 20261005,
+      "rank": 2,
+      "probe": false
+    },
+    {
+      "path": "s20261005-c3.json",
+      "sha256": "24638d32c1ce87523d4e076e28e0b5b29b18853b393a5eea8a167b072acbb81e",
+      "seed": 20261005,
+      "rank": 3,
+      "probe": false
+    },
+    {
+      "path": "s20261006-c0.json",
+      "sha256": "63ff443f264d6e212d036dd42b9f1aa74e4f8090138606fa90ba8c4ca1a77da1",
+      "seed": 20261006,
+      "rank": 0,
+      "probe": true
+    },
+    {
+      "path": "s20261006-c1.json",
+      "sha256": "c123a57bd6496238f524c8ca85e79048ec8fd5b42e2b71ea4531856a9f37c3db",
+      "seed": 20261006,
+      "rank": 1,
+      "probe": true
+    },
+    {
+      "path": "s20261006-c2.json",
+      "sha256": "63463e486767d2901f56d8c6932f5c879ae3e883be211b9c2e7b0b0490255aa5",
+      "seed": 20261006,
+      "rank": 2,
+      "probe": false
+    },
+    {
+      "path": "s20261006-c3.json",
+      "sha256": "6cd18f1630ffcf2a9382ace318eaa321e065efd0468de5c4c80fbd86c70bbbb4",
+      "seed": 20261006,
+      "rank": 3,
+      "probe": false
+    }
+  ],
+  "rigid": false,
+  "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+  "reference_sha256": "294eba094e89b05e5e206535cc19c57d6cf8ccdba6c8a0b9f4c320d52554fb0c",
+  "selection": "lowest MMFF start plus three farthest starts; metric includes donor hydrogens",
+  "note": "Probe runs ranks 0,1 per pool. Conditional full protocol runs all four, never a new seed."
+}

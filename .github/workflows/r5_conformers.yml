@@ -1,0 +1,50 @@
+name: r5-conformers
+# Round 5 P26 probe (registered e126d31): ranks 0 and 1 of both pools for the ten non-rigid panel members, at most 40 optimizations,
+# 80 gradient evaluations and 1 h per proposal. Frozen proposals in cloud/r5/proposals.
+on: {workflow_dispatch: {}}
+permissions: {contents: read}
+env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ZC_PCM3C: "1", ZC_PCM3C_MB: "2000", PYTHONPATH: "src:scripts", MPLBACKEND: Agg, REG: e126d31ee7bff46ed9c8ca35472d758ad335c766, PROPOSALS: cloud/r5/proposals, R5_STAGE: probe, R5_SLOTS: "20"}
+jobs:
+  opt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: {slot: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit==2026.03.6 pandas scipy matplotlib
+      - name: slot
+        env: {R5_SLOT: "${{ matrix.slot }}"}
+        run: |
+          set +e
+          export CONFORMERS=$PWD/conformers
+          python - <<'PYCODE' > slot.log 2>&1
+          import json,os,subprocess,sys
+          from pathlib import Path
+          jobs=[]
+          for p in sorted(Path(os.environ['PROPOSALS']).rglob('proposals.json')):
+              d=json.loads(p.read_text())
+              for c in d['cases']:
+                  if os.environ['R5_STAGE']=='probe' and not c['probe']:continue
+                  jobs.append((d['key'],p.parent/c['path']))
+          print('total probe jobs',len(jobs),flush=True)
+          slot=int(os.getenv('R5_SLOT','0'));slots=int(os.getenv('R5_SLOTS','1'))
+          assert slots>0 and 0<=slot<slots
+          for j,(key,p) in enumerate(jobs):
+              if j%slots!=slot:continue
+              dest=Path(os.environ['CONFORMERS'])/key/p.stem;dest.parent.mkdir(parents=True,exist_ok=True)
+              if dest.exists(): raise FileExistsError(dest)
+              with (dest.parent/(p.stem+'.log')).open('w') as log:
+                  r=subprocess.run([sys.executable,'scripts/r5_conformers.py','optimize','--input',str(p),
+                      '--memory','4000','--registration',os.environ['REG'],'--out',str(dest)],
+                      stdout=log,stderr=subprocess.STDOUT,check=True,timeout=3600)
+              print('done',key,p.stem,'rc',r.returncode,flush=True)
+          PYCODE
+          rc=$?; echo "rc=$rc"; grep -vi warn slot.log | tail -20; mkdir -p conformers; cp slot.log conformers/slot${{ matrix.slot }}.log; echo $rc > conformers/rc${{ matrix.slot }}.txt; exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r5c_${{ matrix.slot }}", path: conformers, retention-days: 60}

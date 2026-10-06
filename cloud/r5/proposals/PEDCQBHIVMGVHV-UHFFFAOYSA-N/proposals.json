@@ -1,0 +1,67 @@
+{
+  "key": "PEDCQBHIVMGVHV-UHFFFAOYSA-N",
+  "smiles": "OCC(CO)O",
+  "cases": [
+    {
+      "path": "s20261005-c0.json",
+      "sha256": "26264676eb68a640f9334510e706ca070be05c5a80001c5649502098b8927262",
+      "seed": 20261005,
+      "rank": 0,
+      "probe": true
+    },
+    {
+      "path": "s20261005-c1.json",
+      "sha256": "04df9600502d682cf044ae2f1f34458690150c9c4a6c832454968fdc2e01cd24",
+      "seed": 20261005,
+      "rank": 1,
+      "probe": true
+    },
+    {
+      "path": "s20261005-c2.json",
+      "sha256": "5caf2fce100e49342e56e978f6e14e87ba8267764881012381532b37d97901e5",
+      "seed": 20261005,
+      "rank": 2,
+      "probe": false
+    },
+    {
+      "path": "s20261005-c3.json",
+      "sha256": "94a2db7ac498679382bb92bd4249218a86650b04fe92bd8ff2dfe9ea794c0f70",
+      "seed": 20261005,
+      "rank": 3,
+      "probe": false
+    },
+    {
+      "path": "s20261006-c0.json",
+      "sha256": "53f4ef82b998bdd189261a81a0a1b3408dbb9651f57c9823fd4272cb45ee2259",
+      "seed": 20261006,
+      "rank": 0,
+      "probe": true
+    },
+    {
+      "path": "s20261006-c1.json",
+      "sha256": "567c77934b089eac674ff466140e23948582bc4d41628fddf2814ec1757b48b0",
+      "seed": 20261006,
+      "rank": 1,
+      "probe": true
+    },
+    {
+      "path": "s20261006-c2.json",
+      "sha256": "b7161974ff59df5aba6e2f7186c0b510f8d85536b49cf9d90718a0ad33a95b30",
+      "seed": 20261006,
+      "rank": 2,
+      "probe": false
+    },
+    {
+      "path": "s20261006-c3.json",
+      "sha256": "952714ed44b3737ed733587ae7f93871093f9d2653bda32d10ba5dede7b2438d",
+      "seed": 20261006,
+      "rank": 3,
+      "probe": false
+    }
+  ],
+  "rigid": false,
+  "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+  "reference_sha256": "c1a51279e2a97a1870d98c3a643458e913d66d88f309373754b2a1a6057eb99b",
+  "selection": "lowest MMFF start plus three farthest starts; metric includes donor hydrogens",
+  "note": "Probe runs ranks 0,1 per pool. Conditional full protocol runs all four, never a new seed."
+}
