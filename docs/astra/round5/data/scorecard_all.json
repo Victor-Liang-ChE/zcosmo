@@ -1,0 +1,1616 @@
+{
+  "base": "69b49116c2ae7574d7ae471f0a4ed7ba33d0db8b",
+  "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+  "tables": {
+    "idac": {
+      "standalone": {
+        "Z0x/UD": {
+          "rows": 3252,
+          "systems": 785,
+          "MAE": 0.9317570169454515,
+          "MAE_CI95": [
+            0.844455246956163,
+            1.0155543229567217
+          ],
+          "bias": 0.07830191877124612,
+          "solvent_rank_rho": 0.8196428571428571,
+          "ranking_solutes": 48,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3252,
+          "unavailable_rows": 0
+        },
+        "Z0x/open630": {
+          "rows": 3101,
+          "systems": 746,
+          "MAE": 0.9892981523232177,
+          "MAE_CI95": [
+            0.8985099682073414,
+            1.0744748879851853
+          ],
+          "bias": -0.11200529250906487,
+          "solvent_rank_rho": 0.8285714285714287,
+          "ranking_solutes": 47,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3101,
+          "unavailable_rows": 151
+        },
+        "Z0x/open636": {
+          "rows": 3252,
+          "systems": 785,
+          "MAE": 1.0345118401408728,
+          "MAE_CI95": [
+            0.9473283288482321,
+            1.1146978839338606
+          ],
+          "bias": -0.020834131878931506,
+          "solvent_rank_rho": 0.8285714285714287,
+          "ranking_solutes": 48,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3252,
+          "unavailable_rows": 0
+        },
+        "cosmosac2010/UD": {
+          "rows": 3252,
+          "systems": 785,
+          "MAE": 0.8392636147217164,
+          "MAE_CI95": [
+            0.7836781149406268,
+            0.8956050195881547
+          ],
+          "bias": -0.23483630066753394,
+          "solvent_rank_rho": 0.8999999999999998,
+          "ranking_solutes": 48,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3252,
+          "unavailable_rows": 0
+        },
+        "cosmosac2010/open630": {
+          "rows": 3101,
+          "systems": 746,
+          "MAE": 0.863930731764273,
+          "MAE_CI95": [
+            0.8005259365544508,
+            0.9260827896445587
+          ],
+          "bias": -0.4006063969845098,
+          "solvent_rank_rho": 0.892400553605278,
+          "ranking_solutes": 47,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3101,
+          "unavailable_rows": 151
+        },
+        "cosmosac2010/open636": {
+          "rows": 3252,
+          "systems": 785,
+          "MAE": 0.8897010669491009,
+          "MAE_CI95": [
+            0.8276319019870713,
+            0.9509820832964928
+          ],
+          "bias": -0.34147133411294417,
+          "solvent_rank_rho": 0.8839285714285714,
+          "ranking_solutes": 48,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3252,
+          "unavailable_rows": 0
+        },
+        "cosmosac_dsp/UD": {
+          "rows": 3160,
+          "systems": 749,
+          "MAE": 0.7649199560514314,
+          "MAE_CI95": [
+            0.7108040111841599,
+            0.8240144006136406
+          ],
+          "bias": -0.12870298308042194,
+          "solvent_rank_rho": 0.9036329964250133,
+          "ranking_solutes": 45,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3252,
+          "unavailable_rows": 92
+        },
+        "cosmosac_dsp/open630": {
+          "rows": 3009,
+          "systems": 710,
+          "MAE": 0.7862190758350555,
+          "MAE_CI95": [
+            0.7250665252629476,
+            0.848303015808255
+          ],
+          "bias": -0.2948363593051589,
+          "solvent_rank_rho": 0.8928571428571429,
+          "ranking_solutes": 44,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3101,
+          "unavailable_rows": 243
+        },
+        "cosmosac_dsp/open636": {
+          "rows": 3160,
+          "systems": 749,
+          "MAE": 0.8186764240363515,
+          "MAE_CI95": [
+            0.7620790369146051,
+            0.8802176250739914
+          ],
+          "bias": -0.2380463227448165,
+          "solvent_rank_rho": 0.8951048951048951,
+          "ranking_solutes": 45,
+          "requested_rows": 3252,
+          "profile_eligible_rows": 3252,
+          "unavailable_rows": 92
+        }
+      },
+      "pairwise": [
+        {
+          "reference": {
+            "rows": 3101,
+            "systems": 746,
+            "MAE": 0.8820750652166128,
+            "MAE_CI95": [
+              0.7992610597367986,
+              0.969998318399772
+            ],
+            "bias": -0.005665620823520059,
+            "solvent_rank_rho": 0.8214285714285715,
+            "ranking_solutes": 47
+          },
+          "candidate": {
+            "rows": 3101,
+            "systems": 746,
+            "MAE": 0.9892981523232177,
+            "MAE_CI95": [
+              0.8985099682073414,
+              1.0744748879851853
+            ],
+            "bias": -0.11200529250906487,
+            "solvent_rank_rho": 0.8285714285714287,
+            "ranking_solutes": 47
+          },
+          "delta_MAE_CI95": [
+            0.05879551141830749,
+            0.1488397876532591
+          ],
+          "model": "Z0x",
+          "arm": "open630",
+          "common_rows": 3101,
+          "row_ids_sha256": "7474feb0c2f7716ed2d4a50c7f8dc581a6b33d5178ee8a92803707c7e2bbfeb2"
+        },
+        {
+          "reference": {
+            "rows": 3252,
+            "systems": 785,
+            "MAE": 0.9317570169454515,
+            "MAE_CI95": [
+              0.844455246956163,
+              1.0155543229567217
+            ],
+            "bias": 0.07830191877124612,
+            "solvent_rank_rho": 0.8196428571428571,
+            "ranking_solutes": 48
+          },
+          "candidate": {
+            "rows": 3252,
+            "systems": 785,
+            "MAE": 1.0345118401408728,
+            "MAE_CI95": [
+              0.9473283288482321,
+              1.1146978839338606
+            ],
+            "bias": -0.020834131878931506,
+            "solvent_rank_rho": 0.8285714285714287,
+            "ranking_solutes": 48
+          },
+          "delta_MAE_CI95": [
+            0.057037323491610746,
+            0.1437785310637008
+          ],
+          "model": "Z0x",
+          "arm": "open636",
+          "common_rows": 3252,
+          "row_ids_sha256": "96f830f5b02904c0cba40bab9a2fe90711ee36db929746faf38c0de04ca0a112"
+        },
+        {
+          "reference": {
+            "rows": 3101,
+            "systems": 746,
+            "MAE": 0.808249183632004,
+            "MAE_CI95": [
+              0.7506801723950083,
+              0.869104595644898
+            ],
+            "bias": -0.28805403985910966,
+            "solvent_rank_rho": 0.8999999999999998,
+            "ranking_solutes": 47
+          },
+          "candidate": {
+            "rows": 3101,
+            "systems": 746,
+            "MAE": 0.863930731764273,
+            "MAE_CI95": [
+              0.8005259365544508,
+              0.9260827896445587
+            ],
+            "bias": -0.4006063969845098,
+            "solvent_rank_rho": 0.892400553605278,
+            "ranking_solutes": 47
+          },
+          "delta_MAE_CI95": [
+            0.020882557518811573,
+            0.08922897791746358
+          ],
+          "model": "cosmosac2010",
+          "arm": "open630",
+          "common_rows": 3101,
+          "row_ids_sha256": "7474feb0c2f7716ed2d4a50c7f8dc581a6b33d5178ee8a92803707c7e2bbfeb2"
+        },
+        {
+          "reference": {
+            "rows": 3252,
+            "systems": 785,
+            "MAE": 0.8392636147217164,
+            "MAE_CI95": [
+              0.7836781149406268,
+              0.8956050195881547
+            ],
+            "bias": -0.23483630066753394,
+            "solvent_rank_rho": 0.8999999999999998,
+            "ranking_solutes": 48
+          },
+          "candidate": {
+            "rows": 3252,
+            "systems": 785,
+            "MAE": 0.8897010669491009,
+            "MAE_CI95": [
+              0.8276319019870713,
+              0.9509820832964928
+            ],
+            "bias": -0.34147133411294417,
+            "solvent_rank_rho": 0.8839285714285714,
+            "ranking_solutes": 48
+          },
+          "delta_MAE_CI95": [
+            0.019086176612985065,
+            0.08292272442219868
+          ],
+          "model": "cosmosac2010",
+          "arm": "open636",
+          "common_rows": 3252,
+          "row_ids_sha256": "96f830f5b02904c0cba40bab9a2fe90711ee36db929746faf38c0de04ca0a112"
+        },
+        {
+          "reference": {
+            "rows": 3009,
+            "systems": 710,
+            "MAE": 0.7268916165638494,
+            "MAE_CI95": [
+              0.6733550737443738,
+              0.7909939217518904
+            ],
+            "bias": -0.17925886378476058,
+            "solvent_rank_rho": 0.9055412316222728,
+            "ranking_solutes": 44
+          },
+          "candidate": {
+            "rows": 3009,
+            "systems": 710,
+            "MAE": 0.7862190758350555,
+            "MAE_CI95": [
+              0.7250665252629476,
+              0.848303015808255
+            ],
+            "bias": -0.2948363593051589,
+            "solvent_rank_rho": 0.8928571428571429,
+            "ranking_solutes": 44
+          },
+          "delta_MAE_CI95": [
+            0.02428653655010093,
+            0.0951670965364575
+          ],
+          "model": "cosmosac_dsp",
+          "arm": "open630",
+          "common_rows": 3009,
+          "row_ids_sha256": "3b0bb036c43b36e86f87ceacfd8a8edb939579009f94a77030bf76e75aceee26"
+        },
+        {
+          "reference": {
+            "rows": 3160,
+            "systems": 749,
+            "MAE": 0.7649199560514314,
+            "MAE_CI95": [
+              0.7108040111841599,
+              0.8240144006136406
+            ],
+            "bias": -0.12870298308042194,
+            "solvent_rank_rho": 0.9036329964250133,
+            "ranking_solutes": 45
+          },
+          "candidate": {
+            "rows": 3160,
+            "systems": 749,
+            "MAE": 0.8186764240363515,
+            "MAE_CI95": [
+              0.7620790369146051,
+              0.8802176250739914
+            ],
+            "bias": -0.2380463227448165,
+            "solvent_rank_rho": 0.8951048951048951,
+            "ranking_solutes": 45
+          },
+          "delta_MAE_CI95": [
+            0.020647270503324232,
+            0.08909673405962473
+          ],
+          "model": "cosmosac_dsp",
+          "arm": "open636",
+          "common_rows": 3160,
+          "row_ids_sha256": "a95811163364a6e3b11421e4ce7beb2b18f0f474dd25ebccca0291abeaf40dba"
+        }
+      ]
+    },
+    "vle": {
+      "standalone": {
+        "Z0x/UD": {
+          "rows": 38032,
+          "systems": 1294,
+          "MAE": 22.33884900862354,
+          "MAE_CI95": [
+            15.559906268153624,
+            33.41414999430639
+          ],
+          "homogeneous_rows": 38011,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 22.22295479699778,
+          "vapor_y_rows": 5282,
+          "vapor_y_AAD": 0.026003533732735947,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 43042,
+          "unavailable_rows": 5010
+        },
+        "Z0x/open630": {
+          "rows": 37884,
+          "systems": 1290,
+          "MAE": 20.675747731257456,
+          "MAE_CI95": [
+            15.89996574830826,
+            26.76604831650989
+          ],
+          "homogeneous_rows": 37863,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 20.572248981873642,
+          "vapor_y_rows": 5282,
+          "vapor_y_AAD": 0.027233186209242415,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 42894,
+          "unavailable_rows": 5158
+        },
+        "Z0x/open636": {
+          "rows": 38032,
+          "systems": 1294,
+          "MAE": 20.725072111139273,
+          "MAE_CI95": [
+            16.328362595061446,
+            26.6836000874518
+          ],
+          "homogeneous_rows": 38011,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 20.62200359581629,
+          "vapor_y_rows": 5282,
+          "vapor_y_AAD": 0.027233186209242415,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 43042,
+          "unavailable_rows": 5010
+        },
+        "cosmosac2010/UD": {
+          "rows": 38032,
+          "systems": 1294,
+          "MAE": 14.200320557775852,
+          "MAE_CI95": [
+            11.4009443363603,
+            17.90737987708392
+          ],
+          "homogeneous_rows": 38011,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 14.16647216385285,
+          "vapor_y_rows": 5282,
+          "vapor_y_AAD": 0.01948391193890635,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 43042,
+          "unavailable_rows": 5010
+        },
+        "cosmosac2010/open630": {
+          "rows": 37884,
+          "systems": 1290,
+          "MAE": 13.990375155173137,
+          "MAE_CI95": [
+            11.110459144668036,
+            17.441068431932877
+          ],
+          "homogeneous_rows": 37863,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 13.962956482907993,
+          "vapor_y_rows": 5282,
+          "vapor_y_AAD": 0.021374212886869085,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 42894,
+          "unavailable_rows": 5158
+        },
+        "cosmosac2010/open636": {
+          "rows": 38032,
+          "systems": 1294,
+          "MAE": 13.969669480900267,
+          "MAE_CI95": [
+            11.28604515913479,
+            17.62577128937404
+          ],
+          "homogeneous_rows": 38011,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 13.94234612694654,
+          "vapor_y_rows": 5282,
+          "vapor_y_AAD": 0.021374212886869085,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 43042,
+          "unavailable_rows": 5010
+        },
+        "cosmosac_dsp/UD": {
+          "rows": 34913,
+          "systems": 1148,
+          "MAE": 22.471067427483973,
+          "MAE_CI95": [
+            17.12200225304476,
+            28.69171678884992
+          ],
+          "homogeneous_rows": 34892,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 22.421097171284632,
+          "vapor_y_rows": 4624,
+          "vapor_y_AAD": 0.017371846501170903,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 43042,
+          "unavailable_rows": 8129
+        },
+        "cosmosac_dsp/open630": {
+          "rows": 34765,
+          "systems": 1144,
+          "MAE": 22.239384762376726,
+          "MAE_CI95": [
+            16.604312875329217,
+            28.26295162665861
+          ],
+          "homogeneous_rows": 34744,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 22.200254149823504,
+          "vapor_y_rows": 4624,
+          "vapor_y_AAD": 0.018160190417442598,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 42894,
+          "unavailable_rows": 8277
+        },
+        "cosmosac_dsp/open636": {
+          "rows": 34913,
+          "systems": 1148,
+          "MAE": 22.18245431451075,
+          "MAE_CI95": [
+            17.025091507205673,
+            28.35784682609528
+          ],
+          "homogeneous_rows": 34892,
+          "three_phase_rows": 21,
+          "homogeneous_AAD_pct": 22.14345541671314,
+          "vapor_y_rows": 4624,
+          "vapor_y_AAD": 0.018160190417442598,
+          "requested_rows": 43042,
+          "profile_eligible_rows": 43042,
+          "unavailable_rows": 8129
+        }
+      },
+      "pairwise": [
+        {
+          "reference": {
+            "rows": 37884,
+            "systems": 1290,
+            "MAE": 22.288187454010455,
+            "MAE_CI95": [
+              14.992599585838256,
+              33.63022251211315
+            ],
+            "homogeneous_rows": 37863,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 22.17181213322886,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.026003533732735947
+          },
+          "candidate": {
+            "rows": 37884,
+            "systems": 1290,
+            "MAE": 20.675747731257456,
+            "MAE_CI95": [
+              15.89996574830826,
+              26.76604831650989
+            ],
+            "homogeneous_rows": 37863,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 20.572248981873642,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.027233186209242415
+          },
+          "delta_MAE_CI95": [
+            -7.41537370959191,
+            1.6302673360368491
+          ],
+          "model": "Z0x",
+          "arm": "open630",
+          "common_rows": 37884,
+          "row_ids_sha256": "191e92ce5ccff2d86dc4b24b98a8e7ae1c7418f6062af0c37cf7a12bf8b5fc42"
+        },
+        {
+          "reference": {
+            "rows": 38032,
+            "systems": 1294,
+            "MAE": 22.33884900862354,
+            "MAE_CI95": [
+              15.559906268153624,
+              33.41414999430639
+            ],
+            "homogeneous_rows": 38011,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 22.22295479699778,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.026003533732735947
+          },
+          "candidate": {
+            "rows": 38032,
+            "systems": 1294,
+            "MAE": 20.725072111139273,
+            "MAE_CI95": [
+              16.328362595061446,
+              26.6836000874518
+            ],
+            "homogeneous_rows": 38011,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 20.62200359581629,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.027233186209242415
+          },
+          "delta_MAE_CI95": [
+            -6.9881186174815175,
+            1.5953688015500909
+          ],
+          "model": "Z0x",
+          "arm": "open636",
+          "common_rows": 38032,
+          "row_ids_sha256": "c1b5bed1eb3de0434fd1a06b17cd522bb70bc4f549cc126d84d41fa7dacbff18"
+        },
+        {
+          "reference": {
+            "rows": 37884,
+            "systems": 1290,
+            "MAE": 14.215928176014152,
+            "MAE_CI95": [
+              11.22890861853605,
+              17.83332160445995
+            ],
+            "homogeneous_rows": 37863,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 14.181956130972182,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.01948391193890635
+          },
+          "candidate": {
+            "rows": 37884,
+            "systems": 1290,
+            "MAE": 13.990375155173137,
+            "MAE_CI95": [
+              11.110459144668036,
+              17.441068431932877
+            ],
+            "homogeneous_rows": 37863,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 13.962956482907993,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.021374212886869085
+          },
+          "delta_MAE_CI95": [
+            -0.9953105369381586,
+            0.3695857309603229
+          ],
+          "model": "cosmosac2010",
+          "arm": "open630",
+          "common_rows": 37884,
+          "row_ids_sha256": "191e92ce5ccff2d86dc4b24b98a8e7ae1c7418f6062af0c37cf7a12bf8b5fc42"
+        },
+        {
+          "reference": {
+            "rows": 38032,
+            "systems": 1294,
+            "MAE": 14.200320557775852,
+            "MAE_CI95": [
+              11.4009443363603,
+              17.90737987708392
+            ],
+            "homogeneous_rows": 38011,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 14.16647216385285,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.01948391193890635
+          },
+          "candidate": {
+            "rows": 38032,
+            "systems": 1294,
+            "MAE": 13.969669480900267,
+            "MAE_CI95": [
+              11.28604515913479,
+              17.62577128937404
+            ],
+            "homogeneous_rows": 38011,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 13.94234612694654,
+            "vapor_y_rows": 5282,
+            "vapor_y_AAD": 0.021374212886869085
+          },
+          "delta_MAE_CI95": [
+            -0.9671679307598328,
+            0.36364411798495627
+          ],
+          "model": "cosmosac2010",
+          "arm": "open636",
+          "common_rows": 38032,
+          "row_ids_sha256": "c1b5bed1eb3de0434fd1a06b17cd522bb70bc4f549cc126d84d41fa7dacbff18"
+        },
+        {
+          "reference": {
+            "rows": 34765,
+            "systems": 1144,
+            "MAE": 22.521687211172146,
+            "MAE_CI95": [
+              16.70089587192851,
+              28.684734868744506
+            ],
+            "homogeneous_rows": 34744,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 22.471534690913966,
+            "vapor_y_rows": 4624,
+            "vapor_y_AAD": 0.017371846501170903
+          },
+          "candidate": {
+            "rows": 34765,
+            "systems": 1144,
+            "MAE": 22.239384762376726,
+            "MAE_CI95": [
+              16.604312875329217,
+              28.26295162665861
+            ],
+            "homogeneous_rows": 34744,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 22.200254149823504,
+            "vapor_y_rows": 4624,
+            "vapor_y_AAD": 0.018160190417442598
+          },
+          "delta_MAE_CI95": [
+            -1.5050210069716705,
+            0.6849340032334066
+          ],
+          "model": "cosmosac_dsp",
+          "arm": "open630",
+          "common_rows": 34765,
+          "row_ids_sha256": "7f3e1c1667ea0981ee6147aeb5a98d3cb15f0dce9a7b311b5e2cc1b91e3abcdb"
+        },
+        {
+          "reference": {
+            "rows": 34913,
+            "systems": 1148,
+            "MAE": 22.471067427483973,
+            "MAE_CI95": [
+              17.12200225304476,
+              28.69171678884992
+            ],
+            "homogeneous_rows": 34892,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 22.421097171284632,
+            "vapor_y_rows": 4624,
+            "vapor_y_AAD": 0.017371846501170903
+          },
+          "candidate": {
+            "rows": 34913,
+            "systems": 1148,
+            "MAE": 22.18245431451075,
+            "MAE_CI95": [
+              17.025091507205673,
+              28.35784682609528
+            ],
+            "homogeneous_rows": 34892,
+            "three_phase_rows": 21,
+            "homogeneous_AAD_pct": 22.14345541671314,
+            "vapor_y_rows": 4624,
+            "vapor_y_AAD": 0.018160190417442598
+          },
+          "delta_MAE_CI95": [
+            -1.678703880156129,
+            0.7141635516205992
+          ],
+          "model": "cosmosac_dsp",
+          "arm": "open636",
+          "common_rows": 34913,
+          "row_ids_sha256": "ba6b826cb3809f0eb92e56d80b69543448578e53672057f727b5fc0562017cc1"
+        }
+      ]
+    },
+    "he": {
+      "standalone": {
+        "Z0x/UD": {
+          "rows": 24648,
+          "systems": 884,
+          "MAE": 761.593360406937,
+          "MAE_CI95": [
+            641.3863791258906,
+            904.715417919938
+          ],
+          "sign_rows": 23998,
+          "sign_correct": 0.8146095507958997,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 129
+        },
+        "Z0x/open630": {
+          "rows": 24648,
+          "systems": 884,
+          "MAE": 822.1599048832826,
+          "MAE_CI95": [
+            697.8802886676593,
+            963.179803347426
+          ],
+          "sign_rows": 23998,
+          "sign_correct": 0.7918993249437453,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 129
+        },
+        "Z0x/open636": {
+          "rows": 24648,
+          "systems": 884,
+          "MAE": 822.1599048832826,
+          "MAE_CI95": [
+            697.8802886676593,
+            963.179803347426
+          ],
+          "sign_rows": 23998,
+          "sign_correct": 0.7918993249437453,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 129
+        },
+        "cosmosac2010/UD": {
+          "rows": 24648,
+          "systems": 884,
+          "MAE": 613.8060597437884,
+          "MAE_CI95": [
+            503.4676675488484,
+            749.7878307502099
+          ],
+          "sign_rows": 23998,
+          "sign_correct": 0.8862821901825152,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 129
+        },
+        "cosmosac2010/open630": {
+          "rows": 24648,
+          "systems": 884,
+          "MAE": 641.5184189587758,
+          "MAE_CI95": [
+            526.888604744906,
+            786.2097141445809
+          ],
+          "sign_rows": 23998,
+          "sign_correct": 0.8763646970580882,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 129
+        },
+        "cosmosac2010/open636": {
+          "rows": 24648,
+          "systems": 884,
+          "MAE": 641.5184189587758,
+          "MAE_CI95": [
+            526.888604744906,
+            786.2097141445809
+          ],
+          "sign_rows": 23998,
+          "sign_correct": 0.8763646970580882,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 129
+        },
+        "cosmosac_dsp/UD": {
+          "rows": 23401,
+          "systems": 807,
+          "MAE": 620.0394093126401,
+          "MAE_CI95": [
+            501.435167550345,
+            765.2644875087221
+          ],
+          "sign_rows": 22813,
+          "sign_correct": 0.8979090869241222,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 1376
+        },
+        "cosmosac_dsp/open630": {
+          "rows": 23401,
+          "systems": 807,
+          "MAE": 647.8706661248432,
+          "MAE_CI95": [
+            525.608829406802,
+            793.6216600911325
+          ],
+          "sign_rows": 22813,
+          "sign_correct": 0.8919914084074869,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 1376
+        },
+        "cosmosac_dsp/open636": {
+          "rows": 23401,
+          "systems": 807,
+          "MAE": 647.8706661248432,
+          "MAE_CI95": [
+            525.608829406802,
+            793.6216600911325
+          ],
+          "sign_rows": 22813,
+          "sign_correct": 0.8919914084074869,
+          "requested_rows": 24777,
+          "profile_eligible_rows": 24777,
+          "unavailable_rows": 1376
+        }
+      },
+      "pairwise": [
+        {
+          "reference": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 761.593360406937,
+            "MAE_CI95": [
+              641.3863791258906,
+              904.715417919938
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.8146095507958997
+          },
+          "candidate": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 822.1599048832826,
+            "MAE_CI95": [
+              697.8802886676593,
+              963.179803347426
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.7918993249437453
+          },
+          "delta_MAE_CI95": [
+            40.07043670552705,
+            79.85963554779367
+          ],
+          "model": "Z0x",
+          "arm": "open630",
+          "common_rows": 24648,
+          "row_ids_sha256": "39bb961199ba4edc9094fb1f8a50ff4a0f629126ccce2e96a30e99d5be2b815f"
+        },
+        {
+          "reference": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 761.593360406937,
+            "MAE_CI95": [
+              641.3863791258906,
+              904.715417919938
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.8146095507958997
+          },
+          "candidate": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 822.1599048832826,
+            "MAE_CI95": [
+              697.8802886676593,
+              963.179803347426
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.7918993249437453
+          },
+          "delta_MAE_CI95": [
+            40.07043670552705,
+            79.85963554779367
+          ],
+          "model": "Z0x",
+          "arm": "open636",
+          "common_rows": 24648,
+          "row_ids_sha256": "39bb961199ba4edc9094fb1f8a50ff4a0f629126ccce2e96a30e99d5be2b815f"
+        },
+        {
+          "reference": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 613.8060597437884,
+            "MAE_CI95": [
+              503.4676675488484,
+              749.7878307502099
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.8862821901825152
+          },
+          "candidate": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 641.5184189587758,
+            "MAE_CI95": [
+              526.888604744906,
+              786.2097141445809
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.8763646970580882
+          },
+          "delta_MAE_CI95": [
+            13.282451911485651,
+            40.80430377090503
+          ],
+          "model": "cosmosac2010",
+          "arm": "open630",
+          "common_rows": 24648,
+          "row_ids_sha256": "39bb961199ba4edc9094fb1f8a50ff4a0f629126ccce2e96a30e99d5be2b815f"
+        },
+        {
+          "reference": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 613.8060597437884,
+            "MAE_CI95": [
+              503.4676675488484,
+              749.7878307502099
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.8862821901825152
+          },
+          "candidate": {
+            "rows": 24648,
+            "systems": 884,
+            "MAE": 641.5184189587758,
+            "MAE_CI95": [
+              526.888604744906,
+              786.2097141445809
+            ],
+            "sign_rows": 23998,
+            "sign_correct": 0.8763646970580882
+          },
+          "delta_MAE_CI95": [
+            13.282451911485651,
+            40.80430377090503
+          ],
+          "model": "cosmosac2010",
+          "arm": "open636",
+          "common_rows": 24648,
+          "row_ids_sha256": "39bb961199ba4edc9094fb1f8a50ff4a0f629126ccce2e96a30e99d5be2b815f"
+        },
+        {
+          "reference": {
+            "rows": 23401,
+            "systems": 807,
+            "MAE": 620.0394093126401,
+            "MAE_CI95": [
+              501.435167550345,
+              765.2644875087221
+            ],
+            "sign_rows": 22813,
+            "sign_correct": 0.8979090869241222
+          },
+          "candidate": {
+            "rows": 23401,
+            "systems": 807,
+            "MAE": 647.8706661248432,
+            "MAE_CI95": [
+              525.608829406802,
+              793.6216600911325
+            ],
+            "sign_rows": 22813,
+            "sign_correct": 0.8919914084074869
+          },
+          "delta_MAE_CI95": [
+            12.127066733018461,
+            42.19472446961756
+          ],
+          "model": "cosmosac_dsp",
+          "arm": "open630",
+          "common_rows": 23401,
+          "row_ids_sha256": "9eea8fd164540d296ca360a9f2ff2d75c963f86d138b11accdf18ad791e48723"
+        },
+        {
+          "reference": {
+            "rows": 23401,
+            "systems": 807,
+            "MAE": 620.0394093126401,
+            "MAE_CI95": [
+              501.435167550345,
+              765.2644875087221
+            ],
+            "sign_rows": 22813,
+            "sign_correct": 0.8979090869241222
+          },
+          "candidate": {
+            "rows": 23401,
+            "systems": 807,
+            "MAE": 647.8706661248432,
+            "MAE_CI95": [
+              525.608829406802,
+              793.6216600911325
+            ],
+            "sign_rows": 22813,
+            "sign_correct": 0.8919914084074869
+          },
+          "delta_MAE_CI95": [
+            12.127066733018461,
+            42.19472446961756
+          ],
+          "model": "cosmosac_dsp",
+          "arm": "open636",
+          "common_rows": 23401,
+          "row_ids_sha256": "9eea8fd164540d296ca360a9f2ff2d75c963f86d138b11accdf18ad791e48723"
+        }
+      ]
+    },
+    "lle": {
+      "standalone": {
+        "Z0x/UD": {
+          "rows": 6581,
+          "systems": 303,
+          "unresolved_rows": 0,
+          "row_gap_found_bounds": [
+            0.8453122625740769,
+            0.8453122625740769
+          ],
+          "system_gap_found_bounds": [
+            0.7953795379537953,
+            0.7953795379537953
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 5278,
+          "composition_MAE": 0.16473136292003857,
+          "statuses": {
+            "root_passes_sampled_checks": 5009,
+            "no_gap_on_81_grid": 1018,
+            "gap_witness_only": 285,
+            "root_passes_refined_sampled_checks": 269
+          },
+          "legacy_gap_found_rows": 0.8453122625740769,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "Z0x/open630": {
+          "rows": 6575,
+          "systems": 302,
+          "unresolved_rows": 0,
+          "row_gap_found_bounds": [
+            0.8106463878326996,
+            0.8106463878326996
+          ],
+          "system_gap_found_bounds": [
+            0.7582781456953642,
+            0.7582781456953642
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 5111,
+          "composition_MAE": 0.16609176220827182,
+          "statuses": {
+            "root_passes_sampled_checks": 4919,
+            "no_gap_on_81_grid": 1245,
+            "gap_witness_only": 219,
+            "root_passes_refined_sampled_checks": 192
+          },
+          "legacy_gap_found_rows": 0.8106463878326996,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "Z0x/open636": {
+          "rows": 6581,
+          "systems": 303,
+          "unresolved_rows": 0,
+          "row_gap_found_bounds": [
+            0.8108190244643672,
+            0.8108190244643672
+          ],
+          "system_gap_found_bounds": [
+            0.759075907590759,
+            0.759075907590759
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 5117,
+          "composition_MAE": 0.16591816017827188,
+          "statuses": {
+            "root_passes_sampled_checks": 4919,
+            "no_gap_on_81_grid": 1245,
+            "gap_witness_only": 219,
+            "root_passes_refined_sampled_checks": 198
+          },
+          "legacy_gap_found_rows": 0.8108190244643672,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "cosmosac2010/UD": {
+          "rows": 6581,
+          "systems": 303,
+          "unresolved_rows": 0,
+          "row_gap_found_bounds": [
+            0.6470141315909437,
+            0.6470141315909437
+          ],
+          "system_gap_found_bounds": [
+            0.6237623762376238,
+            0.6237623762376238
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 4244,
+          "composition_MAE": 0.11553711073966023,
+          "statuses": {
+            "root_passes_sampled_checks": 4078,
+            "no_gap_on_81_grid": 2323,
+            "root_passes_refined_sampled_checks": 166,
+            "gap_witness_only": 14
+          },
+          "legacy_gap_found_rows": 0.6470141315909437,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "cosmosac2010/open630": {
+          "rows": 6575,
+          "systems": 302,
+          "unresolved_rows": 0,
+          "row_gap_found_bounds": [
+            0.5639543726235742,
+            0.5639543726235742
+          ],
+          "system_gap_found_bounds": [
+            0.5496688741721855,
+            0.5496688741721855
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 3695,
+          "composition_MAE": 0.09465713662957538,
+          "statuses": {
+            "root_passes_sampled_checks": 3496,
+            "no_gap_on_81_grid": 2867,
+            "root_passes_refined_sampled_checks": 199,
+            "gap_witness_only": 13
+          },
+          "legacy_gap_found_rows": 0.5639543726235742,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "cosmosac2010/open636": {
+          "rows": 6581,
+          "systems": 303,
+          "unresolved_rows": 0,
+          "row_gap_found_bounds": [
+            0.5643519222002735,
+            0.5643519222002735
+          ],
+          "system_gap_found_bounds": [
+            0.5511551155115512,
+            0.5511551155115512
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 3701,
+          "composition_MAE": 0.09452464864499437,
+          "statuses": {
+            "root_passes_sampled_checks": 3496,
+            "no_gap_on_81_grid": 2867,
+            "root_passes_refined_sampled_checks": 205,
+            "gap_witness_only": 13
+          },
+          "legacy_gap_found_rows": 0.5643519222002735,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "cosmosac_dsp/UD": {
+          "rows": 6581,
+          "systems": 303,
+          "unresolved_rows": 177,
+          "row_gap_found_bounds": [
+            0.7050600212733628,
+            0.7319556298434888
+          ],
+          "system_gap_found_bounds": [
+            0.66996699669967,
+            0.6963696369636964
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 4606,
+          "composition_MAE": 0.12704435418503546,
+          "statuses": {
+            "root_passes_sampled_checks": 4435,
+            "no_gap_on_81_grid": 1764,
+            "unresolved": 177,
+            "root_passes_refined_sampled_checks": 171,
+            "gap_witness_only": 34
+          },
+          "legacy_gap_found_rows": 0.7050600212733628,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "cosmosac_dsp/open630": {
+          "rows": 6575,
+          "systems": 302,
+          "unresolved_rows": 177,
+          "row_gap_found_bounds": [
+            0.6774144486692015,
+            0.7043346007604563
+          ],
+          "system_gap_found_bounds": [
+            0.6357615894039735,
+            0.6622516556291391
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 4417,
+          "composition_MAE": 0.10808038848186353,
+          "statuses": {
+            "root_passes_sampled_checks": 4226,
+            "no_gap_on_81_grid": 1944,
+            "root_passes_refined_sampled_checks": 191,
+            "unresolved": 177,
+            "gap_witness_only": 37
+          },
+          "legacy_gap_found_rows": 0.6774144486692015,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        },
+        "cosmosac_dsp/open636": {
+          "rows": 6581,
+          "systems": 303,
+          "unresolved_rows": 177,
+          "row_gap_found_bounds": [
+            0.6777085549308616,
+            0.7046041635009876
+          ],
+          "system_gap_found_bounds": [
+            0.636963696369637,
+            0.6633663366336634
+          ],
+          "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+          "endpoint_rows": 4423,
+          "composition_MAE": 0.10793761959014442,
+          "statuses": {
+            "root_passes_sampled_checks": 4232,
+            "no_gap_on_81_grid": 1944,
+            "root_passes_refined_sampled_checks": 191,
+            "unresolved": 177,
+            "gap_witness_only": 37
+          },
+          "legacy_gap_found_rows": 0.6777085549308616,
+          "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+        }
+      },
+      "pairwise": [
+        {
+          "reference": {
+            "rows": 6575,
+            "systems": 302,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.845171102661597,
+              0.845171102661597
+            ],
+            "system_gap_found_bounds": [
+              0.7947019867549668,
+              0.7947019867549668
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 5276,
+            "composition_MAE": 0.16478578038893735,
+            "statuses": {
+              "root_passes_sampled_checks": 5009,
+              "no_gap_on_81_grid": 1018,
+              "gap_witness_only": 281,
+              "root_passes_refined_sampled_checks": 267
+            },
+            "legacy_gap_found_rows": 0.845171102661597,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "candidate": {
+            "rows": 6575,
+            "systems": 302,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.8106463878326996,
+              0.8106463878326996
+            ],
+            "system_gap_found_bounds": [
+              0.7582781456953642,
+              0.7582781456953642
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 5111,
+            "composition_MAE": 0.16609176220827182,
+            "statuses": {
+              "root_passes_sampled_checks": 4919,
+              "no_gap_on_81_grid": 1245,
+              "gap_witness_only": 219,
+              "root_passes_refined_sampled_checks": 192
+            },
+            "legacy_gap_found_rows": 0.8106463878326996,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "model": "Z0x",
+          "arm": "open630",
+          "common_rows": 6575,
+          "row_ids_sha256": "5131e4e86b006719d090cdfbe7f4bb9d184b9bc42072b0c5e41d63aa8c873b59"
+        },
+        {
+          "reference": {
+            "rows": 6581,
+            "systems": 303,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.8453122625740769,
+              0.8453122625740769
+            ],
+            "system_gap_found_bounds": [
+              0.7953795379537953,
+              0.7953795379537953
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 5278,
+            "composition_MAE": 0.16473136292003857,
+            "statuses": {
+              "root_passes_sampled_checks": 5009,
+              "no_gap_on_81_grid": 1018,
+              "gap_witness_only": 285,
+              "root_passes_refined_sampled_checks": 269
+            },
+            "legacy_gap_found_rows": 0.8453122625740769,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "candidate": {
+            "rows": 6581,
+            "systems": 303,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.8108190244643672,
+              0.8108190244643672
+            ],
+            "system_gap_found_bounds": [
+              0.759075907590759,
+              0.759075907590759
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 5117,
+            "composition_MAE": 0.16591816017827188,
+            "statuses": {
+              "root_passes_sampled_checks": 4919,
+              "no_gap_on_81_grid": 1245,
+              "gap_witness_only": 219,
+              "root_passes_refined_sampled_checks": 198
+            },
+            "legacy_gap_found_rows": 0.8108190244643672,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "model": "Z0x",
+          "arm": "open636",
+          "common_rows": 6581,
+          "row_ids_sha256": "7bf339f471acd1207c815208c94f510916173402c9608e963a32cc9659fc17fe"
+        },
+        {
+          "reference": {
+            "rows": 6575,
+            "systems": 302,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.6466920152091254,
+              0.6466920152091254
+            ],
+            "system_gap_found_bounds": [
+              0.6225165562913907,
+              0.6225165562913907
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 4238,
+            "composition_MAE": 0.1156781411086795,
+            "statuses": {
+              "root_passes_sampled_checks": 4078,
+              "no_gap_on_81_grid": 2323,
+              "root_passes_refined_sampled_checks": 160,
+              "gap_witness_only": 14
+            },
+            "legacy_gap_found_rows": 0.6466920152091254,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "candidate": {
+            "rows": 6575,
+            "systems": 302,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.5639543726235742,
+              0.5639543726235742
+            ],
+            "system_gap_found_bounds": [
+              0.5496688741721855,
+              0.5496688741721855
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 3695,
+            "composition_MAE": 0.09465713662957538,
+            "statuses": {
+              "root_passes_sampled_checks": 3496,
+              "no_gap_on_81_grid": 2867,
+              "root_passes_refined_sampled_checks": 199,
+              "gap_witness_only": 13
+            },
+            "legacy_gap_found_rows": 0.5639543726235742,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "model": "cosmosac2010",
+          "arm": "open630",
+          "common_rows": 6575,
+          "row_ids_sha256": "5131e4e86b006719d090cdfbe7f4bb9d184b9bc42072b0c5e41d63aa8c873b59"
+        },
+        {
+          "reference": {
+            "rows": 6581,
+            "systems": 303,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.6470141315909437,
+              0.6470141315909437
+            ],
+            "system_gap_found_bounds": [
+              0.6237623762376238,
+              0.6237623762376238
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 4244,
+            "composition_MAE": 0.11553711073966023,
+            "statuses": {
+              "root_passes_sampled_checks": 4078,
+              "no_gap_on_81_grid": 2323,
+              "root_passes_refined_sampled_checks": 166,
+              "gap_witness_only": 14
+            },
+            "legacy_gap_found_rows": 0.6470141315909437,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "candidate": {
+            "rows": 6581,
+            "systems": 303,
+            "unresolved_rows": 0,
+            "row_gap_found_bounds": [
+              0.5643519222002735,
+              0.5643519222002735
+            ],
+            "system_gap_found_bounds": [
+              0.5511551155115512,
+              0.5511551155115512
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 3701,
+            "composition_MAE": 0.09452464864499437,
+            "statuses": {
+              "root_passes_sampled_checks": 3496,
+              "no_gap_on_81_grid": 2867,
+              "root_passes_refined_sampled_checks": 205,
+              "gap_witness_only": 13
+            },
+            "legacy_gap_found_rows": 0.5643519222002735,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "model": "cosmosac2010",
+          "arm": "open636",
+          "common_rows": 6581,
+          "row_ids_sha256": "7bf339f471acd1207c815208c94f510916173402c9608e963a32cc9659fc17fe"
+        },
+        {
+          "reference": {
+            "rows": 6575,
+            "systems": 302,
+            "unresolved_rows": 177,
+            "row_gap_found_bounds": [
+              0.7047908745247148,
+              0.7317110266159695
+            ],
+            "system_gap_found_bounds": [
+              0.6688741721854304,
+              0.695364238410596
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 4600,
+            "composition_MAE": 0.12719560057342444,
+            "statuses": {
+              "root_passes_sampled_checks": 4435,
+              "no_gap_on_81_grid": 1764,
+              "unresolved": 177,
+              "root_passes_refined_sampled_checks": 165,
+              "gap_witness_only": 34
+            },
+            "legacy_gap_found_rows": 0.7047908745247148,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "candidate": {
+            "rows": 6575,
+            "systems": 302,
+            "unresolved_rows": 177,
+            "row_gap_found_bounds": [
+              0.6774144486692015,
+              0.7043346007604563
+            ],
+            "system_gap_found_bounds": [
+              0.6357615894039735,
+              0.6622516556291391
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 4417,
+            "composition_MAE": 0.10808038848186353,
+            "statuses": {
+              "root_passes_sampled_checks": 4226,
+              "no_gap_on_81_grid": 1944,
+              "root_passes_refined_sampled_checks": 191,
+              "unresolved": 177,
+              "gap_witness_only": 37
+            },
+            "legacy_gap_found_rows": 0.6774144486692015,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "model": "cosmosac_dsp",
+          "arm": "open630",
+          "common_rows": 6575,
+          "row_ids_sha256": "5131e4e86b006719d090cdfbe7f4bb9d184b9bc42072b0c5e41d63aa8c873b59"
+        },
+        {
+          "reference": {
+            "rows": 6581,
+            "systems": 303,
+            "unresolved_rows": 177,
+            "row_gap_found_bounds": [
+              0.7050600212733628,
+              0.7319556298434888
+            ],
+            "system_gap_found_bounds": [
+              0.66996699669967,
+              0.6963696369636964
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 4606,
+            "composition_MAE": 0.12704435418503546,
+            "statuses": {
+              "root_passes_sampled_checks": 4435,
+              "no_gap_on_81_grid": 1764,
+              "unresolved": 177,
+              "root_passes_refined_sampled_checks": 171,
+              "gap_witness_only": 34
+            },
+            "legacy_gap_found_rows": 0.7050600212733628,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "candidate": {
+            "rows": 6581,
+            "systems": 303,
+            "unresolved_rows": 177,
+            "row_gap_found_bounds": [
+              0.6777085549308616,
+              0.7046041635009876
+            ],
+            "system_gap_found_bounds": [
+              0.636963696369637,
+              0.6633663366336634
+            ],
+            "interpretation": "Bounds for this finite-grid quality screen, not certified thermodynamic bounds.",
+            "endpoint_rows": 4423,
+            "composition_MAE": 0.10793761959014442,
+            "statuses": {
+              "root_passes_sampled_checks": 4232,
+              "no_gap_on_81_grid": 1944,
+              "root_passes_refined_sampled_checks": 191,
+              "unresolved": 177,
+              "gap_witness_only": 37
+            },
+            "legacy_gap_found_rows": 0.6777085549308616,
+            "meaning": "Operational finite-grid detection, not a certificate of miscibility or global stability. Witnesses have no endpoint MAE."
+          },
+          "model": "cosmosac_dsp",
+          "arm": "open636",
+          "common_rows": 6581,
+          "row_ids_sha256": "7bf339f471acd1207c815208c94f510916173402c9608e963a32cc9659fc17fe"
+        }
+      ]
+    }
+  },
+  "scope": "Z0x-UD remains reference; open630 secondary; open636 includes exploratory S1/S2"
+}

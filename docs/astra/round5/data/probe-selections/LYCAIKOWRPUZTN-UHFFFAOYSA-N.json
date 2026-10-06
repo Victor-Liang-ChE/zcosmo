@@ -1,0 +1,451 @@
+{
+  "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+  "stage": "probe",
+  "best_by_pool": [
+    {
+      "status": "stationary_sample",
+      "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+      "seed": 20261005,
+      "rank": 0,
+      "E_TZVP_Eh": -230.36523042027798,
+      "evaluations": 8,
+      "wall_s": 19.753401088000004,
+      "profile": "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+      "geometry": "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.xyz.json",
+      "input_sha256": "7d2cedf88ae739a35788bd8280e0bad4314644e955ab6bbca59a86bc4b8069fe",
+      "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+      "contacts": {
+        "atoms": [
+          {
+            "i": 0,
+            "element": "O",
+            "hb_class": "OH",
+            "bonds": [
+              1,
+              4
+            ]
+          },
+          {
+            "i": 1,
+            "element": "C",
+            "hb_class": "NHB",
+            "bonds": [
+              0,
+              2,
+              5,
+              6
+            ]
+          },
+          {
+            "i": 2,
+            "element": "C",
+            "hb_class": "NHB",
+            "bonds": [
+              1,
+              3,
+              7,
+              8
+            ]
+          },
+          {
+            "i": 3,
+            "element": "O",
+            "hb_class": "OH",
+            "bonds": [
+              2,
+              9
+            ]
+          },
+          {
+            "i": 4,
+            "element": "H",
+            "hb_class": "OH",
+            "bonds": [
+              0
+            ]
+          },
+          {
+            "i": 5,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              1
+            ]
+          },
+          {
+            "i": 6,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              1
+            ]
+          },
+          {
+            "i": 7,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              2
+            ]
+          },
+          {
+            "i": 8,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              2
+            ]
+          },
+          {
+            "i": 9,
+            "element": "H",
+            "hb_class": "OH",
+            "bonds": [
+              3
+            ]
+          }
+        ],
+        "contacts": [
+          {
+            "donor": 0,
+            "H": 4,
+            "acceptor": 3,
+            "acceptor_class": "OH",
+            "DA_A": 2.752927357148423,
+            "HA_A": 3.480865624422721,
+            "DHA_deg": 36.11323990719484,
+            "contact": false
+          },
+          {
+            "donor": 3,
+            "H": 9,
+            "acceptor": 0,
+            "acceptor_class": "OH",
+            "DA_A": 2.752927357148423,
+            "HA_A": 2.1930755036932044,
+            "DHA_deg": 114.72411738394756,
+            "contact": false
+          }
+        ]
+      },
+      "caveat": "Berny convergence is not a Hessian certificate or proof of a global conformer minimum."
+    },
+    {
+      "status": "stationary_sample",
+      "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+      "seed": 20261006,
+      "rank": 0,
+      "E_TZVP_Eh": -230.36521689629035,
+      "evaluations": 8,
+      "wall_s": 35.71694351100018,
+      "profile": "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+      "geometry": "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.xyz.json",
+      "input_sha256": "c95c4ac5e2713e36c1b0337c14bbadd1efa887d932b79a321f67f7d7d29faa6c",
+      "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+      "contacts": {
+        "atoms": [
+          {
+            "i": 0,
+            "element": "O",
+            "hb_class": "OH",
+            "bonds": [
+              1,
+              4
+            ]
+          },
+          {
+            "i": 1,
+            "element": "C",
+            "hb_class": "NHB",
+            "bonds": [
+              0,
+              2,
+              5,
+              6
+            ]
+          },
+          {
+            "i": 2,
+            "element": "C",
+            "hb_class": "NHB",
+            "bonds": [
+              1,
+              3,
+              7,
+              8
+            ]
+          },
+          {
+            "i": 3,
+            "element": "O",
+            "hb_class": "OH",
+            "bonds": [
+              2,
+              9
+            ]
+          },
+          {
+            "i": 4,
+            "element": "H",
+            "hb_class": "OH",
+            "bonds": [
+              0
+            ]
+          },
+          {
+            "i": 5,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              1
+            ]
+          },
+          {
+            "i": 6,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              1
+            ]
+          },
+          {
+            "i": 7,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              2
+            ]
+          },
+          {
+            "i": 8,
+            "element": "H",
+            "hb_class": "NHB",
+            "bonds": [
+              2
+            ]
+          },
+          {
+            "i": 9,
+            "element": "H",
+            "hb_class": "OH",
+            "bonds": [
+              3
+            ]
+          }
+        ],
+        "contacts": [
+          {
+            "donor": 0,
+            "H": 4,
+            "acceptor": 3,
+            "acceptor_class": "OH",
+            "DA_A": 2.7510160612410965,
+            "HA_A": 2.189299221394469,
+            "DHA_deg": 114.85115452858484,
+            "contact": false
+          },
+          {
+            "donor": 3,
+            "H": 9,
+            "acceptor": 0,
+            "acceptor_class": "OH",
+            "DA_A": 2.7510160612410965,
+            "HA_A": 3.4750413528722204,
+            "DHA_deg": 36.4088721606356,
+            "contact": false
+          }
+        ]
+      },
+      "caveat": "Berny convergence is not a Hessian certificate or proof of a global conformer minimum."
+    }
+  ],
+  "candidate": {
+    "status": "stationary_sample",
+    "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+    "seed": 20261005,
+    "rank": 0,
+    "E_TZVP_Eh": -230.36523042027798,
+    "evaluations": 8,
+    "wall_s": 19.753401088000004,
+    "profile": "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+    "geometry": "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.xyz.json",
+    "input_sha256": "7d2cedf88ae739a35788bd8280e0bad4314644e955ab6bbca59a86bc4b8069fe",
+    "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+    "contacts": {
+      "atoms": [
+        {
+          "i": 0,
+          "element": "O",
+          "hb_class": "OH",
+          "bonds": [
+            1,
+            4
+          ]
+        },
+        {
+          "i": 1,
+          "element": "C",
+          "hb_class": "NHB",
+          "bonds": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "i": 2,
+          "element": "C",
+          "hb_class": "NHB",
+          "bonds": [
+            1,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "i": 3,
+          "element": "O",
+          "hb_class": "OH",
+          "bonds": [
+            2,
+            9
+          ]
+        },
+        {
+          "i": 4,
+          "element": "H",
+          "hb_class": "OH",
+          "bonds": [
+            0
+          ]
+        },
+        {
+          "i": 5,
+          "element": "H",
+          "hb_class": "NHB",
+          "bonds": [
+            1
+          ]
+        },
+        {
+          "i": 6,
+          "element": "H",
+          "hb_class": "NHB",
+          "bonds": [
+            1
+          ]
+        },
+        {
+          "i": 7,
+          "element": "H",
+          "hb_class": "NHB",
+          "bonds": [
+            2
+          ]
+        },
+        {
+          "i": 8,
+          "element": "H",
+          "hb_class": "NHB",
+          "bonds": [
+            2
+          ]
+        },
+        {
+          "i": 9,
+          "element": "H",
+          "hb_class": "OH",
+          "bonds": [
+            3
+          ]
+        }
+      ],
+      "contacts": [
+        {
+          "donor": 0,
+          "H": 4,
+          "acceptor": 3,
+          "acceptor_class": "OH",
+          "DA_A": 2.752927357148423,
+          "HA_A": 3.480865624422721,
+          "DHA_deg": 36.11323990719484,
+          "contact": false
+        },
+        {
+          "donor": 3,
+          "H": 9,
+          "acceptor": 0,
+          "acceptor_class": "OH",
+          "DA_A": 2.752927357148423,
+          "HA_A": 2.1930755036932044,
+          "DHA_deg": 114.72411738394756,
+          "contact": false
+        }
+      ]
+    },
+    "caveat": "Berny convergence is not a Hessian certificate or proof of a global conformer minimum."
+  },
+  "energy_disagreement_Eh": 1.3523987632879653e-05,
+  "heavy_plus_donorH_RMSD_A": 0.6003518800011328,
+  "normalized_L1": 0.06372065413209088,
+  "reference_energy_Eh": -230.36520983827137,
+  "not_higher_than_reference": true,
+  "internal_gate": false,
+  "low_energy_shape_sensitive_pairs": [
+    {
+      "profiles": [
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma"
+      ],
+      "RMSD_A": 0.9413827477533037,
+      "L1": 0.27889533644914205
+    },
+    {
+      "profiles": [
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma"
+      ],
+      "RMSD_A": 0.6003518800011328,
+      "L1": 0.06372065413209088
+    },
+    {
+      "profiles": [
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma"
+      ],
+      "RMSD_A": 1.0002162639785275,
+      "L1": 0.3194009289418484
+    },
+    {
+      "profiles": [
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma"
+      ],
+      "RMSD_A": 0.8272943654704554,
+      "L1": 0.29427644703987244
+    },
+    {
+      "profiles": [
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261005-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma"
+      ],
+      "RMSD_A": 0.6194914729692749,
+      "L1": 0.16681448204782712
+    },
+    {
+      "profiles": [
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c0/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma",
+        "/private/tmp/r5work/conformers/LYCAIKOWRPUZTN-UHFFFAOYSA-N/s20261006-c1/LYCAIKOWRPUZTN-UHFFFAOYSA-N.sigma"
+      ],
+      "RMSD_A": 1.0720155519016594,
+      "L1": 0.33891238953701175
+    }
+  ],
+  "selected_by": "TZVP conductor electronic energy only; no Boltzmann or embedding-frequency weights",
+  "registration": "e126d31ee7bff46ed9c8ca35472d758ad335c766",
+  "total_evaluations": 31,
+  "total_wall_s": 110.56648036100017,
+  "not_adopted": true
+}
