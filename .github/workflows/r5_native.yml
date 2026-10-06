@@ -1,0 +1,42 @@
+name: r5-native
+# Round 5 P25 native matrix (registered e126d31): 12 saved geometries x {tz_swig, svp_swig, tz_iswig}, at most 36 single points, 1 h per call.
+on: {workflow_dispatch: {}}
+permissions: {contents: read}
+env: {OMP_NUM_THREADS: "4", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ZC_PCM3C: "1", ZC_PCM3C_MB: "2000", PYTHONPATH: "src:scripts", MPLBACKEND: Agg, REG: e126d31ee7bff46ed9c8ca35472d758ad335c766, PLAN: cloud/r5/shape-plan, R5_SLOTS: "12"}
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix: {slot: [0,1,2,3,4,5,6,7,8,9,10,11]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyscf==2.14.0 pyberny==0.7.0 rdkit==2026.03.6 pandas scipy matplotlib
+      - name: slot
+        env: {R5_SLOT: "${{ matrix.slot }}"}
+        run: |
+          set +e
+          export NATIVE=$PWD/native
+          python - <<'PYCODE' > slot.log 2>&1
+          import json,os,subprocess,sys
+          from pathlib import Path
+          plan=Path(os.environ['PLAN']).resolve();m=json.loads((plan/'manifest.json').read_text())
+          root=Path(os.environ['NATIVE']).resolve();slot=int(os.getenv('R5_SLOT','0'));slots=int(os.getenv('R5_SLOTS','1'))
+          assert slots>0 and 0<=slot<slots
+          jobs=[(r,method) for r in m['panel'] for method in ('tz_swig','svp_swig','tz_iswig')]
+          for j,(r,method) in enumerate(jobs):
+              if j%slots!=slot:continue
+              dest=root/r['key']/method;dest.parent.mkdir(parents=True,exist_ok=True)
+              with (dest.parent/(method+'.log')).open('w') as log:
+                  subprocess.run([sys.executable,'scripts/r5_shape.py','native','--geometry',str(plan/r['geometry']),
+                      '--key',r['key'],'--method',method,'--memory','4000','--registration',os.environ['REG'],
+                      '--out',str(dest)],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=3600)
+              print('done',r['key'],method,flush=True)
+          PYCODE
+          rc=$?; echo "rc=$rc"; cat slot.log | grep -vi warn | tail -20; mkdir -p native; cp slot.log native/slot${{ matrix.slot }}.log; echo $rc > native/rc${{ matrix.slot }}.txt; exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "r5n_${{ matrix.slot }}", path: native, retention-days: 60}
