@@ -1,0 +1,8 @@
+{
+  "decision": "accepted",
+  "numerical_gate_sha256": "2f3df2e2e1c333f4936e9effc7c8ef160f3b01808dd48ea0072eb83aff0d4dbc",
+  "registration": "5926ba1a73fba30537e137ada6c7f8a31e74e725",
+  "recorded_at": "2026-10-06T05:24:27-07:00",
+  "basis": "P28 numerical gate passed in all four arms (max reference error 2.73e-9 < 1e-8; reverse, API and pure-limit checks inside their limits; identical finite coverage); no experimental response was read before this record.",
+  "decided_by": "registered rule (REG6) under Victor's 'register all, run in order'"
+}

@@ -1,0 +1,170 @@
+{
+  "base": "43213a5e61f591a19b4d3352a95315a62ee2aeb8",
+  "registration": "5926ba1a73fba30537e137ada6c7f8a31e74e725",
+  "numerical_gate": true,
+  "arms": {
+    "UD": [
+      {
+        "split": "all",
+        "requested": 3252,
+        "checked": 3252,
+        "statuses": {
+          "checked": 3252
+        },
+        "mean_abs_change": 0.0021130117903256883,
+        "max_abs_change": 0.8423247085197794,
+        "counts_above": {
+          "0.001": 391,
+          "0.01": 58,
+          "0.05": 40,
+          "0.1": 21
+        },
+        "max_reference_error": 2.7297430982287092e-09,
+        "fd2_inconclusive_rows": 0
+      },
+      {
+        "split": "test",
+        "requested": 828,
+        "checked": 828,
+        "statuses": {
+          "checked": 828
+        },
+        "mean_abs_change": 0.0005465522645450181,
+        "max_abs_change": 0.0287171634868461,
+        "counts_above": {
+          "0.001": 68,
+          "0.01": 10,
+          "0.05": 0,
+          "0.1": 0
+        },
+        "max_reference_error": 2.7297430982287092e-09,
+        "fd2_inconclusive_rows": 0
+      }
+    ],
+    "open630": [
+      {
+        "split": "all",
+        "requested": 3252,
+        "checked": 3101,
+        "statuses": {
+          "checked": 3101,
+          "excluded_by_design": 151
+        },
+        "mean_abs_change": 0.0025323517903633854,
+        "max_abs_change": 1.1369573865215583,
+        "counts_above": {
+          "0.001": 382,
+          "0.01": 54,
+          "0.05": 38,
+          "0.1": 27
+        },
+        "max_reference_error": 2.720222269658734e-09,
+        "fd2_inconclusive_rows": 0
+      },
+      {
+        "split": "test",
+        "requested": 828,
+        "checked": 816,
+        "statuses": {
+          "checked": 816,
+          "excluded_by_design": 12
+        },
+        "mean_abs_change": 0.0005085036705033033,
+        "max_abs_change": 0.0258444136190556,
+        "counts_above": {
+          "0.001": 70,
+          "0.01": 10,
+          "0.05": 0,
+          "0.1": 0
+        },
+        "max_reference_error": 2.720222269658734e-09,
+        "fd2_inconclusive_rows": 0
+      }
+    ],
+    "open636": [
+      {
+        "split": "all",
+        "requested": 3252,
+        "checked": 3252,
+        "statuses": {
+          "checked": 3252
+        },
+        "mean_abs_change": 0.002418355168063437,
+        "max_abs_change": 1.1369573865215583,
+        "counts_above": {
+          "0.001": 382,
+          "0.01": 54,
+          "0.05": 38,
+          "0.1": 27
+        },
+        "max_reference_error": 2.720222269658734e-09,
+        "fd2_inconclusive_rows": 0
+      },
+      {
+        "split": "test",
+        "requested": 828,
+        "checked": 828,
+        "statuses": {
+          "checked": 828
+        },
+        "mean_abs_change": 0.0005023240477967429,
+        "max_abs_change": 0.0258444136190556,
+        "counts_above": {
+          "0.001": 70,
+          "0.01": 10,
+          "0.05": 0,
+          "0.1": 0
+        },
+        "max_reference_error": 2.720222269658734e-09,
+        "fd2_inconclusive_rows": 0
+      }
+    ],
+    "water_stress": [
+      {
+        "split": "all",
+        "requested": 3252,
+        "checked": 3252,
+        "statuses": {
+          "checked": 3252
+        },
+        "mean_abs_change": 0.002419850864351004,
+        "max_abs_change": 0.8763786133051088,
+        "counts_above": {
+          "0.001": 395,
+          "0.01": 55,
+          "0.05": 38,
+          "0.1": 27
+        },
+        "max_reference_error": 2.720222269658734e-09,
+        "fd2_inconclusive_rows": 0
+      },
+      {
+        "split": "test",
+        "requested": 828,
+        "checked": 828,
+        "statuses": {
+          "checked": 828
+        },
+        "mean_abs_change": 0.0005567476051981081,
+        "max_abs_change": 0.0258444136190556,
+        "counts_above": {
+          "0.001": 70,
+          "0.01": 10,
+          "0.05": 0,
+          "0.1": 0
+        },
+        "max_reference_error": 2.720222269658734e-09,
+        "fd2_inconclusive_rows": 0
+      }
+    ]
+  },
+  "experimental_response_used": false,
+  "config_sha256": "8db0a033866680dfa8d0defc6eb6466fbeb98225268c9172d0bb74e9b921d786",
+  "audit_csv_inputs": {
+    "/private/tmp/r6work/endpoint-audit/UD.csv": "6a3474e92315eae132b90bdb1a4205d46142c8c7af5efdab7b1b711dc15a0da1",
+    "/private/tmp/r6work/endpoint-audit/open630.csv": "b17e1f43524b8b72a64beb1328aa354408b5959149588b65585a672c37c1f937",
+    "/private/tmp/r6work/endpoint-audit/open636.csv": "338e9ef26c56dc6840070afd75823254e0aed5692f91f75c0ce570e831104eee",
+    "/private/tmp/r6work/endpoint-audit/water_stress.csv": "aea1ddd563cdd9e20159dbbea1e178ce50c7f4f82784a272faa4b68bb6f55e89"
+  },
+  "meaning": "A numerical correction of the same endpoint model; historical scores stay unchanged."
+}
