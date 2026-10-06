@@ -31,7 +31,9 @@ def plan(a):
 
 def native(a):
     p,m=load_plan(a.plan);v=versions(native=True)
-    if m['family']!='referee' or v['rdkit']!='2026.03.6':raise ValueError('Fixed R7 referee and RDKit 2026.03.6 required')
+    # R7 amendment P33a: pip/importlib report the pinned RDKit 2026.03.6 as the PEP 440-normalized '2026.3.6'; compare normalized versions.
+    from packaging.version import Version
+    if m['family']!='referee' or v['rdkit'] is None or Version(v['rdkit'])!=Version('2026.03.6'):raise ValueError('Fixed R7 referee and RDKit 2026.03.6 required')
     r=next((x for x in m['cases'] if x['key']==a.key),None)
     if r is None:raise ValueError('Unknown referee case')
     from r6_referee import probe_directions

@@ -1293,3 +1293,9 @@ All jobs use immutable inputs, isolated output directories, exclusive claims and
   (9), and pyscf_cosmo_v2 writes a profile only after Berny reports convergence. The amendment accepts that legacy provenance string when the
   geometry_converged field is absent; an explicit non-True value still fails. Selection, sentinels, budgets and gates are unchanged. A workflow
   dispatch for cloud/r7/screen/plan.json made before the plan existed (run 37546536602) is void.
+
+- R7 amendment P33a (2026-10-06, before any P33 computation). The first P33 dispatch (Actions run 37546518712) stopped every case in 0.2 s at the
+  package check: r7_referee.py compared importlib's version string to the literal '2026.03.6', but pip reports the pinned RDKit 2026.03.6 as the
+  PEP 440-normalized '2026.3.6' (the same string the frozen R7 plans record). No SCF ran and nothing was computed. The amendment compares normalized
+  versions; the pin itself is unchanged. Because the plan records the script hash, cloud/r7/referee is re-frozen with the same five cases, geometries,
+  ladder, tolerance and budgets, and dispatched once more. Run 37546518712 is void as an execution failure, not a scientific outcome.
