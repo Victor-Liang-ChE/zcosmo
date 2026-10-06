@@ -1,0 +1,111 @@
+name: r7-review
+run-name: r7/${{ inputs.plan }}
+# Manual experiment only. P32 chain plans require a committed positive permit.
+on:
+  workflow_dispatch:
+    inputs:
+      plan:
+        description: 'Committed cloud/r7/.../plan.json'
+        required: true
+        type: string
+      permit:
+        description: 'Committed chain decision JSON, only for chain family'
+        required: false
+        default: ''
+        type: string
+      authorization:
+        description: 'Full authorization commit SHA, only for chain family'
+        required: false
+        default: ''
+        type: string
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: '4'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  BLIS_NUM_THREADS: '1'
+  ZC_PCM3C: '1'
+  ZC_PCM3C_MB: '2000'
+  PYTHONPATH: 'src:scripts'
+  MPLBACKEND: Agg
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.make.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        timeout-minutes: 3
+      - id: make
+        env:
+          PLAN_PATH: ${{ inputs.plan }}
+          PERMIT_PATH: ${{ inputs.permit }}
+          AUTHORIZATION: ${{ inputs.authorization }}
+        run: |
+          python - <<'PYCODE'
+          import hashlib,json,os,re
+          from pathlib import Path
+          root=Path.cwd().resolve();p=(root/os.environ['PLAN_PATH']).resolve()
+          if not p.is_relative_to(root/'cloud'/'r7'):raise ValueError('Plan must be committed under cloud/r7')
+          m=json.loads(p.read_text());family=m['family']
+          if family not in ('calibration','pilot','chains','referee','screen'):raise ValueError('Bad plan family')
+          if family=='chains':
+              q=(root/os.environ['PERMIT_PATH']).resolve()
+              if not q.is_relative_to(root/'cloud'/'r7'):raise ValueError('Bad permit location')
+              d=json.loads(q.read_text())
+              if d.get('eligible_for_chain_trial') is not True:raise ValueError('Chain escalation blocked')
+              if d.get('chains_plan_sha256')!=hashlib.sha256(p.read_bytes()).hexdigest():raise ValueError('Chain plan changed')
+              if not re.fullmatch('[0-9a-f]{40}',os.environ['AUTHORIZATION']):raise ValueError('Authorization commit required')
+          jobs=[]
+          for r in m['cases']:
+              if not re.fullmatch('[A-Z]{14}-[A-Z]{10}-[A-Z]',r['key']):raise ValueError('Invalid key')
+              for arm in (('off','full') if family=='chains' else ('pair',)):
+                  jobs.append({'key':r['key'],'arm':arm,'family':family})
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('matrix='+json.dumps({'include':jobs})+'\n')
+          PYCODE
+  case:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        timeout-minutes: 3
+      - uses: actions/setup-python@v5
+        timeout-minutes: 5
+        with:
+          python-version: '3.11'
+      - name: pinned native environment
+        timeout-minutes: 10
+        run: python -m pip install --retries 1 --timeout 30 pyscf==2.14.0 pyberny==0.7.0 rdkit==2026.03.6 numpy scipy pandas matplotlib
+      - name: bounded case
+        env:
+          PLAN_PATH: ${{ inputs.plan }}
+          PERMIT_PATH: ${{ inputs.permit }}
+          AUTHORIZATION: ${{ inputs.authorization }}
+          CASE_KEY: ${{ matrix.key }}
+          CASE_ARM: ${{ matrix.arm }}
+          CASE_FAMILY: ${{ matrix.family }}
+        run: |
+          python - <<'PYCODE'
+          import os,subprocess,sys
+          from pathlib import Path
+          family=os.environ['CASE_FAMILY'];key=os.environ['CASE_KEY'];arm=os.environ['CASE_ARM']
+          module='r7_optimize.py' if family in ('calibration','pilot','chains') else ('r7_referee.py' if family=='referee' else 'r7_screen.py')
+          out=Path('out')/key/(arm if family=='chains' else 'case')
+          args=[sys.executable,'scripts/'+module,'run_case','--plan',os.environ['PLAN_PATH'],'--key',key,'--out',str(out)]
+          if module=='r7_optimize.py':args+=['--arm',arm]
+          if family=='chains':args+=['--permit',os.environ['PERMIT_PATH'],'--authorization',os.environ['AUTHORIZATION']]
+          raise SystemExit(subprocess.run(args).returncode)
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        timeout-minutes: 5
+        if: always()
+        with:
+          name: r7-${{ matrix.family }}-${{ matrix.key }}-${{ matrix.arm }}
+          path: out
+          retention-days: 60
