@@ -52,3 +52,8 @@ The [round-8 stage-isolation test](docs/astra/round8/RESULTS.md) left the TEG
 energy-gradient mismatch unresolved; its numerical diagnostic budget is closed.
 See [round-7 evidence](docs/astra/round7/RESULTS.md) and
 [endpoint acceptance](docs/astra/round6/RESULTS.md).
+
+A [round-10 provenance review](docs/astra/round10/PROVENANCE_STATUS.md) located
+public UD geometry and raw-surface files. Matching those files to the Mac's
+historical profiles remains a separate zero-QC replay; the glycol mechanism
+and the closed numerical-gradient campaign are unchanged.

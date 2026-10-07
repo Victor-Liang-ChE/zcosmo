@@ -13,3 +13,29 @@ The current envelope-matching campaign receives zero additional QC budget. Do no
 Evidence that can change this decision is concrete: recovery of the generating UD geometries and raw surface files together with their electronic/cavity settings; or independent, basis/grid/response-converged electrostatic references at frozen known geometries; or a complete, independently reproducible basin and nuclear-partition audit under one free-energy convention. Acquiring provenance is a zero-QC task. Any new physical calculation needs a fixed structural panel including water and branched polyol controls, and a prospective budget. Missing historical files on the Mac do not prove that no upstream archive exists.
 
 The present open-profile pipeline is a reproducible, explicitly tested alternative source of single-geometry sigma profiles. It is not an accuracy-equivalent UD replacement or an established phase-dependent conformer ensemble. P28's accepted endpoint correction does not remove this distinction. Keep pre-P28 matched comparisons labelled as such, and do not infer a corrected matched-subset mean from differently sized standalone means.
+
+Update, 2026-10-07, round-10 source discovery. The statements above about
+unavailable UD raw inputs describe the project's holdings during R4-R9. The
+NIST COSMOSAC repository contains public .cosmo files for the fixed R5 panel,
+including all four glycols. These contain atomic coordinates and surface rows,
+with cavity parameters. Published nominal electronic-method documentation is
+available, but the exact electronic deck and convergence history for each file
+are not thereby verified. The next step is the registered zero-QC lineage and
+same-parser comparison described in [the provenance record](../round10/PROVENANCE_STATUS.md).
+This discovery does not itself identify the cause of the glycol prediction gap.
+
+Here, the P29 "raw area profile" means an unnormalized final sigma profile,
+not the pre-averaging charge density of the original tesserae. Those two tail
+measures must remain distinct. P25 located sensitivity within the tested open
+pipeline but had no matched UD raw table; it did not establish a unique
+historical raw-charge or electronic-method cause. The earlier numerical values
+and finite-sample envelope statements are retained with those scopes.
+
+The public UD notice reports that some database conformations were revised
+using vapor-pressure predictions. It does not identify which members of this
+panel were revised. Z0x's absence of ThermoML fitting does not establish that
+all upstream reference inputs were selected without empirical information.
+UD is a documented comparator, not a validated equilibrium conformer ensemble.
+No new quantum calculation, conformer selection or production replacement is
+authorized by this source discovery. The 630 primary and six S1/S2 files stay
+frozen, and the numerical-gradient campaign remains closed.
