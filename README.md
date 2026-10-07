@@ -34,3 +34,19 @@ python src/zcosmo/thermoml_parse.py data/raw/thermoml data/processed
 python -c "from zcosmo.identity import *"   # see scripts/run_all.sh for the full chain
 bash scripts/run_all.sh
 ```
+
+## Current evidence
+
+The open workflow produced 630 profiles that passed the original Berny predicate,
+plus six separately flagged S1/S2 profiles. Resolved errors from omitted XC-grid
+response and incomplete finite-difference checks limit stationarity claims.
+The corrected-gradient calibration failed its preregistered compatibility gate;
+no corrected-gradient rollout or chain rescue is accepted. Displacement sensitivity
+does not measure geometry error, and the glycol discrepancy remains unresolved.
+Z0x was not fitted to ThermoML. Its exact infinite-dilution endpoint passed an
+independent numerical gate and is enabled with `ZC_R6_ENDPOINT=1`. Archived matched benchmark
+comparisons favor UD over open profiles for IDAC and excess enthalpy; the VLE
+interval includes zero. LLE detection and checked endpoint compositions have
+separate denominators and are not global phase-equilibrium certificates.
+See [round-7 evidence](docs/astra/round7/RESULTS.md) and
+[endpoint acceptance](docs/astra/round6/RESULTS.md).

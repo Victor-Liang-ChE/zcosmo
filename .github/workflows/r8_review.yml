@@ -1,0 +1,65 @@
+name: r8-stage-isolation
+run-name: r8/${{ inputs.plan }}
+on:
+  workflow_dispatch:
+    inputs:
+      plan:
+        description: 'Committed cloud/r8/diagnostic/plan.json'
+        required: true
+        default: 'cloud/r8/diagnostic/plan.json'
+        type: string
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: '4'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  BLIS_NUM_THREADS: '1'
+  ZC_PCM3C: '1'
+  ZC_PCM3C_MB: '2000'
+  PYTHONPATH: 'src:scripts'
+  MPLBACKEND: Agg
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        case: [TEG, EG]
+        arm: [pcm_pruned, pcm_unpruned, vacuum_pruned, vacuum_unpruned]
+    steps:
+      - uses: actions/checkout@v4
+        timeout-minutes: 3
+      - uses: actions/setup-python@v5
+        timeout-minutes: 5
+        with:
+          python-version: '3.11'
+      - name: Pinned native dependencies
+        timeout-minutes: 10
+        run: python -m pip install --retries 1 --timeout 30 pyscf==2.14.0 pyberny==0.7.0 rdkit==2026.03.6 numpy scipy pandas packaging matplotlib
+      - name: One bounded diagnostic
+        env:
+          PLAN_PATH: ${{ inputs.plan }}
+          R8_CASE: ${{ matrix.case }}
+          R8_ARM: ${{ matrix.arm }}
+        run: |
+          python - <<'PY'
+          import os,subprocess,sys
+          from pathlib import Path
+          p=Path(os.environ['PLAN_PATH']).resolve()
+          if not p.is_relative_to(Path.cwd()/'cloud'/'r8'):
+              raise ValueError('Plan must be committed under cloud/r8')
+          command=[sys.executable,'scripts/r8_diagnostic.py','run','--plan',str(p),
+                   '--case',os.environ['R8_CASE'],'--arm',os.environ['R8_ARM'],
+                   '--out','out/'+os.environ['R8_CASE']+'/'+os.environ['R8_ARM']]
+          raise SystemExit(subprocess.run(command).returncode)
+          PY
+      - uses: actions/upload-artifact@v4
+        timeout-minutes: 5
+        if: always()
+        with:
+          name: r8-${{ matrix.case }}-${{ matrix.arm }}
+          path: out
+          retention-days: 60
