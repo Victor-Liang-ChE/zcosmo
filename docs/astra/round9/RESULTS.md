@@ -50,3 +50,5 @@ Victor chose to close the Astra review here. There is no round-10 prompt. Final 
 - **Reopening rule.** Further native work needs distinct evidence that isolates a specific error, such as an independently checked source correction with a reproducer, under a new prospective registration.
 
 The README "Current evidence" section is the short public summary, and `PREREGISTRATION.md` holds every registration, amendment and result from R1 to R9.
+
+**Update, 2026-10-07.** After the closeout, Victor reopened the review for a round 10 on a different question: the P35 glycol gap, starting with zero-QC provenance of the UD generating files. The numerical-gradient campaign stays closed, and no native budget is assigned by this note. See `docs/astra/ROUND10_PROMPT.md`.

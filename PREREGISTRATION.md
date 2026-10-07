@@ -1497,3 +1497,6 @@ no automatic continuation and does not reopen the R8 budget.
   minimum to the calls where a node dropped out; the R8 verdict is unchanged (inconclusive, unresolved). P40: README lines applied and checked.
   Zero native work. Victor chose to close the Astra review after R9; no ROUND10 prompt is written. Reopening needs distinct evidence and a new
   prospective registration.
+
+- Round 9 closeout amended (2026-10-07): Victor reopened the Astra review for round 10 on the P35 glycol question (docs/astra/ROUND10_PROMPT.md).
+  The R8/R9 numerical-gradient campaign stays closed. No budget or protocol change is registered by this note; any R10 work needs its own registration.
