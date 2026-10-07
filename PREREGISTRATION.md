@@ -1460,3 +1460,33 @@ full-energy stationarity, numerical acceptance and experimental accuracy.
   passed (<= 7e-16). Per the registration, no contrast is interpreted, the TEG mismatch is archived as unresolved, and the R8 diagnostic budget is closed.
   No optimizer, re-polish, chain retry or default change is authorized. No profile version changed.
   P38: README "Current evidence" section applied in 333b2ab.
+
+- Round 9 (Astra report docs/astra/round9/ZCOSMO_ROUND9_REPORT.md, received 2026-10-07). Victor chose "register, run, then close". The three patches
+  (P39, P40, REG9) are applied unchanged to 83cf521 in the same commit as this text, before the P39 audit output exists. Verified before registration:
+  all patches apply; r9_membership_audit.py self-test passes (6 tests); the pinned PySCF 2.14.0 pcm.py matches the report's source claims (switch_h
+  smoothstep clipped to [0,1], distances below 1e-8 zeroed, retention when w*F > 1e-16, S diagonal xi*sqrt(2/pi)/F). Native budget for R9 is zero.
+  The Astra text below is adopted verbatim.
+
+Round-9 proposed closeout record. Record adoption with the actual commit ID.
+Reference main: 83cf52163d806ef0c92ba2002094832824122d59.
+
+P39 is an E, zero-QC replay of the existing P37 TEG PCM/pruned call log.
+It checks the exact archived Git blob and preserves all 22 call identities.
+It reports node counts separately from membership hashes and identifies the
+location of the minimum over retained switching weights. It does not identify
+a removed node from a minimum, change a referee verdict, recompute a model,
+or create a new scientific acceptance gate. Prior read-only analysis of this
+archive is explicitly retrospective, not a preregistered discovery.
+
+P40 appends the R8 unresolved-mismatch and closed-budget status to the README.
+No historical registration, result, source profile, or model default is edited.
+P32 remains failed. P30/P33/P37 outcomes keep their original qualifications.
+P20/P28 keep their existing scoped acceptance. The 630 original-gradient
+profiles and six S1/S2 profiles remain unchanged. P35 stays unresolved.
+
+The R9 native budget is zero: no Actions dispatch, new SCF, geometry re-polish,
+chain retry, profile generation, or experimental scoring. P37's observed
+membership changes are not, on their own, independent validation of a source
+correction. Further native work requires distinct evidence that isolates a
+specific error and a separate prospective authorization. This note creates
+no automatic continuation and does not reopen the R8 budget.

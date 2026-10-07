@@ -48,5 +48,7 @@ independent numerical gate and is enabled with `ZC_R6_ENDPOINT=1`. Archived matc
 comparisons favor UD over open profiles for IDAC and excess enthalpy; the VLE
 interval includes zero. LLE detection and checked endpoint compositions have
 separate denominators and are not global phase-equilibrium certificates.
+The [round-8 stage-isolation test](docs/astra/round8/RESULTS.md) left the TEG
+energy-gradient mismatch unresolved; its numerical diagnostic budget is closed.
 See [round-7 evidence](docs/astra/round7/RESULTS.md) and
 [endpoint acceptance](docs/astra/round6/RESULTS.md).
