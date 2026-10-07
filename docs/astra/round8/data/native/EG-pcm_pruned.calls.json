@@ -1,0 +1,420 @@
+[
+  {
+    "index": 0,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.0890145289389,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.1300737894679062e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 1,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901452893986,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 19,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.1300737894679062e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 2,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901280455333,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.7414663702976437e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 3,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901355750814,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 3.5547233165303124e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 4,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901395778756,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 5.1170044981860825e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 5,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901436324163,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 2.1154442550532208e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 6,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901434550356,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 7.804157673616334e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 7,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901451994777,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.5714696262889627e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 8,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901447252558,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 9.444533206086608e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 9,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.0890145437003,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.3386279953319955e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 10,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901450593385,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.0344813314266428e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 11,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -230.08901454152627,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 13,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.231399636968215e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 12,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.0890128045522,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.7414663702976437e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 13,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901355750655,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 3.5547233165303124e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 14,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901395778744,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 19,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 5.1170044981860825e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 15,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901436324095,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 2.1154442550532208e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 16,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.0890143455011,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 14,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 7.804157673616334e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 17,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901451994674,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.5714696262889627e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 18,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901447252603,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 9.444533206086608e-09,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 19,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.0890145436979,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.3386279953319955e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 20,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.0890145059355,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 14,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.0344813314266428e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 21,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -230.08901454152587,
+    "XC": {
+      "signature": "ea28ba3af8e9677e324b3c75bbe9c0a3e911c88bc509e4a9783fa1da206cb0d3",
+      "count": 77064
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "<function nwchem_prune at 0x7f69682f6200>",
+    "SCF_cycles": 14,
+    "PCM": {
+      "signature": "fd67bae67c6a6c4aa3aee615ac58fabe7257c11bb41f5aa097f6bdfbea37324b",
+      "count": 600,
+      "minimum_switch": 1.231399636968215e-08,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  }
+]

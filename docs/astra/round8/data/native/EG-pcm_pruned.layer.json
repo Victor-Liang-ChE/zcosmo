@@ -1,0 +1,117 @@
+{
+  "assessment": {
+    "steps_Bohr": [
+      0.016,
+      0.008,
+      0.004,
+      0.002,
+      0.001
+    ],
+    "central_tight": [
+      -0.000334749145675941,
+      -0.0003345689297846316,
+      -0.0003345240130528393,
+      -0.00033451282390037015,
+      -0.0003345100318711755
+    ],
+    "central_strict": [
+      -0.0003347491456668879,
+      -0.0003345689297786685,
+      -0.00033452401306541604,
+      -0.00033451282390904377,
+      -0.0003345100318191338
+    ],
+    "Richardson_tight": [
+      -0.0003345088578208618,
+      -0.00033450904080890853,
+      -0.00033450909418288044,
+      -0.0003345091011947773
+    ],
+    "Richardson_strict": [
+      -0.00033450885781592866,
+      -0.00033450904082766523,
+      -0.000334509094190253,
+      -0.00033450910112249713
+    ],
+    "reference": -0.00033450910112249713,
+    "truncation_indicator": 6.9322441125126144e-12,
+    "precision_indicator": 7.228018097243938e-14,
+    "gradient_precision_indicator": 2.439454888092385e-18,
+    "roundoff_indicator": 3.412003341166574e-14,
+    "combined_indicator": 7.038646766351608e-12,
+    "indicator_ceiling": 2.5e-06,
+    "tolerance": 1e-05,
+    "stabilizing": true,
+    "grid_count_stable": true,
+    "full_error": 2.7446334050981736e-13,
+    "off_error": 2.7446577996470545e-13,
+    "full_verdict": "consistent",
+    "off_verdict": "consistent",
+    "missing_response_material": false,
+    "scope": "Empirical finite-resolution assessment; no rigorous interval enclosure or global stationarity certificate",
+    "precision_interpretation": "Two float64 implementations at identical fixed P0, not a high-precision oracle"
+  },
+  "parity": {
+    "max_energy_difference_Eh": 3.677613769070831e-16,
+    "max_gradient_difference_Eh_Bohr": 2.445960101127298e-16,
+    "passed": true
+  },
+  "center_energy_Eh": {
+    "stock": -0.012805250943430225,
+    "cached": -0.012805250943430073
+  },
+  "energies": {
+    "stock": [
+      [
+        -0.012809942867653142,
+        -0.012799230894991511
+      ],
+      [
+        -0.01280776130169964,
+        -0.012802408198823086
+      ],
+      [
+        -0.012806547480215208,
+        -0.012803871288110785
+      ],
+      [
+        -0.012805909578568664,
+        -0.012804571527273063
+      ],
+      [
+        -0.012805582855790145,
+        -0.012804913835726402
+      ]
+    ],
+    "cached": [
+      [
+        -0.012809942867652774,
+        -0.012799230894991433
+      ],
+      [
+        -0.012807761301699559,
+        -0.0128024081988231
+      ],
+      [
+        -0.012806547480215062,
+        -0.012803871288110539
+      ],
+      [
+        -0.012805909578568548,
+        -0.012804571527272912
+      ],
+      [
+        -0.012805582855789857,
+        -0.012804913835726218
+      ]
+    ]
+  },
+  "projected_gradient": {
+    "stock": -0.0003345091013969629,
+    "cached": -0.00033450910139696047
+  },
+  "fixed_AO_density_sha256": "dfa193df8aec8a205410e0bd5d7ae40c05051c6b89f92ae9bf5670dcc9f00037",
+  "explicit_energy_evaluations": 22,
+  "gradient_evaluations": 2,
+  "scope": "Explicit PCM partial derivative only; overlap electron count can change off center"
+}

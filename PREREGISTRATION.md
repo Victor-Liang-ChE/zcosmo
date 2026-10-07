@@ -1448,3 +1448,15 @@ a separate registration. There is no automatic next parameter sweep.
 P38 is E reporting only. Append the supplied short README status, linking the
 archived evidence. Preserve distinctions between original-predicate convergence,
 full-energy stationarity, numerical acceptance and experimental accuracy.
+
+- Round 8 RESULTS (recorded 2026-10-06 ~21:50 PDT; registered 333b2ab; plan 54e0ebc; one P37 dispatch, Actions run 37565712769, 8/8 jobs completed,
+  none rerun). Deviation: plan.json records the registration as fc898fb (the container commit before `git am`), which is tree-identical (a6c0eac) to 333b2ab.
+  P36: all archived R7 numbers reproduced with zero quantum evaluations; no new gate passed.
+  P37: baseline_P33_pattern_reproduced = False. EG 2-3 pcm_pruned is full-consistent (error 8.5e-10), reproducing P33. TEG 3-4 pcm_pruned is inconclusive:
+  the ladder stabilized (indicator 4.5e-7) with a discrepancy of 2.16e-5, but one PCM surface node (minimum switching weight 5.5e-13) left the retained
+  set at the + displacement for h <= 0.008 Bohr, a membership change that makes the verdict inconclusive. The other six arms are inconclusive (four did not
+  stabilize; TEG pcm_unpruned has the same membership change). XC grid membership was constant in every arm. The SCF and response quadratures matched.
+  Explicit PCM partial at fixed AO density: EG consistent (2.7e-13), TEG inconclusive by membership (error 3.1e-14). CachedPCM3c and stock PCM parity
+  passed (<= 7e-16). Per the registration, no contrast is interpreted, the TEG mismatch is archived as unresolved, and the R8 diagnostic budget is closed.
+  No optimizer, re-polish, chain retry or default change is authorized. No profile version changed.
+  P38: README "Current evidence" section applied in 333b2ab.

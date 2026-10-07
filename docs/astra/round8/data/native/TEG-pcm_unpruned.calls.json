@@ -1,0 +1,420 @@
+[
+  {
+    "index": 0,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275448761747,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.1970236213048153e-12,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 1,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.527544876172,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.1970236213048153e-12,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 2,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275445768488,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "1afeacb89779413104c7036a5fccef434bc83cab37eeaa06588b3b4f7df70098",
+      "count": 1340,
+      "minimum_switch": 5.51361471943945e-13,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 3,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275452396138,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 2.959221880250757e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 4,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275446832222,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 3.733509883791849e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 5,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275449802858,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 4.907291719922658e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 6,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275447325496,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.278831620533826e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 7,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275449488533,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 6.13780349669018e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 8,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275448595349,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.814232553395946e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 9,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275449015842,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.5055483567398484e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 10,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275448818186,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 6.095585092526049e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 11,
+    "precision": "tight",
+    "status": "completed",
+    "energy_Eh": -537.5275448925274,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 15,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 3.247641461093502e-11,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 12,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275445768467,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 19,
+    "PCM": {
+      "signature": "1afeacb89779413104c7036a5fccef434bc83cab37eeaa06588b3b4f7df70098",
+      "count": 1340,
+      "minimum_switch": 5.51361471943945e-13,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 13,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275452396154,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 2.959221880250757e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 14,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.527544683225,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 18,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 3.733509883791849e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 15,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275449802879,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 4.907291719922658e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 16,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275447325498,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.278831620533826e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 17,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.527544948857,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 6.13780349669018e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 18,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275448595356,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.814232553395946e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 19,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275449015851,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.5055483567398484e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 20,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.527544881817,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 17,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 6.095585092526049e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  },
+  {
+    "index": 21,
+    "precision": "strict",
+    "status": "completed",
+    "energy_Eh": -537.5275448925267,
+    "XC": {
+      "signature": "120692691eef9d12dbdace8bbae15ef09d0ca6e7838a55a239cd7808957a1427",
+      "count": 289840
+    },
+    "small_rho_cutoff": 0.0,
+    "prune": "None",
+    "SCF_cycles": 19,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 3.247641461093502e-11,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    }
+  }
+]

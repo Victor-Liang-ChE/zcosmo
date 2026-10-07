@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/opt/hostedtoolcache/Python/3.11.16/x64/bin/python",
+    "/home/runner/work/zcosmo/zcosmo/scripts/r8_diagnostic.py",
+    "native",
+    "--plan",
+    "/home/runner/work/zcosmo/zcosmo/cloud/r8/diagnostic/plan.json",
+    "--case",
+    "TEG",
+    "--arm",
+    "pcm_unpruned",
+    "--out",
+    "/home/runner/work/zcosmo/zcosmo/out/TEG/pcm_unpruned"
+  ],
+  "wall_s": 653.9792059270001,
+  "deadline_s": 3600,
+  "returncode": 0,
+  "execution_status": "completed",
+  "native_status": "diagnostic_complete",
+  "output": "/home/runner/work/zcosmo/zcosmo/out/TEG/pcm_unpruned",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,155 @@
+{
+  "packages": {
+    "pyscf": "2.14.0",
+    "pyberny": "0.7.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "upstream_sha256": {
+    "pyscf.dft.rks": "fcc8d3dbd03df368f3b70f3ce5999be6a19c608a6ff0bdc1890074616f0befa8",
+    "pyscf.dft.gen_grid": "44aa665fb25efc544a42cb80fdad737767c787c20479d4df0ae4b1649028ff14",
+    "pyscf.grad.rks": "cffc3e9efa10cf1b547d757e9d165c1000377e9159c794f87464a79c8c93ab46",
+    "pyscf.df.grad.rks": "c33196f5fafa1a6646b5d5edbd7e198716b9d77a12b160fa245a6bc307f6de56",
+    "pyscf.solvent.pcm": "97bb24fb2e607745c444c36b6c3e649ffca66f808ec2965137a871061b3b9fed",
+    "pyscf.solvent.grad.pcm": "7f81e75c1b903bd338832442b6902f354a3bfef336eacbabe94b09d076f67e4e"
+  },
+  "base": "58cc629df42156c0b7862710057318db0a495dbb",
+  "registration": "fc898fbd99236f95a4d13791609435f4483ed617",
+  "plan_sha256": "4cad30e638077ab6703666f47b858365ad156510599e0b6043d211d5e39bd892",
+  "label": "EG",
+  "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+  "arm": "pcm_pruned",
+  "geometry_sha256": "9e591eaf93c1880b890965ec3223928680b4ea2b34e1270da83538ae0e125685",
+  "direction": "bond-2-3",
+  "adopted": false,
+  "optimization_authorized": false,
+  "status": "diagnostic_complete",
+  "assessment": {
+    "steps_Bohr": [
+      0.016,
+      0.008,
+      0.004,
+      0.002,
+      0.001
+    ],
+    "central_tight": [
+      2.3529837633873285e-05,
+      2.5340879616919665e-05,
+      2.1805526273510623e-05,
+      1.7793681195144018e-05,
+      1.7796210727283324e-05
+    ],
+    "central_strict": [
+      2.352982342301857e-05,
+      2.5340844089782877e-05,
+      2.1805703909194563e-05,
+      1.7792970652408258e-05,
+      1.779518754574383e-05
+    ],
+    "Richardson_tight": [
+      2.5944560277935125e-05,
+      2.0627075159040942e-05,
+      1.645639950235515e-05,
+      1.779705390466309e-05
+    ],
+    "Richardson_strict": [
+      2.594451764537098e-05,
+      2.0627323848998458e-05,
+      1.6455392900146155e-05,
+      1.779592651018902e-05
+    ],
+    "reference": 1.779592651018902e-05,
+    "truncation_indicator": 1.3405336100428648e-06,
+    "precision_indicator": 1.127394474071563e-09,
+    "gradient_precision_indicator": 3.331320813551152e-11,
+    "roundoff_indicator": 6.130802919255146e-10,
+    "combined_indicator": 1.3423073980169974e-06,
+    "indicator_ceiling": 2.5e-06,
+    "tolerance": 1e-05,
+    "stabilizing": true,
+    "grid_count_stable": true,
+    "full_error": 8.467297198743004e-10,
+    "off_error": 2.085973635741906e-06,
+    "full_verdict": "consistent",
+    "off_verdict": "consistent",
+    "missing_response_material": false,
+    "scope": "Empirical finite-resolution assessment; no rigorous interval enclosure or global stationarity certificate"
+  },
+  "energies": {
+    "tight": [
+      [
+        -230.08901280455333,
+        -230.08901355750814
+      ],
+      [
+        -230.08901395778756,
+        -230.08901436324163
+      ],
+      [
+        -230.08901434550356,
+        -230.08901451994777
+      ],
+      [
+        -230.08901447252558,
+        -230.0890145437003
+      ],
+      [
+        -230.08901450593385,
+        -230.08901454152627
+      ]
+    ],
+    "strict": [
+      [
+        -230.0890128045522,
+        -230.08901355750655
+      ],
+      [
+        -230.08901395778744,
+        -230.08901436324095
+      ],
+      [
+        -230.0890143455011,
+        -230.08901451994674
+      ],
+      [
+        -230.08901447252603,
+        -230.0890145436979
+      ],
+      [
+        -230.0890145059355,
+        -230.08901454152587
+      ]
+    ]
+  },
+  "response_grid_check": {
+    "tight": {
+      "membership_identical": true,
+      "weights_match": true,
+      "max_weight_difference": 3.111274621549479e-199,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    "strict": {
+      "membership_identical": true,
+      "weights_match": true,
+      "max_weight_difference": 3.111274621549479e-199,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    }
+  },
+  "membership_stable": true,
+  "SCF_evaluations": 22,
+  "gradient_evaluations": 3,
+  "wall_s": 90.58605579,
+  "precision": {
+    "tight": [
+      1e-11,
+      1e-07
+    ],
+    "strict": [
+      1e-12,
+      1e-08
+    ]
+  },
+  "scope": "Two directions only; a changed vacuum density prevents additive solvent attribution"
+}

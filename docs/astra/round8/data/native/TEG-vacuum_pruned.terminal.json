@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "execution": {
+    "argv": [
+      "/opt/hostedtoolcache/Python/3.11.16/x64/bin/python",
+      "/home/runner/work/zcosmo/zcosmo/scripts/r8_diagnostic.py",
+      "native",
+      "--plan",
+      "/home/runner/work/zcosmo/zcosmo/cloud/r8/diagnostic/plan.json",
+      "--case",
+      "TEG",
+      "--arm",
+      "vacuum_pruned",
+      "--out",
+      "/home/runner/work/zcosmo/zcosmo/out/TEG/vacuum_pruned"
+    ],
+    "wall_s": 953.2067121959999,
+    "deadline_s": 3600,
+    "returncode": 0,
+    "execution_status": "completed",
+    "native_status": "diagnostic_complete",
+    "output": "/home/runner/work/zcosmo/zcosmo/out/TEG/vacuum_pruned",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "scientific_verdict": "inconclusive",
+  "plan_sha256": "4cad30e638077ab6703666f47b858365ad156510599e0b6043d211d5e39bd892",
+  "case": "TEG",
+  "arm": "vacuum_pruned"
+}

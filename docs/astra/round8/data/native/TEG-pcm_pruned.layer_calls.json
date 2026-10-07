@@ -1,0 +1,310 @@
+[
+  {
+    "engine": "stock",
+    "h_Bohr": 0.0,
+    "sign": 0.0,
+    "energy_Eh": -0.023249096189934544,
+    "solve_residual": 1.3877787807814457e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.1970236213048153e-12,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00000000000011
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.016,
+    "sign": 1.0,
+    "energy_Eh": -0.02324933613637572,
+    "solve_residual": 1.942890293094024e-16,
+    "PCM": {
+      "signature": "1afeacb89779413104c7036a5fccef434bc83cab37eeaa06588b3b4f7df70098",
+      "count": 1340,
+      "minimum_switch": 5.51361471943945e-13,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00022573397851
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.016,
+    "sign": -1.0,
+    "energy_Eh": -0.023249064082989004,
+    "solve_residual": 1.5265566588595902e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 2.959221880250757e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99974724561952
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.008,
+    "sign": 1.0,
+    "energy_Eh": -0.02324919034622891,
+    "solve_residual": 1.6653345369377348e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 3.733509883791849e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00011624470966
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.008,
+    "sign": -1.0,
+    "energy_Eh": -0.02324905398834011,
+    "solve_residual": 2.3592239273284576e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 4.907291719922658e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99987700018515
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.004,
+    "sign": 1.0,
+    "energy_Eh": -0.023249136794265005,
+    "solve_residual": 1.3183898417423734e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.278831620533826e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00005896676434
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.004,
+    "sign": -1.0,
+    "energy_Eh": -0.023249068573951905,
+    "solve_residual": 1.3877787807814457e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 6.13780349669018e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99993934445911
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.002,
+    "sign": 1.0,
+    "energy_Eh": -0.02324911487113122,
+    "solve_residual": 1.5265566588595902e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.814232553395946e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00002969448205
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.002,
+    "sign": -1.0,
+    "energy_Eh": -0.023249080755804508,
+    "solve_residual": 1.457167719820518e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.5055483567398484e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99996988332394
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.001,
+    "sign": 1.0,
+    "energy_Eh": -0.023249105124972073,
+    "solve_residual": 1.6653345369377348e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 6.095585092526049e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00001490001563
+  },
+  {
+    "engine": "stock",
+    "h_Bohr": 0.001,
+    "sign": -1.0,
+    "energy_Eh": -0.023249088066662916,
+    "solve_residual": 1.3877787807814457e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 3.247641461093502e-11,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.999984994436
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.0,
+    "sign": 0.0,
+    "energy_Eh": -0.023249096189934516,
+    "solve_residual": 1.942890293094024e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.1970236213048153e-12,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00000000000011
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.016,
+    "sign": 1.0,
+    "energy_Eh": -0.023249336136375708,
+    "solve_residual": 2.220446049250313e-16,
+    "PCM": {
+      "signature": "1afeacb89779413104c7036a5fccef434bc83cab37eeaa06588b3b4f7df70098",
+      "count": 1340,
+      "minimum_switch": 5.51361471943945e-13,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00022573397851
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.016,
+    "sign": -1.0,
+    "energy_Eh": -0.023249064082988317,
+    "solve_residual": 1.3877787807814457e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 2.959221880250757e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99974724561952
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.008,
+    "sign": 1.0,
+    "energy_Eh": -0.02324919034622926,
+    "solve_residual": 1.457167719820518e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 3.733509883791849e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00011624470966
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.008,
+    "sign": -1.0,
+    "energy_Eh": -0.023249053988340117,
+    "solve_residual": 1.6653345369377348e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 4.907291719922658e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99987700018515
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.004,
+    "sign": 1.0,
+    "energy_Eh": -0.023249136794265348,
+    "solve_residual": 1.6653345369377348e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.278831620533826e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00005896676434
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.004,
+    "sign": -1.0,
+    "energy_Eh": -0.023249068573951596,
+    "solve_residual": 1.5265566588595902e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 6.13780349669018e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99993934445911
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.002,
+    "sign": 1.0,
+    "energy_Eh": -0.023249114871130697,
+    "solve_residual": 1.3877787807814457e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 5.814232553395946e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00002969448205
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.002,
+    "sign": -1.0,
+    "energy_Eh": -0.023249080755804664,
+    "solve_residual": 1.8041124150158794e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 1.5055483567398484e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.99996988332394
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.001,
+    "sign": 1.0,
+    "energy_Eh": -0.023249105124971862,
+    "solve_residual": 1.3183898417423734e-16,
+    "PCM": {
+      "signature": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7",
+      "count": 1339,
+      "minimum_switch": 6.095585092526049e-10,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 82.00001490001563
+  },
+  {
+    "engine": "cached",
+    "h_Bohr": 0.001,
+    "sign": -1.0,
+    "energy_Eh": -0.02324908806666261,
+    "solve_residual": 1.5959455978986625e-16,
+    "PCM": {
+      "signature": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+      "count": 1340,
+      "minimum_switch": 3.247641461093502e-11,
+      "note": "Retained surface-node identity; continuous switching weights are not fixed"
+    },
+    "overlap_electrons": 81.999984994436
+  }
+]

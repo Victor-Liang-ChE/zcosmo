@@ -1,0 +1,223 @@
+{
+  "base": "58cc629df42156c0b7862710057318db0a495dbb",
+  "source_sha256": {
+    "docs/astra/round7/data/p32_calibration_gate.json": "972dcea2e4b9b473495e7af2bc217ca1cd44e0d203ee6aa2959b7b4201cbe320",
+    "docs/astra/round7/data/p34_primary_screen.json": "9eb89d34bf5012d175217dfc7ffdb2725c13b6e82fd17186134e960a558c1ad8",
+    "docs/astra/round7/data/referee/BKIMMITUMNQMOS-UHFFFAOYSA-N.result.json": "7396cc7bf9b5858b43490373d13a0e8ea38a7f51d13a2749e14babe836b82d96",
+    "docs/astra/round7/data/referee/LYCAIKOWRPUZTN-UHFFFAOYSA-N.result.json": "98b80db160fc29504dd15c20b683677084eacb0623d14338e8abe3dae9037d77",
+    "docs/astra/round7/data/referee/OKKJLVBELUTLKV-UHFFFAOYSA-N.result.json": "191c192143fc27cee1ea00e614985b470961ba668e8e9511123ded2c052eefc0",
+    "docs/astra/round7/data/referee/XTHFKEDIFFGKHM-UHFFFAOYSA-N.result.json": "6ec17371547e848f4f555f244223f94828ef4d666e0907e0d5b967573ad81d38",
+    "docs/astra/round7/data/referee/ZIBGPFATKBEMQZ-UHFFFAOYSA-N.result.json": "474eb401f2f90adbde3bef8ecabd7bdf6a5fdc2390e90fd92832332661f45095"
+  },
+  "P32": {
+    "recorded_passed": false,
+    "rows": 2302,
+    "targets": 25,
+    "max_dsp_change": 0.012074145054630225,
+    "median_dsp_change": 0.00016563140277092714,
+    "excess_over_original_limit": 0.002074145054630225,
+    "median_dsp_vs_UD": 0.13639218459184735,
+    "worker_seconds": {
+      "off": 2635.7372810790002,
+      "full": 2986.1684990559997
+    },
+    "full_over_off": 1.1329537736908066,
+    "count_of_over_limit_queries": null,
+    "reason_count_unavailable": "Archived gate stores extrema, not per-query values",
+    "pilot_authorized": false,
+    "chains_authorized": false
+  },
+  "P33": {
+    "cases": [
+      {
+        "key": "BKIMMITUMNQMOS-UHFFFAOYSA-N",
+        "status": "diagnostic_complete",
+        "directions": [
+          {
+            "direction": "bond-0-1",
+            "full_verdict": "consistent",
+            "off_verdict": "inconsistent",
+            "combined_indicator": 1.3209797245307244e-06,
+            "full_error": 4.71745105849417e-06,
+            "off_error": 1.907233577746487e-05,
+            "missing_response_material": true
+          },
+          {
+            "direction": "bond-1-2",
+            "full_verdict": "consistent",
+            "off_verdict": "inconsistent",
+            "combined_indicator": 8.145277779159058e-07,
+            "full_error": 3.3170474484312473e-10,
+            "off_error": 1.921873792403285e-05,
+            "missing_response_material": true
+          },
+          {
+            "direction": "bond-2-3",
+            "full_verdict": "consistent",
+            "off_verdict": "consistent",
+            "combined_indicator": 8.055900791729786e-07,
+            "full_error": 4.432751654165641e-08,
+            "off_error": 3.18214292262051e-06,
+            "missing_response_material": false
+          },
+          {
+            "direction": "bond-3-4",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 5.095417751395365e-06,
+            "full_error": 1.235602106923599e-06,
+            "off_error": 2.4694693780281472e-05,
+            "missing_response_material": null
+          }
+        ]
+      },
+      {
+        "key": "LYCAIKOWRPUZTN-UHFFFAOYSA-N",
+        "status": "diagnostic_complete",
+        "directions": [
+          {
+            "direction": "bond-0-1",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 1.0783161271443838e-05,
+            "full_error": 2.4686943457832563e-06,
+            "off_error": 1.247328106874982e-06,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-1-2",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 1.6161468838170208e-05,
+            "full_error": 3.6180631626197182e-06,
+            "off_error": 1.2295558161579554e-06,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-2-3",
+            "full_verdict": "consistent",
+            "off_verdict": "consistent",
+            "combined_indicator": 1.342363675908043e-06,
+            "full_error": 2.0669435536711258e-10,
+            "off_error": 2.08661366398103e-06,
+            "missing_response_material": false
+          },
+          {
+            "direction": "internal-0",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 2.071545114263727e-05,
+            "full_error": 2.624031858094172e-05,
+            "off_error": 2.5212577335091764e-05,
+            "missing_response_material": null
+          }
+        ]
+      },
+      {
+        "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+        "status": "failed",
+        "directions": []
+      },
+      {
+        "key": "XTHFKEDIFFGKHM-UHFFFAOYSA-N",
+        "status": "diagnostic_complete",
+        "directions": [
+          {
+            "direction": "bond-0-1",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 6.289705670575053e-06,
+            "full_error": 1.2836096291705018e-05,
+            "off_error": 1.7508609698895587e-05,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-1-2",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 1.7619112866140125e-05,
+            "full_error": 4.217181115746271e-06,
+            "off_error": 1.9247267780632982e-05,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-2-3",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 3.9068479372476125e-06,
+            "full_error": 2.7851543999516266e-07,
+            "off_error": 2.5921812049136397e-05,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-3-4",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 8.280797456323954e-06,
+            "full_error": 2.229967073344922e-06,
+            "off_error": 9.698530283364582e-06,
+            "missing_response_material": null
+          }
+        ]
+      },
+      {
+        "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+        "status": "diagnostic_complete",
+        "directions": [
+          {
+            "direction": "bond-0-1",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 2.0209439858604044e-05,
+            "full_error": 1.3363746735670756e-05,
+            "off_error": 1.4141104625424706e-06,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-1-2",
+            "full_verdict": "consistent",
+            "off_verdict": "inconsistent",
+            "combined_indicator": 2.0207968523583498e-06,
+            "full_error": 4.6564881402098914e-07,
+            "off_error": 1.6769523320593015e-05,
+            "missing_response_material": true
+          },
+          {
+            "direction": "bond-2-3",
+            "full_verdict": "inconclusive",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 8.64605159324609e-06,
+            "full_error": 7.330695197542178e-06,
+            "off_error": 4.813643510261295e-05,
+            "missing_response_material": null
+          },
+          {
+            "direction": "bond-3-4",
+            "full_verdict": "inconsistent",
+            "off_verdict": "inconclusive",
+            "combined_indicator": 4.5640247832308915e-07,
+            "full_error": 2.1635684017462282e-05,
+            "off_error": 9.992474764382085e-06,
+            "missing_response_material": null
+          }
+        ]
+      }
+    ],
+    "completed": 4,
+    "resolved_omitted_response_directions": 3,
+    "full_inconsistent_directions": 1,
+    "unknowns_are_not_passes": true
+  },
+  "P34": {
+    "requested": 40,
+    "positive": 35,
+    "negative": 0,
+    "affinity_unresolved": 4,
+    "native_missing_or_failed": 1,
+    "force_observed": 39,
+    "force_over_1e_5": 39,
+    "sampling_bound": null,
+    "scope": "Fixed-displacement sensitivity only; no inferred geometry error or population bound"
+  },
+  "primary_repolish_authorized": false
+}
