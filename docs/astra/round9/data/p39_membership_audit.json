@@ -1,0 +1,146 @@
+{
+  "base": "83cf52163d806ef0c92ba2002094832824122d59",
+  "requested_SCF_records": 22,
+  "strict_rows": [
+    {
+      "index": 1,
+      "h_Bohr": 0.0,
+      "sign": 0,
+      "PCM_count": 1340,
+      "membership": "A",
+      "minimum_retained_switch": 1.1970236213048153e-12,
+      "energy_Eh": -537.5275424534359
+    },
+    {
+      "index": 12,
+      "h_Bohr": 0.016,
+      "sign": 1,
+      "PCM_count": 1340,
+      "membership": "B",
+      "minimum_retained_switch": 5.51361471943945e-13,
+      "energy_Eh": -537.5275421230837
+    },
+    {
+      "index": 13,
+      "h_Bohr": 0.016,
+      "sign": -1,
+      "PCM_count": 1340,
+      "membership": "A",
+      "minimum_retained_switch": 2.959221880250757e-10,
+      "energy_Eh": -537.5275428693215
+    },
+    {
+      "index": 14,
+      "h_Bohr": 0.008,
+      "sign": 1,
+      "PCM_count": 1339,
+      "membership": "C",
+      "minimum_retained_switch": 3.733509883791849e-10,
+      "energy_Eh": -537.5275422546365
+    },
+    {
+      "index": 15,
+      "h_Bohr": 0.008,
+      "sign": -1,
+      "PCM_count": 1340,
+      "membership": "A",
+      "minimum_retained_switch": 4.907291719922658e-10,
+      "energy_Eh": -537.5275425992053
+    },
+    {
+      "index": 16,
+      "h_Bohr": 0.004,
+      "sign": 1,
+      "PCM_count": 1339,
+      "membership": "C",
+      "minimum_retained_switch": 5.278831620533826e-10,
+      "energy_Eh": -537.5275423408234
+    },
+    {
+      "index": 17,
+      "h_Bohr": 0.004,
+      "sign": -1,
+      "PCM_count": 1340,
+      "membership": "A",
+      "minimum_retained_switch": 6.13780349669018e-10,
+      "energy_Eh": -537.5275425010029
+    },
+    {
+      "index": 18,
+      "h_Bohr": 0.002,
+      "sign": 1,
+      "PCM_count": 1339,
+      "membership": "C",
+      "minimum_retained_switch": 5.814232553395946e-10,
+      "energy_Eh": -537.5275424538537
+    },
+    {
+      "index": 19,
+      "h_Bohr": 0.002,
+      "sign": -1,
+      "PCM_count": 1340,
+      "membership": "A",
+      "minimum_retained_switch": 1.5055483567398484e-10,
+      "energy_Eh": -537.5275424708611
+    },
+    {
+      "index": 20,
+      "h_Bohr": 0.001,
+      "sign": 1,
+      "PCM_count": 1339,
+      "membership": "C",
+      "minimum_retained_switch": 6.095585092526049e-10,
+      "energy_Eh": -537.5275424743625
+    },
+    {
+      "index": 21,
+      "h_Bohr": 0.001,
+      "sign": -1,
+      "PCM_count": 1340,
+      "membership": "A",
+      "minimum_retained_switch": 3.247641461093502e-11,
+      "energy_Eh": -537.5275424743036
+    }
+  ],
+  "signature_labels": {
+    "A": "b496edc0b901810bc4b371caf4ee75c133893c66a3349357104af66e7251d995",
+    "B": "1afeacb89779413104c7036a5fccef434bc83cab37eeaa06588b3b4f7df70098",
+    "C": "cb3e24352f010f2c8d666ae65249907522bebe9b5304b40efaa709fcd3660da7"
+  },
+  "XC_memberships": 1,
+  "PCM_memberships": 3,
+  "equal_count_different_membership_indices": [
+    12
+  ],
+  "minimum_retained_switch": 5.51361471943945e-13,
+  "minimum_locations": [
+    {
+      "h_Bohr": 0.016,
+      "sign": 1,
+      "index": 12
+    }
+  ],
+  "central_strict": [
+    2.3319930875231876e-05,
+    2.1535548455631215e-05,
+    2.0022440594402724e-05,
+    4.251859309079009e-06,
+    -2.9444890969898552e-08
+  ],
+  "Richardson_strict": [
+    2.0940754315764327e-05,
+    1.951807130732656e-05,
+    -1.0050011193622292e-06,
+    -1.456546290986201e-06
+  ],
+  "strict_positive_small_h_signature_constant": true,
+  "changed_node_identity": null,
+  "interpretation": "A minimum over retained nodes does not identify a removed node. Hashes establish set changes, not a causal energy error.",
+  "scientific_verdict": "P37 inconclusive, retained without re-gating",
+  "new_QC_evaluations": 0,
+  "new_model_evaluations": 0,
+  "native_budget_authorized": 0,
+  "source_git_blob": "1273d62de16736fd7138d8f80b9ee47393ac8e6d",
+  "source_sha256": "354033bddccf49b41904d569d006594885562e537ff0da4423a05f1366dec926",
+  "audit_wall_s": 0.004000008999998528
+}

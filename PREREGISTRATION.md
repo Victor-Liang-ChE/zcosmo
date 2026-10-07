@@ -1490,3 +1490,10 @@ membership changes are not, on their own, independent validation of a source
 correction. Further native work requires distinct evidence that isolates a
 specific error and a separate prospective authorization. This note creates
 no automatic continuation and does not reopen the R8 budget.
+
+- Round 9 RESULTS and campaign closeout (recorded 2026-10-07). P39: the archived TEG PCM/pruned log matched blob 1273d62d; all report assertions
+  pass (XC memberships 1, PCM memberships 3, equal-count membership change at +0.016 Bohr only, minimum retained switch 5.5136e-13 located there,
+  positive-side membership constant for h <= 0.008, finest Richardson -1.456546290986201e-6). This corrects the R8 RESULTS wording that tied the
+  minimum to the calls where a node dropped out; the R8 verdict is unchanged (inconclusive, unresolved). P40: README lines applied and checked.
+  Zero native work. Victor chose to close the Astra review after R9; no ROUND10 prompt is written. Reopening needs distinct evidence and a new
+  prospective registration.
