@@ -1828,3 +1828,10 @@ label has been verified. Distinguish glycerol's small positive P21 shape shift
 from propylene glycol's negative one. Preserve every measured number and prior failure.
 Do not claim the crossed calculation has run merely because this protocol
 and its code are committed. Record actual outcomes separately afterward.
+
+- Round 11 RESULTS (recorded 2026-10-07; registered f60722f; private plan frozen 1ecca25, SHA256 b91657b7...d54e49; Mac queue job 396, one run,
+  24/24 slots, driver 594 s, no retry; 0 optimizations, 0 gradients, 0 model calls). Same-input parity passed for all 12 (energy <= 7e-13 Eh,
+  max bin <= 3e-11 A^2). Registered headline labels: all 8 non-control members metric_dependent_or_inconclusive, 4 controls descriptive, because every
+  normalized-shape contrast is inconclusive_small_contrast (shape eta 0.359 L1 from the controls). Tail labels: EG, DEG, TEG mainly_geometry in raw,
+  averaged and final tails (final-tail coordinate term 8.1-12.0 A^2 of gaps 10.0-14.4; method term 1.3-2.4); tetraEG raw tail mainly_method, others
+  small; glycerol, PG, DME, nonane inconclusive. Open net charge is unchanged by the coordinate change (within 0.003 e). Nothing adopted; P35 open.
