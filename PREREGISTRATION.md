@@ -1299,3 +1299,17 @@ All jobs use immutable inputs, isolated output directories, exclusive claims and
   PEP 440-normalized '2026.3.6' (the same string the frozen R7 plans record). No SCF ran and nothing was computed. The amendment compares normalized
   versions; the pin itself is unchanged. Because the plan records the script hash, cloud/r7/referee is re-frozen with the same five cases, geometries,
   ladder, tolerance and budgets, and dispatched once more. Run 37546518712 is void as an execution failure, not a scientific outcome.
+
+- Round 7 RESULTS (recorded 2026-10-06 ~19:00 PDT; registered 6a51e75; plans 95c8d88, screen a8c5de0, referee 97db7ea; amendments P34a ef2fa58 and
+  P33a 29e9bf2; Actions runs calibration 37546500861, referee 37547463603, screen 37546971488; void dispatches 37546518712, 37546536602, 37546787100;
+  Mac jobs 372-383). Details and data in docs/astra/round7/RESULTS.md and data/.
+  P32 calibration: 25/25 targets reach the original Berny predicate in both arms; wall ratio 1.13; identical finite masks (dsp 2271, Z0x 2302);
+  max |dsp change| full vs off 0.0121 (limit 0.01), median 1.7e-4; max |Z0x change| 0.0170; median |dsp - UD| 0.136. Compatibility gate FAILED;
+  pilot not dispatched; no chain permit; the six-chain campaign stays closed and the S1/S2 flags stand.
+  P33: 4/5 cases diagnostic_complete (methanol SCF failed after 21 SCFs). Resolved directions: full consistent / off inconsistent (omitted response
+  material) in nonane bond 0-1 and 1-2 and TEG bond 1-2; full inconsistent in TEG bond 3-4 (2.2e-5 > tau 1e-5); both consistent in nonane bond 2-3
+  and EG bond 2-3; all other directions inconclusive (Richardson ladder not stabilized within the tau/4 ceiling).
+  P34: 39/40 cases complete (XIRNKXNNONJFQO never recorded a final status), so no sampling bound. Off/full force difference > 1e-5 Eh/Bohr in 39/39
+  (max 3.3e-4). +/-0.01 A stress: 35 screen-positive (max |d ln gamma| >= 0.01; largest 0.66), 4 unresolved (finite coverage changed), 0 negative.
+  No primary profile changed.
+  P35: glycol mechanism recorded as unresolved with the registered reopening conditions.

@@ -1,0 +1,487 @@
+{
+  "base": "ddf22b19f9e1750308bd11572786b44d407a80f9",
+  "registration": "6a51e755f744a036d18da294307a678edb779626",
+  "passed": false,
+  "plan_sha256": "403f803071c7becef62492f3906b8aa7df3b68be80b2017aa6f111b2ce9ab9f0",
+  "rows": 2302,
+  "targets": 25,
+  "checks": {
+    "cosmosac_dsp": {
+      "candidate_vs_control": {
+        "coverage_identical": true,
+        "requested": 2302,
+        "finite_reference": 2271,
+        "finite_candidate": 2271,
+        "max_abs_change": 0.012074145054630225,
+        "median_abs_change": 0.00016563140277092714
+      },
+      "candidate_vs_UD": {
+        "coverage_identical": true,
+        "requested": 2302,
+        "finite_reference": 2271,
+        "finite_candidate": 2271,
+        "max_abs_change": 1.7043044511146093,
+        "median_abs_change": 0.13639218459184735
+      }
+    },
+    "Z0x": {
+      "candidate_vs_control": {
+        "coverage_identical": true,
+        "requested": 2302,
+        "finite_reference": 2302,
+        "finite_candidate": 2302,
+        "max_abs_change": 0.01697350759863614,
+        "median_abs_change": 0.00013867131937095323
+      },
+      "candidate_vs_UD": {
+        "coverage_identical": true,
+        "requested": 2302,
+        "finite_reference": 2302,
+        "finite_candidate": 2302,
+        "max_abs_change": 2.1637057057071925,
+        "median_abs_change": 0.20496573190229145
+      }
+    }
+  },
+  "bins": [
+    {
+      "key": "BDERNNFJNOPAEC-UHFFFAOYSA-N",
+      "max_raw_bin": 0.017975529630101406,
+      "max_normalized_bin": 0.0001586916486862322,
+      "normalized_L1": 0.001170784414488775
+    },
+    {
+      "key": "CSCPPACGZOOCGX-UHFFFAOYSA-N",
+      "max_raw_bin": 0.027139004544070033,
+      "max_normalized_bin": 0.00026172833034622534,
+      "normalized_L1": 0.0011701675315819266
+    },
+    {
+      "key": "GHVNFZFCNZKVNT-UHFFFAOYSA-N",
+      "max_raw_bin": 0.5587758765257007,
+      "max_normalized_bin": 0.0024107978329744872,
+      "normalized_L1": 0.016844866913181197
+    },
+    {
+      "key": "HEDRZPFGACZZDS-UHFFFAOYSA-N",
+      "max_raw_bin": 0.004643960000098701,
+      "max_normalized_bin": 3.619145293481951e-05,
+      "normalized_L1": 0.00013397148099766052
+    },
+    {
+      "key": "HRYZWHHZPQKTII-UHFFFAOYSA-N",
+      "max_raw_bin": 0.004740057827300248,
+      "max_normalized_bin": 4.7039945418297924e-05,
+      "normalized_L1": 0.00020797312083862835
+    },
+    {
+      "key": "IMNFDUFMRHMDMM-UHFFFAOYSA-N",
+      "max_raw_bin": 0.05485209573889449,
+      "max_normalized_bin": 0.0003046578542755529,
+      "normalized_L1": 0.0006920890125640695
+    },
+    {
+      "key": "JUJWROOIHBZHMG-UHFFFAOYSA-N",
+      "max_raw_bin": 0.005986009667399372,
+      "max_normalized_bin": 5.100315057367244e-05,
+      "normalized_L1": 0.00033189150738672986
+    },
+    {
+      "key": "KFZMGEQAYNKOFK-UHFFFAOYSA-N",
+      "max_raw_bin": 0.02775095425577989,
+      "max_normalized_bin": 0.0002500988087891058,
+      "normalized_L1": 0.002042991984508156
+    },
+    {
+      "key": "LCGLNKUTAGEVQW-UHFFFAOYSA-N",
+      "max_raw_bin": 0.03016109609725004,
+      "max_normalized_bin": 0.0003244662181428083,
+      "normalized_L1": 0.001977549996316807
+    },
+    {
+      "key": "LRHPLDYGYMQRHN-UHFFFAOYSA-N",
+      "max_raw_bin": 0.01163003273870089,
+      "max_normalized_bin": 8.642484996984612e-05,
+      "normalized_L1": 0.0008136282630515879
+    },
+    {
+      "key": "NPNPZTNLOVBDOC-UHFFFAOYSA-N",
+      "max_raw_bin": 0.016056838519169947,
+      "max_normalized_bin": 0.0001685363833406235,
+      "normalized_L1": 0.0012411570718383728
+    },
+    {
+      "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+      "max_raw_bin": 0.0038409610313001608,
+      "max_normalized_bin": 5.677164399157941e-05,
+      "normalized_L1": 0.0005792546985490619
+    },
+    {
+      "key": "PWGJDPKCLMLPJW-UHFFFAOYSA-N",
+      "max_raw_bin": 0.2244738597462046,
+      "max_normalized_bin": 0.000897577679922823,
+      "normalized_L1": 0.010456606550154096
+    },
+    {
+      "key": "RTZKZFJDLAIYFH-UHFFFAOYSA-N",
+      "max_raw_bin": 0.05469765826649997,
+      "max_normalized_bin": 0.00040960936253831015,
+      "normalized_L1": 0.0022724469733343237
+    },
+    {
+      "key": "UHOVQNZJYSORNB-UHFFFAOYSA-N",
+      "max_raw_bin": 0.0023927372927996515,
+      "max_normalized_bin": 1.8838551270189408e-05,
+      "normalized_L1": 0.00010042222126563707
+    },
+    {
+      "key": "VLKZOEOYAKHREP-UHFFFAOYSA-N",
+      "max_raw_bin": 0.05185167659919898,
+      "max_normalized_bin": 0.0003531197057724256,
+      "normalized_L1": 0.0009618306462593406
+    },
+    {
+      "key": "VXNZUUAINFGPBY-UHFFFAOYSA-N",
+      "max_raw_bin": 0.009539280458499277,
+      "max_normalized_bin": 8.280774633077914e-05,
+      "normalized_L1": 0.00032456172612468654
+    },
+    {
+      "key": "WEVYAHXRMPXWCK-UHFFFAOYSA-N",
+      "max_raw_bin": 0.0007223341438100661,
+      "max_normalized_bin": 8.554769582596461e-06,
+      "normalized_L1": 6.384672051067136e-05
+    },
+    {
+      "key": "WYURNTSHIVDZCO-UHFFFAOYSA-N",
+      "max_raw_bin": 0.016058333492200205,
+      "max_normalized_bin": 0.00013774274616043525,
+      "normalized_L1": 0.0007999178159078676
+    },
+    {
+      "key": "XEKOWRVHYACXOJ-UHFFFAOYSA-N",
+      "max_raw_bin": 0.08871019690320026,
+      "max_normalized_bin": 0.0006361827319479041,
+      "normalized_L1": 0.003184048447596486
+    },
+    {
+      "key": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+      "max_raw_bin": 0.0006010812085449624,
+      "max_normalized_bin": 1.405770637076878e-05,
+      "normalized_L1": 0.0002100443757375937
+    },
+    {
+      "key": "XNNQFQFUQLJSQT-UHFFFAOYSA-N",
+      "max_raw_bin": 0.003416049142860089,
+      "max_normalized_bin": 2.40879581289849e-05,
+      "normalized_L1": 0.00011765178559408272
+    },
+    {
+      "key": "YXFVVABEGXRONW-UHFFFAOYSA-N",
+      "max_raw_bin": 0.007232603964000717,
+      "max_normalized_bin": 5.0708137309465884e-05,
+      "normalized_L1": 0.0002693217456040207
+    },
+    {
+      "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+      "max_raw_bin": 0.44277832133227957,
+      "max_normalized_bin": 0.002115142430552882,
+      "normalized_L1": 0.01498533050235312
+    },
+    {
+      "key": "ZMXDDKWLCZADIW-UHFFFAOYSA-N",
+      "max_raw_bin": 0.03631489023151002,
+      "max_normalized_bin": 0.00030281506852380957,
+      "normalized_L1": 0.0020510051601591037
+    }
+  ],
+  "runs": [
+    {
+      "key": "BDERNNFJNOPAEC-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 36.32596503900001,
+        "full": 38.72268403900003
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 6
+      }
+    },
+    {
+      "key": "CSCPPACGZOOCGX-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 23.611250753999997,
+        "full": 23.01565855199999
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 6
+      }
+    },
+    {
+      "key": "GHVNFZFCNZKVNT-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 1056.8979988669998,
+        "full": 1340.408162284
+      },
+      "evaluations": {
+        "off": 10,
+        "full": 12
+      }
+    },
+    {
+      "key": "HEDRZPFGACZZDS-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 16.081062278999994,
+        "full": 15.727696647999991
+      },
+      "evaluations": {
+        "off": 5,
+        "full": 5
+      }
+    },
+    {
+      "key": "HRYZWHHZPQKTII-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 18.962904749000003,
+        "full": 19.093268918999996
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 6
+      }
+    },
+    {
+      "key": "IMNFDUFMRHMDMM-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 109.41781979000001,
+        "full": 122.50293533000001
+      },
+      "evaluations": {
+        "off": 5,
+        "full": 5
+      }
+    },
+    {
+      "key": "JUJWROOIHBZHMG-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 51.76139806799999,
+        "full": 57.211458967
+      },
+      "evaluations": {
+        "off": 7,
+        "full": 7
+      }
+    },
+    {
+      "key": "KFZMGEQAYNKOFK-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 44.145882885999995,
+        "full": 48.430978306
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 6
+      }
+    },
+    {
+      "key": "LCGLNKUTAGEVQW-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 15.388864667999997,
+        "full": 17.045740631
+      },
+      "evaluations": {
+        "off": 4,
+        "full": 5
+      }
+    },
+    {
+      "key": "LRHPLDYGYMQRHN-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 54.06628513099999,
+        "full": 59.957376976
+      },
+      "evaluations": {
+        "off": 5,
+        "full": 5
+      }
+    },
+    {
+      "key": "NPNPZTNLOVBDOC-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 17.58534635899997,
+        "full": 19.40628294000004
+      },
+      "evaluations": {
+        "off": 5,
+        "full": 5
+      }
+    },
+    {
+      "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 6.743247561999993,
+        "full": 8.905139590000005
+      },
+      "evaluations": {
+        "off": 4,
+        "full": 4
+      }
+    },
+    {
+      "key": "PWGJDPKCLMLPJW-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 346.61990562700004,
+        "full": 387.042292837
+      },
+      "evaluations": {
+        "off": 10,
+        "full": 10
+      }
+    },
+    {
+      "key": "RTZKZFJDLAIYFH-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 70.91186589,
+        "full": 76.12940796100003
+      },
+      "evaluations": {
+        "off": 7,
+        "full": 7
+      }
+    },
+    {
+      "key": "UHOVQNZJYSORNB-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 48.23710022099999,
+        "full": 50.29439979299997
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 6
+      }
+    },
+    {
+      "key": "VLKZOEOYAKHREP-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 105.22229873499998,
+        "full": 107.84593038400001
+      },
+      "evaluations": {
+        "off": 8,
+        "full": 7
+      }
+    },
+    {
+      "key": "VXNZUUAINFGPBY-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 51.23583546200001,
+        "full": 54.70942104599999
+      },
+      "evaluations": {
+        "off": 10,
+        "full": 10
+      }
+    },
+    {
+      "key": "WEVYAHXRMPXWCK-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 10.810813875000001,
+        "full": 10.364804317000008
+      },
+      "evaluations": {
+        "off": 5,
+        "full": 5
+      }
+    },
+    {
+      "key": "WYURNTSHIVDZCO-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 30.014386537000007,
+        "full": 32.909537072999996
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 6
+      }
+    },
+    {
+      "key": "XEKOWRVHYACXOJ-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 92.142614237,
+        "full": 99.369777605
+      },
+      "evaluations": {
+        "off": 9,
+        "full": 9
+      }
+    },
+    {
+      "key": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 3.028052548000005,
+        "full": 3.475277392999999
+      },
+      "evaluations": {
+        "off": 4,
+        "full": 4
+      }
+    },
+    {
+      "key": "XNNQFQFUQLJSQT-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 25.429389533000005,
+        "full": 27.88144148900001
+      },
+      "evaluations": {
+        "off": 5,
+        "full": 5
+      }
+    },
+    {
+      "key": "YXFVVABEGXRONW-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 90.695942645,
+        "full": 98.677345347
+      },
+      "evaluations": {
+        "off": 8,
+        "full": 8
+      }
+    },
+    {
+      "key": "ZIBGPFATKBEMQZ-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 273.268788545,
+        "full": 224.84228050399997
+      },
+      "evaluations": {
+        "off": 14,
+        "full": 9
+      }
+    },
+    {
+      "key": "ZMXDDKWLCZADIW-UHFFFAOYSA-N",
+      "wall_s": {
+        "off": 37.13226107199999,
+        "full": 42.19920012499999
+      },
+      "evaluations": {
+        "off": 6,
+        "full": 7
+      }
+    }
+  ],
+  "gate_kind": "P32_numerical_compatibility",
+  "routine_throughput_indicator": true,
+  "routine_throughput_limit": 1.5,
+  "paired_worker_seconds": {
+    "off": 2635.7372810790002,
+    "full": 2986.1684990559997
+  },
+  "wall_ratio": 1.1329537736908066,
+  "shared_xtb_seconds": 2.408804750186391,
+  "timing_scope": "Worker optimizer plus TZVP profile; one shared xTB preparation excluded from both arms",
+  "gate_elapsed_s": 41.570399208925664,
+  "adopted": false
+}

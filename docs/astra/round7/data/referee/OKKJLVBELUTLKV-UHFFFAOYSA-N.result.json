@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "error": "RuntimeError('SCF failed')",
+  "SCF_evaluations": 21,
+  "key": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+  "plan_sha256": "66c4c1c5da1df97ec7791f3c6c5156a1520c76838e8bec8ed6b2587434f3f54a",
+  "adopted": false
+}
