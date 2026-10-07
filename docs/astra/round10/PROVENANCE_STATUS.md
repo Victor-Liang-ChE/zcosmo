@@ -51,3 +51,5 @@ criteria. Raw segment distributions and unnormalized final-profile tails are
 reported separately. No new conformer or electrostatic correction is selected.
 The P35 mechanism remains unresolved pending evidence, the numerical-gradient
 campaign stays closed, and the 630+6 profile version remains unchanged.
+
+Outcome, 2026-10-07: the comparison was executed on the Mac (manifest ba033e4). All twelve lineage/replay gates passed, with zero SCF and zero model calls. Descriptors and their limits are recorded in `docs/astra/round10/RESULTS.md`. P35 remains unresolved.

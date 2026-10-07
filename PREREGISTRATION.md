@@ -1647,3 +1647,14 @@ Retain the statement that Z0x was not fitted to ThermoML, with no broader claim
 that every upstream input was wholly uncalibrated. The physical glycol mechanism
 remains unresolved. The frozen profile version and all earlier numerical
 acceptance/rejection decisions remain unchanged.
+
+- Round 10 RESULTS (recorded 2026-10-07; registered 39cd85d; manifest frozen ba033e4, SHA256 4acf76db...fca0f; Mac queue jobs 392-394; 0 SCF, 0 model calls).
+  P41: 12 UD raw files + 2 provenance documents acquired, all Git blobs matched; raw files kept outside the repository under the NIST academic-use notice.
+  P42: all 12 lineage/replay gates passed (UD raw tables regenerate the Mac UD profiles to ~1e-14 A^2; open P25 tables regenerate their own profiles).
+  Descriptive only: the four UD linear glycols are fully extended all-anti chains with no OH...O approach (H-A >= 3.9 A); the open geometries are gauche-
+  folded with H-A 2.2-2.4 A (no member meets the registered contact rule). Raw polar tails UD/open: EG 41.0/34.5, DEG 47.6/40.7, TEG 57.1/49.0,
+  tetraEG 67.9/61.1; glycerol and propylene glycol reverse (48.3/52.9, 33.3/38.1). At matched geometry (water, methanol, THF, methoxyethanol) raw tails
+  differ by 0.4-2.9 A^2. Open tables carry net charge -0.012 to -0.045 e vs UD ~-0.001. No causal partition: p_O(R_U) was not computed. Nothing adopted.
+  Deviations: two r10 self-tests fail on macOS only (/var vs /private/var path comparison in the test assertions; all 20 pass on Linux); freeze used the
+  main checkout's data/pyscf_sigma as --profile-root because profiles_v2 is untracked; the first freeze attempt failed before writing any output.
+  P43: applied in 39cd85d; PROVENANCE_STATUS.md given a dated outcome line.
