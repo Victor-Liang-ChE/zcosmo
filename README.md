@@ -53,7 +53,8 @@ energy-gradient mismatch unresolved; its numerical diagnostic budget is closed.
 See [round-7 evidence](docs/astra/round7/RESULTS.md) and
 [endpoint acceptance](docs/astra/round6/RESULTS.md).
 
-A [round-10 provenance review](docs/astra/round10/PROVENANCE_STATUS.md) located
-public UD geometry and raw-surface files. Matching those files to the Mac's
-historical profiles remains a separate zero-QC replay; the glycol mechanism
-and the closed numerical-gradient campaign are unchanged.
+The [round-10 replay](docs/astra/round10/RESULTS.md) matched all twelve recovered
+UD raw files to their historical profiles. The linear glycols have different
+stored conformations, but that observation alone does not separate geometry
+from electronic/cavity effects or identify the liquid-state distribution.
+The glycol mechanism remains unresolved; the numerical-gradient campaign stays closed.

@@ -50,7 +50,7 @@ class TestSources(unittest.TestCase):
     def test_frozen_input_mutation(self):
         with tempfile.TemporaryDirectory() as t:
             p=Path(t)/'file';p.write_bytes(b'original');r=src.record(p)
-            self.assertEqual(src.verify_record(r),p)
+            self.assertEqual(src.verify_record(r),p.resolve())
             p.write_bytes(b'mutated')
             with self.assertRaises(ValueError):src.verify_record(r)
 
@@ -58,7 +58,7 @@ class TestSources(unittest.TestCase):
         with self.assertRaises(ValueError):src.private_output(src.ROOT/'production')
         with tempfile.TemporaryDirectory() as t:
             with self.assertRaises(FileExistsError):src.private_output(t)
-            self.assertEqual(src.private_output(Path(t)/'new'),Path(t)/'new')
+            self.assertEqual(src.private_output(Path(t)/'new'),(Path(t)/'new').resolve())
 
     def test_json_rejects_nonfinite(self):
         with tempfile.TemporaryDirectory() as t:
