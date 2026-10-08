@@ -2112,3 +2112,6 @@ continuation or permission to select conformers from the R12 accuracy result.
   0.7963-0.7977), 0.613 of the original open absolute error, residual MAE difference 0.283. P49 applied. Victor chose to close the review after R13;
   no ROUND14 prompt. P35 explanatory campaign closed; liquid conformer distribution and any production geometry rule remain unresolved; 630 + 6
   profiles frozen.
+
+- Round 14 prompt (2026-10-08): after the R13 closeout Victor asked whether anything could still beat the rivals; the review reopens on the main
+  question (VLE electrostatics / first-principles permittivity), not on P35. No budget or protocol change is registered by this note.
