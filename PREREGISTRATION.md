@@ -2765,3 +2765,9 @@ native or new-variant campaign is made a prerequisite for writing up the study.
   tests compare an unresolved /var temp path with its /private/var resolution, the same artifact recorded in R10; all 58 pass in the container.
   The real private directory is under $HOME, which has no such alias. The first private directory zc-r16-lv1-20261008 is retained; the
   re-freeze uses a fresh directory.
+
+- Round 16 RESULTS (recorded 2026-10-08; registered 2e8e5e8; amendment P58a a6fa8be; plan af4ce5b; Mac jobs 413-415; 0 QC). P58 (one run,
+  171,701 baseline requests, 2,219 s, all finite, VLE anchors exact): LV1 FAILED its registered exposed screen. VLE AAD 13.78 -> 13.13
+  (one-sided upper bound +0.02, not below zero); IDAC MAE 0.840 -> 0.875 (CI [+0.008, +0.067], worse); HE MAE 618.6 -> 632.9 J/mol (CI [+4.6,
+  +25.1], worse) and sign 0.838 -> 0.834; LLE recall unchanged, BA and FP point estimates improved but bounds fail. LV1 vs COSMO-SAC 2010 on the
+  963 VLE rows: 13.13 vs 10.44. Not adopted; no second candidate, weight change or retry authorized. P59 manuscript update applied.
