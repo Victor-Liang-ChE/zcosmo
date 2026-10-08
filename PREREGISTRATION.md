@@ -2023,3 +2023,12 @@ thermal contributions and common reference conventions on the full eligible
 class and controls; the existing finite samples and R11 single points do not
 supply them. A cheap calculation on incomplete inputs is not acceptance of such
 a protocol. Historical profiles and scientific decisions remain unchanged.
+
+- R12 amendment P46a (2026-10-07, before any P46 plan or model call). The registered P46 freeze stopped with "P21 universe or recorded completeness
+  changed" (zero model calls). Inspection of the original archive (/tmp/r4work/AVP on the Mac): factorial_rows.csv has 332 rows with 13 unique
+  solvent InChIKeys and 14 solvent names. The EG key LYCAIKOWRPUZTN-UHFFFAOYSA-N carries 10 rows: 9 named "ethylene glycol" and 1 named
+  "1,2-dihydroxyethane", the same molecule. The registration fixed both "selection is by these exact keys, not by a solvent-name synonym" and an EG
+  count of 9 (141 total), which contradict each other on this archive. Victor chose exact-key selection. P46a changes only the counts: EG 10 rows,
+  142 scored rows, 13 solvent keys, 190 audit-only rows, 284 legacy and 1,278 exact requests (1,562 maximum). Code changes are limited to those
+  constants in scripts/r12_review.py, scripts/r12_analysis.py and the matching r12_selftest.py fixture/assertions (26/26 pass). Every other P46 rule,
+  tolerance, budget and interpretation is unchanged. P47 (already run under 76e3092) is unaffected.

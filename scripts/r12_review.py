@@ -34,9 +34,9 @@ FILES = ['scripts/r12_review.py','scripts/r12_analysis.py','scripts/r4_glycols.p
 FILES = list(dict.fromkeys(FILES))
 TABLES = {'dielectric':'results/qc/dielectric.csv',
           'dispersion':'results/qc/dispersion.csv','Z0':'results/z_params/Z0.json'}
-DESIGN = dict(P21_rows=332,P21_solvents=14,scored_glycol_rows=141,
-    targets=ana.GLYCOLS,legacy_requests=282,exact_requests=1269,
-    maximum_requests=1551,seconds_per_worker=120,total_model_seconds=7200,
+DESIGN = dict(P21_rows=332,P21_solvents=13,scored_glycol_rows=142,
+    targets=ana.GLYCOLS,legacy_requests=284,exact_requests=1278,
+    maximum_requests=1562,seconds_per_worker=120,total_model_seconds=7200,
     workers_in_parallel=1,legacy_tolerance=ana.PARITY_TOL,identity_tolerance=ana.IDENTITY_TOL,
     primary_endpoint='P28_exact',SCF_calls=0,gradients=0,no_retries=True,
     band_millithresholds=[-10,-5,5,10],R11_labels_unchanged=True)
@@ -90,7 +90,7 @@ def p21_inputs(folder,open_dir,ud_dir):
     """Use the original P21 archive, including its per-pair input receipts."""
     folder=Path(folder).resolve();open_dir=Path(open_dir).resolve();ud_dir=Path(ud_dir).resolve()
     d=frame(folder/'factorial_rows.csv');s=read(folder/'summary.json')
-    if len(d)!=332 or d.solvent.nunique()!=14 or s['rows']!=332 or s['finite_all']!=332:
+    if len(d)!=332 or d.solvent.nunique()!=13 or s['rows']!=332 or s['finite_all']!=332:
         raise ValueError('P21 universe or recorded completeness changed')
     if not np.isfinite(d[['T','ln_gamma_inf',*ana.CORNERS,'UD']].to_numpy(float)).all():
         raise ValueError('The recorded P21 comparison is not fully finite')
@@ -143,7 +143,7 @@ def jobs_for(cases):
             if case['solvent'] not in ana.GLYCOLS:continue
             for corner in (('000','UD') if phase=='legacy' else (*ana.CORNERS,'UD')):
                 jobs.append(dict(id=f'job-{len(jobs):05d}',phase=phase,corner=corner,case=case))
-    if sum(len(j['case']['rows']) for j in jobs)!=1551:
+    if sum(len(j['case']['rows']) for j in jobs)!=1562:
         raise ValueError('Fixed model request budget changed')
     return jobs
 
@@ -286,7 +286,7 @@ def archived_arrays(m,run):
     rows=m['rows'];ids=[str(r['r3_row_id']) for r in rows];index={k:i for i,k in enumerate(ids)}
     target=[i for i,r in enumerate(rows) if r['solvent'] in ana.GLYCOLS]
     ti={ids[i]:j for j,i in enumerate(target)}
-    arrays={'legacy':np.full((141,2),np.nan),'exact':np.full((141,9),np.nan)}
+    arrays={'legacy':np.full((142,2),np.nan),'exact':np.full((142,9),np.nan)}
     receipt=[];used=set();run=Path(run)
     for job in m['jobs']:
         term=run/(job['id']+'.terminal.json');folder=run/job['id'];dest=folder/'result.json'
@@ -329,7 +329,7 @@ def archived_arrays(m,run):
                 if a<attempts or a>len(job['case']['rows']):raise ValueError('Invalid model-call receipt')
                 attempts=a;hashes['progress']=sha(progress)
         receipt.append(dict(job=job['id'],state=state,attempted_model_calls=attempts,hashes=hashes))
-    if sum(r['attempted_model_calls'] for r in receipt)>1551:raise ValueError('Model budget exceeded')
+    if sum(r['attempted_model_calls'] for r in receipt)>1562:raise ValueError('Model budget exceeded')
     return arrays,receipt
 
 
@@ -370,7 +370,7 @@ def public_scores(d):
         out['aggregate_errors']=dict(solvents=solvents,pooled=metrics(q['pooled']),
             equal_solvent_mean={k:scalar(q['equal_solvent_mean'][k]) for k in
                 ('O_MAE','C_MAE','U_MAE','MAE_removed_O_to_C')},
-            requested_P21_rows=332,audit_only_other_rows=191)
+            requested_P21_rows=332,audit_only_other_rows=190)
     return out
 
 

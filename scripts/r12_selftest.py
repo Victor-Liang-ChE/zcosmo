@@ -20,7 +20,7 @@ from r3_common import write_sigma
 
 
 def data():
-    counts=list(a.GLYCOLS.items())+[(f'OTHER{k}',(f'other{k}',20 if k<9 else 11)) for k in range(10)]
+    counts=list(a.GLYCOLS.items())+[(f'OTHER{k}',(f'other{k}',20 if k<8 else 30)) for k in range(9)]
     rows=[];exact=[];cases=[]
     for solvent,(_name,n) in counts:
         part=[]
@@ -101,16 +101,16 @@ class Arithmetic(unittest.TestCase):
     def test_full_synthetic_scorecard(self):
         rows,l,x,_=data();d=a.explanatory_scores(rows,l,x)
         self.assertTrue(d['status']['complete'])
-        self.assertEqual(len(d['private_rows']),141)
-        self.assertEqual(d['aggregate_errors']['pooled']['rows'],141)
-        self.assertEqual(d['aggregate_errors']['audit_only_other_rows'],191)
+        self.assertEqual(len(d['private_rows']),142)
+        self.assertEqual(d['aggregate_errors']['pooled']['rows'],142)
+        self.assertEqual(d['aggregate_errors']['audit_only_other_rows'],190)
         for z in d['aggregate_errors']['solvents']:
             self.assertAlmostEqual(sum(z['absolute_error_reduction_ShAP'].values()),z['MAE_removed_O_to_C'])
 
     def test_nonfinite_preserves_denominator(self):
         rows,l,x,_=data();x[0,1]=np.nan;d=a.explanatory_scores(rows,l,x)
-        self.assertFalse(d['status']['complete']);self.assertEqual(d['status']['exact_requested'],1269)
-        self.assertEqual(d['status']['exact_finite'],1268);self.assertIsNone(d['aggregate_errors'])
+        self.assertFalse(d['status']['complete']);self.assertEqual(d['status']['exact_requested'],1278)
+        self.assertEqual(d['status']['exact_finite'],1277);self.assertIsNone(d['aggregate_errors'])
 
     def test_legacy_gate_and_unknown_identity(self):
         rows,l,x,_=data();l[0,0]+=.01
@@ -161,8 +161,8 @@ class Execution(unittest.TestCase):
     def test_job_budget(self):
         _,_,_,cases=data();jobs=r.jobs_for(cases)
         self.assertEqual(len(jobs),44)
-        self.assertEqual(sum(len(j['case']['rows']) for j in jobs if j['phase']=='legacy'),282)
-        self.assertEqual(sum(len(j['case']['rows']) for j in jobs if j['phase']=='exact'),1269)
+        self.assertEqual(sum(len(j['case']['rows']) for j in jobs if j['phase']=='legacy'),284)
+        self.assertEqual(sum(len(j['case']['rows']) for j in jobs if j['phase']=='exact'),1278)
         with self.assertRaises(ValueError):r.jobs_for(cases[1:])
 
     def test_private_alias_and_fresh(self):
@@ -233,7 +233,7 @@ class Execution(unittest.TestCase):
                     r.write(part/(corner+'.csv.inputs.json'),rec)
             with patch.object(r,'ROOT',root):
                 rr,cc,files=r.p21_inputs(archive,op,up)
-                self.assertEqual(len(rr),332);self.assertEqual(len(cc),14);self.assertGreater(len(files),100)
+                self.assertEqual(len(rr),332);self.assertEqual(len(cc),13);self.assertGreater(len(files),100)
                 # A changed parameter is refused before any model is called.
                 (root/next(iter(r.TABLES.values()))).write_text('changed')
                 with self.assertRaises(ValueError):r.p21_inputs(archive,op,up)
@@ -278,7 +278,7 @@ class Execution(unittest.TestCase):
     def test_complete_orchestration_and_independent_check(self):
         with tempfile.TemporaryDirectory() as t:
             rc,d,used,p,m,out=self.run_driver(t)
-            self.assertEqual(rc,0);self.assertEqual(d['attempted_model_calls'],1551)
+            self.assertEqual(rc,0);self.assertEqual(d['attempted_model_calls'],1562)
             self.assertEqual(len(d['receipts']),44);self.assertTrue(d['status']['complete'])
             bad=r.read(out/'job-00000/result.json');bad['values'][0]['value']+=.1;r.write(out/'job-00000/result.json',bad)
             with patch.object(r,'load_plan',return_value=(p,m)):
@@ -288,16 +288,16 @@ class Execution(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             rc,d,used,*_=self.run_driver(t,bad_legacy=True)
             self.assertEqual(rc,2);self.assertNotIn('exact',used)
-            self.assertEqual(d['attempted_model_calls'],282)
+            self.assertEqual(d['attempted_model_calls'],284)
             self.assertEqual(sum(z['state']=='blocked_legacy_gate' for z in d['receipts']),36)
             self.assertIsNone(d['aggregate_errors'])
 
     def test_failed_exact_row_retains_other_finite_rows_and_requests(self):
         with tempfile.TemporaryDirectory() as t:
             rc,d,used,*_=self.run_driver(t,bad_exact=True)
-            self.assertEqual(rc,2);self.assertEqual(d['attempted_model_calls'],1551)
-            self.assertEqual(d['status']['exact_finite'],1268)
-            self.assertEqual(d['status']['exact_requested'],1269)
+            self.assertEqual(rc,2);self.assertEqual(d['attempted_model_calls'],1562)
+            self.assertEqual(d['status']['exact_finite'],1277)
+            self.assertEqual(d['status']['exact_requested'],1278)
             self.assertIsNone(d['aggregate_errors'])
 
     def test_private_region_run_and_replay(self):
@@ -321,7 +321,7 @@ class Execution(unittest.TestCase):
     def test_successful_process_does_not_make_nan_a_success(self):
         rows,l,x,_=data();l[10,1]=np.nan
         d=a.explanatory_scores(rows,l,x)
-        self.assertFalse(d['status']['complete']);self.assertEqual(d['status']['legacy_requested'],282)
+        self.assertFalse(d['status']['complete']);self.assertEqual(d['status']['legacy_requested'],284)
 
 
 if __name__=='__main__':unittest.main(verbosity=2)

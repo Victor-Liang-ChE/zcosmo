@@ -6,7 +6,7 @@ from r10_sources import DATA
 
 CORNERS = tuple(f'{i:03b}' for i in range(8))
 GLYCOLS = {
-    'LYCAIKOWRPUZTN-UHFFFAOYSA-N': ('ethylene_glycol', 9),
+    'LYCAIKOWRPUZTN-UHFFFAOYSA-N': ('ethylene_glycol', 10),
     'MTHSVFCYNBDYFN-UHFFFAOYSA-N': ('diethylene_glycol', 108),
     'ZIBGPFATKBEMQZ-UHFFFAOYSA-N': ('triethylene_glycol', 17),
     'UWHCKJMYHZGTIT-UHFFFAOYSA-N': ('tetraethylene_glycol', 7),
@@ -145,29 +145,29 @@ def error_summary(y0, yc, yu, truth, phi_y, phi_gain):
 
 
 def explanatory_scores(rows, legacy, exact):
-    """Audit all 332 archived rows; replay and score only the fixed 141 glycol rows.
+    """Audit all 332 archived rows; replay and score only the fixed 142 glycol rows.
 
-    legacy has 2 columns (original P21 000 and UD anchors) on the 141-row target.
-    exact has 9 columns (eight O->C corners and full U) on the 141-row target.
+    legacy has 2 columns (original P21 000 and UD anchors) on the 142-row target.
+    exact has 9 columns (eight O->C corners and full U) on the 142-row target.
     A missing/nonfinite value blocks the complete-panel result, never drops a row.
     """
     require(len(rows) == 332, 'P21 332-row universe changed')
     ids = [str(r['r3_row_id']) for r in rows]
-    require(len(set(ids)) == 332 and len({r['solvent'] for r in rows}) == 14, 'P21 identity universe changed')
+    require(len(set(ids)) == 332 and len({r['solvent'] for r in rows}) == 13, 'P21 identity universe changed')
     idx = np.array([i for i,r in enumerate(rows) if r['solvent'] in GLYCOLS], dtype=int)
-    require(len(idx) == 141, 'Expected 141 fixed linear-glycol rows')
+    require(len(idx) == 142, 'Expected 142 fixed linear-glycol rows')
     for key, (_name,n) in GLYCOLS.items():
         require(sum(r['solvent'] == key for r in rows) == n, 'Glycol denominator changed')
     l = np.asarray(legacy,float); x = np.asarray(exact,float)
-    require(l.shape == (141,2) and x.shape == (141,9), 'Missing factorial dimensions')
+    require(l.shape == (142,2) and x.shape == (142,9), 'Missing factorial dimensions')
     target = [rows[i] for i in idx]
     old = finite([[r[c] for c in (*CORNERS,'UD')] for r in rows])
     require(abs(old[:,7]-old[:,8]).max() < IDENTITY_TOL, 'Archived P21 111 is not full UD')
     anchors=old[idx][:,[0,8]]
     finite_l = np.isfinite(l); finite_x = np.isfinite(x)
     parity = bool(finite_l.all() and abs(l-anchors).max() < PARITY_TOL)
-    status = dict(legacy_requested=282, legacy_finite=int(finite_l.sum()),
-        exact_requested=1269, exact_finite=int(finite_x.sum()),
+    status = dict(legacy_requested=284, legacy_finite=int(finite_l.sum()),
+        exact_requested=1278, exact_finite=int(finite_x.sum()),
         legacy_parity_passed=parity,
         legacy_max_error=float(abs(l-anchors).max()) if finite_l.all() else None,
         complete=bool(parity and finite_x.all()), model='Z0x',
@@ -203,4 +203,4 @@ def explanatory_scores(rows, legacy, exact):
             predictions={c:float(x[j,k]) for k,c in enumerate((*CORNERS,'UD'))},
             prediction_ShAP=phi_y[:,j].tolist(), absolute_error_reduction_ShAP=phi_gain[:,j].tolist()))
     return dict(status=status, aggregate_errors=dict(solvents=solvents, pooled=pooled,
-        equal_solvent_mean=macro, requested_P21_rows=332, audit_only_other_rows=191), private_rows=private_rows)
+        equal_solvent_mean=macro, requested_P21_rows=332, audit_only_other_rows=190), private_rows=private_rows)
