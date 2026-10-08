@@ -42,7 +42,8 @@ plus six separately flagged S1/S2 profiles. Resolved errors from omitted XC-grid
 response and incomplete finite-difference checks limit stationarity claims.
 The corrected-gradient calibration failed its preregistered compatibility gate;
 no corrected-gradient rollout or chain rescue is accepted. Displacement sensitivity
-does not measure geometry error, and the glycol discrepancy remains unresolved.
+does not measure geometry error, and the liquid-state explanation of the glycol
+discrepancy remains unresolved.
 Z0x was not fitted to ThermoML. Its exact infinite-dilution endpoint passed an
 independent numerical gate and is enabled with `ZC_R6_ENDPOINT=1`. Archived matched benchmark
 comparisons favor UD over open profiles for IDAC and excess enthalpy; the VLE
@@ -58,3 +59,9 @@ UD raw files to their historical profiles. The linear glycols have different
 stored conformations, but that observation alone does not separate geometry
 from electronic/cavity effects or identify the liquid-state distribution.
 The glycol mechanism remains unresolved; the numerical-gradient campaign stays closed.
+
+The [round-11 fixed-coordinate cross](docs/astra/round11/RESULTS.md) attributes
+polar-tail gaps mainly to stored coordinate inputs for ethylene, diethylene and
+triethylene glycol. Tetraethylene glycol's raw-tail gap is mainly method; no
+whole-profile attribution label passed. The liquid-conformer distribution and
+the consequences for IDAC error remain unresolved. No crossed profile or conformer-selection rule is adopted.

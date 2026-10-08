@@ -39,3 +39,25 @@ UD is a documented comparator, not a validated equilibrium conformer ensemble.
 No new quantum calculation, conformer selection or production replacement is
 authorized by this source discovery. The 630 primary and six S1/S2 files stay
 frozen, and the numerical-gradient campaign remains closed.
+
+Update, round 12, based on the completed [round-11 cross](../round11/RESULTS.md).
+For ethylene, diethylene and triethylene glycol, the archived polar-tail gaps
+are mainly due to the stored coordinate inputs under the registered ordered
+open-method comparison. This includes the actual coordinate representation;
+it is not an isolated torsion or hydrogen-bond intervention. Tetraethylene
+glycol is an explicit exception: its raw-tail gap was mainly method, while its
+other tail contrasts were small under the registered rule. No whole-profile
+attribution label passed. The liquid-state conformer mechanism remains unresolved.
+
+This replaces neither a historical result nor a numerical gate. In particular,
+R11's control-derived normalized-shape threshold and its inconclusive headline
+labels stand. A tail fraction is not a fraction of IDAC error explained. The
+proposed R12 scoring and regional analyses consume existing private inputs only;
+no prediction benefit is claimed before they execute. Any score is retrospective
+explanatory ThermoML scoring, not a new fit-free production profile selection.
+
+The native glycol/conformer campaign has no further budget under R12. Archive
+the bounded explanatory findings without adopting a UD structure or fitting
+conformer populations. A future liquid free-energy protocol would require a
+separate prospective design and independent validation. The 630 primary and
+six S1/S2 profiles remain frozen, and the numerical-gradient campaign stays closed.
