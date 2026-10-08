@@ -126,6 +126,20 @@ class Z0wBinary(Z0xBinary):
         self.Vm = np.array([load_fluid(k).V for k in keys])
         self._pure = {}
 
+    def lngamma(self, T, x):
+        """R15: restore differentiation of the full subclass excess Gibbs energy.
+
+        This is the pre-P6 stencil, including its one-sided endpoint error.
+        P28 is exact for Z0x only; it must not bypass an association override.
+        Z0x itself retains its optimized derivative and accepted endpoint path.
+        """
+        x1 = float(x[0])
+        h = self.H
+        a, b = max(x1 - h, 0.0), min(x1 + h, 1.0)
+        dg = (self._g(T, b) - self._g(T, a)) / (b - a)
+        g = self._g(T, x1)
+        return np.array([g + (1 - x1) * dg, g - x1 * dg])
+
     def _ga(self, T, x1):
         D = delta(T)
         key = round(T, 6)
