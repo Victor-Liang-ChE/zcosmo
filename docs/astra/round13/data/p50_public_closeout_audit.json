@@ -1,0 +1,67 @@
+{
+  "base": "e2b36c8c5c2273f47ee6df21975b295b93689ca8",
+  "source": "docs/astra/round12/RESULTS.md",
+  "source_blob": "c036e8e24aa45a03aed0485664b3a26cd842c17f",
+  "source_sha256": "926ec61948a30e09ea1effa00cc1b76419da885f7a2ec886400c80175161a3da",
+  "public_aggregate_arithmetic": {
+    "rows": 142,
+    "improved": 139,
+    "worsened": 3,
+    "removed_from_rounded_MAEs": 1.111,
+    "residual_comparator_MAE_gap": 0.283,
+    "comparator_gap_recovery": 0.796987087517934,
+    "comparator_recovery_rounding_range": [
+      0.7962697274031564,
+      0.7977044476327116
+    ],
+    "original_absolute_error_fraction_removed": 0.6127964699393271,
+    "DEG_row_weight": 0.7605633802816901,
+    "interpretation": "80 percent refers to the O-to-U comparator gap, not original absolute error. The residual is a difference of MAEs, not mean absolute C-minus-U predictions. Intervals propagate printed rounding only, not sampling uncertainty."
+  },
+  "hypothetical_portfolio_sizing": {
+    "cases": [
+      {
+        "molecules": 630,
+        "starts_each": 4,
+        "assumed_SVP_evaluations_each": 8,
+        "TZVP_single_points": 2520,
+        "SVP_energy_gradient_evaluations": 20160,
+        "SVP_evaluation_ceiling_at_80_per_start": 201600,
+        "four_core_SVP_hours_at_assumed_seconds": {
+          "10": 56.0,
+          "60": 336.0,
+          "300": 1680.0
+        },
+        "Mac_SP_hours_if_R11_small_panel_mean_transferred": 17.325,
+        "one_hour_per_start_allocation_worker_hours": 2520,
+        "ideal_20_runner_hours_for_that_allocation": 126.0
+      },
+      {
+        "molecules": 630,
+        "starts_each": 8,
+        "assumed_SVP_evaluations_each": 8,
+        "TZVP_single_points": 5040,
+        "SVP_energy_gradient_evaluations": 40320,
+        "SVP_evaluation_ceiling_at_80_per_start": 403200,
+        "four_core_SVP_hours_at_assumed_seconds": {
+          "10": 112.0,
+          "60": 672.0,
+          "300": 3360.0
+        },
+        "Mac_SP_hours_if_R11_small_panel_mean_transferred": 34.65,
+        "one_hour_per_start_allocation_worker_hours": 5040,
+        "ideal_20_runner_hours_for_that_allocation": 252.0
+      }
+    ],
+    "all_molecules_treated_as_search_eligible_for_sizing": true,
+    "exact_flexible_population_count_not_measured": true,
+    "legacy_50_embedding_xTB_relaxations": 31500,
+    "notes": "Sizing only. No QC execution or account-quota claim. Eight steps is a sample-median scenario, not a portfolio mean. SVP times omit proposal work and TZVP. Mac SP extrapolation omits optimization, thermal calculations and validation."
+  },
+  "SCF_calls": 0,
+  "activity_model_calls": 0,
+  "private_assets_read": false,
+  "adoption_authorized": false,
+  "new_scientific_gate_passed": false,
+  "audit_wall_s": 0.001981799000020601
+}

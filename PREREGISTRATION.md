@@ -2106,3 +2106,9 @@ controls; their already-inspected results do not become independent holdouts.
 No current test split is certified fresh by this record. Such a project needs
 its own prospective registration and budget. This closeout creates no automatic
 continuation or permission to select conformers from the R12 accuracy result.
+
+- Round 13 RESULTS and Astra-review closeout (recorded 2026-10-07; zero native/model work). P50: public R12 aggregates verified against blob
+  c036e8e2; P46a counts and all printed differences/recoveries consistent within rounding; comparator-gap recovery 0.797 (rounding range
+  0.7963-0.7977), 0.613 of the original open absolute error, residual MAE difference 0.283. P49 applied. Victor chose to close the review after R13;
+  no ROUND14 prompt. P35 explanatory campaign closed; liquid conformer distribution and any production geometry rule remain unresolved; 630 + 6
+  profiles frozen.
