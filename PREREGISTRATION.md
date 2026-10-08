@@ -2315,3 +2315,12 @@ association fit or simulation-based activity-coefficient campaign is authorized.
   copies. P52a changes only scripts/r14_oracle.py protected_profiles() to fingerprint exactly that selection and require the 630/1/5 split.
   No selection, metric, budget or interpretation changes. Because the helpers are bound to their registration commit, P51 (deterministic,
   zero-model) is re-executed once under this commit into a fresh directory; the first P51 output under 834b929 is retained and both are compared.
+
+- Round 14 RESULTS (recorded 2026-10-08; registered 834b929; amendment P52a c782585; oracle plan e0f1608; Mac jobs 407-409; 0 SCF).
+  P51: 742 stored eps; 248 matched to the pinned CRC table (181 CAS absent, 173 key->CAS missing/ambiguous, 135 no 298.15 K value, 5 invalid
+  stored eps). The 5 invalid values withhold the registered complete aggregate. Descriptive census of matched rows: reference eps < 10, 175 rows,
+  mean log bias +0.53; eps >= 10, 73 rows, +0.04. P51 was re-executed under c782585 with identical rows.
+  P52 (one run, 100 systems / 963 rows by fixed SHA order, 2,889/2,889 finite requests, 198 s; baseline replay exact): VLE AAD stored-eps Z0x
+  13.78%, experimental-eps Z0x 13.07%, COSMO-SAC 2010 10.44% on the same rows; experimental eps recovers 0.72 of the 3.35-point gap (21%);
+  559 rows improved, 404 worsened. Registered reading: small lever; no portfolio permittivity campaign. Association-dispatch defect recorded
+  (fresh Z0w* predictions on current main quarantined). Nothing adopted.
