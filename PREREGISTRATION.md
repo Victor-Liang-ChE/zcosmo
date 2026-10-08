@@ -2503,3 +2503,8 @@ its code is merely committed. The paper may be finalized with its completed
 evidence; references and artifact availability still require a submission audit.
 No universal fit-free contact coefficient or successful new architecture is
 established or adopted by this record.
+
+- Round 15 RESULTS (recorded 2026-10-08; registered 67f8493; plan 3655e11; Mac job 411; 0 QC). P54: 7,704/7,704 finite requests in 722 s on the
+  963 P52 rows; anchors replayed exactly. Corner AADs: Z0x 13.78%, ES->2010 12.63%, HB->2010 13.97%, London removed 11.76%, all three (COSMO-SAC
+  2010) 10.44%. Shapley shares of the 3.35-pp gap: London->none 2.24 pp (67%), ES closure 0.88 pp (26%), HB constants 0.23 pp (7%); a_eff and
+  profile convention exactly 0. Fitted-ingredient diagnostic only; no corner is a model. P55 dispatch repair and P56 manuscript scope applied.
