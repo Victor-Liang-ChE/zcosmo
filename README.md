@@ -54,14 +54,24 @@ energy-gradient mismatch unresolved; its numerical diagnostic budget is closed.
 See [round-7 evidence](docs/astra/round7/RESULTS.md) and
 [endpoint acceptance](docs/astra/round6/RESULTS.md).
 
-The [round-10 replay](docs/astra/round10/RESULTS.md) matched all twelve recovered
-UD raw files to their historical profiles. The linear glycols have different
-stored conformations, but that observation alone does not separate geometry
-from electronic/cavity effects or identify the liquid-state distribution.
-The glycol mechanism remains unresolved; the numerical-gradient campaign stays closed.
+The [round-10 replay](docs/astra/round10/RESULTS.md) linked all twelve recovered
+UD raw files to their historical profiles. The [round-11 ordered cross](docs/astra/round11/RESULTS.md)
+attributed the polar-tail gaps for ethylene, diethylene and triethylene glycol
+mainly to stored coordinate inputs, without a whole-profile attribution label.
+Tetraethylene glycol differed: its raw-tail gap was mainly method.
 
-The [round-11 fixed-coordinate cross](docs/astra/round11/RESULTS.md) attributes
-polar-tail gaps mainly to stored coordinate inputs for ethylene, diethylene and
-triethylene glycol. Tetraethylene glycol's raw-tail gap is mainly method; no
-whole-profile attribution label passed. The liquid-conformer distribution and
-the consequences for IDAC error remain unresolved. No crossed profile or conformer-selection rule is adopted.
+In [round-12 retrospective scoring](docs/astra/round12/RESULTS.md), on 142
+already-inspected glycol-solvent observations, using our open method at the UD
+solvent coordinates reduced MAE in ln gamma from 1.813 to 0.702, versus 0.419
+for the UD-solvent comparator. Original open solute profiles and Z0x were held
+fixed. This removes about 80% of the open-to-UD comparator error gap, mainly
+through shape; tetraethylene glycol recovers only 13%. The remaining 0.283
+pooled MAE difference is conditional on the same-coordinate method-bundle
+comparison. It is not the total remaining experimental error or a universal
+method-error bound.
+
+These inspected-row results do not establish the liquid conformer distribution
+or a held-out accuracy improvement. No crossed profile or conformer-selection
+rule is adopted. The 630 primary plus six flagged profiles remain frozen.
+P35's present explanatory campaign is closed with these findings; its liquid-state
+mechanism remains unresolved. The separate numerical-gradient campaign stays closed.

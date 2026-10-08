@@ -61,3 +61,50 @@ the bounded explanatory findings without adopting a UD structure or fitting
 conformer populations. A future liquid free-energy protocol would require a
 separate prospective design and independent validation. The 630 primary and
 six S1/S2 profiles remain frozen, and the numerical-gradient campaign stays closed.
+
+Update, round 13: close the present P35 explanatory campaign with the R10-R12 finding.
+
+R10 established the lineage of all twelve recovered UD raw files. R11's ordered
+open-method cross attributes the raw, averaged and final polar-tail gaps for
+ethylene, diethylene and triethylene glycol mainly to their stored coordinate
+inputs. This includes the full coordinate representation and does not isolate
+an intramolecular hydrogen-bond energy. R11's whole-profile labels remain
+metric-dependent or inconclusive under the unchanged control scale.
+
+R12, including the prospectively recorded count amendment P46a, performed
+retrospective ThermoML scoring on 142 already-inspected glycol-solvent rows:
+EG 10, DEG 108, TEG 17 and tetraEG 7. With the original open solutes and Z0x
+fixed, replacing the open solvent input O by C, the open method at the UD
+coordinates, reduced pooled MAE from 1.813 to 0.702. The UD-solvent comparator
+U had MAE 0.419. The reduction of 1.111 removes about 80% of the O-to-U comparator
+gap, not 80% of O's absolute error. A total of 139 rows improved and three
+worsened. The error-reduction Shapley contribution was +1.103 from shape,
++0.009 from area and -0.001 from volume. All comparisons use the same P28 endpoint.
+
+Tetraethylene glycol is an explicit exception: only about 13% of its IDAC gap
+was recovered by coordinates, and its R11 raw-tail gap was mainly method.
+The remaining pooled C-to-U comparator gap is approximately 0.283 in ln gamma.
+It is a difference of MAEs for these fixed solutes and observations, not a
+mean absolute prediction difference, a universal electronic-method error, or
+an attribution of C's entire 0.702 experimental error. The method bundle
+includes the remaining electronic/cavity, charge and surface representation.
+R12's private regional analysis locates a donor-side coordinate redistribution
+for EG/DEG/TEG and an acceptor-side residual method redistribution; it does not
+assign a prediction error or hydrogen-bond energy to a sigma bin.
+
+The stored UD structures are not validated equilibrium liquid conformations.
+The database notice reports some empirical conformation revisions without
+identifying which glycol members were revised. A rule chosen to enforce the
+observed extended geometry would encode this inspected result even without
+reading an experimental-value column during execution. No adoption follows.
+The result neither accepts an incomplete conformer pool nor establishes a new
+independent holdout. A prospective conductor-reference rule or phase-equilibrated
+basin model would require a separate physical definition and validation design.
+
+The present P35 explanatory campaign is closed. The liquid-state distribution
+and a production conformer-selection rule remain unresolved. No further QC,
+conformer search, population calculation or experimental scoring is authorized
+by this closeout. The 630 primary and six S1/S2 profiles remain frozen. All
+prior gates and the separate R8/R9 numerical-gradient closure remain unchanged.
+The historical records above are retained; completed outcomes are in
+[round 11](../round11/RESULTS.md) and [round 12](../round12/RESULTS.md).
