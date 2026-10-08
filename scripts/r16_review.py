@@ -100,6 +100,11 @@ def guard_rows(path,kind,available):
         T=d.number(r.get('T'))
         if reason is None and (T is None or not 250<=T<=450):reason='outside_temperature_scope'
         if reason is None and keys[0]==keys[1]:reason='self_pair'
+        # Amendment P58a: the original evaluator (zcosmo.evaluate.predict_he) never predicts HE at a pure
+        # composition, so those rows were never in any HE score; exclude them as input-only, before predictions.
+        if reason is None and kind=='he':
+            xh=d.number(r.get('x1'))
+            if xh is not None and xh in (0.0,1.0):reason='original_pure_composition_not_predicted'
         if reason is None:
             failures=[available(k) for k in keys]
             if any(q is not None for q in failures):reason='input_unavailable:'+','.join(q or 'ok' for q in failures)

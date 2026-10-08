@@ -2756,3 +2756,12 @@ qualifications remain. P54 is an explanatory centerpiece, not a proof that
 real dispersion is absent. Finalize the paper with this evidence whether LV1
 passes, fails, is operationally incomplete or is never executed. No speculative
 native or new-variant campaign is made a prerequisite for writing up the study.
+
+- R16 amendment P58a (2026-10-08, before any P58 plan or model call). The registered freeze stopped with "Invalid HE composition" (zero model
+  calls): 51 test-split HE rows in data/benchmark/he.csv have x1 exactly 0 or 1. The original evaluator (zcosmo.evaluate.predict_he) skips every
+  row with x1 outside (0, 1), so those rows were never part of any HE score. P58a adds exactly that input-only exclusion
+  ('original_pure_composition_not_predicted') in scripts/r16_review.py guard_rows, recorded in the frozen exclusion list before predictions. No
+  other rule, gate, budget or interpretation changes. Separately, two r16 self-tests error on macOS only ("Worker outside claimed run"): the
+  tests compare an unresolved /var temp path with its /private/var resolution, the same artifact recorded in R10; all 58 pass in the container.
+  The real private directory is under $HOME, which has no such alias. The first private directory zc-r16-lv1-20261008 is retained; the
+  re-freeze uses a fresh directory.
