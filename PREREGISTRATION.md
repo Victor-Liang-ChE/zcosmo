@@ -2032,3 +2032,11 @@ a protocol. Historical profiles and scientific decisions remain unchanged.
   142 scored rows, 13 solvent keys, 190 audit-only rows, 284 legacy and 1,278 exact requests (1,562 maximum). Code changes are limited to those
   constants in scripts/r12_review.py, scripts/r12_analysis.py and the matching r12_selftest.py fixture/assertions (26/26 pass). Every other P46 rule,
   tolerance, budget and interpretation is unchanged. P47 (already run under 76e3092) is unaffected.
+
+- Round 12 RESULTS (recorded 2026-10-07; registered 05c35c8; amendment P46a d6b7e25; plans 76e3092 regions, fbba5e0 factorial; Mac jobs 399-401;
+  0 SCF). P47: 12/12 members, 0 model calls; the same-geometry method term is centre-heavy (largest normalized L1 share in 11/12) with UD gaining
+  positive-tail area in every polar member; the EG/DEG/TEG coordinate term moves area from the centre to the negative (donor-side) tail; channel
+  cancellation <= 0.019. P46 (retrospective explanatory ThermoML scoring, 142 rows under P46a): 1,562/1,562 finite requests in 427 s; historical
+  anchors reproduced to 4.4e-16. Pooled MAE O 1.813, C 0.702 (1.111 removed), U 0.419 (signed recovery 0.80; 139/142 rows improved; Shapley shape
+  +1.103, area +0.009, volume -0.001). Per solvent recovery: EG 0.97, DEG 0.80, TEG 0.75, tetraEG 0.13. Not held out, not adopted; P35 open;
+  630 + 6 profiles unchanged.
