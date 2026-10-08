@@ -32,8 +32,11 @@ constants span 4,014 to 932. Earlier one-term ablations identify the electrostat
 important sensitivity. Composition-dependent screening in Z0x reduces the historical VLE AAD to 14.2%.
 A later retrospective diagnostic on a separate 963-row subset changes AAD from 13.78% to 13.07% when
 experimental pure-liquid permittivities replace the stored estimates, versus 10.44% for COSMO-SAC 2010.
-This small bulk-permittivity effect leaves the local contact approximation as an unresolved hypothesis,
-not an established universal cause or an accepted new coefficient. HANNA, where its
+A registered same-row factorial subsequently assigns 2.24 percentage points, about 67% of the
+Z0x-to-2010 AAD gap, to replacing the London term with the reference's absence of explicit dispersion.
+The electrostatic closure contributes 26% and the hydrogen-bond constants 7% under this allocation.
+These exposed counterfactuals identify an implemented approximation to examine, not a transferable
+physical error fraction or permission to delete a term because its removal improves the benchmark. HANNA, where its
 training data reach, is far more accurate than every physics-based model, but it does not detect demixing
 more reliably than Z0 on held-out molecules.
 
@@ -104,6 +107,13 @@ binding energy including monomer deformation, with the D4 dispersion part remove
 contact energies e_ij = -C6_ij / d_ij^6 from D4 molecular C6 and polarizabilities (London combining rule),
 d_i the diameter of a sphere of COSMO cavity volume, entering as ln gamma_1 = (z/2) w x_2^2 / RT with
 w = 2 e_12 - e_11 - e_22.
+
+The D4 descriptors do not determine this liquid-contact model uniquely. The molecular one-center
+far-field approximation, contact diameters derived from cavity volumes, coordination z=10 and random
+mole-fraction contact statistics are additional approximations. The molecular C6 is a sum over all
+atom pairs between two molecular copies; it is not an intramolecular pair-energy sum requiring a
+factor of one half. The retained D4/MMFF inputs have their own model provenance. No adjustment to
+these inputs or dispersion weight was made to fit the present ThermoML comparison.
 
 Refinements registered after the first results, before their own predictions:
 Z0e scales c_ES by the COSMO dielectric factor f = (eps - 1)/(eps + 1/2) with eps from Onsager's equation
@@ -328,7 +338,52 @@ Experimental epsilon was held at its 298.15 K value throughout, so this was not 
 The oracle is an experimental-input, retrospective diagnostic, not a fit-free variant, a rigorous
 headroom bound or a newly held-out score. The old main7 14.15/8.62 comparison uses a different subset.
 R14 does not authorize a portfolio dielectric simulation campaign or identify a transferable local
-contact coefficient. See `docs/astra/round14/RESULTS.md`. No R15 factorial result is asserted here.
+contact coefficient. See `docs/astra/round14/RESULTS.md`.
+
+### 3.11 Same-row factorial identifies the London closure as the leading VLE discrepancy
+
+R15/P54 reused exactly P52's 963 exposed observations in 100 binary systems, with the original UD
+profiles and frozen pure-component saturation pressures. Eight distinct E/H/D corners were evaluated
+once, where E replaces the complete Z0x electrostatic closure by the 2010 temperature-dependent rule,
+H replaces the hydrogen-bond constants, and D replaces London by no explicit dispersion, as in 2010.
+The sign mask, stored profiles and effective segment area were shared. Profile convention and
+area therefore contribute zero to this endpoint difference, without being certified physically exact.
+
+| E H D corner | AAD P % | bias % | equal-system AAD % |
+|---|---:|---:|---:|
+| 000, stored-epsilon Z0x | 13.78 | +1.44 | 13.90 |
+| 100 | 12.63 | -0.35 | 12.73 |
+| 010 | 13.97 | +6.56 | 14.05 |
+| 001, no explicit dispersion | 11.76 | -2.79 | 12.00 |
+| 110 | 12.86 | +4.66 | 12.94 |
+| 101 | 11.04 | -4.34 | 11.26 |
+| 011 | 11.00 | +1.53 | 11.24 |
+| 111, COSMO-SAC 2010 | 10.44 | -0.02 | 10.65 |
+
+The game value was negative absolute percentage-pressure error. Shapley error reductions were
+2.24 percentage points for dispersion (67%), 0.88 for the electrostatic closure (26%) and 0.23 for
+hydrogen-bond constants (7%). The gap is 3.35 percentage points in the unrounded output. The H/D
+interaction was +0.95 and the E/D interaction -0.43 percentage points in the baseline-anchored
+inclusion/exclusion decomposition. Hydrogen-bond replacement slightly worsened error on its own;
+its net Shapley benefit arose through interactions. These quantities allocate error under the
+specified interventions and loss function, not intermolecular binding energy or universal causal shares.
+
+The one-at-a-time London removal reduces AAD by 2.02 percentage points. Its bias change, computed
+from the displayed corner biases, is -2.79 - 1.44 = -4.23 percentage points. The separate -4.47 value
+is the Shapley-allocated dispersion bias contribution, not this one-at-a-time difference. Independently
+rounded AADs explain small arithmetic differences such as 13.78 - 10.44 versus the reported 3.35;
+they do not explain conflating these two bias statistics.
+
+All 7,704 requests were finite. The 1,926 anchor requests reproduced their saved P52 pressures exactly
+before intermediate corners ran, and the Shapley efficiency residual was at most 3e-14 percentage
+points. The run took 722 seconds on the Mac, without quantum calculations or a retry. These are
+execution and accounting checks, not a new held-out accuracy certificate. See
+`docs/astra/round15/RESULTS.md` for the source record and its test-environment qualification.
+
+P54 changes the priority inferred from the earlier conductor-limit Z0 ablation: dispersion is the
+leading contribution to this Z0x-to-2010 comparison. R14's approximately 21% epsilon-oracle recovery
+and P54's ES share overlap and must not be added. Neither the best fitted corner nor removal of
+London is adopted. Every historical model table and the 630+6 open profiles remain unchanged.
 
 ## 4. Discussion
 
@@ -337,14 +392,23 @@ IDAC and demixing performance within a common COSMO-SAC framework. Z0x remains w
 for VLE on the displayed main7 and temporal subsets. This supports a quantitative account of the
 tradeoff, without claiming that all empiricism has been removed or that the model is generally competitive.
 
-The electrostatic contact prescription is a plausible research target, but bulk permittivity and local
-segment response are different quantities. In the implemented mapping, increasing epsilon raises
-f=(epsilon-1)/(epsilon+0.5) toward the conductor limit. The experimental-epsilon oracle yields only a
-small improvement on its particular exposed sample. Earlier one-term ablations and that oracle do not
-identify a unique universal correction, and their apparent gains cannot be added as independent causes.
-A complete same-row factorial can quantify the contributions of the implemented ES, HB and dispersion
-replacements under a stated allocation rule, including their interactions. Its fitted corners remain
-diagnostics, never candidates selected by whichever ThermoML error is smallest.
+The strongest later explanatory result is P54's dispersion attribution on the fixed P52 observations.
+It is more directly relevant to the remaining Z0x discrepancy than the original conductor-limit Z0
+ablation. Bulk permittivity and local contact response remain different quantities, but the small R14
+oracle effect does not justify treating dielectric error as the dominant unresolved cause. The London
+closure should be described as an approximate conversion of electronic descriptors into an excess
+mixing free energy. P54 identifies that conversion as a leading source of benchmark discrepancy;
+it does not isolate one failed geometric assumption or prove double counting.
+
+For positive C6, polarizabilities and cavity volumes, the implemented London exchange is nonnegative:
+its unlike C6 does not exceed the geometric mean of its self coefficients, and its arithmetic-mean
+contact diameter is at least their geometric mean. Consequently its Margules contribution raises
+both component activities and bubble pressure relative to the same residual without it. That
+restriction can increase or reduce absolute pressure error depending on the row. A change to volume
+contact statistics requires differentiating a complete excess Gibbs energy, not merely replacing
+mole fractions in the existing gamma formula. A physically specified alternative must retain its
+unfavorable outcomes and be evaluated under a new prospective, exposure-qualified protocol.
+The P54 fitted corners remain diagnostics and cannot be selected as models by their lower error.
 
 Deriving a new contact kernel from reaction-field response or independent electronic calculations is
 physically possible after the cavity, contact geometry and reference-energy partition are specified.
@@ -358,7 +422,10 @@ Association and direct simulation remain separate research programs. Reproducing
 not validate the site thermodynamics, and an energy/force model does not automatically validate its
 field response or chemical potentials. The numerical association repair changes neither the archived
 scientific failures nor this assessment. The present work is ready for a limitations-aware account of
-its completed evidence; a speculative native campaign need not delay that account.
+its completed evidence, with P54 as the centerpiece of the later VLE explanation. Finalization need
+not await an optional single-recipe dispersion screen, and a failed screen is not grounds to tune
+its weight or conceal the failure. Independent verification of bibliography and reproducibility
+assets remains part of submission preparation.
 
 ## 5. Limitations
 
@@ -416,8 +483,8 @@ S4 All scorecards with bootstrap intervals: `results/scorecard_*.md`.
 S5 Error maps by chemical family: `results/error_map_idac_*.csv`.
 S6 Open-profile validation and conformer comparison: `results/pyscf_profile_validation.csv`,
    `data/pyscf_sigma/conformer_summary.csv` (asset availability is stated above).
-S7 Later numerical, glycol and dielectric evidence: `docs/astra/round2/RESULTS.md` through
-   `docs/astra/round14/RESULTS.md`, with the registrations and private-plan digests referenced there.
+S7 Later numerical, glycol, dielectric and factorial evidence: `docs/astra/round2/RESULTS.md` through
+   `docs/astra/round15/RESULTS.md`, with the registrations and private-plan digests referenced there.
 
 ## References (to verify against the publisher records before submission)
 
