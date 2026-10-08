@@ -64,11 +64,15 @@ def select(rows, refs):
 
 
 def protected_profiles(root):
-    root=Path(root).resolve(); files=[]; counts={}
-    for folder,expected in (('profiles_v2',630),('s1_stalled',1),('s2_stalled',5)):
-        ps=sorted((root/folder).glob('*.sigma'))
-        d.require(len(ps)==expected,'protected profile count differs in '+folder)
-        counts[folder]=len(ps); files.extend(ps)
+    # Amendment P52a: protect exactly the registered 630+5+1 selection (r4_common.selected_profiles),
+    # not every *.sigma file present in those folders, which also hold superseded copies.
+    import pandas as pd
+    from r4_common import selected_profiles
+    rows=selected_profiles(Path(root).resolve(),pd.read_csv(ROOT/'data/benchmark/compounds.csv'))
+    counts={}
+    for _key,folder,_src in rows:counts[folder]=counts.get(folder,0)+1
+    d.require(counts=={'profiles_v2':630,'s1_stalled':1,'s2_stalled':5},'protected profile selection differs')
+    files=[src for _key,_folder,src in rows]
     d.require(len({p.stem for p in files})==636,'duplicate protected identities')
     return d.fingerprint(files),counts
 

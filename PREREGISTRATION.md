@@ -2308,3 +2308,10 @@ validation source or an explicitly exposed fixed-design confirmation. The
 current Z0w inheritance/dispatch concern is a source-version audit item; no
 association code or historical failure is changed under R14. No fourth
 association fit or simulation-based activity-coefficient campaign is authorized.
+
+- R14 amendment P52a (2026-10-08, before any P52 plan or model call). The registered P52 freeze stopped with "protected profile count differs in
+  s1_stalled" (zero model calls). On the Mac, data/pyscf_sigma/s1_stalled holds 6 files and s2_stalled 5: the registered 630+5+1 population is a
+  per-key selection (scripts/r4_common.selected_profiles, used since R4), not every *.sigma file in those folders, which also hold superseded
+  copies. P52a changes only scripts/r14_oracle.py protected_profiles() to fingerprint exactly that selection and require the 630/1/5 split.
+  No selection, metric, budget or interpretation changes. Because the helpers are bound to their registration commit, P51 (deterministic,
+  zero-model) is re-executed once under this commit into a fresh directory; the first P51 output under 834b929 is retained and both are compared.
