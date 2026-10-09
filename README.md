@@ -75,3 +75,14 @@ or a held-out accuracy improvement. No crossed profile or conformer-selection
 rule is adopted. The 630 primary plus six flagged profiles remain frozen.
 P35's present explanatory campaign is closed with these findings; its liquid-state
 mechanism remains unresolved. The separate numerical-gradient campaign stays closed.
+
+R17 manuscript closeout (2026-10-08): the subsequent [R15 factorial](docs/astra/round15/RESULTS.md)
+attributes 2.24 percentage points, about 67% of the Z0x-to-2010 VLE gap on 963 exposed observations,
+to the implemented London closure. The [R16 LV1 screen](docs/astra/round16/RESULTS.md) failed its
+registered tradeoff gates and is not adopted. The VLE gap remains unresolved and the model-development
+campaign is closed for this project. The manuscript and supplement retain the unfavorable result,
+actual source-specific denominators and numerical qualifications. "Fit-free" here means no new
+ThermoML regression of the interaction constants, not absence of all empirical upstream inputs.
+The reproduction commands above describe the historical full workflow; they are not authorization to
+rerun it during R17. Only the zero-model reporting commands in the R17 report are proposed now.
+Existing bibliography and artifact checks remain editorial submission tasks, not a new research budget.

@@ -1,0 +1,968 @@
+{
+  "schema": "r17-manuscript-audit-v1",
+  "base": "35ab60046f3f4a7566d8eeee6b13172a6d0becc2",
+  "original_path": "manuscript/draft.md",
+  "original_blob": "edf2eae2b30fb97b8934c4e86c81a09685e8704d",
+  "original_lines": 520,
+  "revised_sha256": "e203574d5988d478e10cf1bfbece839114461c85aa444c4cb05430c289844f13",
+  "supplement_sha256": "dd1ef7a283f1d48726e20d3b70cf98571cbe557089f2ffbfffb910f065fab731",
+  "sources": {
+    "PREREGISTRATION.md": "c1b84665223940e3042c4d16c8ce3006479ead3d",
+    "PROGRESS.md": "216bb364f496e7846c8a450643768e521eb4b546",
+    "README.md": "263447947ec5b953b1e5d5e9259aaef22cb6fb62",
+    "src/zcosmo/scope.py": "894d89cee8e33bb194f60e54469302236b77df5b",
+    "src/zcosmo/cosmosac.py": "c226a668b7b9dba9e7400cda180fafd8faa700f3",
+    "src/zcosmo/z0x.py": "c558d4e95db9b78f3b57d6a103a293e21feeb9af",
+    "results/scorecard_test_main7.json": "aee303792afcdff48e90aa74d074802a3bb7596b",
+    "results/scorecard_test_main7.md": "f180ea4d506619e010f2ba0a673965d4aa22163e",
+    "results/scorecard_test_both_main7.md": "c3e3bfd5df6e32cdec5c6e8c1b21a5b952ea0ce7",
+    "results/scorecard_test_main6.md": "9d5ae19484dc21844e3b14360d156b7bc99b350b",
+    "results/scorecard_test.md": "bce8eed067c3eb436b9d3343199790f50bb13305",
+    "results/scorecard_temporal_ext.md": "c8895658373b0c1e582a63b3256d1f116dd56620",
+    "results/scorecard_temporal_test_ext.md": "076dd6365ab13c7ac32f7ab74aa0c4abc2b2f65d",
+    "results/scorecard_all_ablation.md": "37f3a51e5d94eca2f5447740ed3ec959e22d5dd6",
+    "results/scorecard_test_sensitivity.md": "e283a7a59ebd6454a3a7404ba5c63074a6557710",
+    "results/scorecard_all_gap_exploratory.md": "7b2637440112e1e5290e1026bd9d3fd87b5822d8",
+    "results/scorecard_test_z0w.md": "720b2bb8e407b38f778debe9e93e0448e10f9c6e",
+    "results/error_map_idac_all_long.csv": "b1caa4827ebe9df0f98e3f8006a6d5c27b8857aa",
+    "results/qc/ccsdt_check.csv": "10aeaafb0ccb2ef0a8d6c17d00de4c3a9c926135",
+    "results/qc/hb_constants_per_dimer.csv": "bd249aaf7ad01e5fd70a7357766c6db6e5cf1307",
+    "results/qc/hb_constants_by_class.csv": "fe225ee279fd80fc599c871955011370ddafb5e0",
+    "results/qc/assoc_thermo.csv": "a7044b9c0023d28d92f8aee7af1225c4f2f21b37",
+    "scripts/make_figures.py": "7238311999c7ede74ea35acfdff2544710a05836",
+    "docs/astra/round2/RESULTS.md": "6da753d4b62210817abf98b25da7e1e12458ee45",
+    "docs/astra/round3/RESULTS.md": "c6de1f0a15d47cd596c56f5de00928f2a3238b1d",
+    "docs/astra/round4/RESULTS.md": "428e5b4e0ce8801a5f55ac16d5a1a9a9217d400a",
+    "docs/astra/round5/RESULTS.md": "88d669c4c8abc6269e55f3609d7ff390e7f6fc5c",
+    "docs/astra/round6/RESULTS.md": "4dfc953f8cff9846f1810cb01ef82719569a9a8e",
+    "docs/astra/round7/RESULTS.md": "ef78bceea953b5bfc4167aa28ea366e58ffe5213",
+    "docs/astra/round8/RESULTS.md": "d34dc87a3d0724740df4c344bb481ff4ee861583",
+    "docs/astra/round9/RESULTS.md": "00f6d3b81c4da803cefbe5da9024b8d4ba453f07",
+    "docs/astra/round10/RESULTS.md": "0656f37159bbeb6f7a18477f91b513e46f3c3e0c",
+    "docs/astra/round11/RESULTS.md": "458210e730623727b6e94881511459bd48c187aa",
+    "docs/astra/round12/RESULTS.md": "c036e8e24aa45a03aed0485664b3a26cd842c17f",
+    "docs/astra/round13/RESULTS.md": "8d5885b430e3dda0d44db49d50a5303f2499fa50",
+    "docs/astra/round14/RESULTS.md": "90b8a880d4c887f3dce09d67592c5383bf02f295",
+    "docs/astra/round15/RESULTS.md": "dd2eeb1fa384f320e338341cd72bd5479a69ba9c",
+    "docs/astra/round16/RESULTS.md": "328926b9c40209fa4bcac371575fd0794697ad3b",
+    "manuscript/figures/fig1_idac_parity_test.png": "72659886f5d3b451cf00adfe536a3715b1d6553a",
+    "manuscript/figures/fig2_hbond_constants.png": "c22a980ff1e3266e8865b84a2bac9c9deebe6367",
+    "manuscript/figures/fig3_tradeoff.png": "62205ae989a86687abf91d99bdd9b1010d7cb46a",
+    "manuscript/figures/fig4_lle_detection.png": "03560344877b0867a97b806b7014ebb477a7d8b5",
+    "manuscript/figures/fig5_error_map.png": "78e50e66d2dc842667e0ed5aa2a9e42a42a7fece"
+  },
+  "claims": [
+    {
+      "id": "C01",
+      "start_line": 3,
+      "end_line": 3,
+      "original_sha256": "f9c57ee6da28abff75b565ded25cd984d24e320bca4393fcbbeebaf64338b645",
+      "status": "editorial",
+      "claim": "Original 2026-09-24 / revision 2026-10-08 dates",
+      "sources": [
+        "PROGRESS.md"
+      ],
+      "fix": "Preserve; R17 is an editorial revision, not a new experimental date."
+    },
+    {
+      "id": "C02",
+      "start_line": 7,
+      "end_line": 16,
+      "original_sha256": "8bd77e3bcae75104dcad9736c26a87a376fc0b4089c12a7869f273bad88ca856",
+      "status": "scope_correction",
+      "claim": "17 dimers, theory/QC interaction constants and inherited empirical inputs",
+      "sources": [
+        "PREREGISTRATION.md",
+        "results/qc/hb_constants_by_class.csv",
+        "docs/astra/round10/RESULTS.md"
+      ],
+      "fix": "Keep no-new-ThermoML-regression claim; do not imply every convention or upstream input is first-principles."
+    },
+    {
+      "id": "C03",
+      "start_line": 18,
+      "end_line": 24,
+      "original_sha256": "5b096361a913b6825d5aac027691c152befb66ddf4fdf587d100c769245c22af",
+      "status": "scope_correction",
+      "claim": "9184 files; IDAC3438 VLE46127 LLE7158 HE27366; split chronology",
+      "sources": [
+        "PROGRESS.md",
+        "PREREGISTRATION.md"
+      ],
+      "fix": "Counts agree with session 1. Say split frozen before Z0 predictions, not before every model run. Preserve later exposure."
+    },
+    {
+      "id": "C04",
+      "start_line": 26,
+      "end_line": 41,
+      "original_sha256": "6a6e13477d01199665de883ede9b81c07979e43a368a9194f911fd55fa5a08ef",
+      "status": "mixed_source_precision",
+      "claim": "Abstract IDAC/LLE/VLE means, HB counts, epsilon oracle and P54 shares",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "PROGRESS.md",
+        "docs/astra/round14/RESULTS.md",
+        "docs/astra/round15/RESULTS.md",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Use no resolved IDAC difference. Cite LLE as contemporaneous reported advantage, not independently recovered exact bootstrap. Add LV1 negative result; limit P54 to963rows."
+    },
+    {
+      "id": "C05",
+      "start_line": 43,
+      "end_line": 43,
+      "original_sha256": "e569d07d3d78b3857cd1582a9bd94ee38bd3c9c8dd7ff6e5f1bc25777006fefd",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C06",
+      "start_line": 57,
+      "end_line": 60,
+      "original_sha256": "788420bb5ad315398aeb270c172c18bf918d71570c38b13be18abf8fa28a3372",
+      "status": "publisher_checked",
+      "claim": "HANNA about824000 DDB observations",
+      "sources": [
+        "REF8"
+      ],
+      "fix": "Publisher specifies824481; rounded claim valid. Do not infer per-row overlap or general superiority from this local comparison."
+    },
+    {
+      "id": "C07",
+      "start_line": 70,
+      "end_line": 70,
+      "original_sha256": "2fc4703bd8f7cc604a6ab110bbb57fbe93eef80f582a49aad84f17cdb3035a32",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C08",
+      "start_line": 72,
+      "end_line": 78,
+      "original_sha256": "e48c2538a3fe0145148107ebe8dcb7df903d7590a80383c96aab9906373f7f61",
+      "status": "scope_correction",
+      "claim": "25heavy atoms;250-450K;500kPa;2K/.2IDAC;Herington;5cloudpoints",
+      "sources": [
+        "PREREGISTRATION.md",
+        "src/zcosmo/scope.py"
+      ],
+      "fix": "Document binned median IDAC filter, retained untestable VLE and known-Tc-only rejection at0.98Tc; boundaries inclusive."
+    },
+    {
+      "id": "C09",
+      "start_line": 80,
+      "end_line": 89,
+      "original_sha256": "51bc3bf766115a69ed6a05c20d1a61fa33c2a1543f703f1ffd1c0612d8608dff",
+      "status": "scope_correction",
+      "claim": "20%,seed20260924,11923files,2017-2019,reference years2010/2014/2016",
+      "sources": [
+        "PREREGISTRATION.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Preserve historical dates. Table-fit dates do not prove all upstream data independent; old collections are exposed."
+    },
+    {
+      "id": "C10",
+      "start_line": 91,
+      "end_line": 95,
+      "original_sha256": "10da41ccc606c0622a2f6c5962a3078574c4468f81d50f3b6945da32a5496c1b",
+      "status": "public_record",
+      "claim": "NIST implementation2e-9 on400pairs;localUD2259 vs publication2261",
+      "sources": [
+        "PROGRESS.md"
+      ],
+      "fix": "Distinguish reported code gate and project inventory from Bell publication count; no gate re-executed."
+    },
+    {
+      "id": "C11",
+      "start_line": 97,
+      "end_line": 109,
+      "original_sha256": "a0e7a317a044385f2d22e28d609eadb4840a311f5b703dfafbaed197a44ece75",
+      "status": "verified_source",
+      "claim": "aeff7.25 q079.53 r066.69 z10; cES12226/8197;17dimer recipe",
+      "sources": [
+        "PREREGISTRATION.md",
+        "src/zcosmo/cosmosac.py"
+      ],
+      "fix": "Preserve constants; state inherited conventions. Rounded cES values follow documented formulas, not independently fitted numbers."
+    },
+    {
+      "id": "C12",
+      "start_line": 111,
+      "end_line": 116,
+      "original_sha256": "9a7bf6d32135ad6168e602c7a6c7aaa621937d170d37c6a27801ca8f04aa9076",
+      "status": "scope_correction",
+      "claim": "one-center C6,d^-6,z/2=5 and pure-reference cancellation",
+      "sources": [
+        "PREREGISTRATION.md",
+        "src/zcosmo/cosmosac.py"
+      ],
+      "fix": "Retain declared modeling assumptions. Pure Psat does not automatically double count an excess mixing term."
+    },
+    {
+      "id": "C13",
+      "start_line": 118,
+      "end_line": 127,
+      "original_sha256": "48ea72e3baef17068b7168e881098b944037c5a02ba795df472cf8a244cf90d0",
+      "status": "public_record",
+      "claim": "f=(eps-1)/(eps+1/2),P6 analyticinterior,P28opt-in,6Z0svariants",
+      "sources": [
+        "PREREGISTRATION.md",
+        "src/zcosmo/z0x.py",
+        "docs/astra/round6/RESULTS.md"
+      ],
+      "fix": "Preserve P6/P28 numerical distinction; Z0s is a training-selected choice and historical endpoints are not overwritten."
+    },
+    {
+      "id": "C14",
+      "start_line": 129,
+      "end_line": 136,
+      "original_sha256": "da771ed81e0c45ba08e06f3d8f93f9793e797ab32cd35f99599d34164d0d40c7",
+      "status": "scope_correction",
+      "claim": "336negative states;1000systembootstraps andpaired95%",
+      "sources": [
+        "PREREGISTRATION.md",
+        "src/zcosmo/cosmosac.py"
+      ],
+      "fix": "Common masks are property-specific; LLE has distinct detection/endpoint denominators; CI0 is not equivalence."
+    },
+    {
+      "id": "C15",
+      "start_line": 143,
+      "end_line": 143,
+      "original_sha256": "5047a6434c1f4da26dadc98704b407724ce664694f93948e467ef9c5f9ade4bf",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C16",
+      "start_line": 145,
+      "end_line": 147,
+      "original_sha256": "3b235a0b14ca5f33b883cfa8b2b2f825e74ab866311d4484e3e759c1cb0c9c0e",
+      "status": "asset_metadata_checked",
+      "claim": "Five figure filenames",
+      "sources": [
+        "scripts/make_figures.py"
+      ],
+      "fix": "All five files exist in manuscript/figures; metadata only, not a pixel/data audit. Safe regeneration only2/3 from public aggregates."
+    },
+    {
+      "id": "C17",
+      "start_line": 149,
+      "end_line": 149,
+      "original_sha256": "0f1ca9310a84c58c9554baba26412d459afef21e40f2136cb1d516aae5aff09f",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C18",
+      "start_line": 151,
+      "end_line": 153,
+      "original_sha256": "40077f76d7cd2484ce0a37c14b8a2eed3811b3fa652e3d1487412c9da47b34d4",
+      "status": "scope_correction",
+      "claim": "main7 vs composite table provenance",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "results/scorecard_test_both_main7.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Label first table composite: main7 property entries, test_both column, historical BA summary and separate HANNA row."
+    },
+    {
+      "id": "C19",
+      "start_line": 155,
+      "end_line": 164,
+      "original_sha256": "1ec04cbabc44f1826bee285346c282e7a20c7ac1fbed98297a880d39918b6531",
+      "status": "partially_verified",
+      "claim": "All cells in historical8-model table",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "results/scorecard_test_both_main7.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Preserve exact table. Seven-model IDAC/VLE/HE cells and both-unseen cells match after rounding. BA precision/HANNA row require original artifacts, explicitly qualified inS0."
+    },
+    {
+      "id": "C20",
+      "start_line": 166,
+      "end_line": 168,
+      "original_sha256": "17d033f6943fe4f0de4273b6b995144d370d73c80e9497674f5b2c4e15fd2b9c",
+      "status": "partially_verified",
+      "claim": "708/163;55/12;9432;101/128;HANNA762",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "results/scorecard_test_both_main7.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Add confirmed6311HE count; do not assign a762IDAC count to HANNA VLE/HE. Exact early detection/HANNA arrays not recovered."
+    },
+    {
+      "id": "C21",
+      "start_line": 170,
+      "end_line": 175,
+      "original_sha256": "ad370f2512c55a5899029c64519b5c47b516d128f5d5c1717f59644d0bc91099",
+      "status": "mismatch_and_unverified_precision",
+      "claim": "Z0IDAC[-.17,+.08],both[-.54,-.22],VLE[6.6,14.5];LLE/HANNApreciseCIs",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "results/scorecard_test_both_main7.md",
+        "results/scorecard_test_main6.md",
+        "results/scorecard_test.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Use main7[-.170,+.069],test_both[-.552,-.229],VLE[6.76,14.61]. Preserve old strings inS0. Exact early LLE/HANNA CIs remain unverified; do not call CI0 a tie."
+    },
+    {
+      "id": "C22",
+      "start_line": 177,
+      "end_line": 177,
+      "original_sha256": "c6d7a2b62b0da8f1d234d0119f04abeaeb950c7fe06c28859a476e0e9369e3af",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C23",
+      "start_line": 179,
+      "end_line": 188,
+      "original_sha256": "66de13a7e03fa5cb1bddcf5d2b282c7ffd4985c005092996eed5d450939b1063",
+      "status": "verified_source",
+      "claim": "Every temporal8-model table cell",
+      "sources": [
+        "results/scorecard_temporal_ext.md"
+      ],
+      "fix": "Preserve verbatim; correct rounded values on this separate common subset."
+    },
+    {
+      "id": "C24",
+      "start_line": 190,
+      "end_line": 193,
+      "original_sha256": "96bb138df7380970c474b6d192a5ff4379ec536459c818d1545694302c0320d7",
+      "status": "scope_correction",
+      "claim": "254/54IDAC;7722VLE;2058HE;Z0xVLECI[1.2,3.3]",
+      "sources": [
+        "results/scorecard_temporal_ext.md"
+      ],
+      "fix": "Counts and CIrounding agree. Means/medians alone do not count how many large misses dominate."
+    },
+    {
+      "id": "C25",
+      "start_line": 195,
+      "end_line": 195,
+      "original_sha256": "b489b55c23566f292a73394093c4e2824036f9064febe866d5f68f6999c5b32b",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C26",
+      "start_line": 197,
+      "end_line": 201,
+      "original_sha256": "782c9804116ed6cd0215d26f487a635f1c96eed8c823f7f681dc09605b7b9679",
+      "status": "verified_source",
+      "claim": "HB5/7/5;5712+/-538,5988+/-1032,5611+/-1833;4014/3016/932",
+      "sources": [
+        "results/qc/hb_constants_by_class.csv",
+        "src/zcosmo/cosmosac.py"
+      ],
+      "fix": "Preserve exact table; +/- values are sampleSD across dimers, notCI."
+    },
+    {
+      "id": "C27",
+      "start_line": 203,
+      "end_line": 206,
+      "original_sha256": "a137a13bca5d386a358a9552a227895ad3ca8360a3ade405c3acc65c9bc5bf15",
+      "status": "scope_correction",
+      "claim": "5CCSDT/CBS estimates;.33-.85mean.59about15%;.05IDAC/1ppHBsensitivity",
+      "sources": [
+        "results/qc/ccsdt_check.csv",
+        "results/scorecard_test_sensitivity.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Name composite CBSestimate, not exactbasislimit. Perturbation bounds describe testedvariants only."
+    },
+    {
+      "id": "C28",
+      "start_line": 208,
+      "end_line": 217,
+      "original_sha256": "4cef5753b83fdc12d4c3f2d25f150fbc3ed2b3cb46698df1e775234ed35d7f08",
+      "status": "scope_correction",
+      "claim": "Old ablation+.03/+.13/+.17IDAC,+6VLE;family.18/.40/1.05,.66/1.04,3.7/3.4",
+      "sources": [
+        "results/scorecard_all_ablation.md",
+        "results/error_map_idac_all_long.csv"
+      ],
+      "fix": "Old all-data startingdsp notZ0x. LondonVLEpointdecrease unresolved. Familylabelalkene/alkyne andcounts146/456/38/27, not universal mostaccurate."
+    },
+    {
+      "id": "C29",
+      "start_line": 219,
+      "end_line": 230,
+      "original_sha256": "6e92c0791bcc580938d520235028b0e1e6964679dae32ad4d8f87ba043fc69ba",
+      "status": "partially_verified",
+      "claim": "Z0w.97/.80;27.4/15.2VLE;.094FP;.90BA;aqueous5-7;nonaq.67/.88;entropy-121/-87",
+      "sources": [
+        "results/scorecard_test_z0w.md",
+        "results/qc/assoc_thermo.csv",
+        "PROGRESS.md",
+        "PREREGISTRATION.md"
+      ],
+      "fix": "Main uses verified .969/.800[-.035,+.400]. Move detailed historical claims toS3; exact posthoc CIs[-.29,-.09],[-.17,+.04] require private existing artifact. Aqueous diagnosis not proof of uniquecause."
+    },
+    {
+      "id": "C30",
+      "start_line": 232,
+      "end_line": 239,
+      "original_sha256": "b52e7389e6fef931bd5dfc235bd8fe9d38ae3b4a30cc2a9ba5609a2b19dd1a62",
+      "status": "public_record",
+      "claim": "v125/2302;.153/.15,water1.14,TEG.84;MAE.79/.74;gap136,218/72and6scores",
+      "sources": [
+        "PREREGISTRATION.md",
+        "results/scorecard_all_gap_exploratory.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Move toS1. Target2302 is historical occurrence denominator, not proof allfinite; gatecompatibility not equivalence;136computed not218uniquecompounds."
+    },
+    {
+      "id": "C31",
+      "start_line": 241,
+      "end_line": 249,
+      "original_sha256": "e8f131d8a9cc36e036f0aa9514260d534d794352531e3fd8fc3551d2c2010dd5",
+      "status": "public_record",
+      "claim": "v2.1493 margin.0007;630+6;R2-R9;P32failure",
+      "sources": [
+        "PREREGISTRATION.md",
+        "docs/astra/round2/RESULTS.md",
+        "docs/astra/round3/RESULTS.md",
+        "docs/astra/round4/RESULTS.md",
+        "docs/astra/round7/RESULTS.md",
+        "docs/astra/round8/RESULTS.md",
+        "docs/astra/round9/RESULTS.md"
+      ],
+      "fix": "Main oneparagraph and S1detail. Keeporiginalgradient stationarityscope, Aoptimizerstateclassification and failedgate."
+    },
+    {
+      "id": "C32",
+      "start_line": 251,
+      "end_line": 257,
+      "original_sha256": "60c00f78b9eeae9da61ef18e3782790215243e567066a92f39575a6e544aa4e3",
+      "status": "private_precision_unverified",
+      "claim": "50molecules244confsavg4.9;medians.009/.011,p90<.09,CI[.00,.01]/[-.35,.32],weight60%",
+      "sources": [
+        "PROGRESS.md",
+        "PREREGISTRATION.md"
+      ],
+      "fix": "Publiclog supports50/244and~.01; detailedqueuefile absent from audit. Retain preciselegacyclaims inS2withpendingartifactlabel; no assertionofequivalence."
+    },
+    {
+      "id": "C33",
+      "start_line": 259,
+      "end_line": 263,
+      "original_sha256": "7f07b6f474612b2b69b480b6f91185e2f070b08e1ec753d2b45467df524db757",
+      "status": "public_record",
+      "claim": "12lineages;EG/DEG/TEGtailgeometry;tetraexception;no fullprofilelabel",
+      "sources": [
+        "docs/astra/round10/RESULTS.md",
+        "docs/astra/round11/RESULTS.md"
+      ],
+      "fix": "Move detail toS2; orderedcross includesH/orientation, not independently identified liquidconformation."
+    },
+    {
+      "id": "C34",
+      "start_line": 265,
+      "end_line": 273,
+      "original_sha256": "333d1b574b94dd504d514ceea2830977176ef09e28c8b6aa124fb0e024ba9876",
+      "status": "public_record",
+      "claim": "142;1.813/.702/.419;1.111;80%gap61%own;139/3;13%;.283",
+      "sources": [
+        "docs/astra/round12/RESULTS.md",
+        "docs/astra/round13/RESULTS.md"
+      ],
+      "fix": "Preserve exact meaning and endpoint. .283 is differenceofMAEs notmeanpredictiondifference oruniversalmethodeffect."
+    },
+    {
+      "id": "C35",
+      "start_line": 275,
+      "end_line": 279,
+      "original_sha256": "a5ce724986e5ac5b942218999d822aa0b65a07d727f612bdf8fc352d64d60643",
+      "status": "public_record",
+      "claim": "R10-R13empiricalUDhistory,P35closeout,630+6",
+      "sources": [
+        "docs/astra/round10/RESULTS.md",
+        "docs/astra/round11/RESULTS.md",
+        "docs/astra/round12/RESULTS.md",
+        "docs/astra/round13/RESULTS.md"
+      ],
+      "fix": "Preserve scope; database-level conformation revision does not identify individualglycolselection."
+    },
+    {
+      "id": "C36",
+      "start_line": 281,
+      "end_line": 281,
+      "original_sha256": "c66ee660648c1e5c8f7dccac03c5c8824bc64d63a705039b2e8f1bd5a6da8c5b",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C37",
+      "start_line": 283,
+      "end_line": 290,
+      "original_sha256": "17b6ac2c277f87b4806ceca174e0d64398da28bcb69ffa663121de698a6bc001",
+      "status": "public_record",
+      "claim": "w2.9-2.1solvation,.902/.800CI.04-.18BA.887,13%donors",
+      "sources": [
+        "PREREGISTRATION.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Numerics supportedrecord; failedcriterion stands. Approximate85%liquid reference not newly independentlyvalidated; later temporal is nowexposed."
+    },
+    {
+      "id": "C38",
+      "start_line": 292,
+      "end_line": 292,
+      "original_sha256": "3b31df675aa6d4d39e02f877e4528158f479e73cf848e8b598aa126af9affa6a",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C39",
+      "start_line": 294,
+      "end_line": 312,
+      "original_sha256": "479caa4ec5b234973719ba3c3773fb31b7ba8314563d0e71c2e1ee2053a9fce7",
+      "status": "public_record",
+      "claim": "MACE.37ns/day648;force2-4e-6;8.9~24x;TF32.003;HMR2.3-183;21liquidstates;w3errors",
+      "sources": [
+        "PREREGISTRATION.md",
+        "PROGRESS.md"
+      ],
+      "fix": "Move infrastructuretoS3. Exactforcepath checks notequilibrium sampling/chemicalpotential validation; distinct w3temporaldenominator; physicaldiagnosis remainshypothesis."
+    },
+    {
+      "id": "C40",
+      "start_line": 314,
+      "end_line": 319,
+      "original_sha256": "1f855ef8aa1cf8b062b19638e5ea7986a7ce23ffed2d7acce3d7a2daa24d53a0",
+      "status": "public_record",
+      "claim": "P6dispatch,P28endpoint,P55restoration",
+      "sources": [
+        "docs/astra/round14/RESULTS.md",
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Retain historicalassociationpredictions unaffected; repairno newscore and no exactassociationendpoint."
+    },
+    {
+      "id": "C41",
+      "start_line": 321,
+      "end_line": 321,
+      "original_sha256": "fbe852ce1ba99bed234ffcaf97fa1a9e8b604f4e22802158f0c3c3e8c8e2bb8a",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C42",
+      "start_line": 323,
+      "end_line": 327,
+      "original_sha256": "c54905a9fb837dd4b733898ea162beee52ade9f0773407221b25d5005a489766",
+      "status": "public_record",
+      "claim": "P51742/248validplus5matchedinvalid,298.15K",
+      "sources": [
+        "docs/astra/round14/RESULTS.md"
+      ],
+      "fix": "Registeredaggregatewithheld correctly; do notsubstitute matched-onlydescriptives."
+    },
+    {
+      "id": "C43",
+      "start_line": 329,
+      "end_line": 336,
+      "original_sha256": "11ee0eabc970743c18181d2fb97da6cb01c667ef8aa0c840e6d87925e851e827",
+      "status": "public_record",
+      "claim": "P52963/100;2889;13.78/13.07/10.44;equal13.90/13.19/10.65;.72/21%/3.35;559/404",
+      "sources": [
+        "docs/astra/round14/RESULTS.md"
+      ],
+      "fix": "All agree atrecordprecision. Independentlyroundedendpoints may differ from unrounded difference. Fixed298epsilon notfullε(T)."
+    },
+    {
+      "id": "C44",
+      "start_line": 338,
+      "end_line": 341,
+      "original_sha256": "608d77cf9875c352786297df5917ebe5507f33034654428a5be02990d9e1c4d3",
+      "status": "public_record",
+      "claim": "P52notfitfree;main7different14.15/8.62",
+      "sources": [
+        "docs/astra/round14/RESULTS.md"
+      ],
+      "fix": "Preserve diagnosticandnoheadroombound labels; noportfolioMDauthorization."
+    },
+    {
+      "id": "C45",
+      "start_line": 343,
+      "end_line": 343,
+      "original_sha256": "057a9aea0fc64dd941d33541ccaecbc8f1eb1e1a0d7b568d34e8265c1f0f6cf2",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C46",
+      "start_line": 345,
+      "end_line": 350,
+      "original_sha256": "b5a4399ec2c38e4e95d433feb097da21c73f425c3b2778725730d3e4d8853af4",
+      "status": "public_record",
+      "claim": "963/100;8EHDcorners;2dummyfactors",
+      "sources": [
+        "docs/astra/round15/RESULTS.md",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Preserve retrospective intervention definition; dummyzerosonlybetween specifiedendpoints."
+    },
+    {
+      "id": "C47",
+      "start_line": 352,
+      "end_line": 361,
+      "original_sha256": "ed56c3b78f0f93b2d8888e59f25cdae46e8ce247818a82169ccea52c84863f74",
+      "status": "verified_source",
+      "claim": "All eight P54cornerAAD/bias/equal-systemvalues",
+      "sources": [
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Preserve exact table."
+    },
+    {
+      "id": "C48",
+      "start_line": 363,
+      "end_line": 369,
+      "original_sha256": "f1c1d880c9133c42de6db6b6ea0fce4f40daac3346e4dc501d3ee68597ce8855",
+      "status": "public_record",
+      "claim": "2.24/67%,.88/26%,.23/7%;3.35gap;HD+.95ED-.43",
+      "sources": [
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Preserve conditionalShapleyerrorallocation, not causalenergypercent."
+    },
+    {
+      "id": "C49",
+      "start_line": 371,
+      "end_line": 375,
+      "original_sha256": "c2f3125656ec89162ce4571c05ff90dfab8ae813ed52d2f40be08a2b1b37f03b",
+      "status": "public_record",
+      "claim": "2.02AAD;onefactorbias-4.23versusShapley-4.47",
+      "sources": [
+        "docs/astra/round15/RESULTS.md",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Currentclarificationcorrect; retain. No roundingexplanation forconflatingdifferentstatistics."
+    },
+    {
+      "id": "C50",
+      "start_line": 377,
+      "end_line": 381,
+      "original_sha256": "ceab9a321b892269e788170aa2ee88e6758badf9338301266a99e3a80575b129",
+      "status": "public_record",
+      "claim": "7704finite1926anchors3e-14efficiency722s",
+      "sources": [
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Preserve measuredaccounting; portabletestqualificationnotallMacsummarypass."
+    },
+    {
+      "id": "C51",
+      "start_line": 383,
+      "end_line": 386,
+      "original_sha256": "54ebdfd362af926e5abd2eba1c2faa4515b1ee3c42c13b86f790151cbd79e906",
+      "status": "public_record",
+      "claim": "21%eps andESshareoverlap;630+6",
+      "sources": [
+        "docs/astra/round14/RESULTS.md",
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Preserve nonadditivity,noadoption;appendLV1failure tosame3.11section."
+    },
+    {
+      "id": "C52",
+      "start_line": 388,
+      "end_line": 388,
+      "original_sha256": "df2c73358e96e3e08ad73bed73e9e674d0cd21f6a0e8b18785469899127b57b2",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C53",
+      "start_line": 390,
+      "end_line": 393,
+      "original_sha256": "fda53fdb593bfb499889b338fc3a6f514c287ad864563ed532e260cd2410ea1c",
+      "status": "scope_correction",
+      "claim": "Z0xVLEworse main7/temporal",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "results/scorecard_temporal_ext.md"
+      ],
+      "fix": "Preserveproperty-dependentusefulness; avoidgeneralcompetitiveorzeroempiricismclaim."
+    },
+    {
+      "id": "C54",
+      "start_line": 395,
+      "end_line": 401,
+      "original_sha256": "6323612483793c58e42a19452eff10dc633af1db16b0bcd6094a310267036061",
+      "status": "public_record",
+      "claim": "P54leadingZ0xexplanation,R14smalllever",
+      "sources": [
+        "docs/astra/round14/RESULTS.md",
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Keepconditionalclosureattribution; notuniquedoublecountingoronegeometrycause."
+    },
+    {
+      "id": "C55",
+      "start_line": 403,
+      "end_line": 411,
+      "original_sha256": "ec0b9b4c2da16765d7720cb3dce7a6ac30f12f103b65ac7544dc52b00153e0e0",
+      "status": "reasoning_and_stale_status",
+      "claim": "C6positive Londonnonnegative; prospectivealternative language",
+      "sources": [
+        "src/zcosmo/cosmosac.py",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Keepalreadyreportedalgebra restriction, notpositiverow-errorclaim. ReplaceprospectiveLV1text bycomplete failedscreen."
+    },
+    {
+      "id": "C56",
+      "start_line": 421,
+      "end_line": 428,
+      "original_sha256": "de21cff7071df8b74ac9c3ef51be8f1235cf82233f18f3f851f4c912615ef204",
+      "status": "stale_status",
+      "claim": "P54papercentrepiece,optionalfutureLV1screen",
+      "sources": [
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Screenalreadyranandfailed. Close modeldevelopment; editorialsourcechecks only; no proposedvariant."
+    },
+    {
+      "id": "C57",
+      "start_line": 430,
+      "end_line": 430,
+      "original_sha256": "bc1a7012243c4ecaa5594725f9221acf9d24259daeb30397358dd793d039cfe0",
+      "status": "structural",
+      "claim": "Section number/title",
+      "sources": [],
+      "fix": "Retain review numbering; submission reading order proposed separately."
+    },
+    {
+      "id": "C58",
+      "start_line": 432,
+      "end_line": 436,
+      "original_sha256": "9536bda01a7d00edc70cc3172ef5d43506a72a02181b0e3c7fc35b98c3f464bb",
+      "status": "public_record",
+      "claim": "Z0/Z0xnofitting,Z0strainchoice,Z1fitted",
+      "sources": [
+        "PREREGISTRATION.md",
+        "docs/astra/round14/RESULTS.md",
+        "docs/astra/round15/RESULTS.md"
+      ],
+      "fix": "Preserve andaddsoftware/weightversioncitations pending. EmpiricalPsat andprofileconventions remain."
+    },
+    {
+      "id": "C59",
+      "start_line": 438,
+      "end_line": 441,
+      "original_sha256": "2f3cdbbeb0cf38e1faff210a7d0e6ed90a3969a2fb7a10b7f0fefaceff6be777",
+      "status": "public_record",
+      "claim": "2017-2019exposure,bootstrapgenerality",
+      "sources": [
+        "PREREGISTRATION.md",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Preserveexposure;R16CIs exposedwithincollectionresampling notrestoredholdout."
+    },
+    {
+      "id": "C60",
+      "start_line": 443,
+      "end_line": 447,
+      "original_sha256": "c6125f80c9e3f8d175616fa9e79811e43985695b6842ce2ce7604c14af88f0e2",
+      "status": "public_record",
+      "claim": "630+6,correctedgradient/ensemble/certification limits",
+      "sources": [
+        "docs/astra/round7/RESULTS.md",
+        "docs/astra/round8/RESULTS.md",
+        "docs/astra/round9/RESULTS.md",
+        "docs/astra/round13/RESULTS.md"
+      ],
+      "fix": "Preserve limits andclosedstatus."
+    },
+    {
+      "id": "C61",
+      "start_line": 451,
+      "end_line": 455,
+      "original_sha256": "d6cdbeb938a9e331946db6296feb0a9ad10a7cb0248f4d8b15aab397a307c7ee",
+      "status": "asset_scope",
+      "claim": "R10-R15privateartifacts",
+      "sources": [
+        "PREREGISTRATION.md",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "Extend toR16; publiccheckoutnotfullprivate-table reproduction. No redistributionornewscoring."
+    },
+    {
+      "id": "C62",
+      "start_line": 459,
+      "end_line": 461,
+      "original_sha256": "35604e1a8701f39b2e50517902bc99a4beae415d6004556cb61673bad267e9c9",
+      "status": "asset_metadata_checked",
+      "claim": "Fig1762/177parityandHANNAoverlap",
+      "sources": [
+        "scripts/make_figures.py"
+      ],
+      "fix": "Imageexists butrows/masknotpixelverified. Existingprivatepredictionfilesneededfororiginalplot. No regenerationusingmodelcalls."
+    },
+    {
+      "id": "C63",
+      "start_line": 463,
+      "end_line": 464,
+      "original_sha256": "ab7a8429887d2d9b76edf167c8b346a218d67a2d7321ce833412c52d1bfe1eb3",
+      "status": "asset_metadata_checked",
+      "claim": "Fig217dimers/meansvsfitted",
+      "sources": [
+        "results/qc/hb_constants_per_dimer.csv",
+        "results/qc/hb_constants_by_class.csv"
+      ],
+      "fix": "Imageexists. Newpublic-only helpercanrender fromcommittedCSV without touchingpredictioncode; notbyteidenticalclaim."
+    },
+    {
+      "id": "C64",
+      "start_line": 466,
+      "end_line": 469,
+      "original_sha256": "bc49669039114ffad228e398094bc283d8d6a14e1dca9a469817f2822a770737",
+      "status": "asset_metadata_checked",
+      "claim": "Fig3tradeofffrommain7pointestimates",
+      "sources": [
+        "results/scorecard_test_main7.json",
+        "results/scorecard_test_main7.md",
+        "scripts/make_figures.py"
+      ],
+      "fix": "Imageexists. Newhelperreads storedmeans only; nobootstraporrescoring; eachaxisownpropertymask."
+    },
+    {
+      "id": "C65",
+      "start_line": 471,
+      "end_line": 472,
+      "original_sha256": "5dd4338e207a32b60f5f4124e23f32c8a2c56f354d6a7a49b37659031e203f2b",
+      "status": "asset_metadata_checked",
+      "claim": "Fig4LLErecall/FPR",
+      "sources": [
+        "scripts/make_figures.py"
+      ],
+      "fix": "Imageexists,privatearraysrequired. OneoperatingpointpermodelnotfullROC;exportarchivedbytes onlyinR17."
+    },
+    {
+      "id": "C66",
+      "start_line": 474,
+      "end_line": 475,
+      "original_sha256": "58220e00d2f85051bc990eb54df23aa756ac244efda83433af83b25cd73e9f5b",
+      "status": "asset_metadata_checked",
+      "claim": "Fig5familycellsn>=10",
+      "sources": [
+        "scripts/make_figures.py",
+        "results/error_map_idac_all_long.csv"
+      ],
+      "fix": "Imageexists. CommittedfamilyCSVmayhaveothercommonmask; donotrebrandalternativeaggregaterenderasoriginalregeneration."
+    },
+    {
+      "id": "C67",
+      "start_line": 479,
+      "end_line": 487,
+      "original_sha256": "9f766d4988452777d8427c061b036a73484866f1059889a6f9cc1299b5148117",
+      "status": "asset_scope",
+      "claim": "S1-S7sourceinventorythroughR15",
+      "sources": [
+        "PREREGISTRATION.md",
+        "docs/astra/round16/RESULTS.md"
+      ],
+      "fix": "UpdatethroughR16,addactualsupplementandclaimledger; detailedprivateassetsnotrepresentedaspresentpublicdata."
+    },
+    {
+      "id": "C68",
+      "start_line": 491,
+      "end_line": 520,
+      "original_sha256": "04ff473c7aa57224647ea52664d8aca20728f4a896430e4fd67d63cc25429300",
+      "status": "reference_audit",
+      "claim": "Every reference1-17year/volume/pageandDOI",
+      "sources": [
+        "REFERENCES.md"
+      ],
+      "fix": "Bibliographyauditall17. Correct9to2003Part1;name12series;verifiedDOIs,flag10and13directpublishercheck,5corrigendumcontent andsoftwarecitations."
+    }
+  ],
+  "figures": [
+    {
+      "path": "manuscript/figures/fig1_idac_parity_test.png",
+      "blob": "72659886f5d3b451cf00adfe536a3715b1d6553a",
+      "bytes": 164834,
+      "pixels_inspected": false
+    },
+    {
+      "path": "manuscript/figures/fig2_hbond_constants.png",
+      "blob": "c22a980ff1e3266e8865b84a2bac9c9deebe6367",
+      "bytes": 36908,
+      "pixels_inspected": false
+    },
+    {
+      "path": "manuscript/figures/fig3_tradeoff.png",
+      "blob": "62205ae989a86687abf91d99bdd9b1010d7cb46a",
+      "bytes": 45885,
+      "pixels_inspected": false
+    },
+    {
+      "path": "manuscript/figures/fig4_lle_detection.png",
+      "blob": "03560344877b0867a97b806b7014ebb477a7d8b5",
+      "bytes": 44921,
+      "pixels_inspected": false
+    },
+    {
+      "path": "manuscript/figures/fig5_error_map.png",
+      "blob": "78e50e66d2dc842667e0ed5aa2a9e42a42a7fece",
+      "bytes": 78089,
+      "pixels_inspected": false
+    }
+  ],
+  "meanings": {
+    "coverage": "Every original digit-bearing paragraph is indexed. This is mechanical completeness, not proof of semantic correctness.",
+    "public_record": "Correspondence with already published aggregate prose, without recomputing its private scientific data."
+  },
+  "submission_ready": false,
+  "open_items": [
+    "Recover existing source-specific early LLE bootstrap output, negative-state selection and endpoint composition denominators before retaining precise inferential claims.",
+    "Recover existing historical HANNA test scorecard and model-weight/version receipt; do not infer its per-property subsets from 762 IDAC observations.",
+    "Recover the already-produced private conformer and post-hoc association outputs before treating their precise draft-only intervals as verified.",
+    "Complete reference10 publisher/title/pages, reference13 directpublisher, and reference5 corrigendum text checks; add exact software/data/modelversioncitations.",
+    "Inspect archived figurepixels and pairfigures1/4/5 with their original input hashes and masks; do not rescore."
+  ],
+  "new_experiments_authorized": false,
+  "edited_sources": {
+    "README.md": "b3d8e59050e8a70fb627e4a67eee408427b119e020b597cdef082505581dae35"
+  }
+}
