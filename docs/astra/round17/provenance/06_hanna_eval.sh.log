@@ -1,0 +1,21 @@
+torch 2.13.0
+Loading weights:   0%|          | 0/55 [00:00<?, ?it/s]Loading weights: 100%|██████████| 55/55 [00:00<00:00, 7594.62it/s]
+Loading ensemble with 10 models...
+ethanol/water [0.20505667 0.3525788 ] 1.3952358961105347 1.1438608169555664
+Loading weights:   0%|          | 0/55 [00:00<?, ?it/s]Loading weights: 100%|██████████| 55/55 [00:00<00:00, 13997.98it/s]
+Loading ensemble with 10 models...
+hanna idac all: 3252 rows in 27s
+hanna vle all: 43042 rows in 260s
+hanna he all: 24777 rows in 365s
+
+real	10m53.866s
+user	9m51.825s
+sys	2m48.024s
+Loading weights:   0%|          | 0/55 [00:00<?, ?it/s]Loading weights: 100%|██████████| 55/55 [00:00<00:00, 22669.69it/s]
+Loading ensemble with 10 models...
+hanna lle all: 6581 rows in 2283s
+
+real	38m4.687s
+user	32m34.462s
+sys	10m8.783s
+EXIT=0

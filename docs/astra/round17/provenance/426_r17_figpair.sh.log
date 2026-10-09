@@ -1,0 +1,17 @@
+8d886063c6f8d0a85f48785ae3265b0d767b98d030eff15e4fa93b54f3299f65 2026-09-24T16:41 results/predictions/cosmosac2010__idac__all.csv
+88d14204f47f753a47a33a08859117af404798f16fd94069fa224c0d3c6a813c 2026-09-24T16:41 results/predictions/unifac_do__idac__all.csv
+b197df303a47a13dcc83d2e2305f72b74ca0147636594a1c97782650d7e1bc58 2026-09-24T16:42 results/predictions/Z0x__idac__all.csv
+eb2cfa9c6f851391552ae1572a4e01a03102ccf71c6f35dc46d244d8abdcb2ce 2026-09-24T14:19 results/predictions/hanna__idac__all.csv
+ca69ae659f135f3eef557d34f16190578751e25bee58209dd9963ea27e4a387b 2026-09-24T13:53 data/benchmark/compounds.csv
+e794b456aab8b4551b294d7d4bac753592383a31dcfa9bef904eb127e338336e 2026-09-24T16:50 manuscript/figures/fig1_idac_parity_test.png
+206e8bd892e291fa298b51fcb024be3ece17cfca37760b9d26f81e97ede1a6cb 2026-09-24T16:50 manuscript/figures/fig5_error_map.png
+fig1 committed f81530e 2026-09-25 11:32:43 -0700
+rows per file {'cosmosac2010': 3252, 'unifac_do': 3252, 'Z0x': 3252, 'hanna': 3252}
+fig1 cosmosac2010 n 777 systems 182 MAE 0.8600
+fig1 unifac_do n 777 systems 182 MAE 0.4278
+fig1 Z0x n 777 systems 182 MAE 0.8252
+fig1 hanna n 777 systems 182 MAE 0.2425
+fig5 rows 3252 cells>=10 44 dz range -0.98 1.85
+fig5 rows ['alkane', 'alkene/alkyne', 'alcohol', 'halogenated', 'aromatic HC', 'ether', 'ester', 'ketone/aldehyde', 'amide']
+fig5 cols ['alcohol', 'acid', 'water', 'aromatic HC', 'amine', 'amide', 'ether', 'sulfur']
+EXIT=0

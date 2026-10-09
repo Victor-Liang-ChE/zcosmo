@@ -1,0 +1,31 @@
+91bbb3512ae5ef9680f0cfb297814dbc706aff96830dcf712b93411e14f58eb4  results/predictions/lle_negatives.csv
+88c48af2cf1fc03d20089d5f799a4105e0047e29fedc9fc564b6ec2788b2372f  results/predictions/Z0__lle__all.csv
+a6c98b03c1db53aba81e04e0534f194745615e5f03fb4d89c853add2f214c907  results/predictions/Z0s__lle__all.csv
+ec78d9216b0c94ba7b93fdbab0597d131435765cd58516437ba53d5035c3399f  results/predictions/Z0w2__lle__all.csv
+933e40fef68b78ec3f91ce9c09c5bc7406c218ef44ec3190b7c823cc56d7dd28  results/predictions/Z0w3__lle__all.csv
+7f7c36469b0dd97b9a5ff13e03a8528dc7f68f90c809d724be51617086def72c  results/predictions/Z0w__lle__all.csv
+70a74c1a41ea5d855388a71809f25021c28024b295430b7020e9bddbc25617bf  results/predictions/Z0x__lle__all.csv
+76cb21fc8a10c3ba13c459031386e3549b8217d568563d71740f139e433efc96  results/predictions/cosmosac2010__lle__all.csv
+ed29d3c1505104d6ab2c5d2079cc2b30543d969926ee2cf6c7bc07621fcb2804  results/predictions/cosmosac_dsp__lle__all.csv
+84d48e1ef8919f6e19909cc5674c39634e4dbaa71075fa4832bf51ee40f4223f  results/predictions/hanna__lle__all.csv
+fe0b0123144275642f0649d90dedad2bbae150f99c72e3b65f6aff601889fa7d  results/predictions/unifac_do__lle__all.csv
+neg cols ['series', 'c1', 'c2', 'T', 'split', 'name1', 'name2', 'fp_unifac_do', 'fp_cosmosac2010', 'fp_cosmosac_dsp', 'fp_Z0', 'fp_Z1', 'fp_Z0e', 'fp_Z0s', 'fp_Z0x', 'fp_hanna', 'fp_Z0w', 'fp_Z0w2', 'fp_Z0w3']
+neg split counts {'train': 208, 'test_one': 119, 'test_both': 9}
+unifac_do split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+unifac_do pos_pairs 101 detected 66 recall 0.6535 | neg n 114 fp_count 3 fp 0.0263 | bal 0.8136
+cosmosac2010 split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+cosmosac2010 pos_pairs 101 detected 68 recall 0.6733 | neg n 128 fp_count 0 fp 0.0000 | bal 0.8366
+cosmosac_dsp split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+cosmosac_dsp pos_pairs 101 detected 68 recall 0.6733 | neg n 128 fp_count 1 fp 0.0078 | bal 0.8327
+Z0 split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+Z0 pos_pairs 101 detected 85 recall 0.8416 | neg n 128 fp_count 5 fp 0.0391 | bal 0.9013
+Z0e no lle predictions
+Z0s split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+Z0s pos_pairs 101 detected 42 recall 0.4158 | neg n 124 fp_count 2 fp 0.0161 | bal 0.6999
+Z0x split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+Z0x pos_pairs 101 detected 85 recall 0.8416 | neg n 124 fp_count 5 fp 0.0403 | bal 0.9006
+Z0w split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+Z0w pos_pairs 101 detected 90 recall 0.8911 | neg n 128 fp_count 12 fp 0.0938 | bal 0.8987
+hanna split counts {'train': 4106, 'test_one': 2096, 'test_both': 379}
+hanna pos_pairs 101 detected 77 recall 0.7624 | neg n 128 fp_count 1 fp 0.0078 | bal 0.8773
+EXIT=0

@@ -11,8 +11,9 @@ experimental pure-component vapor-pressure correlations. The initial Z0 recipe w
 its predictions; later variants were registered before their own evaluations, with prior data
 exposure acknowledged. The historical compound-test comparison found no resolved IDAC difference
 between Z0 and COSMO-SAC 2010 (MAE in ln gamma 0.76 versus 0.82), rather than establishing
-statistical equivalence. The contemporaneous project record reports higher LLE detection balanced
-accuracy, 0.90 versus 0.84 for COSMO-SAC 2010 and 0.81 for modified UNIFAC. Z0 had larger VLE
+statistical equivalence. Stored detection flags give a higher LLE detection balanced accuracy, 0.90
+versus 0.84 for COSMO-SAC 2010 and 0.81 for modified UNIFAC; this is descriptive, without an
+inferential test. Z0 had larger VLE
 pressure and excess-enthalpy errors. Z0x's composition-dependent electrostatic prescription reduced
 VLE AAD from 18.8% to 14.2%, versus 8.6% for COSMO-SAC 2010, on the historical main7 VLE subset. Z0x
 also remained worse on the historical temporal collection.
@@ -129,8 +130,9 @@ mean) and is labeled accordingly.
 ### 2.4 Protocol
 Metrics: MAE in ln gamma_inf; AAD in bubble pressure at measured T and x with the same pure-component
 vapor pressures for every model; MAE of H^E and sign correctness for |H^E| > 20 J/mol; for LLE, the share of two-phase systems where a
-gap is predicted (recall) and the false-positive rate on 336 systems observed homogeneous over the full
-composition range (from VLE series), combined into a balanced accuracy. IDAC, VLE and HE comparisons use their source-specific common
+gap is predicted (recall) and the false-positive rate on systems observed homogeneous over the full
+composition range (from VLE series; 336 in all, of which the 128 outside the training split enter the
+test rates), combined into a balanced accuracy. IDAC, VLE and HE comparisons use their source-specific common
 finite-prediction subsets; those subsets differ by property and comparator list. LLE detection uses
 its specified positive and negative system collections, with endpoint-composition errors reported on
 separate accepted subsets. Historical 95% intervals use 1,000 bootstrap resamples over binary systems;
@@ -156,8 +158,8 @@ The leading historical findings are the unresolved IDAC difference from COSMO-SA
 LLE detection advantage, and larger VLE/HE errors. The following historical summary is preserved
 rather than rescored. It combines property-specific sources: main7 for the first IDAC, VLE and HE
 columns, main7/test_both for the second IDAC column, and contemporaneous detection summaries for
-balanced accuracy. It is not a single eight-model common-subset calculation. The HANNA row and
-precise early LLE intervals have a separate source-status note in Supplement S0. Later explanatory
+balanced accuracy. It is not a single eight-model common-subset calculation. The HANNA row and the
+early LLE statistics are traced to their recovered sources in Supplement S0. Later explanatory
 scores must not be subtracted from this table when observations or numerical versions differ.
 
 | Model | IDAC MAE | IDAC, both unseen | VLE AAD P % (median) | H^E MAE J/mol | LLE balanced accuracy |
@@ -172,12 +174,21 @@ scores must not be subtracted from this table when observations or numerical ver
 | HANNA (trained on DDB, reference) | 0.24* | 0.24* | 7.1 (2.1)* | 70* | 0.88 |
 
 The main7 counts are 708 IDAC observations in 163 systems, 55 in 12 systems for test_both, 9,432 VLE
-observations, and 6,311 HE observations. The historical LLE summary concerns 101 positive and 128
-negative test systems. The original draft assigned 762 IDAC observations to the separately reported
-HANNA row. Its precise historical VLE/HE common subsets and the underlying early detection/bootstrap
-artifact were not recovered in this public-file audit. These entries are retained as historical
-reported values, with their provenance qualification in Supplement S0, not independently reproduced
-results.
+observations, and 6,311 HE observations. The LLE column is balanced accuracy, (recall + 1 - false-
+positive rate)/2. Recall counts the 101 positive non-training system pairs (2,475 rows) for which a
+split is predicted in the majority of rows; a pair a model cannot evaluate counts as missed, which
+costs UNIFAC 23 of its 101 pairs. The false-positive rate uses the 128 non-training negative systems,
+of which 114 carry a stored flag for UNIFAC and 124 for Z0s and Z0x. Read from the stored flags, Z0x
+finds 85 of 101 splits with 5 of 124 false positives, COSMO-SAC 2010 68 of 101 with 0 of 128, UNIFAC
+66 of 101 with 3 of 114, and HANNA 77 of 101 with 1 of 128. Z0e has no stored per-pair LLE file, so
+its 0.90 is a historical reported value.
+
+*HANNA row. The IDAC entry 0.24 is HANNA's MAE on the Figure 1 mask (777 held-out observations on
+which all four plotted models are finite), not on main7's 708 observations, and the LLE entry
+reproduces from stored flags (0.877). The test_both IDAC 0.24, VLE 7.1% (median 2.1%) and HE 70
+J/mol have no recovered test-split source and are kept only as historically reported values; they
+should not be compared with the main7 entries above them. HANNA was run from its public repository
+at commit 6fe873c with the unmodified ten-member ensemble (Supplement S0).
 
 On the named main7 source, the Z0-minus-COSMO-SAC 2010 IDAC interval is [-0.170, +0.069]; for
 main7/test_both it is [-0.552, -0.229]. The latter concerns only 55 observations in 12 systems. Z0's
@@ -185,11 +196,11 @@ unfiltered main7 VLE AAD interval is [+6.76, +14.61] percentage points. Z0x's co
 interval is [-0.153, +0.065] and its VLE interval [+3.19, +7.96]. Thus the IDAC difference is
 unresolved, while the pressure deficit is resolved within that historical comparison. Sources are
 the stored main7 JSON/Markdown and test_both main7 Markdown, not new bootstrap calculations. The
-contemporaneous progress record reports a significant LLE detection advantage over COSMO-SAC and
-UNIFAC. The exact early bootstrap output should accompany that inferential claim before submission;
-the unverified precision is not inferred from the rounded balanced-accuracy values. A claimed tie
-with HANNA is not an equivalence result. Supplement S0 preserves the old interval strings and their
-status.
+contemporaneous progress record called the LLE detection advantage over COSMO-SAC and UNIFAC
+significant, but no balanced-accuracy bootstrap output survives among the archived logs. This
+manuscript therefore makes no inferential LLE claim: the detection counts above are descriptive,
+and the Z0x-HANNA difference (0.90 versus 0.88) is untested. Supplement S0 lists the old interval
+strings as withdrawn.
 
 ### 3.2 Temporal set (2017 to 2019 publications)
 
@@ -471,11 +482,27 @@ untracked; a public checkout alone is not asserted to reproduce every historical
 result records retain plan digests and scope, and their instructions identify required private
 assets without redistributing them.
 
+Software and data versions. The conda environment that ran the work, as recorded on 2026-10-08,
+contains Python 3.11.16, PySCF 2.14.0, pyberny 0.7.0, RDKit 2026.3.6, dftd4 4.2.0, tblite 0.7.0,
+xtb 6.4.1, thermo 0.6.1 (modified UNIFAC Dortmund through its DOUFIP2016 table), chemicals 1.5.2,
+ugropy 3.2.0, NumPy 2.4.6, SciPy 1.17.1, pandas 3.0.6, PyTorch 2.13.0, mace-torch 0.3.16, ASE 3.29.0
+and Matplotlib 3.11.2. Packages were updated during the project, so runs from September 2026 may
+have used earlier builds; the per-round RESULTS files record the versions their checks pinned.
+HANNA [8] was cloned on 2026-09-24 from github.com/marco-hoffmann/HANNA at commit 6fe873c (clean
+tree, never updated); its ten ensemble weight files have an aggregate SHA-256 receipt in
+docs/astra/round17/RESULTS.md. The liquid simulations used the MACE-OFF23 small model [19] loaded
+through mace-torch's `mace_off(model="small")`. ThermoML [9] data come from the archive of the five
+TRC journals (2020 snapshot), and the benchmark split file has SHA-256
+d414402911946b14165a168ce40b8c00694d52de245adb6451fb6f65d7a2ffb6.
+
 ## Figure captions
 
-**Figure 1.** Predicted vs experimental ln gamma_inf for held-out molecules (test split, common
-subset of 762 points in 177 systems) for COSMO-SAC 2010, modified UNIFAC (Dortmund), Z0x and HANNA.
-HANNA training overlap with these observations is possible and has not been resolved row by row.
+**Figure 1.** Predicted vs experimental ln gamma_inf for held-out molecules for COSMO-SAC 2010,
+modified UNIFAC (Dortmund), Z0x and HANNA: 777 non-training observations in 182 solute-solvent pairs
+on which all four models give finite predictions. Panel MAEs (0.86, 0.43, 0.83, 0.24) are computed
+on this mask, so they differ from the main7 table (708 observations) and from the 762-observation
+HANNA-comparison scorecard. HANNA training overlap with these observations is possible and has not
+been resolved row by row.
 
 **Figure 2.** Hydrogen-bond constants c_hb derived from 17 counterpoise-corrected B3LYP-D4/def2-TZVP
 dimers (points; bars are class means) compared with the fitted COSMO-SAC 2010 values (blue bars).
@@ -488,12 +515,15 @@ one optimal coefficient.
 
 **Figure 4.** Historical liquid-liquid split detection: recall on the positive test-system
 collection versus false-positive rate on the negative collection. This is one operating point per
-model, not a threshold-swept ROC curve. The archived image exists; exact historical arrays and rates
-require the already-generated private source artifacts identified in the figure audit.
+model, not a threshold-swept ROC curve. Recall counts the 101 positive non-training pairs and the
+false-positive rate the 128 non-training negatives (114 flagged for UNIFAC, 124 for Z0s and Z0x).
+The plotted points equal the rates tabulated from the stored flags in
+docs/astra/round17/RESULTS.md. Z0e has no stored per-pair LLE file and is not shown.
 
 **Figure 5.** Z0x absolute error minus COSMO-SAC 2010 absolute error in ln gamma_inf by solute and
-solvent family (all data, cells with at least 10 points). Blue: Z0x better; orange: COSMO-SAC
-better.
+solvent family (all data, cells with at least 10 points; the nine solute and eight solvent
+families with the most data are shown). Blue: Z0x better; orange: COSMO-SAC better. The color
+scale saturates at +/-1.5; the largest cell, ketone/aldehyde solutes in water, is +1.85.
 
 ## Supplementary material (files in the repository)
 
@@ -522,8 +552,10 @@ claim and reference audit:    `docs/astra/round17/CLAIMS.json` and
    Equilibrium Predictions. Fluid Phase Equilib. 2010, 297 (1), 90-97. doi:10.1016/j.fluid.2010.06.011.
 5. Hsieh, C.-M.; Lin, S.-T.; Vrabec, J. Considering the Dispersive Interactions in the COSMO-SAC Model for
    More Accurate Predictions of Fluid Phase Behavior. Fluid Phase Equilib. 2014, 367, 109-116.
-   doi:10.1016/j.fluid.2014.01.032. Corrigendum: 2014, 384, 14-15, doi:10.1016/j.fluid.2014.10.019
-   (publisher text and implications remain to be checked; no numerical result is reinterpreted here).
+   doi:10.1016/j.fluid.2014.01.032. Corrigendum: Fluid Phase Equilib. 2014, 384, 14-15,
+   doi:10.1016/j.fluid.2014.10.019. The corrigendum gives the dispersion parameter w as 0.27027,
+   the value the pinned COSMO-SAC-dsp implementation uses, and corrects a table label and one
+   reported error; no result here depends on the corrected entries.
 6. Bell, I. H.; Mickoleit, E.; Hsieh, C.-M.; Lin, S.-T.; Vrabec, J.; Breitkopf, C.; Jäger, A.
    A Benchmark Open-Source Implementation of COSMO-SAC. J. Chem. Theory Comput. 2020, 16 (4), 2635-2646.
    doi:10.1021/acs.jctc.9b01016.
@@ -536,8 +568,8 @@ claim and reference audit:    `docs/astra/round17/CLAIMS.json` and
    Evaluated Thermophysical and Thermochemical Property Data. 1. Experimental Data.
    J. Chem. Eng. Data 2003, 48 (1), 2-13. doi:10.1021/je025645o.
 10. Herington, E. F. G. Tests for the Consistency of Experimental Isobaric Vapour-Liquid Equilibrium Data.
-    J. Inst. Petrol. 1951, 37, 457. Provisional: the original publisher record/title/page range has not
-    been verified in this audit. Do not invent a DOI or infer the missing range.
+    J. Inst. Petrol. 1951, 37, 457-470. No DOI exists; title and page range as listed in the NIST
+    TRC ThermoData Engine reference list.
 11. Onsager, L. Electric Moments of Molecules in Liquids. J. Am. Chem. Soc. 1936, 58 (8), 1486-1493.
     doi:10.1021/ja01299a050.
 12. Wertheim, M. S. Fluids with Highly Directional Attractive Forces. I. Statistical Thermodynamics.
@@ -546,8 +578,8 @@ claim and reference audit:    `docs/astra/round17/CLAIMS.json` and
     1986, 42, 459-476, doi:10.1007/BF01127721; IV. Equilibrium Polymerization,
     1986, 42, 477-492, doi:10.1007/BF01127722.
 13. Caldeweyher, E. et al. A Generally Applicable Atomic-Charge Dependent London Dispersion Correction.
-    J. Chem. Phys. 2019, 150, 154122. doi:10.1063/1.5090222. Direct publisher verification remains
-    outstanding; the author record supports the bibliographic identity.
+    J. Chem. Phys. 2019, 150 (15), 154122. doi:10.1063/1.5090222. Authors: Caldeweyher, E.; Ehlert, S.;
+    Hansen, A.; Neugebauer, H.; Spicher, S.; Bannwarth, C.; Grimme, S.
 14. Bannwarth, C.; Ehlert, S.; Grimme, S. GFN2-xTB: An Accurate and Broadly Parametrized Self-Consistent
     Tight-Binding Quantum Chemical Method with Multipole Electrostatics and Density-Dependent Dispersion
     Contributions. J. Chem. Theory Comput. 2019, 15 (3), 1652-1671. doi:10.1021/acs.jctc.8b01176.
@@ -560,7 +592,10 @@ claim and reference audit:    `docs/astra/round17/CLAIMS.json` and
     doi:10.1080/00268977000101561.
 18. Constantinescu, D.; Gmehling, J. Further Development of Modified UNIFAC (Dortmund): Revision and
     Extension 6. J. Chem. Eng. Data 2016, 61 (8), 2738-2748. doi:10.1021/acs.jced.6b00136.
-    The installed DOUFIP2016 table/version still needs an execution-artifact citation, beyond this paper.
+    Implemented through the DOUFIP2016 table of thermo 0.6.1.
+19. Kovács, D. P.; Moore, J. H.; Browning, N. J.; Batatia, I. et al. MACE-OFF: Short-Range Transferable
+    Machine Learning Force Fields for Organic Molecules. J. Am. Chem. Soc. 2025, 147 (21), 17598-17611.
+    doi:10.1021/jacs.4c07099.
 
 Bibliographic metadata verification is not verification of every methodological assertion in an article.
-The reference audit lists outstanding publisher and software/model-version checks before submission.
+The reference audit (docs/astra/round17/REFERENCES.md) records the source of each entry.

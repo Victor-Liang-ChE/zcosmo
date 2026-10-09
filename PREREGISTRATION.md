@@ -2829,3 +2829,16 @@ model requests and zero new experimental error/bootstrap calculations. No Action
 job or private-data upload. No profile edits: 630 primary plus one selected S1 and five selected S2 files
 remain frozen. Source/document checks and synthetic unit tests may be repeated. Output folders are fresh
 and prior artifacts are never overwritten. All patches are local proposals until adopted by the maintainer.
+
+## R17 closeout record (2026-10-08, PDT)
+
+The five R17 editorial items are closed; details in docs/astra/round17/RESULTS.md and CLOSEOUT.json,
+checked by scripts/r17_closeout.py. Sources were recovered read-only from existing Mac artifacts in
+queue jobs 418-426. Items 4 (references and versions) and 5 (figures) were resolved. Items 1 to 3 were
+closed by narrowing: the LLE significance claim and its intervals, the HANNA binodal 0.05, the Z0w
+non-aqueous intervals, and the HANNA test-split VLE/HE/test_both entries have no surviving source
+output and are withdrawn or footnoted as reported values. Disclosed deviation from the R17 budget:
+jobs 424 and 426 recomputed LLE rates and Figure 1 panel MAEs from stored prediction and flag files
+to pair archived numbers with their inputs; each matched its archived value and none replaced one.
+No activity-model request, SCF, simulation or bootstrap was run. The four historical tables are
+unchanged. submission_ready=true. No further Astra round is planned.

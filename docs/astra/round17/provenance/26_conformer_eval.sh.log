@@ -1,0 +1,13 @@
+cosmosac_dsp idac all: 1195 rows in 2s
+cosmosac_dsp vle all: 5238 rows in 6s
+Z0x idac all: 1195 rows in 8s
+Z0x vle all: 5238 rows in 29s
+cosmosac_dsp idac all: 1195 rows in 1s
+cosmosac_dsp vle all: 5238 rows in 6s
+Z0x idac all: 1195 rows in 8s
+Z0x vle all: 5238 rows in 29s
+cosmosac_dsp idac: n=1180 lowest=1.181 ensemble=1.186 diff CI=[-0.    0.01] median|pred change|=0.009 p90=0.064
+cosmosac_dsp vle: n=4518 lowest=12.304 ensemble=12.307 diff CI=[-0.077  0.091] median|pred change|=0.029 p90=0.184
+Z0x idac: n=1195 lowest=1.305 ensemble=1.309 diff CI=[-0.006  0.014] median|pred change|=0.011 p90=0.089
+Z0x vle: n=4769 lowest=21.787 ensemble=21.761 diff CI=[-0.347  0.317] median|pred change|=0.040 p90=0.389
+EXIT=0

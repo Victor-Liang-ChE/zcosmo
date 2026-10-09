@@ -1,0 +1,6 @@
+negatives cols: ['series', 'c1', 'c2', 'T', 'split', 'name1', 'name2', 'fp_unifac_do', 'fp_cosmosac2010', 'fp_cosmosac_dsp', 'fp_Z0', 'fp_Z1', 'fp_Z0e', 'fp_Z0s'] 336
+unifac_do     positives: 101 pairs, not evaluable 23 | recall all 0.653 evaluable-only 0.846 || negatives: 128, not evaluable 14 | fp all 0.026 evaluable-only 0.026 | bal all 0.814 evaluable-only 0.910
+cosmosac2010  positives: 101 pairs, not evaluable 0 | recall all 0.673 evaluable-only 0.673 || negatives: 128, not evaluable 0 | fp all 0.000 evaluable-only 0.000 | bal all 0.837 evaluable-only 0.837
+Z0x           positives: 101 pairs, not evaluable 0 | recall all 0.842 evaluable-only 0.842 || negatives: 128, not evaluable 0 | fp all 0.040 evaluable-only 0.040 | bal all 0.901 evaluable-only 0.901
+Z0w           positives: 101 pairs, not evaluable 0 | recall all 0.891 evaluable-only 0.891 || negatives: 128, not evaluable 0 | fp all 0.094 evaluable-only 0.094 | bal all 0.899 evaluable-only 0.899
+EXIT=0

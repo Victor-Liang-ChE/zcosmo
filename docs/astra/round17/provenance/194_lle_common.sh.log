@@ -1,0 +1,8 @@
+negatives cols: ['series', 'c1', 'c2', 'T', 'split', 'name1', 'name2', 'fp_unifac_do', 'fp_cosmosac2010', 'fp_cosmosac_dsp', 'fp_Z0', 'fp_Z1', 'fp_Z0e', 'fp_Z0s'] 336
+common subset: 78 of 101 positive pairs, 114 of 128 negatives
+unifac_do     common subset: recall 0.846 fp 0.026 balanced 0.910
+cosmosac2010  common subset: recall 0.731 fp 0.000 balanced 0.865
+cosmosac_dsp  common subset: recall 0.718 fp 0.009 balanced 0.855
+Z0x           common subset: recall 0.872 fp 0.045 balanced 0.913
+Z0w           common subset: recall 0.923 fp 0.096 balanced 0.913
+EXIT=0

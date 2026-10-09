@@ -1,0 +1,45 @@
+water-class D gas 69.02801215518147 liq eps53 2.5450856114312517
+Z0w2 idac all: 3252 rows in 19s
+Z0w2 vle all: 43042 rows in 238s
+Z0w2 he all: 24777 rows in 351s
+done Z0w2 6581
+Z0w2 false-positive rate 0.09821428571428571 n 336
+## IDAC  (762 points, 177 systems, common subset)
+| unifac_do | 0.94 | 0.430 | [0.333, 0.534] | 0.189 | 0.65 | -0.050 | 0.93 (8) | [-0.499, -0.242] |
+| cosmosac2010 | 1.00 | 0.859 | [0.760, 0.974] | 0.610 | 0.14 | -0.555 | 0.84 (8) | [-0.047, +0.155] |
+| Z0x | 1.00 | 0.800 | [0.671, 0.936] | 0.514 | 0.29 | -0.212 | 0.71 (8) |  |
+| Z0w | 0.98 | 0.969 | [0.696, 1.269] | 0.381 | 0.40 | +0.440 | 0.71 (8) | [-0.041, +0.414] |
+| Z0w2 | 1.00 | 0.902 | [0.759, 1.054] | 0.620 | 0.22 | -0.241 | 0.71 (8) | [+0.041, +0.177] |
+## LLE
+| unifac_do | 2475 | 101 | 0.65 | 0.112 |
+| cosmosac2010 | 2475 | 101 | 0.67 | 0.140 |
+| Z0x | 2475 | 101 | 0.84 | 0.175 |
+| Z0w | 2475 | 101 | 0.89 | 0.174 |
+| Z0w2 | 2475 | 101 | 0.85 | 0.172 |
+Z0x LLE test recall 0.84 fp 0.04 bal 0.901
+Z0w LLE test recall 0.89 fp 0.094 bal 0.899
+Z0w2 LLE test recall 0.85 fp 0.078 bal 0.887
+Z0x aq subset err list index out of range
+Z0w aq subset err list index out of range
+Z0w2 aq subset err list index out of range
+Z0w2 vle temporal: 10983 rows in 66s
+Z0w2 he temporal: 3388 rows in 48s
+## IDAC  (298 points, 70 systems, common subset)
+| model | coverage | MAE ln g_inf | 95% CI | median AE | within 0.3 | bias | solvent-rank rho | dMAE vs ref (CI) |
+| cosmosac2010 | 1.00 | 0.925 | [0.633, 1.279] | 0.438 | 0.18 | +0.305 | 0.89 (1) | [-0.930, -0.146] |
+| Z0x | 0.84 | 1.451 | [0.771, 2.195] | 0.331 | 0.46 | +0.729 | 0.39 (1) |  |
+| Z0w2 | 1.00 | 0.975 | [0.630, 1.382] | 0.497 | 0.22 | +0.343 | 0.00 (1) | [-1.265, +0.287] |
+| hanna | 1.00 | 0.148 | [0.103, 0.197] | 0.075 | 0.84 | -0.121 | 1.00 (1) | [-1.995, -0.683] |
+## VLE bubble pressure (9000 points)
+| model | coverage | AAD P % | 95% CI | median AD P % | AAD y | dAAD vs ref (CI) | AAD P % homog. liquid | CI | dAAD homog vs ref (CI) |
+| cosmosac2010 | 0.94 | 8.59 | [7.23, 10.29] | 3.89 | 0.0213 | [-3.98, -1.53] | 8.59 | [7.20, 10.31] | [-3.87, -1.58] |
+| Z0x | 0.82 | 11.26 | [9.24, 13.76] | 4.91 | 0.0357 |  | 11.26 | [9.31, 13.69] |  |
+| Z0w2 | 0.94 | 15.45 | [11.98, 19.17] | 6.12 | 0.0431 | [+1.61, +7.59] | 15.45 | [12.30, 19.25] | [+1.33, +6.85] |
+| hanna | 0.94 | 5.91 | [4.72, 7.17] | 2.02 | 0.0092 | [-7.83, -3.43] | 5.91 | [4.75, 7.26] | [-8.05, -3.50] |
+## Excess enthalpy (2453 points)
+| model | coverage | MAE J/mol | 95% CI | sign correct |
+| cosmosac2010 | 0.99 | 287 | [245, 339] | 0.91 |
+| Z0x | 0.72 | 349 | [286, 423] | 0.91 |
+| Z0w2 | 0.99 | 338 | [283, 395] | 0.87 |
+| hanna | 0.99 | 91 | [68, 124] | 0.98 |
+EXIT=0

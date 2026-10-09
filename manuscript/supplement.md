@@ -10,12 +10,25 @@ docs/astra/round17/CLAIMS.json.
 ## S0. Historical statistics requiring source qualification
 
 The main historical table combines multiple property-specific sources. Its seven non-HANNA IDAC, VLE
-and HE entries match main7 after rounding. Its test_both column matches test_both/main7. The early
-LLE balanced-accuracy summary is supported by the contemporaneous progress record, which describes
-the advantage as significant. The exact original bootstrap output and the separate historical HANNA
-test arrays were not recovered in the reviewed public files. Recovering these already-generated
-artifacts is an editorial provenance task. No rerun, fresh bootstrap or model call is authorized by
-this note.
+and HE entries match main7 after rounding. Its test_both column matches test_both/main7. The R17
+closeout (2026-10-08, docs/astra/round17/RESULTS.md) recovered the remaining sources read-only from
+the Mac, without a model call. The LLE balanced accuracies reproduce from the stored detection flags
+with the arithmetic of the original figure script: UNIFAC 0.814, COSMO-SAC 2010 0.837,
+COSMO-SAC-dsp 0.833, Z0 0.901, Z0s 0.700, Z0x 0.901 and HANNA 0.877. Z0e has no stored per-pair LLE
+file and stays a reported value. Positives are the 101 non-training pairs (2,475 rows); negatives are
+the 128 non-training systems among 336, with 114 stored flags for UNIFAC and 124 for Z0s and Z0x.
+UNIFAC's 23 non-evaluable positive pairs count as misses (queue job 187 gives 0.910 on evaluable
+pairs only). On the 78 positive and 114 negative systems that every model evaluates, Z0x and UNIFAC
+reach 0.913 and 0.910 and COSMO-SAC 2010 0.865 (job 194). The binodal composition MAE for Z0x, 0.175,
+is the main7 "MAE x when found" over the rows of detected systems. R5's finite-grid audit later
+found 2,140 checked endpoint rows among its 2,469 common Z0x rows, with composition MAE 0.180.
+
+No balanced-accuracy bootstrap output was found among the archived logs. The HANNA test-split VLE
+and HE values and the test_both IDAC value likewise have no recovered source: the stored HANNA
+scorecards cover only the temporal collection (VLE 5.91%, HE 91 J/mol on its own subsets). HANNA's
+IDAC 0.24 is its MAE on the Figure 1 mask of 777 observations. HANNA itself was cloned on 2026-09-24
+from github.com/marco-hoffmann/HANNA at commit 6fe873c, the tree is clean and the reflog shows no
+later update, and the evaluation loaded all 55 weight tensors of the ten-member ensemble.
 
 The original draft printed Z0-minus-COSMO-SAC IDAC [-0.17, +0.08] and VLE [+6.6, +14.5]. The former
 is compatible with main6 rounding, and the latter with results/scorecard_test.md; neither is the
@@ -24,15 +37,15 @@ reproduce the main7/test_both interval [-0.552, -0.229]. The corrected prose nam
 its stored values. All original scorecards remain immutable; the edit repairs citation/version
 assignment, not results.
 
-The following old precision remains a historical draft assertion pending the existing source
-artifact, not a freshly verified inferential result: LLE BA Z0-minus-COSMO-SAC [+0.02, +0.11],
-Z0-minus-UNIFAC [+0.04, +0.14], Z0x-minus-COSMO-SAC [+0.02, +0.11], Z0x-minus-UNIFAC [+0.03, +0.13],
-and Z0x-minus-HANNA [-0.03, +0.07]. The old binodal comparison was 0.05 versus 0.18; its exact
-endpoint denominator and source artifact remain required. The historical HANNA row was IDAC 0.24
-(including 0.24 on test_both), VLE 7.1% (median 2.1%), HE 70 J/mol and BA 0.88. Preserve these
-reported values, but do not substitute another subset to reconstruct them. An interval containing
-zero indicates no resolved difference, not equivalence. The manuscript's quantitative table is
-explicitly marked historical.
+The following old precision is withdrawn because its source output could not be recovered, and the
+manuscript no longer relies on it: LLE BA Z0-minus-COSMO-SAC [+0.02, +0.11], Z0-minus-UNIFAC
+[+0.04, +0.14], Z0x-minus-COSMO-SAC [+0.02, +0.11], Z0x-minus-UNIFAC [+0.03, +0.13], and
+Z0x-minus-HANNA [-0.03, +0.07], and the old binodal comparison of 0.05 for HANNA versus 0.18. The
+historical HANNA row was IDAC 0.24 (including 0.24 on test_both), VLE 7.1% (median 2.1%), HE 70
+J/mol and BA 0.88; of these, the first IDAC value and BA are sourced as above and the other three are
+reported values only. No other subset was substituted to reconstruct them, and no fresh bootstrap was
+run. An interval containing zero indicates no resolved difference, not equivalence. The manuscript's
+quantitative table is explicitly marked historical.
 
 ## S1. Open profiles and numerical infrastructure
 
@@ -125,12 +138,14 @@ after R13 with its explanatory finding; the liquid distribution remains unresolv
 open files remain frozen. See `docs/astra/round10/RESULTS.md` through
 `docs/astra/round13/RESULTS.md`.
 
- The 50-molecule/244-conformer description and median approximately 0.01 are corroborated by
-PROGRESS.md. The more precise 0.009/0.011 medians, percentile, weight and interval statements above
-retain the old draft's numerical record, but their cited private queue log
-(_queue/done/26_conformer_eval.sh.log) was not read in R17. They are not marked independently
-verified. R5/P26's later incomplete proposal pools did not accept an ensemble or invalidate the
-earlier finite-pool record.
+ The R17 closeout read the private queue logs and verified these statements. Queue job 24 built 244
+conformers for 50 molecules (4.88 on average), and data/pyscf_sigma/conformer_summary.csv gives a
+mean lowest-conformer weight of 0.602. Queue job 26 reports median |d ln gamma_inf| 0.009 (dsp) and
+0.011 (Z0x), 90th percentiles 0.064 and 0.089, IDAC MAE difference intervals [-0.00, +0.01] (dsp,
+printed at two decimals) and [-0.006, +0.014] (Z0x), and a Z0x VLE interval [-0.347, +0.317]
+percentage points. Note that the dsp and Z0x IDAC comparisons use 1,180 and 1,195 observations and
+the VLE comparisons 4,518 and 4,769. R5/P26's later incomplete proposal pools did not accept an
+ensemble or invalidate the earlier finite-pool record.
 
 R10 verified twelve raw-file/profile lineages, not exact electronic input decks. R11's attribution
 is ordered, because the reverse UD-method/open-coordinate corner was not computed. The 0.359
@@ -154,17 +169,18 @@ predicts false liquid-liquid splits in 9.4% of miscible test systems (balanced a
 unchanged, because it finds more real splits). The historical interpretation identifies the largest
 errors as aqueous: organic solutes in water are overpredicted by 5 to 7 in ln gamma_inf. Post hoc,
 on non-aqueous systems only, the historical draft reports smaller Z0w errors among its listed
-comparators (test IDAC MAE 0.67 vs 0.88 for COSMO-SAC 2010, bootstrap difference [-0.29, -0.09]; vs
-Z0x [-0.17, +0.04]). A proposed diagnosis is the gas-phase entropy in dG: bonding to a larger
+comparators (test IDAC MAE 0.67 vs 0.88 for COSMO-SAC 2010). The bootstrap intervals it printed
+beside these means are withdrawn; see the next paragraph. A proposed diagnosis is the gas-phase entropy in dG: bonding to a larger
 partner costs more rotational entropy (water-acetone -121 J/mol/K vs water-water -87 J/mol/K), which
 makes cross-association about ten times weaker than water self-association and turns water into an
 unrealistically closed network.
 
  The overall stored IDAC difference interval is [-0.035, +0.400] on 762 observations / 177 systems
 (results/scorecard_test_z0w.md); the failed registration is not a claim of a resolved overall IDAC
-increase. The specific non-aqueous interval endpoints in the old paragraph require their already-
-computed private artifact before submission. PROGRESS.md corroborates the rounded non-aqueous means
-and historical VLE failure. The -121 and -87 J/mol/K examples are supported by the stored
+increase. No output for the non-aqueous intervals ([-0.29, -0.09] against COSMO-SAC 2010 and
+[-0.17, +0.04] against Z0x) was found among the archived logs; the aqueous-subset step in queue job
+33 failed with an index error, so they are withdrawn. PROGRESS.md corroborates the rounded
+non-aqueous means and historical VLE failure. The -121 and -87 J/mol/K examples are supported by the stored
 results/qc/assoc_thermo.csv entries. This is the model's gas-phase thermochemistry, not a measured
 liquid bonding entropy or a proof that no other term contributed to the failure.
 
@@ -200,9 +216,11 @@ association variant is accepted.
 
  The equivalence language above concerns the checked energy/force evaluation paths. It does not
 prove that finite-step thermostatted dynamics samples an exact equilibrium distribution, or that an
-energy/force-trained potential predicts accurate chemical potentials. The MACE-OFF23 weight file,
-execution environment and corresponding primary model publication need exact version citations in
-the submission archive. R17 does not invent them or rerun simulation. The HMR and TF32 failures
+energy/force-trained potential predicts accurate chemical potentials. The simulations loaded the
+MACE-OFF23 small model through mace-torch's `mace_off(model="small")` on cloud GPUs (Kovács et al.,
+J. Am. Chem. Soc. 2025, 147, 17598, reference 19 of the manuscript); no local copy of the weight file
+was kept, so the archive records the loader call rather than a file hash. R17 did not rerun
+simulation. The HMR and TF32 failures
 remain recorded under their original criteria, and the historical Z0w3 scores predate the P6
 dispatch defect.
 

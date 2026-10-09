@@ -44,9 +44,12 @@ class Documents(unittest.TestCase):
         # Local reconstruction may supply an exact-blob original; normal checkout uses pinned Git.
         cls.original = Path(supplied).read_bytes() if supplied else audit.git_bytes(root, 'manuscript/draft.md')
         audit.require(audit.blob(cls.original) == audit.ORIGINAL_BLOB, 'test original is not exact reference')
-        cls.revised = (root / 'manuscript/draft.md').read_bytes()
-        cls.supp = (root / 'manuscript/supplement.md').read_bytes()
-        cls.ledger = json.loads((root / 'docs/astra/round17/CLAIMS.json').read_text())
+        # The 2026-10-08 closeout edited the manuscript after R17; the R17 checks use the reviewed
+        # R17 bytes (commit 7c1b899), and scripts/r17_closeout.py checks the later edits.
+        show = lambda path: subprocess.check_output(['git', 'show', '7c1b899:' + path], cwd=root)
+        cls.revised = show('manuscript/draft.md')
+        cls.supp = show('manuscript/supplement.md')
+        cls.ledger = json.loads(show('docs/astra/round17/CLAIMS.json'))
 
     def check(self, **kw):
         args = dict(original=self.original, revised=self.revised, supplement=self.supp, ledger=self.ledger)

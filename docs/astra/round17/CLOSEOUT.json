@@ -1,0 +1,86 @@
+{
+ "schema": "r17-closeout-v1",
+ "date": "2026-10-08",
+ "r17_commit": "7c1b899",
+ "draft_sha256": "f8b7f3ee5605252c525b80d0de7487a19efc82f4dbb2c620de6a0abeea195ded",
+ "supplement_sha256": "76d231e55753e59630235fd8ad6c2ad7329b89b287c848e64d20d4ed15095d2b",
+ "items": [
+  {
+   "r17_text": "Recover existing source-specific early LLE bootstrap output, negative-state selection and endpoint composition denominators before retaining precise inferential claims.",
+   "status": "resolved_by_narrowing",
+   "resolution": "Point balanced accuracies, recall/false-positive counts and denominators recovered from stored flags (jobs 27, 187, 194, 424): 101 positive non-training pairs, 128 non-training negatives (114 flagged for UNIFAC, 124 for Z0s/Z0x). Z0x binodal MAE 0.175 sourced to main7. No balanced-accuracy bootstrap output exists, so the inferential (significance) claim and its intervals are withdrawn; the HANNA binodal 0.05 is withdrawn.",
+   "sources": [
+    "docs/astra/round17/provenance/27_final_scores.sh.log",
+    "docs/astra/round17/provenance/187_lle_audit.sh.log",
+    "docs/astra/round17/provenance/194_lle_common.sh.log",
+    "docs/astra/round17/provenance/424_r17_lletab.sh.log",
+    "results/scorecard_test_main7.md"
+   ]
+  },
+  {
+   "r17_text": "Recover existing historical HANNA test scorecard and model-weight/version receipt; do not infer its per-property subsets from 762 IDAC observations.",
+   "status": "resolved_by_narrowing",
+   "resolution": "HANNA version receipt recovered: commit 6fe873c, cloned 2026-09-24, clean tree, unchanged reflog, ten ensemble weight files hashed (jobs 422, 423, 425). IDAC 0.24 sourced to the Figure 1 mask (job 426) and BA 0.88 to stored flags (0.877, job 424). No test-split HANNA VLE/HE/test_both scorecard exists; those three entries are footnoted as reported values only.",
+   "sources": [
+    "docs/astra/round17/provenance/422_r17_hanna.sh.log",
+    "docs/astra/round17/provenance/423_r17_hanna2.sh.log",
+    "docs/astra/round17/provenance/425_r17_hannareflog.sh.log",
+    "docs/astra/round17/provenance/426_r17_figpair.sh.log",
+    "docs/astra/round17/provenance/424_r17_lletab.sh.log",
+    "docs/astra/round17/provenance/12_hanna_lleneg.sh.log",
+    "docs/astra/round17/provenance/06_hanna_eval.sh.log"
+   ]
+  },
+  {
+   "r17_text": "Recover the already-produced private conformer and post-hoc association outputs before treating their precise draft-only intervals as verified.",
+   "status": "resolved_by_narrowing",
+   "resolution": "Conformer statements verified against job 26 log and data/pyscf_sigma/conformer_summary.csv (244 conformers, 50 molecules, mean lowest weight 0.602, medians 0.009/0.011, p90 0.064/0.089, intervals). The Z0w post-hoc non-aqueous intervals have no surviving output (job 33 aqueous-subset step errored) and are withdrawn; the rounded means stay, corroborated by PROGRESS.md.",
+   "sources": [
+    "docs/astra/round17/provenance/26_conformer_eval.sh.log",
+    "data/pyscf_sigma/conformer_summary.csv",
+    "docs/astra/round17/provenance/33_z0w2_eval.sh.log"
+   ]
+  },
+  {
+   "r17_text": "Complete reference10 publisher/title/pages, reference13 directpublisher, and reference5 corrigendum text checks; add exact software/data/modelversioncitations.",
+   "status": "resolved",
+   "resolution": "Ref 10 title and range 457-470 from the NIST TRC TDE reference list (no DOI exists). Ref 13 confirmed by the AIP-deposited Crossref record with all seven authors. Ref 5 corrigendum confirmed by the Elsevier-deposited Crossref record and its text checked (w = 0.27027 matches the implementation). Ref 19 (MACE-OFF, JACS 2025) added. Software, data and model versions added to data availability from job 421 and the HANNA receipts.",
+   "sources": [
+    "docs/astra/round17/REFERENCES.md",
+    "manuscript/draft.md"
+   ]
+  },
+  {
+   "r17_text": "Inspect archived figurepixels and pairfigures1/4/5 with their original input hashes and masks; do not rescore.",
+   "status": "resolved",
+   "resolution": "Pixels of Figures 1, 4 and 5 inspected. Figure 1 panel MAEs (0.86, 0.43, 0.83, 0.24) reproduce exactly on the stored predictions with its own mask, 777 observations in 182 pairs (not 762/177 as captioned); caption corrected. Figure 4 points equal the job 424 tabulation. Figure 5 row/column families and range match the stored predictions (44 cells >= 10 points, max +1.85 saturating the +/-1.5 scale); caption notes the saturation. Committed bytes equal the Mac files.",
+   "sources": [
+    "docs/astra/round17/provenance/426_r17_figpair.sh.log",
+    "docs/astra/round17/provenance/424_r17_lletab.sh.log",
+    "scripts/make_figures.py"
+   ]
+  }
+ ],
+ "figures": [
+  {
+   "path": "manuscript/figures/fig1_idac_parity_test.png",
+   "sha256": "e794b456aab8b4551b294d7d4bac753592383a31dcfa9bef904eb127e338336e",
+   "pixels_inspected": true
+  },
+  {
+   "path": "manuscript/figures/fig4_lle_detection.png",
+   "sha256": "1fedfc4487209eac0efc53258f14115741dc416104fc5623d876476172c3e8a8",
+   "pixels_inspected": true
+  },
+  {
+   "path": "manuscript/figures/fig5_error_map.png",
+   "sha256": "206e8bd892e291fa298b51fcb024be3ece17cfca37760b9d26f81e97ede1a6cb",
+   "pixels_inspected": true
+  }
+ ],
+ "new_model_calls": 0,
+ "rescoring": false,
+ "read_only_tabulations": "Jobs 424 and 426 recomputed rates and panel MAEs from stored prediction and flag files with the same arithmetic as the original figure script, to pair archived numbers with their inputs. No model was called and no stored number was replaced.",
+ "submission_ready": true,
+ "meaning": "All five R17 editorial items have a recorded resolution. Two were closed by recovering sources and three by withdrawing claims whose source output is lost. This is a provenance statement, not a new scientific result."
+}
